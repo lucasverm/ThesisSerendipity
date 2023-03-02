@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as Leaflet from 'leaflet';
+import { icon, Marker } from 'leaflet';
 import 'mapbox-gl-leaflet';
 
 @Component({
@@ -8,6 +9,7 @@ import 'mapbox-gl-leaflet';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent {
+
 
   map!: Leaflet.Map;
   markers: Leaflet.Marker[] = [];
@@ -19,6 +21,27 @@ export class TestComponent {
     ],
     zoom: 14,
     center: { lat: 51.05349346, lng: 3.71974349 }
+  }
+
+
+  fixIssue() {
+    // known angular issue: https://stackoverflow.com/questions/41144319/leaflet-marker-not-found-production-env
+    // this code will change the broken Marker's url, to a valid image from your assets folder
+
+    const iconRetinaUrl = 'assets/images/leaflet/marker-icon-2x.png';
+    const iconUrl = 'assets/images/leaflet/marker-icon.png';
+    const shadowUrl = 'assets/images/leaflet/marker-shadow.png';
+    const iconDefault = icon({
+      iconRetinaUrl,
+      iconUrl,
+      shadowUrl,
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowSize: [41, 41]
+    });
+    Marker.prototype.options.icon = iconDefault;
   }
 
 
@@ -46,10 +69,9 @@ export class TestComponent {
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
+    this.fixIssue();
     this.initMarkers();
   }
-
-  
 
   mapClicked($event: any) {
     console.log($event.latlng.lat, $event.latlng.lng);

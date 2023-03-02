@@ -27,7 +27,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/src/images",
+                "output": "assets/"
+              }
             ],
             "styles": [
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
