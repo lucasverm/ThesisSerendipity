@@ -24,7 +24,7 @@ export class MapComponent {
   }
 
 
-  fixIssue() {
+  fixIssueWithMarker() {
     // known angular issue: https://stackoverflow.com/questions/41144319/leaflet-marker-not-found-production-env
     // this code will change the broken Marker's url, to a valid image from your assets folder
 
@@ -69,7 +69,7 @@ export class MapComponent {
 
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
-    this.fixIssue();
+    this.fixIssueWithMarker();
     this.initMarkers();
   }
 
@@ -82,6 +82,7 @@ export class MapComponent {
   }
 
   markerDragEnd($event: any, index: number) {
+    console.log($event);
     console.log($event.target.getLatLng());
   }
 }

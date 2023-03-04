@@ -11,44 +11,44 @@ export class OsmService {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  getMapData$(around: Number = 2200, Xcor: Number = 51.05349346, Ycor: Number = 3.71974349): Observable<any> {
+  getMapData$(around: Number = 2200, lat: Number = 51.05349346, lon: Number = 3.71974349): Observable<any> {
     let data = `[out: json];
     (
       //Amenity: 
-      node[amenity = bar](around: ${around}, ${Xcor}, ${Ycor}); node[amenity = biergarten](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = cafe](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = fast_food](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = food_court](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = ice_cream](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = pub](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = restaurant](around: ${around}, ${Xcor}, ${Ycor});
+      node[amenity = bar](around: ${around}, ${lat}, ${lon}); node[amenity = biergarten](around: ${around}, ${lat}, ${lon});
+    node[amenity = cafe](around: ${around}, ${lat}, ${lon});
+    node[amenity = fast_food](around: ${around}, ${lat}, ${lon});
+    node[amenity = food_court](around: ${around}, ${lat}, ${lon});
+    node[amenity = ice_cream](around: ${around}, ${lat}, ${lon});
+    node[amenity = pub](around: ${around}, ${lat}, ${lon});
+    node[amenity = restaurant](around: ${around}, ${lat}, ${lon});
     //Amenity: Entertainment, Arts & culture
-    node[amenity = arts_centre](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = casino](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = cinema](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = community_centre](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = conference_centre](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = events_venue](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = exhibition_centre](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = fountain](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = gambling](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = music_venue](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = nightclub](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = planetarium](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = public_bookcase](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = social_centre](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = studio](around: ${around}, ${Xcor}, ${Ycor});
-    node[amenity = theatre](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = arts_centre](around: ${around}, ${lat}, ${lon});
+    node[amenity = casino](around: ${around}, ${lat}, ${lon});
+    node[amenity = cinema](around: ${around}, ${lat}, ${lon});
+    node[amenity = community_centre](around: ${around}, ${lat}, ${lon});
+    node[amenity = conference_centre](around: ${around}, ${lat}, ${lon});
+    node[amenity = events_venue](around: ${around}, ${lat}, ${lon});
+    node[amenity = exhibition_centre](around: ${around}, ${lat}, ${lon});
+    node[amenity = fountain](around: ${around}, ${lat}, ${lon});
+    node[amenity = gambling](around: ${around}, ${lat}, ${lon});
+    node[amenity = music_venue](around: ${around}, ${lat}, ${lon});
+    node[amenity = nightclub](around: ${around}, ${lat}, ${lon});
+    node[amenity = planetarium](around: ${around}, ${lat}, ${lon});
+    node[amenity = public_bookcase](around: ${around}, ${lat}, ${lon});
+    node[amenity = social_centre](around: ${around}, ${lat}, ${lon});
+    node[amenity = studio](around: ${around}, ${lat}, ${lon});
+    node[amenity = theatre](around: ${around}, ${lat}, ${lon});
     //Historic
-    node[historic](around: ${around}, ${Xcor}, ${Ycor});
+    node[historic](around: ${around}, ${lat}, ${lon});
     //Leisure
-    node[leisure](around: ${around}, ${Xcor}, ${Ycor});
+    node[leisure](around: ${around}, ${lat}, ${lon});
     //Shop
-    node[shop](around: ${around}, ${Xcor}, ${Ycor});
+    node[shop](around: ${around}, ${lat}, ${lon});
     //Sport
-    node[sport](around: ${around}, ${Xcor}, ${Ycor});
+    node[sport](around: ${around}, ${lat}, ${lon});
     //tourism
-    node[tourism](around: ${around}, ${Xcor}, ${Ycor});
+    node[tourism](around: ${around}, ${lat}, ${lon});
   
 );
     out;`;
