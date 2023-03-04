@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, catchError, throwError, map } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +11,62 @@ export class OsmService {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  /*getDienstById$(id: string): Observable<Dienst> {
-    return this.http.get(`${environment.apiUrl}/Dienst/${id}`).pipe(
+  getMapData$(around: Number = 2200, Xcor: Number = 51.05349346, Ycor: Number = 3.71974349): Observable<any> {
+    let data = `[out: json];
+    (
+      //Amenity: 
+      node[amenity = bar](around: ${around}, ${Xcor}, ${Ycor}); node[amenity = biergarten](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = cafe](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = fast_food](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = food_court](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = ice_cream](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = pub](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = restaurant](around: ${around}, ${Xcor}, ${Ycor});
+    //Amenity: Entertainment, Arts & culture
+    node[amenity = arts_centre](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = casino](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = cinema](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = community_centre](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = conference_centre](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = events_venue](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = exhibition_centre](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = fountain](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = gambling](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = music_venue](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = nightclub](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = planetarium](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = public_bookcase](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = social_centre](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = studio](around: ${around}, ${Xcor}, ${Ycor});
+    node[amenity = theatre](around: ${around}, ${Xcor}, ${Ycor});
+    //Historic
+    node[historic](around: ${around}, ${Xcor}, ${Ycor});
+    //Leisure
+    node[leisure](around: ${around}, ${Xcor}, ${Ycor});
+    //Shop
+    node[shop](around: ${around}, ${Xcor}, ${Ycor});
+    //Sport
+    node[sport](around: ${around}, ${Xcor}, ${Ycor});
+    //tourism
+    node[tourism](around: ${around}, ${Xcor}, ${Ycor});
+  
+);
+    out;`;
+    let body = new URLSearchParams();
+    body.set('data', data);
+
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.http.post(`${environment.osmUrl}`, body, options).pipe(
+      //tap(d => console.log(`${d}`)),
       catchError((error) => {
         return throwError(error);
-      }),
-      map(
-        (d: any): Dienst => {
-          d = Dienst.fromJSON(d);
-          return d;
-        }
-      )
+      })
     );
   }
 
+  /*
   addDienst$(
     naam: string,
     startDag: number,
