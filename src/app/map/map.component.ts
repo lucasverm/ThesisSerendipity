@@ -4,11 +4,11 @@ import { icon, Marker } from 'leaflet';
 import 'mapbox-gl-leaflet';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.scss']
 })
-export class TestComponent {
+export class MapComponent {
 
 
   map!: Leaflet.Map;
@@ -48,7 +48,7 @@ export class TestComponent {
   initMarkers() {
     const initialMarkers = [
       {
-        position: { lat: 51.0458, lng: 3.7174 },
+        position: { lat: 51.05349346, lng: 3.71974349 },
         draggable: true
       }
     ];
