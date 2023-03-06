@@ -1,0 +1,32 @@
+{
+    "type": "FeatureCollection",
+    "generator": "overpass-ide",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+    "timestamp": "2023-03-06T13:40:54Z",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/203704458",
+                "addr:housenumber": "14",
+                "addr:street": "Reep",
+                "amenity": "restaurant",
+                "diet:lactose_free": "only",
+                "diet:vegan": "only",
+                "diet:vegetarian": "yes",
+                "name": "Komkommertijd",
+                "opening_hours": "Tu-Su 11:45-14:30,18:00-22:30; Sa 18:00-22:30",
+                "phone": "+32 485 73 16 17",
+                "website": "http://www.komkommertijd.be/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7304537,
+                    51.0532692
+                ]
+            },
+            "id": "node/203704458"
+        }
+    ]
+}

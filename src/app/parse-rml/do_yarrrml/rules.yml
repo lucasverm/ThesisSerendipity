@@ -1,0 +1,18 @@
+prefixes:
+ app: "http://ThesisLucasVermeulen.be/"
+
+mappings:
+  places:
+    sources:
+      - ['data.json~jsonpath', '$.features[*]']
+      #- ['data_short.json~jsonpath', '$.features[*]']
+    s: app:$(properties.name)
+    po:
+      - [a, schema:Place]
+      - [schema:name, $(properties.name)]
+      - [schema:longitude, '$(geometry.coordinates[0])']
+      - [schema:latitude, '$(geometry.coordinates[1])']
+      - [schema:amenityFeature,'$(properties.amenity)' ]
+      - [schema:keywords,'$(properties.amenity)' ]
+      - [schema:telephone,'$(properties.phone)' ]
+      
