@@ -1,0 +1,102 @@
+#map {
+    min-height: 95vh;
+    min-width: 95vh;
+    margin: 1vw;
+}
+
+.col {
+	max-width: 420px;
+	/*margin: 1vw;*/
+}
+
+.row {
+	/*margin: 2vh 0;*/
+	height: 80vh;
+}
+
+.from-marker {
+	background-color: #6a8eae;
+	width: 2rem;
+	height: 2rem;
+	display: block;
+	left: -1rem;
+	top: -1rem;
+	position: relative;
+	border-radius: 2rem 2rem 0;
+	transform: rotate(45deg);
+	border: 1px solid #FFFFFF
+}
+
+.to-marker {
+	background-color: #9bd1e5;
+	width: 2rem;
+	height: 2rem;
+	display: block;
+	left: -1rem;
+	top: -1rem;
+	position: relative;
+	border-radius: 2rem 2rem 0;
+	transform: rotate(45deg);
+	border: 1px solid #FFFFFF
+}
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/*
+.uk-card {
+	background-color: #fdf6e3;
+}
+*/
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 0px;  
+  background: #eee8d5;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background: #93a1a1;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #b58900;
+  cursor: pointer;
+}
+
+.option-header {
+  /*font-size: 1.2em*/;
+  margin-bottom: 0.2em;
+}
+
+/*
+body {
+	height: 100vh;
+	background-color: #eee8d5;
+}
+*/
+
+.uk-button {
+	background-color: #268bd2;
+}
+
+.uk-padding-small {
+	padding: 0px 5px;
+	margin: 0px 5px;
+}

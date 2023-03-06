@@ -55,6 +55,8 @@
             "styles": [
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
               "./node_modules/leaflet/dist/leaflet.css",
+              "./src/assets/css/demo.css",
+              "./src/assets/css/uikit.min.css",
               "src/styles.scss"
             ],
             "scripts": []

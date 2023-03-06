@@ -1,3 +1,62 @@
-<div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"
-    (leafletClick)="mapClicked($event)">
+<div class="uk-flex-inline uk-flex-center uk-position-center">
+    <div class="uk-flex-auto col" style="margin-top: 10px;">
+        <div class="uk-flex uk-flex-column">
+            <div class="uk-card uk-card-default uk-margin-small uk-padding-small">
+                Don't forget to hit <strong>Plan</strong> when you're done.
+            </div>
+
+            <div class="uk-card uk-card-default uk-margin-small uk-padding-small">
+                <div class="option-header">
+                    <strong>Search place</strong>
+                </div>
+                <div>
+                    <div class="slidecontainer">
+                        <input type="text" class="text" id="heritageSlider">
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-card uk-card-default uk-margin-small uk-padding-small">
+                <div class="option-header">
+                    <strong>Deviation from fastest track</strong>
+                </div>
+                <div>
+                    <div class="slidecontainer">
+                        <input type="range" min="0" max="200" value="100" class="slider" id="shopSlider">
+                        <div id="shopText">
+                            Medium
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-card uk-card-default uk-margin-small uk-padding-small">
+                <div class="option-header">
+                    <strong>Similarity to search place</strong>
+                </div>
+                <div>
+                    <div class="slidecontainer">
+                        <input type="range" min="0" max="200" value="100" class="slider" id="treeSlider">
+                        <div id="treeText">
+                            Medium
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="uk-button uk-button-primary" id="planButton" style="margin:16px"> <strong>Plan</strong>
+            </button>
+            <button class="uk-button uk-button-primary" id="planButton" style="margin:16px"> <strong>Use own
+                    RML</strong>
+            </button>
+        </div>
+
+    </div>
+    <div class="uk-card uk-card-default uk-margin-small uk-padding-small" id="map">
+        <div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"
+            (leafletClick)="mapClicked($event)">
+        </div>
+    </div>
+
+
 </div>

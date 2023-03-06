@@ -58,7 +58,22 @@ export class MapComponent {
     for (let index = 0; index < initialMarkers.length; index++) {
       const data = initialMarkers[index];
       const marker = this.generateMarker(data, index);
-      marker.addTo(this.map).bindPopup(`<b>${data.position.lat},  ${data.position.lng}</b>`);
+      //icon
+      const iconRetinaUrl = 'assets/images/leaflet/marker-icon-2x-orange.png';
+      const iconUrl = 'assets/images/leaflet/marker-icon-orange.png';
+      const shadowUrl = 'assets/images/leaflet/marker-shadow.png';
+      const iconOrange = icon({
+        iconRetinaUrl,
+        iconUrl,
+        shadowUrl,
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+        shadowSize: [41, 41]
+      });
+      marker.options.icon = iconOrange
+      marker.addTo(this.map).bindPopup(`<b>Starting point</b> <p>${data.position.lat},  ${data.position.lng}</p>`);
       //this.map.panTo(data.position);
       this.markers.push(marker)
     }
@@ -89,7 +104,7 @@ export class MapComponent {
     this.map.on('dragend', (event: any) => this.queryOSMandPutMarkersOnMap(+event.target.options.center.lat, +event.target.options.center.lng))
     this.fixIssueWithMarker();
     this.queryOSMandPutMarkersOnMap(this.map.getCenter().lat, this.map.getCenter().lng);
-    //this.initMarkers();
+    this.initMarkers();
   }
 
   queryOSMandPutMarkersOnMap(lat: number, lng: number) {
