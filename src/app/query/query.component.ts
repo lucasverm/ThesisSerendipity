@@ -10,14 +10,14 @@ import { OsmService } from '../services/osm.service';
 })
 export class QueryComponent {
 
-  constructor(public router: Router, private OsmService: OsmService) { }
+  constructor(public router: Router, private osmService: OsmService) { }
 
   ngOnInit() {
     this.getMapData();
   }
 
   getMapData() {
-    this.OsmService
+    this.osmService
       .getMapData$()
       .subscribe(
         (val) => {

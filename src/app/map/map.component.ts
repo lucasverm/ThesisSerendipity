@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import * as Leaflet from 'leaflet';
 import { icon, Marker } from 'leaflet';
 import 'mapbox-gl-leaflet';
+import { OsmService } from '../services/osm.service';
 
 @Component({
   selector: 'app-map',
@@ -9,7 +11,6 @@ import 'mapbox-gl-leaflet';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent {
-
 
   map!: Leaflet.Map;
   markers: Leaflet.Marker[] = [];
@@ -22,6 +23,8 @@ export class MapComponent {
     zoom: 14,
     center: { lat: 51.05349346, lng: 3.71974349 }
   }
+
+  constructor(public router: Router, private osmService: OsmService) { }
 
 
   fixIssueWithMarker() {
@@ -62,22 +65,55 @@ export class MapComponent {
   }
 
   generateMarker(data: any, index: number) {
+    console.log(data.position)
     return Leaflet.marker(data.position, { draggable: data.draggable })
       .on('click', (event) => this.markerClicked(event, index))
       .on('dragend', (event) => this.markerDragEnd(event, index));
   }
 
+  generateMarkerWithJsonLdData(data: any) {
+    let name = data['http://schema.org/name'][0]['@value'];
+    let obj = {
+      "lat": +data['http://schema.org/latitude'][0]['@value'],
+      "lng": +data['http://schema.org/longitude'][0]['@value']
+    }
+
+    let marker = Leaflet.marker(obj, {})
+      .on('click', (event) => this.markerClicked(event));
+    marker.addTo(this.map).bindPopup(`<b>${name}</b><p>${obj.lat},  ${obj.lng}</p>`);
+    this.markers.push(marker)
+  }
+
   onMapReady($event: Leaflet.Map) {
     this.map = $event;
+    this.map.on('dragend', (event: any) => this.queryOSMandPutMarkersOnMap(+event.target.options.center.lat, +event.target.options.center.lng))
     this.fixIssueWithMarker();
-    this.initMarkers();
+    this.queryOSMandPutMarkersOnMap(this.map.getCenter().lat, this.map.getCenter().lng);
+    //this.initMarkers();
+  }
+
+  queryOSMandPutMarkersOnMap(lat: number, lng: number) {
+    console.log(lat, lng);
+    this.osmService.getStatigJsonLdMapDataOsm().forEach(t => this.generateMarkerWithJsonLdData(t));
+
+    /*this.osmService
+      .getMapData$(lat, lng)
+      .subscribe(
+        (val) => {
+          console.log(val);
+          return val;
+        },
+        (error: HttpErrorResponse) => {
+          //this.errorMessage = error.error;
+        }
+      );*/
   }
 
   mapClicked($event: any) {
     console.log($event.latlng.lat, $event.latlng.lng);
   }
 
-  markerClicked($event: any, index: number) {
+  markerClicked($event: any, index?: number) {
     console.log($event.latlng.lat, $event.latlng.lng);
   }
 
