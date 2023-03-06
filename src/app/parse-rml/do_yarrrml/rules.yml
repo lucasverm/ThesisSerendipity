@@ -4,8 +4,8 @@ prefixes:
 mappings:
   places:
     sources:
+      #- ['data.json~jsonpath', '$.features[*]']
       - ['data.json~jsonpath', '$.features[*]']
-      #- ['data_short.json~jsonpath', '$.features[*]']
     s: app:$(properties.name)
     po:
       - [a, schema:Place]
@@ -15,4 +15,5 @@ mappings:
       - [schema:amenityFeature,'$(properties.amenity)' ]
       - [schema:keywords,'$(properties.amenity)' ]
       - [schema:telephone,'$(properties.phone)' ]
+      - [schema:address, '$(properties.addr:street) $(properties.addr:housenumber)']
       
