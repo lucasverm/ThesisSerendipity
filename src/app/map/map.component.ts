@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import * as Leaflet from 'leaflet';
 import { icon, Marker } from 'leaflet';
 import 'mapbox-gl-leaflet';
+import { ZoiDemoPlanner } from 'plannerjs';
 import { OsmService } from '../services/osm.service';
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -12,6 +12,7 @@ import { OsmService } from '../services/osm.service';
 })
 export class MapComponent {
 
+  private planner = new ZoiDemoPlanner();
   map!: Leaflet.Map;
   markers: Leaflet.Marker[] = [];
   options = {
@@ -24,7 +25,8 @@ export class MapComponent {
     center: { lat: 51.05349346, lng: 3.71974349 }
   }
 
-  constructor(public router: Router, private osmService: OsmService) { }
+  constructor(public router: Router, private osmService: OsmService) {
+  }
 
 
   fixIssueWithMarker() {

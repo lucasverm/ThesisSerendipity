@@ -59,7 +59,10 @@
               "./src/assets/css/uikit.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "plannerjs"
+            ]
           },
           "configurations": {
             "production": {
