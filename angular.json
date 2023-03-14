@@ -56,8 +56,8 @@
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
               "./node_modules/leaflet/dist/leaflet.css",
               "./node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.css",
-              "./src/assets/css/demo.css",
               "./src/assets/css/uikit.min.css",
+              "./src/assets/css/demo.css",
               "src/styles.scss"
             ],
             "scripts": []

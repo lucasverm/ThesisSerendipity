@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import * as Leaflet from 'leaflet';
+import * as L from 'leaflet';
 import { icon, Marker } from 'leaflet';
 import 'leaflet-routing-machine';
 import 'mapbox-gl-leaflet';
@@ -13,11 +13,12 @@ import { OsmService } from '../services/osm.service';
 })
 export class MapComponent {
 
-  map!: Leaflet.Map;
-  markers: Leaflet.Marker[] = [];
+  map!: L.Map;
+  leafletRoutingControl: L.Routing.Control;
+  markers: L.Marker[] = [];
   options = {
     layers: [
-      Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         // attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       })
     ],
@@ -27,29 +28,37 @@ export class MapComponent {
 
   constructor(public router: Router, private osmService: OsmService) { }
 
-  onMapReady($event: Leaflet.Map) {
+  onMapReady($event: L.Map) {
     this.map = $event;
     //this.map.on('dragend', (event: any) => this.queryOSMandPutMarkersOnMap(+event.target.options.center.lat, +event.target.options.center.lng))
     this.fixIssueWithMarker();
     //this.queryOSMandPutMarkersOnMap(this.map.getCenter().lat, this.map.getCenter().lng);
     //this.initMarkers();
-    Leaflet.Routing.control({
-      router: Leaflet.Routing.osrmv1({
+    
+    // add leaflet routing
+    this.leafletRoutingControl = L.Routing.control({
+      router: L.Routing.osrmv1({
         serviceUrl: `https://routing.openstreetmap.de/routed-foot/route/v1`,
         profile: `driving`
       }),
       addWaypoints: false,
       showAlternatives: false,
       show: false,
-      // lineOptions: { styles: [{ color: '#242c81', weight: 7 }] },
+      lineOptions: {
+        styles: [{ color: '#242c81', weight: 7 }],
+        extendToWaypoints: true,
+        missingRouteTolerance: 0
+      },
       fitSelectedRoutes: false,
-      // altLineOptions: { styles: [{ color: '#ed6852', weight: 7 }] },
       routeWhileDragging: true,
-      waypoints: [
-        Leaflet.latLng(51.0543509, 3.7167503),
-        Leaflet.latLng(51.0523059, 3.7239686)
-      ]
+      waypoints: []
     }).addTo(this.map);
+    this.drawRouteBetween2points(51.0543509, 3.7167503, 51.0523059, 3.7239686);
+  }
+
+  drawRouteBetween2points(latFrom: number, lngFrom: number, latTo: number, lngTo: number) {
+    this.leafletRoutingControl.setWaypoints([L.latLng(latFrom, lngFrom),
+    L.latLng(latTo, lngTo)])
   }
 
   fixIssueWithMarker() {
@@ -110,7 +119,7 @@ export class MapComponent {
 
   generateMarker(data: any, index: number) {
     console.log(data.position)
-    return Leaflet.marker(data.position, { draggable: data.draggable })
+    return L.marker(data.position, { draggable: data.draggable })
       .on('click', (event) => this.markerClicked(event, index))
       .on('dragend', (event) => this.markerDragEnd(event, index));
   }
@@ -122,7 +131,7 @@ export class MapComponent {
       "lng": +data['http://schema.org/longitude'][0]['@value']
     }
 
-    let marker = Leaflet.marker(obj, {})
+    let marker = L.marker(obj, {})
       .on('click', (event) => this.markerClicked(event));
     marker.addTo(this.map).bindPopup(`<b>${name}</b><p>${obj.lat},  ${obj.lng}</p>`);
     this.markers.push(marker)
