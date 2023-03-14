@@ -1,11 +1,12 @@
 <div class="uk-flex-inline uk-flex-center uk-position-center">
     <div class="uk-flex-auto col" style="margin-top: 10px;">
         <div class="uk-flex uk-flex-column">
-            <div class="uk-card uk-card-default uk-margin-small uk-padding-small">
+            <div class="introtekst uk-card uk-card-default uk-margin-small uk-padding-small">
                 <p>Welcome to our <b>Serendipity routing</b> application! Our app uses the power of <b>linked data</b>
                     to make
                     your tour in the city of <b>Ghent</b> even more exciting. Simply enter your desired location in the
-                    search field and new places or attractions on your route, that you might not have discovered otherwise
+                    search field and new places or attractions on your route, that you might not have discovered
+                    otherwise
                     will be presented to you. With our app, you'll never miss out on the hidden gems that make every
                     trip unforgettable.
             </div>
@@ -16,7 +17,7 @@
                 </div>
                 <div>
                     <div class="textcontainer">
-                        <input type="text" class="text" id="heritageSlider">
+                        <p-autoComplete  [(ngModel)]="text" [suggestions]="results"></p-autoComplete>
                     </div>
                 </div>
             </div>
@@ -48,7 +49,6 @@
                     </div>
                 </div>
             </div>
-
             <button class="uk-button uk-button-primary button" id="planButton"> <strong>Plan</strong>
             </button>
         </div>

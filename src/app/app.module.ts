@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
+import { FormsModule } from '@angular/forms';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import { QueryComponent } from './query/query.component';
 import { ParseRmlComponent } from './parse-rml/parse-rml.component';
-
+import { QueryComponent } from './query/query.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,11 @@ import { ParseRmlComponent } from './parse-rml/parse-rml.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LeafletModule
+    LeafletModule,
+    AutoCompleteModule,
+    AutoCompleteModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,12 +6,17 @@ import 'leaflet-routing-machine';
 import 'mapbox-gl-leaflet';
 import { OsmService } from '../services/osm.service';
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent {
+
+  text: string;
+
+  results: string[];
 
   map!: L.Map;
   leafletRoutingControl: L.Routing.Control;
@@ -34,7 +39,7 @@ export class MapComponent {
     this.fixIssueWithMarker();
     //this.queryOSMandPutMarkersOnMap(this.map.getCenter().lat, this.map.getCenter().lng);
     //this.initMarkers();
-    
+
     // add leaflet routing
     this.leafletRoutingControl = L.Routing.control({
       router: L.Routing.osrmv1({
