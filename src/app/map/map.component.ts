@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Leaflet from 'leaflet';
 import { icon, Marker } from 'leaflet';
+import 'leaflet-routing-machine';
 import 'mapbox-gl-leaflet';
 import { OsmService } from '../services/osm.service';
 
@@ -26,6 +27,30 @@ export class MapComponent {
 
   constructor(public router: Router, private osmService: OsmService) { }
 
+  onMapReady($event: Leaflet.Map) {
+    this.map = $event;
+    //this.map.on('dragend', (event: any) => this.queryOSMandPutMarkersOnMap(+event.target.options.center.lat, +event.target.options.center.lng))
+    this.fixIssueWithMarker();
+    //this.queryOSMandPutMarkersOnMap(this.map.getCenter().lat, this.map.getCenter().lng);
+    //this.initMarkers();
+    Leaflet.Routing.control({
+      router: Leaflet.Routing.osrmv1({
+        serviceUrl: `https://routing.openstreetmap.de/routed-foot/route/v1`,
+        profile: `driving`
+      }),
+      addWaypoints: false,
+      showAlternatives: false,
+      show: false,
+      // lineOptions: { styles: [{ color: '#242c81', weight: 7 }] },
+      fitSelectedRoutes: false,
+      // altLineOptions: { styles: [{ color: '#ed6852', weight: 7 }] },
+      routeWhileDragging: true,
+      waypoints: [
+        Leaflet.latLng(51.0543509, 3.7167503),
+        Leaflet.latLng(51.0523059, 3.7239686)
+      ]
+    }).addTo(this.map);
+  }
 
   fixIssueWithMarker() {
     // known angular issue: https://stackoverflow.com/questions/41144319/leaflet-marker-not-found-production-env
@@ -52,6 +77,10 @@ export class MapComponent {
     const initialMarkers = [
       {
         position: { lat: 51.05349346, lng: 3.71974349 },
+        draggable: true
+      },
+      {
+        position: { lat: 51.0473197, lng: 3.7037377 },
         draggable: true
       }
     ];
@@ -99,13 +128,7 @@ export class MapComponent {
     this.markers.push(marker)
   }
 
-  onMapReady($event: Leaflet.Map) {
-    this.map = $event;
-    this.map.on('dragend', (event: any) => this.queryOSMandPutMarkersOnMap(+event.target.options.center.lat, +event.target.options.center.lng))
-    this.fixIssueWithMarker();
-    this.queryOSMandPutMarkersOnMap(this.map.getCenter().lat, this.map.getCenter().lng);
-    this.initMarkers();
-  }
+
 
   queryOSMandPutMarkersOnMap(lat: number, lng: number) {
     console.log(lat, lng);
