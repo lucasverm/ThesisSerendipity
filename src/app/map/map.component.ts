@@ -81,6 +81,7 @@ export class MapComponent {
       console.log(this.distanceRouteShowedOnMap);
     });
     this.drawRouteBetween2points(51.0543509, 3.7167503, 51.0523059, 3.7239686);
+    this.calculateDistanceBetween(51.0543509, 3.7167503, 51.0523059, 3.7239686);
     this.calculateRouteExtraDistanceFromCurrentRouteShowingOnMap(51.0520143, 3.7196261
     );
   }
@@ -96,8 +97,18 @@ export class MapComponent {
     this.leafletTestRoutingControl.setWaypoints(waypoints);
     this.leafletTestRoutingControl.on('routesfound', e => {
       this.distanceExtaRoute = e.routes[0].summary.totalDistance;
-      console.log(this.distanceExtaRoute);
     });
+  }
+
+  calculateBirdFlightDistanceBetween(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    let R = 6371;
+    let dLat = (lat2 - lat1) * Math.PI / 180;
+    let dLon = (lon2 - lon1) * Math.PI / 180;
+    let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    let distance = R * c * 1000;
+    console.log(distance);
+    return distance;
   }
 
   fixIssueWithMarker() {
