@@ -1,3 +1,5 @@
+# Aan PATH toevoegen
+export PATH=$PATH:~/lib/node_modules/@rmlio/yarrrml-parser/bin
 # Test scripten uitvoeren:
 cd ~/Documents/ThesisSerendipity/src/app/parse-rml/test_yarrrml/
 parser.js -i test_rules.yml -o test_rules.rml.ttl

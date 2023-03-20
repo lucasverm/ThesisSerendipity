@@ -4,8 +4,8 @@ prefixes:
 mappings:
   places:
     sources:
+      - ['data_short.json~jsonpath', '$.features[*]']
       #- ['data.json~jsonpath', '$.features[*]']
-      - ['data.json~jsonpath', '$.features[*]']
     s: app:$(properties.name)
     po:
       - [a, schema:Place]
@@ -14,6 +14,25 @@ mappings:
       - [schema:latitude, '$(geometry.coordinates[1])']
       - [schema:amenityFeature,'$(properties.amenity)' ]
       - [schema:keywords,'$(properties.amenity)' ]
+      - [schema:keywords,'$(properties.amenity)' ]
       - [schema:telephone,'$(properties.phone)' ]
       - [schema:address, '$(properties.addr:street) $(properties.addr:housenumber)']
-      
+      - p: schema:geo
+        o:
+         - mapping: geoObjects
+           condition:
+            function: equal
+            parameters:
+              - [str1, '$(geometry.coordinates[0])']
+              - [str2, '$(geometry.coordinates[0])']
+  geoObjects:
+    sources:
+      - ['data_short.json~jsonpath', '$.features[*]']
+      #- ['data.json~jsonpath', '$.features[*]']
+    s: app:'$(geometry.coordinates[0])-$(geometry.coordinates[1])')
+    po:
+      - [a, schema:GeoCoordinates]
+      - [schema:longitude, '$(geometry.coordinates[0])']
+      - [schema:latitude, '$(geometry.coordinates[1])']
+
+         

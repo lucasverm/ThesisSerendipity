@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
+import * as LTest from 'leaflet';
 import { icon, Marker } from 'leaflet';
 import 'leaflet-routing-machine';
 import 'mapbox-gl-leaflet';
@@ -15,11 +16,10 @@ import { OsmService } from '../services/osm.service';
 export class MapComponent {
 
   text: string;
-
   results: string[];
-
   map!: L.Map;
   leafletRoutingControl: L.Routing.Control;
+  leafletTestRoutingControl: L.Routing.Control;
   markers: L.Marker[] = [];
   options = {
     layers: [
@@ -30,6 +30,8 @@ export class MapComponent {
     zoom: 14,
     center: { lat: 51.05349346, lng: 3.71974349 }
   }
+  distanceRouteShowedOnMap: number;
+  distanceExtaRoute: number;
 
   constructor(public router: Router, private osmService: OsmService) { }
 
@@ -46,6 +48,7 @@ export class MapComponent {
         serviceUrl: `https://routing.openstreetmap.de/routed-foot/route/v1`,
         profile: `driving`
       }),
+      autoRoute: true,
       addWaypoints: false,
       showAlternatives: false,
       show: false,
@@ -58,12 +61,43 @@ export class MapComponent {
       routeWhileDragging: true,
       waypoints: []
     }).addTo(this.map);
+
+    this.leafletTestRoutingControl = LTest.Routing.control({
+      router: L.Routing.osrmv1({
+        serviceUrl: `https://routing.openstreetmap.de/routed-foot/route/v1`,
+        profile: `driving`
+      }),
+      autoRoute: true,
+      addWaypoints: false,
+      showAlternatives: false,
+      show: false,
+      fitSelectedRoutes: false,
+      routeWhileDragging: false,
+      waypoints: []
+    }).addTo(L.map('map'));
+
+    this.leafletRoutingControl.on('routesfound', e => {
+      this.distanceRouteShowedOnMap = e.routes[0].summary.totalDistance;
+      console.log(this.distanceRouteShowedOnMap);
+    });
     this.drawRouteBetween2points(51.0543509, 3.7167503, 51.0523059, 3.7239686);
+    this.calculateRouteExtraDistanceFromCurrentRouteShowingOnMap(51.0520143, 3.7196261
+    );
   }
 
   drawRouteBetween2points(latFrom: number, lngFrom: number, latTo: number, lngTo: number) {
     this.leafletRoutingControl.setWaypoints([L.latLng(latFrom, lngFrom),
-    L.latLng(latTo, lngTo)])
+    L.latLng(latTo, lngTo)]);
+  }
+
+  calculateRouteExtraDistanceFromCurrentRouteShowingOnMap(lat: number, lng: number) {
+    let waypoints = this.leafletRoutingControl.getWaypoints().map(t => { console.log(t); return t.latLng; })
+    waypoints.push(L.latLng(lat, lng));
+    this.leafletTestRoutingControl.setWaypoints(waypoints);
+    this.leafletTestRoutingControl.on('routesfound', e => {
+      this.distanceExtaRoute = e.routes[0].summary.totalDistance;
+      console.log(this.distanceExtaRoute);
+    });
   }
 
   fixIssueWithMarker() {
@@ -141,8 +175,6 @@ export class MapComponent {
     marker.addTo(this.map).bindPopup(`<b>${name}</b><p>${obj.lat},  ${obj.lng}</p>`);
     this.markers.push(marker)
   }
-
-
 
   queryOSMandPutMarkersOnMap(lat: number, lng: number) {
     console.log(lat, lng);
