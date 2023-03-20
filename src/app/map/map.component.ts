@@ -81,7 +81,7 @@ export class MapComponent {
       console.log(this.distanceRouteShowedOnMap);
     });
     this.drawRouteBetween2points(51.0543509, 3.7167503, 51.0523059, 3.7239686);
-    this.calculateDistanceBetween(51.0543509, 3.7167503, 51.0523059, 3.7239686);
+    this.calculateBirdFlightDistanceBetween(51.0543509, 3.7167503, 51.0523059, 3.7239686);
     this.calculateRouteExtraDistanceFromCurrentRouteShowingOnMap(51.0520143, 3.7196261
     );
   }
