@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'map', component: MapComponent },
   { path: 'query', component: QueryComponent },
   { path: 'parse', component: ParseRmlComponent },
-  { path: '', component: MapComponent }
+  { path: '', component: ParseRmlComponent }
 ];
 
 @NgModule({

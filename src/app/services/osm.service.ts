@@ -154,6 +154,14 @@ export class OsmService {
     );
   }*/
 
+  getJsonData(): Observable<any> {
+    return this.http.get<any>('./assets/data/data.json');
+  }
+
+  getJsonTestData(): Observable<any> {
+    return this.http.get<any>('./assets/data/test_data.json');
+  }
+
   getStatigJsonLdMapDataOsm() {
     return [ {
   "@id" : "http://ThesisLucasVermeulen.be/%26%20Other%20Stories",
