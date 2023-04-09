@@ -189,7 +189,7 @@ export class MapComponent {
 
   queryOSMandPutMarkersOnMap(lat: number, lng: number) {
     console.log(lat, lng);
-    this.osmService.getStatigJsonLdMapDataOsm().forEach(t => this.generateMarkerWithJsonLdData(t));
+    //this.osmService.getStatigJsonLdMapDataOsm().forEach(t => this.generateMarkerWithJsonLdData(t));
 
     /*this.osmService
       .getMapData$(lat, lng)
