@@ -20,7 +20,6 @@ export class ParseRmlComponent {
       this.jsonToTurtl();
       this.toonDezeData = this.turtle;
     });
-
   }
 
   toggle() {
@@ -50,6 +49,7 @@ export class ParseRmlComponent {
       let tripleIdentifier = `<ex/${idZonderNode}>`;
       //AMENITY
       let keywords = [];
+      let relevant = true;
       if (linkData[0]['properties']['amenity']) {
         titles.add(`${linkData[0]['properties']['amenity']}`);
         if (linkData[0]['properties']['amenity'] == "restaurant") {
@@ -128,11 +128,11 @@ export class ParseRmlComponent {
           keywords.push("antiques");
           this.turtle += `${tripleIdentifier} a km4c:Antiques ;\n`;
         } else if (linkData[0]['properties']['shop'] == "window_blind") {
-          keywords.push("window_blind");
           // Niet relevant
+          relevant = false;
         } else if (linkData[0]['properties']['shop'] == "second_hand") {
           keywords.push("second_hand");
-          this.turtle += `${tripleIdentifier} a hm4c:Second_hand_goods ;\n`;
+          this.turtle += `${tripleIdentifier} a km4c:Second_hand_goods ;\n`;
         } else if (linkData[0]['properties']['shop'] == "telecommunication") {
           keywords.push("telecommunication");
           this.turtle += `${tripleIdentifier} a km4c:Telecommunication ;\n`;
@@ -191,8 +191,7 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a schema:toys ;\n`;
         } else if (linkData[0]['properties']['shop'] == "mall") {
           keywords.push("mall");
-          //TODO
-          this.turtle += `${tripleIdentifier} a schema:mall ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:ShoppingCenter ;\n`;
         } else if (linkData[0]['properties']['shop'] == "ticket") {
           keywords.push("ticket");
           //TODO
@@ -207,38 +206,31 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a schema:perfumery ;\n`;
         } else if (linkData[0]['properties']['shop'] == "computer") {
           keywords.push("computer");
-          //TODO
-          this.turtle += `${tripleIdentifier} a schema:computer ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:ComputerStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "hearing_aids") {
-          keywords.push("hearing_aids");
-          //TODO
-          this.turtle += `${tripleIdentifier} a schema:hearing_aids ;\n`;
+          // Niet relevant
+          relevant = false;
         } else if (linkData[0]['properties']['shop'] == "interior_decoration") {
-          keywords.push("interior_decoration");
-          //TODO
-          this.turtle += `${tripleIdentifier} a schema:interior_decoration ;\n`;
+          // Niet relevant
+          relevant = false;
         } else if (linkData[0]['properties']['shop'] == "bookmaker") {
           keywords.push("bookmaker");
           //TODO
           this.turtle += `${tripleIdentifier} a schema:bookmaker ;\n`;
         } else if (linkData[0]['properties']['shop'] == "hardware") {
           keywords.push("hardware");
-          //TODO
-          this.turtle += `${tripleIdentifier} a schema:hardware ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:HardwareStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "florist") {
           keywords.push("florist");
           this.turtle += `${tripleIdentifier} a schema:Florist ;\n`;
         } else if (linkData[0]['properties']['shop'] == "art") {
           keywords.push("art");
-          //TODO
           this.turtle += `${tripleIdentifier} a schema:VisualArtwork ;\n`;
         } else if (linkData[0]['properties']['shop'] == "baby_goods") {
-          keywords.push("baby_goods");
-          //TODO
-          this.turtle += `${tripleIdentifier} a schema:baby_goods ;\n`;
+          keywords.push("baby goods");
+          this.turtle += `${tripleIdentifier} a schema:ChildCare ;\n`;
         } else if (linkData[0]['properties']['shop'] == "games") {
           keywords.push("games");
-          //TODO
           this.turtle += `${tripleIdentifier} a schema:games ;\n`;
         } else if (linkData[0]['properties']['shop'] == "car") {
           keywords.push("car");
@@ -356,16 +348,15 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a schema:leather ;\n`;
         } else if (linkData[0]['properties']['shop'] == "car_parts") {
           keywords.push("car_parts");
-          //TODO 
-          this.turtle += `${tripleIdentifier} a schema:car_parts ;\n`;
+          keywords.push("AutoPartsStore");
+          this.turtle += `${tripleIdentifier} a schema:AutoPartsStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "copyshop") {
           keywords.push("copyshop");
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:copyshop ;\n`;
         } else if (linkData[0]['properties']['shop'] == "books") {
-          keywords.push("books");
-          //TODO 
-          this.turtle += `${tripleIdentifier} a schema:books ;\n`;
+          keywords.push("book");
+          this.turtle += `${tripleIdentifier} a schema:BookStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "charity") {
           keywords.push("charity");
           //TODO 
@@ -394,9 +385,8 @@ export class ParseRmlComponent {
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:musical_instrument ;\n`;
         } else if (linkData[0]['properties']['shop'] == "erotic") {
-          keywords.push("erotic");
-          //TODO  !!??!!
-          this.turtle += `${tripleIdentifier} a schema:erotic ;\n`;
+          // Niet relevant
+          relevant = false;
         } else if (linkData[0]['properties']['shop'] == "wine") {
           keywords.push("wine");
           //TODO 
@@ -410,9 +400,8 @@ export class ParseRmlComponent {
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:mobile_phone ;\n`;
         } else if (linkData[0]['properties']['shop'] == "travel_agency") {
-          keywords.push("travel_agency");
-          //TODO 
-          this.turtle += `${tripleIdentifier} a schema:travel_agency ;\n`;
+          keywords.push("travel agency");
+          this.turtle += `${tripleIdentifier} a schema:TravelAgency ;\n`;
         } else if (linkData[0]['properties']['shop'] == "garden_centre") {
           keywords.push("garden_centre");
           //TODO 
@@ -430,21 +419,18 @@ export class ParseRmlComponent {
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:sports ;\n`;
         } else if (linkData[0]['properties']['shop'] == "carpet") {
-          keywords.push("carpet");
-          //TODO 
-          this.turtle += `${tripleIdentifier} a schema:carpet ;\n`;
+          // Niet relevant
+          relevant = false;
         } else if (linkData[0]['properties']['shop'] == "optician") {
-          keywords.push("optician");
-          //TODO 
-          this.turtle += `${tripleIdentifier} a schema:optician ;\n`;
+          // Niet relevant
+          relevant = false;
         } else if (linkData[0]['properties']['shop'] == "nuts") {
           keywords.push("nuts");
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:nuts ;\n`;
         } else if (linkData[0]['properties']['shop'] == "laundry") {
           keywords.push("laundry");
-          //TODO 
-          this.turtle += `${tripleIdentifier} a schema:laundry ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:DryCleaningOrLaundry ;\n`;
         } else if (linkData[0]['properties']['shop'] == "doityourself") {
           keywords.push("doityourself");
           //TODO 
@@ -455,8 +441,7 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a schema:brass_instruments ;\n`;
         } else if (linkData[0]['properties']['shop'] == "music") {
           keywords.push("music");
-          //TODO 
-          this.turtle += `${tripleIdentifier} a schema:music ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:MusicStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "lottery") {
           keywords.push("lottery");
           //TODO 
@@ -466,17 +451,15 @@ export class ParseRmlComponent {
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:bathroom_furnishing ;\n`;
         } else if (linkData[0]['properties']['shop'] == "locksmith") {
-          keywords.push("locksmith");
-          //TODO 
-          this.turtle += `${tripleIdentifier} a schema:locksmith ;\n`;
+          // Niet relevant
+          relevant = false;
         } else if (linkData[0]['properties']['shop'] == "general") {
           keywords.push("general");
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:general ;\n`;
         } else if (linkData[0]['properties']['shop'] == "funeral_directors") {
-          keywords.push("funeral_directors");
-          //TODO !!??!!
-          this.turtle += `${tripleIdentifier} a schema:funeral_directors ;\n`;
+          // Niet relevant
+          relevant = false;
         } else if (linkData[0]['properties']['shop'] == "houseware") {
           keywords.push("houseware");
           //TODO 
@@ -486,6 +469,7 @@ export class ParseRmlComponent {
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:kitchen ;\n`;
         } else if (linkData[0]['properties']['shop'] == "wine; books") {
+          keywords.push("wine");
           keywords.push("books");
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:wine ;\n`;
@@ -494,11 +478,10 @@ export class ParseRmlComponent {
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:fashion ;\n`;
         } else if (linkData[0]['properties']['shop'] == "e-cigarette") {
-          keywords.push("cigarette");
+          keywords.push("e-cigarette");
           //TODO 
           this.turtle += `${tripleIdentifier} a schema:e-cigarette ;\n`;
         } else if (linkData[0]['properties']['shop'] == "yes") {
-          keywords.push("yes");
           this.turtle += `${tripleIdentifier} a schema:Store ;\n`;
         } else {
           this.turtle += `${tripleIdentifier} a schema:Store ;\n`;
@@ -679,37 +662,44 @@ export class ParseRmlComponent {
       //ANDEREN!
       else {
         this.turtle += `${tripleIdentifier} a schema:Place ;\n`;
-
       }
-
-      if (linkData[0]['properties']['name']) this.turtle += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
-      if (linkData[0]['properties']['website']) this.turtle += `\tschema:url "${linkData[0]['properties']['website']}" ; \n`;
-      if (linkData[0]['properties']['phone']) this.turtle += `\tschema:telephone "${linkData[0]['properties']['phone']}" ; \n`;
-      if (linkData[0]['properties']['alt_name']) this.turtle += `\tschema:alternateName "${linkData[0]['properties']['alt_name']}" ; \n`;
-      if (linkData[0]['properties']['amenity']) this.turtle += `\tschema:amenityFeature "${linkData[0]['properties']['amenity']}" ; \n`;
-      if (linkData[0]['properties']["addr:street"]) {
-        this.turtle += `\tschema:PostalAddress [ 
+      if (relevant) {
+        if (linkData[0]['properties']['name']) this.turtle += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
+        if (linkData[0]['properties']['website']) this.turtle += `\tschema:url "${linkData[0]['properties']['website']}" ; \n`;
+        if (linkData[0]['properties']['phone']) this.turtle += `\tschema:telephone "${linkData[0]['properties']['phone']}" ; \n`;
+        if (linkData[0]['properties']['alt_name']) this.turtle += `\tschema:alternateName "${linkData[0]['properties']['alt_name']}" ; \n`;
+        if (linkData[0]['properties']['amenity']) this.turtle += `\tschema:amenityFeature "${linkData[0]['properties']['amenity']}" ; \n`;
+        if (linkData[0]['properties']["addr:street"]) {
+          this.turtle += `\tschema:PostalAddress [ 
           \ta schema:PostalAddress ;
           \tschema:streetAddress "${linkData[0]['properties']["addr:street"]}" ;\n`;
-        if (linkData[0]['properties']["addr:housenumber"]) this.turtle += `\t\tschema:postOfficeBoxNumber "${linkData[0]['properties']["addr:housenumber"]}" ; \n`;
-        if (linkData[0]['properties']["addr:postcode"]) this.turtle += `\t\tschema:postalCode "${linkData[0]['properties']["addr:postcode"]}" ; \n`;
-        if (linkData[0]['properties']["addr:city"]) this.turtle += `\t\tschema:addressLocality "${linkData[0]['properties']["addr:city"]}" ; \n`;
-        if (linkData[0]['properties']["addr:country"]) this.turtle += `\t\tschema:addressCountry "${linkData[0]['properties']["addr:country"]}" ; \n`;
-        this.turtle += `\t] ; \n`;
-      }
-      for (let keyword of keywords) {
-        this.turtle += `\tschema:keyword "${keyword}" ; \n`;
-      }
-      if (linkData[0]['geometry']) {
-        this.turtle += `\tschema:geo [ 
+          if (linkData[0]['properties']["addr:housenumber"]) this.turtle += `\t\tschema:postOfficeBoxNumber "${linkData[0]['properties']["addr:housenumber"]}" ; \n`;
+          if (linkData[0]['properties']["addr:postcode"]) this.turtle += `\t\tschema:postalCode "${linkData[0]['properties']["addr:postcode"]}" ; \n`;
+          if (linkData[0]['properties']["addr:city"]) this.turtle += `\t\tschema:addressLocality "${linkData[0]['properties']["addr:city"]}" ; \n`;
+          if (linkData[0]['properties']["addr:country"]) this.turtle += `\t\tschema:addressCountry "${linkData[0]['properties']["addr:country"]}" ; \n`;
+          this.turtle += `\t] ; \n`;
+        }
+        if (linkData[0]['properties']['cuisine']) {
+          for (let item of linkData[0]['properties']['cuisine'].split(';')){
+            this.turtle += `\tschema:servesCuisine "${item}" ; \n`;
+            this.turtle += `\tschema:keyword "${item}" ; \n`;
+          }
+        }
+        for (let keyword of keywords) {
+          this.turtle += `\tschema:keyword "${keyword}" ; \n`;
+        }
+        if (linkData[0]['geometry']) {
+          this.turtle += `\tschema:geo [ 
           \ta geo:Point ;
           \tgeo:lat "${linkData[0]['geometry']['coordinates'][0]}" ;
           \tgeo:long "${linkData[0]['geometry']['coordinates'][1]}" ;
         ] . \n`;
+        }
       }
+
       linkData.splice(0, 1);
     }
-    this.data = Array.from(titles).sort();
+    //this.data = Array.from(titles).sort();
   }
 
   calculateBirdFlightDistanceBetween(lat1: number, lon1: number, lat2: number, lon2: number): number {
