@@ -1,157 +1,156 @@
- amenity: bar
-  amenity: cafe
-  amenity: cinema
-  amenity: community_centre
-  amenity: events_venue
-  amenity: fast_food
-  amenity: fountain
-  amenity: ice_cream
-  amenity: nightclub
-  amenity: pub
-  amenity: public_bookcase
-  amenity: restaurant
-  amenity: social_centre
-  amenity: studio
-  amenity: theatre
-  historic: archaeological_site
-  historic: building
-  historic: fort
-  historic: industrial
-  historic: memorial
-  historic: monastery
-  historic: monument
-  historic: ruins
-  historic: wayside_cross
-  historic: wayside_shrine
-  historic: yes
-  leisure: amusement_arcade
-  leisure: dance
-  leisure: escape_game
-  leisure: fitness_centre
-  leisure: fitness_station
-  leisure: garden
-  leisure: hackerspace
-  leisure: marina
-  leisure: picnic_table
-  leisure: pitch
-  leisure: playground
-  leisure: sauna
-  leisure: sports_centre
-  leisure: sports_hall
-  leisure: swimming_pool
-  shop: alcohol
-  shop: antiques
-  shop: appliance
-  shop: art
-  shop: baby_goods
-  shop: bag
-  shop: bakery
-  shop: bathroom_furnishing
-  shop: beauty
-  shop: bed
-  shop: beverages
-  shop: bicycle
-  shop: bookmaker
-  shop: books
-  shop: brass_instruments
-  shop: butcher
-  shop: car
-  shop: car_parts
-  shop: car_repair
-  shop: carpet
-  shop: charity
-  shop: chemist
-  shop: chocolate
-  shop: clothes
-  shop: coffee
-  shop: computer
-  shop: confectionery
-  shop: convenience
-  shop: copyshop
-  shop: cosmetics
-  shop: craft
-  shop: deli
-  shop: department_store
-  shop: doityourself
-  shop: e-cigarette
-  shop: electronics
-  shop: erotic
-  shop: fabric
-  shop: fashion
-  shop: fashion_accessories
-  shop: florist
-  shop: funeral_directors
-  shop: furniture
-  shop: games
-  shop: garden_centre
-  shop: general
-  shop: gift
-  shop: greengrocer
-  shop: hairdresser
-  shop: hardware
-  shop: health_food
-  shop: hearing_aids
-  shop: herbalist
-  shop: hifi
-  shop: houseware
-  shop: interior_decoration
-  shop: jewelry
-  shop: juice
-  shop: kiosk
-  shop: kitchen
-  shop: laundry
-  shop: leather
-  shop: locksmith
-  shop: lottery
-  shop: mall
-  shop: massage
-  shop: medical_supply
-  shop: mobile_phone
-  shop: motorcycle
-  shop: music
-  shop: musical_instrument
-  shop: newsagent
-  shop: nuts
-  shop: optician
-  shop: outdoor
-  shop: paint
-  shop: party
-  shop: pastry
-  shop: perfumery
-  shop: pet
-  shop: photo
-  shop: radiotechnics
-  shop: seafood
-  shop: second_hand
-  shop: shoes
-  shop: skate
-  shop: specialiteit:_servies
-  shop: spices
-  shop: sports
-  shop: stationery
-  shop: supermarket
-  shop: tailor
-  shop: tattoo
-  shop: telecommunication
-  shop: textile_printing
-  shop: ticket
-  shop: toys
-  shop: travel_agency
-  shop: variety_store
-  shop: video
-  shop: video_games
-  shop: wholesale
-  shop: window_blind
-  shop: wine
-  shop: wine; books
-  shop: yes
-  tourism: apartment
-  tourism: artwork
-  tourism: attraction
-  tourism: gallery
-  tourism: guest_house
-  tourism: hostel
-  tourism: hotel
-  tourism: information
-  tourism: museum
-  tourism: viewpoint
+  "alcohol",
+  "amusement_arcade",
+  "antiques",
+  "apartment",
+  "appliance",
+  "archaeological_site",
+  "art",
+  "artwork",
+  "attraction",
+  "baby_goods",
+  "bag",
+  "bakery",
+  "bar",
+  "bathroom_furnishing",
+  "beauty",
+  "bed",
+  "beverages",
+  "bicycle",
+  "bookmaker",
+  "books",
+  "brass_instruments",
+  "building",
+  "butcher",
+  "cafe",
+  "car",
+  "car_parts",
+  "car_repair",
+  "carpet",
+  "charity",
+  "chemist",
+  "chocolate",
+  "cinema",
+  "clothes",
+  "coffee",
+  "community_centre",
+  "computer",
+  "confectionery",
+  "convenience",
+  "copyshop",
+  "cosmetics",
+  "craft",
+  "dance",
+  "deli",
+  "department_store",
+  "doityourself",
+  "e-cigarette",
+  "electronics",
+  "erotic",
+  "escape_game",
+  "events_venue",
+  "fabric",
+  "fashion",
+  "fashion_accessories",
+  "fast_food",
+  "fitness_centre",
+  "fitness_station",
+  "florist",
+  "fort",
+  "fountain",
+  "funeral_directors",
+  "furniture",
+  "gallery",
+  "games",
+  "garden",
+  "garden_centre",
+  "general",
+  "gift",
+  "greengrocer",
+  "guest_house",
+  "hackerspace",
+  "hairdresser",
+  "hardware",
+  "health_food",
+  "hearing_aids",
+  "herbalist",
+  "hifi",
+  "hostel",
+  "hotel",
+  "houseware",
+  "ice_cream",
+  "industrial",
+  "information",
+  "interior_decoration",
+  "jewelry",
+  "juice",
+  "kiosk",
+  "kitchen",
+  "laundry",
+  "leather",
+  "locksmith",
+  "lottery",
+  "mall",
+  "marina",
+  "massage",
+  "medical_supply",
+  "memorial",
+  "mobile_phone",
+  "monastery",
+  "monument",
+  "motorcycle",
+  "museum",
+  "music",
+  "musical_instrument",
+  "newsagent",
+  "nightclub",
+  "nuts",
+  "optician",
+  "outdoor",
+  "paint",
+  "party",
+  "pastry",
+  "perfumery",
+  "pet",
+  "photo",
+  "picnic_table",
+  "pitch",
+  "playground",
+  "pub",
+  "public_bookcase",
+  "radiotechnics",
+  "restaurant",
+  "ruins",
+  "sauna",
+  "seafood",
+  "second_hand",
+  "shoes",
+  "skate",
+  "social_centre",
+  "specialiteit:_servies",
+  "spices",
+  "sports",
+  "sports_centre",
+  "sports_hall",
+  "stationery",
+  "studio",
+  "supermarket",
+  "swimming_pool",
+  "tailor",
+  "tattoo",
+  "telecommunication",
+  "textile_printing",
+  "theatre",
+  "ticket",
+  "toys",
+  "travel_agency",
+  "variety_store",
+  "video",
+  "video_games",
+  "viewpoint",
+  "wayside_cross",
+  "wayside_shrine",
+  "wholesale",
+  "window_blind",
+  "wine",
+  "wine; books",
+  "yes"
