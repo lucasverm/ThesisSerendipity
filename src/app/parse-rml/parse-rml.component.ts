@@ -38,12 +38,15 @@ export class ParseRmlComponent {
     this.turtle += "@prefix schema: <http://schema.org/> . \n";
     this.turtle += "@prefix ex: <http://example.org/> . \n";
     this.turtle += "@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.\n";
+    this.turtle += "@prefix dbp: <https://dbpedia.org/ontology/>.\n";
+    this.turtle += "@prefix lgdo: <http://linkedgeodata.org/ontology/>.\n";
+
     let linkData: any[] = [...this.data]
     while (linkData.length != 0) {
       Object.keys(linkData[0]['properties']).forEach(t => sleutels.add(t));
       let idZonderNode: String = String(linkData[0]['id']).replace("node/", "");
       let tripleIdentifier = `<ex/${idZonderNode}>`;
-      //amenity
+      //AMENITY
       if (linkData[0]['properties']['amenity']) {
         if (linkData[0]['properties']['amenity'] == "restaurant") {
           this.turtle += `${tripleIdentifier} a schema:Restaurant ;\n`;
@@ -58,29 +61,21 @@ export class ParseRmlComponent {
         } else if (linkData[0]['properties']['amenity'] == "ice_cream") {
           this.turtle += `${tripleIdentifier} a schema:IceCreamShop ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "nightclub") {
-          //todo
-          this.turtle += `${tripleIdentifier} a schema:nightclub ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:NightClub ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "theatre") {
-          //todo
-          this.turtle += `${tripleIdentifier} a schema:theatre ;\n`;
+          this.turtle += `${tripleIdentifier} a dbp:Theatre ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "events_venue") {
-          //todo
-          this.turtle += `${tripleIdentifier} a schema:events_venue ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:EventVenue ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "community_centre") {
-          //todo
-          this.turtle += `${tripleIdentifier} a schema:community_centre ;\n`;
+          this.turtle += `${tripleIdentifier} a lgdo:CommunityCentre ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "studio") {
-          //todo
-          this.turtle += `${tripleIdentifier} a schema:studio ;\n`;
+          this.turtle += `${tripleIdentifier} a lgdo:Studio ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "cinema") {
-          //todo
-          this.turtle += `${tripleIdentifier} a schema:cinema ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:MovieTheater ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "fountain") {
-          //todo
-          this.turtle += `${tripleIdentifier} a schema:fountain ;\n`;
+          this.turtle += `${tripleIdentifier} a lgdo:Fountain ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "public_bookcase") {
-          //todo
-          this.turtle += `${tripleIdentifier} a schema:public_bookcase ;\n`;
+          this.turtle += `${tripleIdentifier} a ex:public_bookcase ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "social_centre") {
           //todo
           this.turtle += `${tripleIdentifier} a schema:social_centre ;\n`;
@@ -498,7 +493,7 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a schema:wayside_cross ;\n`;
         } else if (linkData[0]['properties']['historic'] == "wayside_shrine") {
           //TODO
-          this.turtle += `${tripleIdentifier} a schema:"wayside_shrine" ;\n`;
+          this.turtle += `${tripleIdentifier} a schema:wayside_shrine ;\n`;
         } else if (linkData[0]['properties']['historic'] == "fort") {
           //TODO
           this.turtle += `${tripleIdentifier} a schema:fort ;\n`;
@@ -580,6 +575,20 @@ export class ParseRmlComponent {
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     let distance = R * c * 1000;
     return Math.round(distance * 100) / 100
+  }
+
+  copyMessage() {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.turtle.toString();
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
   }
 
 
