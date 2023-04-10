@@ -42,7 +42,7 @@ export class ParseRmlComponent {
     this.turtle += "@prefix ex: <http://example.org/> . \n";
 
     let linkData: any[] = [...this.data]
-    let keywordsSet: Set<String> = new Set();
+    let keywordsSet: Set<string> = new Set();
     while (linkData.length != 0) {
       Object.keys(linkData[0]['properties']).forEach(t => sleutels.add(t));
       let idZonderNode: String = String(linkData[0]['id']).replace("node/", "");
@@ -51,12 +51,10 @@ export class ParseRmlComponent {
       let keywords = [];
       let relevant = true;
       if (linkData[0]['properties']['amenity']) {
-        keywordsSet.add(`${linkData[0]['properties']['amenity']}`);
         if (linkData[0]['properties']['amenity'] == "restaurant") {
           keywords.push("restaurant");
           this.turtle += `${tripleIdentifier} a schema:Restaurant ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "fast_food") {
-          keywords.push("fast food");
           keywords.push("fastfood");
           this.turtle += `${tripleIdentifier} a schema:FastFoodRestaurant ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "cafe") {
@@ -75,14 +73,14 @@ export class ParseRmlComponent {
           keywords.push("nightclub");
           this.turtle += `${tripleIdentifier} a schema:NightClub ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "theatre") {
-          keywords.push("theatre");
+          keywords.push("theater");
           this.turtle += `${tripleIdentifier} a dbp:Theatre ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "events_venue") {
-          keywords.push("eventsvenue");
-          keywords.push("eventvenue");
+          keywords.push("event");
+          keywords.push("venue");
           this.turtle += `${tripleIdentifier} a schema:EventVenue ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "community_centre") {
-          keywords.push("communitycentre");
+          keywords.push("community");
           this.turtle += `${tripleIdentifier} a km4c:Community_centre ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "studio") {
           keywords.push("studio");
@@ -94,19 +92,17 @@ export class ParseRmlComponent {
           keywords.push("fountain");
           this.turtle += `${tripleIdentifier} a lgdo:Fountain ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "public_bookcase") {
-          keywords.push("public bookcase");
+          keywords.push("public");
           keywords.push("bookcase");
           this.turtle += `${tripleIdentifier} a ex:public_bookcase ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "social_centre") {
-          keywords.push("social centre");
-          keywords.push("socialcentre");
+          keywords.push("social");
           this.turtle += `${tripleIdentifier} a lgdo:SocialCentre ;\n`;
         } else {
           this.turtle += `${tripleIdentifier} a schema:Place ;\n`;
         }
         //SHOP
       } else if (linkData[0]['properties']['shop']) {
-        keywordsSet.add(`${linkData[0]['properties']['shop']}`);
         if (linkData[0]['properties']['shop'] == "bicycle") {
           keywords.push("bicycle");
           this.turtle += `${tripleIdentifier} a schema:BikeStore ;\n`;
@@ -126,9 +122,8 @@ export class ParseRmlComponent {
           keywords.push("hairdresser");
           this.turtle += `${tripleIdentifier} a schema:HairSalon ;\n`;
         } else if (linkData[0]['properties']['shop'] == "medical_supply") {
-          keywords.push("medical supply");
-          keywords.push("medicalsupply");
           keywords.push("medical");
+          keywords.push("supply");
           this.turtle += `${tripleIdentifier} a schema:medical_supply ;\n`;
         } else if (linkData[0]['properties']['shop'] == "antiques") {
           keywords.push("antiques");
@@ -138,7 +133,6 @@ export class ParseRmlComponent {
           relevant = false;
         } else if (linkData[0]['properties']['shop'] == "second_hand") {
           keywords.push("secondhand");
-          keywords.push("second hand");
           this.turtle += `${tripleIdentifier} a km4c:Second_hand_goods ;\n`;
         } else if (linkData[0]['properties']['shop'] == "telecommunication") {
           keywords.push("telecommunication");
@@ -150,8 +144,8 @@ export class ParseRmlComponent {
           keywords.push("pet");
           this.turtle += `${tripleIdentifier} a schema:PetStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "car_repair") {
-          keywords.push("car repair");
-          keywords.push("carrepair");
+          keywords.push("car");
+          keywords.push("repair");
           this.turtle += `${tripleIdentifier} a schema:AutoRepair ;\n`;
         } else if (linkData[0]['properties']['shop'] == "hifi") {
           keywords.push("hifi");
@@ -225,9 +219,7 @@ export class ParseRmlComponent {
           keywords.push("art");
           this.turtle += `${tripleIdentifier} a schema:VisualArtwork ;\n`;
         } else if (linkData[0]['properties']['shop'] == "baby_goods") {
-          keywords.push("baby goods");
           keywords.push("baby");
-          keywords.push("babygoods");
           this.turtle += `${tripleIdentifier} a schema:ChildCare ;\n`;
         } else if (linkData[0]['properties']['shop'] == "games") {
           keywords.push("games");
@@ -239,8 +231,7 @@ export class ParseRmlComponent {
           keywords.push("variety");
           this.turtle += `${tripleIdentifier} a lgdo:variety ;\n`;
         } else if (linkData[0]['properties']['shop'] == "department_store") {
-          keywords.push("departmentstore");
-          keywords.push("department store");
+          keywords.push("department");
           this.turtle += `${tripleIdentifier} a lgdo:DepartmentStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "confectionery") {
           keywords.push("confectionery");
@@ -258,8 +249,7 @@ export class ParseRmlComponent {
           keywords.push("shoes");
           this.turtle += `${tripleIdentifier} a lgdo:Shoes ;\n`;
         } else if (linkData[0]['properties']['shop'] == "health_food") {
-          keywords.push("healthy food");
-          keywords.push("healthyfood");
+          keywords.push("food");
           keywords.push("healthy");
           keywords.push("health");
           this.turtle += `${tripleIdentifier} a lgdo:HealthFood ;\n`;
@@ -272,7 +262,6 @@ export class ParseRmlComponent {
         } else if (linkData[0]['properties']['shop'] == "fashion_accessories") {
           keywords.push("fashion");
           keywords.push("accessories");
-          keywords.push("fashionaccessories");
           this.turtle += `${tripleIdentifier} a ex:fashionAccessories ;\n`;
         } else if (linkData[0]['properties']['shop'] == "herbalist") {
           keywords.push("herbalist");
@@ -327,13 +316,11 @@ export class ParseRmlComponent {
           keywords.push("leather");
           this.turtle += `${tripleIdentifier} a lgdo:Leather ;\n`;
         } else if (linkData[0]['properties']['shop'] == "car_parts") {
-          keywords.push("car parts");
-          keywords.push("carparts");
-          keywords.push("AutoPartsStore");
+          keywords.push("parts");
+          keywords.push("car");
           this.turtle += `${tripleIdentifier} a schema:AutoPartsStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "copyshop") {
-          keywords.push("copyshop");
-          keywords.push("candy");
+          keywords.push("copy");
           this.turtle += `${tripleIdentifier} a lgdo:Copyshop ;\n`;
         } else if (linkData[0]['properties']['shop'] == "books") {
           keywords.push("book");
@@ -343,13 +330,13 @@ export class ParseRmlComponent {
           keywords.push("NGO");
           this.turtle += `${tripleIdentifier} a schema:NGO ;\n`;
         } else if (linkData[0]['properties']['shop'] == "radiotechnics") {
-          keywords.push("radiotechnics");
+          keywords.push("radio");
+          keywords.push("technics");
           this.turtle += `${tripleIdentifier} a ex:RadioTechnics ;\n`;
         } else if (linkData[0]['properties']['shop'] == "coffee") {
           keywords.push("coffee");
           this.turtle += `${tripleIdentifier} a schema:CafeOrCoffeeShop ;\n`;
         } else if (linkData[0]['properties']['shop'] == "textile_printing") {
-          keywords.push("textile printing");
           keywords.push("textile");
           keywords.push("printing");
           this.turtle += `${tripleIdentifier} a ex:TextilePrinting ;\n`;
@@ -361,7 +348,6 @@ export class ParseRmlComponent {
           keywords.push("spices");
           this.turtle += `${tripleIdentifier} a ex:Spices ;\n`;
         } else if (linkData[0]['properties']['shop'] == "musical_instrument") {
-          keywords.push("musical instrument");
           keywords.push("instrument");
           keywords.push("musical");
           keywords.push("music");
@@ -376,17 +362,14 @@ export class ParseRmlComponent {
           keywords.push("video");
           this.turtle += `${tripleIdentifier} a lgdo:Video ;\n`;
         } else if (linkData[0]['properties']['shop'] == "mobile_phone") {
-          keywords.push("mobile phone");
+          keywords.push("mobilephone");
           keywords.push("phone");
           keywords.push("mobile");
           this.turtle += `${tripleIdentifier} a lgdo:mobilePhone ;\n`;
         } else if (linkData[0]['properties']['shop'] == "travel_agency") {
-          keywords.push("travel agency");
-          keywords.push("travelagency");
           keywords.push("travel");
           this.turtle += `${tripleIdentifier} a schema:TravelAgency ;\n`;
         } else if (linkData[0]['properties']['shop'] == "garden_centre") {
-          keywords.push("gardencentre");
           keywords.push("garden");
           this.turtle += `${tripleIdentifier} a lgdo:GardenCentre ;\n`;
         } else if (linkData[0]['properties']['shop'] == "greengrocer") {
@@ -413,10 +396,9 @@ export class ParseRmlComponent {
           keywords.push("laundry");
           this.turtle += `${tripleIdentifier} a schema:DryCleaningOrLaundry ;\n`;
         } else if (linkData[0]['properties']['shop'] == "doityourself") {
-          keywords.push("doityourself");
+          keywords.push("DIY");
           this.turtle += `${tripleIdentifier} a lgdo:Doityourself ;\n`;
         } else if (linkData[0]['properties']['shop'] == "brass_instruments") {
-          keywords.push("brass instruments");
           keywords.push("brass");
           keywords.push("instruments");
           this.turtle += `${tripleIdentifier} a schema:brass_instruments ;\n`;
@@ -455,9 +437,7 @@ export class ParseRmlComponent {
           keywords.push("fashion");
           this.turtle += `${tripleIdentifier} a lgdo:Fashion ;\n`;
         } else if (linkData[0]['properties']['shop'] == "e-cigarette") {
-          keywords.push("e-cigarette");
           keywords.push("cigarette");
-          keywords.push("ecigarette");
           this.turtle += `${tripleIdentifier} a ex:E-Cigarette ;\n`;
         } else if (linkData[0]['properties']['shop'] == "yes") {
           this.turtle += `${tripleIdentifier} a schema:Store ;\n`;
@@ -466,7 +446,6 @@ export class ParseRmlComponent {
         }
         //TOURISM
       } else if (linkData[0]['properties']['tourism']) {
-        keywordsSet.add(`${linkData[0]['properties']['tourism']}`);
         if (linkData[0]['properties']['tourism'] == "hotel") {
           keywords.push("hotel");
           this.turtle += `${tripleIdentifier} a schema:Hotel ;\n`;
@@ -512,9 +491,7 @@ export class ParseRmlComponent {
 
         //leisure
       } else if (linkData[0]['properties']['leisure']) {
-        keywordsSet.add(`${linkData[0]['properties']['leisure']}`);
         if (linkData[0]['properties']['leisure'] == "picnic_table") {
-          keywords.push("picnictable");
           keywords.push("picnic");
           keywords.push("table");
           this.turtle += `${tripleIdentifier} a schema:Place ;\n`;
@@ -522,14 +499,10 @@ export class ParseRmlComponent {
           keywords.push("playground");
           this.turtle += `${tripleIdentifier} a schema:Playground ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "fitness_centre") {
-          keywords.push("fitness centre");
-          keywords.push("fitnesscentre");
           keywords.push("fitness");
           keywords.push("gym");
           this.turtle += `${tripleIdentifier} a lgdo:Gym ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "sports_centre") {
-          keywords.push("sports centre");
-          keywords.push("sportscentre");
           keywords.push("sport");
           keywords.push("sports");
           this.turtle += `${tripleIdentifier} a lgdo:SportsCentre ;\n`;
@@ -546,14 +519,9 @@ export class ParseRmlComponent {
           keywords.push("garden");
           this.turtle += `${tripleIdentifier} a lgdo:GardenCentre ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "amusement_arcade") {
-          keywords.push("amusement arcade");
-          keywords.push("amusementarcade");
-          keywords.push("amusement");
           keywords.push("arcade");
           this.turtle += `${tripleIdentifier} a schema:AmusementPark ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "escape_game") {
-          keywords.push("escape game");
-          keywords.push("escapegame");
           keywords.push("escape");
           keywords.push("game");
           this.turtle += `${tripleIdentifier} a ex:EscapeGame ;\n`;
@@ -562,9 +530,6 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a lgdo:Pitch ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "sports_hall") {
           keywords.push("sportshall");
-          keywords.push("sports hall");
-          keywords.push("sports");
-          keywords.push("sports");
           this.turtle += `${tripleIdentifier} a ex:SportsHall ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "sauna") {
           keywords.push("sauna");
@@ -576,13 +541,12 @@ export class ParseRmlComponent {
           keywords.push("harbor");
           this.turtle += `${tripleIdentifier} a lgdo:Marina ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "swimming_pool") {
-          keywords.push("swimming pool");
           keywords.push("swimming");
           keywords.push("pool");
           this.turtle += `${tripleIdentifier} a lgdo:SwimmingPool ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "fitness_station") {
-          keywords.push("fitness station");
           keywords.push("fitness");
+          keywords.push("gym");
           this.turtle += `${tripleIdentifier} a ex:FitnessStation ;\n`;
         } else {
           this.turtle += `${tripleIdentifier} a schema:Place ;\n`;
@@ -590,7 +554,6 @@ export class ParseRmlComponent {
         }
         //HISTORIC
       } else if (linkData[0]['properties']['historic']) {
-        keywordsSet.add(`${linkData[0]['properties']['historic']}`);
         if (linkData[0]['properties']['historic'] == "building") {
           keywords.push("building");
           this.turtle += `${tripleIdentifier} a lgdo:Building ;\n`;
@@ -602,8 +565,6 @@ export class ParseRmlComponent {
           keywords.push("ruin");
           this.turtle += `${tripleIdentifier} a lgdo:Ruins ;\n`;
         } else if (linkData[0]['properties']['historic'] == "wayside_cross") {
-          keywords.push("waysidecross");
-          keywords.push("wayside cross");
           keywords.push("cross");
           keywords.push("wayside");
           this.turtle += `${tripleIdentifier} a ex:WaysideCross ;\n`;
@@ -614,9 +575,8 @@ export class ParseRmlComponent {
           keywords.push("fort");
           this.turtle += `${tripleIdentifier} a lgdo:Fort ;\n`;
         } else if (linkData[0]['properties']['historic'] == "archaeological_site") {
-          keywords.push("archaeologicalsite");
           keywords.push("archaeological");
-          keywords.push("archaeology");
+          keywords.push("archeology");
           this.turtle += `${tripleIdentifier} a lgdo:ArchaeologicalSite ;\n`;
         } else if (linkData[0]['properties']['historic'] == "monument") {
           keywords.push("monument");
@@ -628,7 +588,6 @@ export class ParseRmlComponent {
           keywords.push("monastery");
           this.turtle += `${tripleIdentifier} a lgdo:Monastery ;\n`;
         } else if (linkData[0]['properties']['historic'] == "yes") {
-          keywords.push("yes");
           this.turtle += `${tripleIdentifier} a lgdo:Place ;\n`;
         } else {
           this.turtle += `${tripleIdentifier} a lgdo:Place ;\n`;
@@ -636,7 +595,6 @@ export class ParseRmlComponent {
         }
         //MEMORIAL
       } else if (linkData[0]['properties']['memorial']) {
-        keywordsSet.add(`${linkData[0]['properties']['memorial']}`);
         if (linkData[0]['properties']['memorial'] == "plaque") {
           keywords.push("plaque");
           this.turtle += `${tripleIdentifier} a ex:Plaque ;\n`;
@@ -684,10 +642,10 @@ export class ParseRmlComponent {
         ] . \n`;
         }
       }
-
+      keywords.forEach(t => keywordsSet.add(t));
       linkData.splice(0, 1);
     }
-    //this.data = Array.from(keywordsSet).sort();
+    this.data = Array.from(keywordsSet).sort();
   }
 
   calculateBirdFlightDistanceBetween(lat1: number, lon1: number, lat2: number, lon2: number): number {
@@ -706,7 +664,7 @@ export class ParseRmlComponent {
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = this.turtle.toString();
+    selBox.value = this.toonDezeData.toString()
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
