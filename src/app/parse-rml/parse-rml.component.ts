@@ -57,6 +57,7 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a schema:Restaurant ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "fast_food") {
           keywords.push("fast food");
+          keywords.push("fastfood");
           this.turtle += `${tripleIdentifier} a schema:FastFoodRestaurant ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "cafe") {
           keywords.push("cafe");
@@ -78,9 +79,10 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a dbp:Theatre ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "events_venue") {
           keywords.push("eventsvenue");
+          keywords.push("eventvenue");
           this.turtle += `${tripleIdentifier} a schema:EventVenue ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "community_centre") {
-          keywords.push("community centre");
+          keywords.push("communitycentre");
           this.turtle += `${tripleIdentifier} a km4c:Community_centre ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "studio") {
           keywords.push("studio");
@@ -93,9 +95,11 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a lgdo:Fountain ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "public_bookcase") {
           keywords.push("public bookcase");
+          keywords.push("bookcase");
           this.turtle += `${tripleIdentifier} a ex:public_bookcase ;\n`;
         } else if (linkData[0]['properties']['amenity'] == "social_centre") {
-          keywords.push("social_centre");
+          keywords.push("social centre");
+          keywords.push("socialcentre");
           this.turtle += `${tripleIdentifier} a lgdo:SocialCentre ;\n`;
         } else {
           this.turtle += `${tripleIdentifier} a schema:Place ;\n`;
@@ -122,7 +126,9 @@ export class ParseRmlComponent {
           keywords.push("hairdresser");
           this.turtle += `${tripleIdentifier} a schema:HairSalon ;\n`;
         } else if (linkData[0]['properties']['shop'] == "medical_supply") {
-          keywords.push("medical_supply");
+          keywords.push("medical supply");
+          keywords.push("medicalsupply");
+          keywords.push("medical");
           this.turtle += `${tripleIdentifier} a schema:medical_supply ;\n`;
         } else if (linkData[0]['properties']['shop'] == "antiques") {
           keywords.push("antiques");
@@ -131,7 +137,8 @@ export class ParseRmlComponent {
           // Niet relevant
           relevant = false;
         } else if (linkData[0]['properties']['shop'] == "second_hand") {
-          keywords.push("second_hand");
+          keywords.push("secondhand");
+          keywords.push("second hand");
           this.turtle += `${tripleIdentifier} a km4c:Second_hand_goods ;\n`;
         } else if (linkData[0]['properties']['shop'] == "telecommunication") {
           keywords.push("telecommunication");
@@ -143,7 +150,8 @@ export class ParseRmlComponent {
           keywords.push("pet");
           this.turtle += `${tripleIdentifier} a schema:PetStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "car_repair") {
-          keywords.push("car_repair");
+          keywords.push("car repair");
+          keywords.push("carrepair");
           this.turtle += `${tripleIdentifier} a schema:AutoRepair ;\n`;
         } else if (linkData[0]['properties']['shop'] == "hifi") {
           keywords.push("hifi");
@@ -211,12 +219,15 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a schema:HardwareStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "florist") {
           keywords.push("florist");
+          keywords.push("flower");
           this.turtle += `${tripleIdentifier} a schema:Florist ;\n`;
         } else if (linkData[0]['properties']['shop'] == "art") {
           keywords.push("art");
           this.turtle += `${tripleIdentifier} a schema:VisualArtwork ;\n`;
         } else if (linkData[0]['properties']['shop'] == "baby_goods") {
           keywords.push("baby goods");
+          keywords.push("baby");
+          keywords.push("babygoods");
           this.turtle += `${tripleIdentifier} a schema:ChildCare ;\n`;
         } else if (linkData[0]['properties']['shop'] == "games") {
           keywords.push("games");
@@ -228,7 +239,8 @@ export class ParseRmlComponent {
           keywords.push("variety");
           this.turtle += `${tripleIdentifier} a lgdo:variety ;\n`;
         } else if (linkData[0]['properties']['shop'] == "department_store") {
-          keywords.push("department_store");
+          keywords.push("departmentstore");
+          keywords.push("department store");
           this.turtle += `${tripleIdentifier} a lgdo:DepartmentStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "confectionery") {
           keywords.push("confectionery");
@@ -247,6 +259,9 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a lgdo:Shoes ;\n`;
         } else if (linkData[0]['properties']['shop'] == "health_food") {
           keywords.push("healthy food");
+          keywords.push("healthyfood");
+          keywords.push("healthy");
+          keywords.push("health");
           this.turtle += `${tripleIdentifier} a lgdo:HealthFood ;\n`;
         } else if (linkData[0]['properties']['shop'] == "supermarket") {
           keywords.push("supermarket");
@@ -257,6 +272,7 @@ export class ParseRmlComponent {
         } else if (linkData[0]['properties']['shop'] == "fashion_accessories") {
           keywords.push("fashion");
           keywords.push("accessories");
+          keywords.push("fashionaccessories");
           this.turtle += `${tripleIdentifier} a ex:fashionAccessories ;\n`;
         } else if (linkData[0]['properties']['shop'] == "herbalist") {
           keywords.push("herbalist");
@@ -284,6 +300,7 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a lgdo:Paint ;\n`;
         } else if (linkData[0]['properties']['shop'] == "butcher") {
           keywords.push("butcher");
+          keywords.push("meat");
           this.turtle += `${tripleIdentifier} a lgdo:Butcher ;\n`;
         } else if (linkData[0]['properties']['shop'] == "bed") {
           keywords.push("bed");
@@ -311,10 +328,12 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a lgdo:Leather ;\n`;
         } else if (linkData[0]['properties']['shop'] == "car_parts") {
           keywords.push("car parts");
+          keywords.push("carparts");
           keywords.push("AutoPartsStore");
           this.turtle += `${tripleIdentifier} a schema:AutoPartsStore ;\n`;
         } else if (linkData[0]['properties']['shop'] == "copyshop") {
           keywords.push("copyshop");
+          keywords.push("candy");
           this.turtle += `${tripleIdentifier} a lgdo:Copyshop ;\n`;
         } else if (linkData[0]['properties']['shop'] == "books") {
           keywords.push("book");
@@ -363,9 +382,12 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a lgdo:mobilePhone ;\n`;
         } else if (linkData[0]['properties']['shop'] == "travel_agency") {
           keywords.push("travel agency");
+          keywords.push("travelagency");
+          keywords.push("travel");
           this.turtle += `${tripleIdentifier} a schema:TravelAgency ;\n`;
         } else if (linkData[0]['properties']['shop'] == "garden_centre") {
-          keywords.push("garden_centre");
+          keywords.push("gardencentre");
+          keywords.push("garden");
           this.turtle += `${tripleIdentifier} a lgdo:GardenCentre ;\n`;
         } else if (linkData[0]['properties']['shop'] == "greengrocer") {
           keywords.push("greengrocer");
@@ -462,10 +484,13 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a schema:TouristAttraction ;\n`;
         } else if (linkData[0]['properties']['tourism'] == "artwork") {
           keywords.push("artwork");
+          keywords.push("art");
           //OPZOEKEN OP SITE
           this.turtle += `${tripleIdentifier} a schema:VisualArtwork ;\n`;
         } else if (linkData[0]['properties']['tourism'] == "guest_house") {
-          keywords.push("guest_house");
+          keywords.push("guesthouse");
+          keywords.push("guest");
+          keywords.push("house");
           //OPZOEKEN OP SITE
           this.turtle += `${tripleIdentifier} a schema:Accommodation ;\n`;
         } else if (linkData[0]['properties']['tourism'] == "apartment") {
@@ -489,24 +514,29 @@ export class ParseRmlComponent {
       } else if (linkData[0]['properties']['leisure']) {
         keywordsSet.add(`${linkData[0]['properties']['leisure']}`);
         if (linkData[0]['properties']['leisure'] == "picnic_table") {
-          keywords.push("picnic_table");
+          keywords.push("picnictable");
+          keywords.push("picnic");
+          keywords.push("table");
           this.turtle += `${tripleIdentifier} a schema:Place ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "playground") {
           keywords.push("playground");
           this.turtle += `${tripleIdentifier} a schema:Playground ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "fitness_centre") {
           keywords.push("fitness centre");
+          keywords.push("fitnesscentre");
           keywords.push("fitness");
           keywords.push("gym");
           this.turtle += `${tripleIdentifier} a lgdo:Gym ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "sports_centre") {
           keywords.push("sports centre");
+          keywords.push("sportscentre");
           keywords.push("sport");
           keywords.push("sports");
           this.turtle += `${tripleIdentifier} a lgdo:SportsCentre ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "hackerspace") {
           keywords.push("hackerspace");
           keywords.push("hacker");
+          keywords.push("hack");
           this.turtle += `${tripleIdentifier} a lgdo:Hackerspace ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "dance") {
           keywords.push("dance");
@@ -517,6 +547,7 @@ export class ParseRmlComponent {
           this.turtle += `${tripleIdentifier} a lgdo:GardenCentre ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "amusement_arcade") {
           keywords.push("amusement arcade");
+          keywords.push("amusementarcade");
           keywords.push("amusement");
           keywords.push("arcade");
           this.turtle += `${tripleIdentifier} a schema:AmusementPark ;\n`;
@@ -530,7 +561,8 @@ export class ParseRmlComponent {
           keywords.push("pitch");
           this.turtle += `${tripleIdentifier} a lgdo:Pitch ;\n`;
         } else if (linkData[0]['properties']['leisure'] == "sports_hall") {
-          keywords.push("sports_hall");
+          keywords.push("sportshall");
+          keywords.push("sports hall");
           keywords.push("sports");
           keywords.push("sports");
           this.turtle += `${tripleIdentifier} a ex:SportsHall ;\n`;
