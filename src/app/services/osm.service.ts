@@ -158,10 +158,6 @@ export class OsmService {
     return this.http.get<any>('./assets/data/data.json');
   }
 
-  getJsonTestData(): Observable<any> {
-    return this.http.get<any>('./assets/data/test_data.json');
-  }
-
   getSimilarityBetweenMainCategories() {
     const data = new Map<string, Map<string, number>>();
 

@@ -10,7 +10,7 @@ import { OsmService } from '../services/osm.service';
 export class ParseRmlComponent {
 
   public toonDezeDataIsTurtle: boolean = true;
-  public toonDezeData: String = "";
+  public toonDezeData: String;
   constructor(private http: HttpClient, private osmService: OsmService) { }
   private data: any[];
   turtle: String = "";
