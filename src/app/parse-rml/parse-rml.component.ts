@@ -39,7 +39,7 @@ export class ParseRmlComponent {
     this.turtle += "@prefix dbp: <https://dbpedia.org/ontology/>.\n";
     this.turtle += "@prefix km4c: <http://www.disit.org/km4city/schema#>.\n";
     this.turtle += "@prefix lgdo: <http://linkedgeodata.org/ontology/>.\n";
-    this.turtle += "@prefix ex: <http://example.org/> . \n";
+    this.turtle += "@prefix ex: <http://example.org/> . \n\n";
 
     let linkData: any[] = [...this.data]
     let keywordsSet: Set<string> = new Set();
@@ -343,7 +343,7 @@ export class ParseRmlComponent {
         } else if (linkData[0]['properties']['shop'] == "chemist") {
           keywords.push("chemist");
           keywords.push("chemistry");
-          this.turtle += `${tripleIdentifier} a Lgdo:chemist ;\n`;
+          this.turtle += `${tripleIdentifier} a lgdo:chemist ;\n`;
         } else if (linkData[0]['properties']['shop'] == "spices") {
           keywords.push("spices");
           this.turtle += `${tripleIdentifier} a ex:Spices ;\n`;
