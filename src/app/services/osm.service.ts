@@ -158,6 +158,10 @@ export class OsmService {
     return this.http.get<any>('./assets/data/data.json');
   }
 
+  getCSVData(): Observable<string> {
+    return this.http.get('./assets/data/categorical_similarities.csv', { responseType: 'text' });
+  }
+
   getSimilarityBetweenMainCategories() {
     const data = new Map<string, Map<string, number>>();
 

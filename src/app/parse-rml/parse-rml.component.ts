@@ -20,11 +20,37 @@ export class ParseRmlComponent {
       this.jsonToTurtl();
       this.toonDezeData = this.turtle;
     });
+    this.osmService.getCSVData().subscribe(d => {
+      const lijst: any[] = d.split('\n');
+      let arr: any[][] = new Array(lijst.length);
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = new Array(lijst.length);
+        const waarden: any[] = lijst[i].split(';');
+        for (let j = 0; j < arr.length; j++) {
+          arr[i][j] = waarden.at(j);
+        }
+      }
+      console.log(this.doubleArrayToObject(arr));
+    });
   }
+
+  doubleArrayToObject(arr: any[][]): any {
+    const obj: any = {};
+    const keys = arr[0].slice(1); // extract the keys from the first row
+    for (let i = 1; i < arr.length; i++) {
+      const row: any[] = arr[i];
+      const rowKey: string = row[0];
+      obj[rowKey] = {};
+      for (let j = 1; j < row.length; j++) {
+        obj[rowKey][keys[j - 1]] = Number(row[j]);
+      }
+    }
+    return obj;
+  }
+
 
   toggle() {
     if (this.toonDezeDataIsTurtle) {
-      this.toonDezeData = JSON.stringify(this.data, null, 2);
       this.toonDezeDataIsTurtle = false;
     } else {
       this.toonDezeData = this.turtle;
