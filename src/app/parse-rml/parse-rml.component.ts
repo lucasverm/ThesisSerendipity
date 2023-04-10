@@ -17,8 +17,8 @@ export class ParseRmlComponent {
   ngOnInit() {
     this.osmService.getJsonData().subscribe(d => {
       this.data = d.features;
-      this.jsonToTurtl();
-      this.toonDezeData = this.turtle;
+      //this.jsonToTurtl();
+      //this.toonDezeData = this.turtle;
     });
     this.osmService.getCSVData().subscribe(d => {
       const lijst: any[] = d.split('\n');
@@ -30,7 +30,8 @@ export class ParseRmlComponent {
           arr[i][j] = waarden.at(j);
         }
       }
-      console.log(this.doubleArrayToObject(arr));
+      this.categoriesToTurtle(this.doubleArrayToObject(arr));
+      this.toonDezeData = this.turtle;
     });
   }
 
@@ -56,6 +57,23 @@ export class ParseRmlComponent {
       this.toonDezeData = this.turtle;
       this.toonDezeDataIsTurtle = true;
     }
+  }
+
+  categoriesToTurtle(obj: any) {
+    let teller: number = 1;
+    this.turtle += "@prefix sim: <http://purl.org/ontology/similarity/> .\n";
+    Object.keys(obj).forEach(key => {
+      Object.keys(obj[key]).forEach(subKey => {
+        if (key && subKey && obj[key][subKey]) {
+          this.turtle += `<ex/${teller}> a sim:Association ;\n`;
+          this.turtle += `\tsim:subject "${key}" ; \n`;
+          this.turtle += `\tsim:object "${subKey}" ; \n`;
+          this.turtle += `\tsim:weight ${obj[key][subKey]} . \n`;
+          teller += 1;
+        }
+      });
+    });
+
   }
 
   jsonToTurtl() {
