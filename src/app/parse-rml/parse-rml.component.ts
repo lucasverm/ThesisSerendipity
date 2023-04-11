@@ -31,17 +31,6 @@ export class ParseRmlComponent {
     }
   }
 
-
-  calculateBirdFlightDistanceBetween(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    let R = 6371;
-    let dLat = (lat2 - lat1) * Math.PI / 180;
-    let dLon = (lon2 - lon1) * Math.PI / 180;
-    let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    let distance = R * c * 1000;
-    return Math.round(distance * 100) / 100
-  }
-
   copyMessage() {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';

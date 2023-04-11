@@ -12,7 +12,7 @@ declare var require: any;
 export class DataService {
 
   constructor(private router: Router, private http: HttpClient) { }
-
+  public allKeywords:any[];
   public getOSMData$(lat: Number = 51.05349346, lon: Number = 3.71974349, around: Number = 2200): Observable<any> {
     let data = `[out: json];
     (
@@ -811,6 +811,7 @@ export class DataService {
                   for (let item of linkData[0]['properties']['cuisine'].split(';')) {
                     turtleOutput += `\tschema:servesCuisine "${item}" ; \n`;
                     turtleOutput += `\tschema:keyword "${item}" ; \n`;
+                    keywords.push(item);
                   }
                 }
                 for (let keyword of keywords) {
@@ -827,7 +828,7 @@ export class DataService {
               keywords.forEach(t => keywordsSet.add(t));
               linkData.splice(0, 1);
             }
-            //this.data = Array.from(keywordsSet).sort();
+            this.allKeywords = Array.from(keywordsSet).sort();
             return turtleOutput;
           }
         )
