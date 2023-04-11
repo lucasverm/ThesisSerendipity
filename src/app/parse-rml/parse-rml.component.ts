@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { OsmService } from '../services/osm.service';
 
+declare var require: any;
 @Component({
   selector: 'app-parse-rml',
   templateUrl: './parse-rml.component.html',
@@ -16,8 +17,9 @@ export class ParseRmlComponent {
   ngOnInit() {
     this.osmService.getJsonData().subscribe(d => {
       this.data = d.features;
-      this.jsonToTurtl();
+      this.poiJsonDataToTurtle();
       this.toonDezeData = this.PoiTurtle;
+      this.parsteTtlToJsonLd(this.PoiTurtle);
     });
     this.osmService.getCSVData().subscribe(d => {
       const lijst: any[] = d.split('\n');
@@ -30,7 +32,14 @@ export class ParseRmlComponent {
         }
       }
       this.categoriesToTurtle(this.doubleArrayToObject(arr));
+      console.log(this.parsteTtlToJsonLd(this.CategoricalTurtle));
     });
+
+  }
+
+  parsteTtlToJsonLd(data: String): any {
+    const ttl2jsonld = require('@frogcat/ttl2jsonld').parse;
+    return ttl2jsonld(data);
   }
 
   doubleArrayToObject(arr: any[][]): any {
@@ -47,8 +56,7 @@ export class ParseRmlComponent {
     return obj;
   }
 
-
-  toggle(what: string) {
+  changeShowedData(what: string) {
     if (what == "POI") {
       this.toonDezeData = this.PoiTurtle;
     } else if (what == "categorical_similarities") {
@@ -72,10 +80,9 @@ export class ParseRmlComponent {
         }
       });
     });
-
   }
 
-  jsonToTurtl() {
+  poiJsonDataToTurtle() {
     let sleutels = new Set();
     this.PoiTurtle += "@prefix schema: <http://schema.org/> . \n";
     this.PoiTurtle += "@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.\n";

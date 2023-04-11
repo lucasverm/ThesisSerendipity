@@ -1,5 +1,5 @@
-<button (click)="toggle('POI')">POI TURTLE</button>
-<button (click)="toggle('categorical_similarities')">TOON POI TURTLE</button>
-<button (click)="toggle('osm')">OSM data</button>
+<button (click)="changeShowedData('POI')">POI TURTLE</button>
+<button (click)="changeShowedData('categorical_similarities')">TOON POI TURTLE</button>
+<button (click)="changeShowedData('osm')">OSM data</button>
 <button (click)="copyMessage()" value="click to copy">Copy data</button>
 <p style="white-space: pre-wrap">{{this.toonDezeData}}</p>
