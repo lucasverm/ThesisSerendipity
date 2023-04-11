@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { ParseRmlComponent } from './parse-rml/parse-rml.component';
 import { QueryComponent } from './query/query.component';
+import { GraphComponent } from './graph/graph.component';
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     QueryComponent,
-    ParseRmlComponent
+    ParseRmlComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,

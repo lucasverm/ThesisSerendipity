@@ -5,7 +5,7 @@ import * as LTest from 'leaflet';
 import { icon, Marker } from 'leaflet';
 import 'leaflet-routing-machine';
 import 'mapbox-gl-leaflet';
-import { OsmService } from '../services/osm.service';
+import { DataService } from '../services/data.service';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class MapComponent {
   distanceRouteShowedOnMap: number;
   distanceExtaRoute: number;
 
-  constructor(public router: Router, private osmService: OsmService) { }
+  constructor(public router: Router, private DataService: DataService) { }
 
   onMapReady($event: L.Map) {
     this.map = $event;
@@ -189,9 +189,9 @@ export class MapComponent {
 
   queryOSMandPutMarkersOnMap(lat: number, lng: number) {
     console.log(lat, lng);
-    //this.osmService.getStatigJsonLdMapDataOsm().forEach(t => this.generateMarkerWithJsonLdData(t));
+    //this.DataService.getStatigJsonLdMapDataOsm().forEach(t => this.generateMarkerWithJsonLdData(t));
 
-    /*this.osmService
+    /*this.DataService
       .getMapData$(lat, lng)
       .subscribe(
         (val) => {

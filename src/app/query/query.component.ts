@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { OsmService } from '../services/osm.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-query',
@@ -10,15 +10,15 @@ import { OsmService } from '../services/osm.service';
 })
 export class QueryComponent {
 
-  constructor(public router: Router, private osmService: OsmService) { }
+  constructor(public router: Router, private DataService: DataService) { }
 
   ngOnInit() {
     this.getMapData();
   }
 
   getMapData() {
-    this.osmService
-      .getMapData$()
+    this.DataService
+      .getOSMData$()
       .subscribe(
         (val) => {
           console.log(val);
