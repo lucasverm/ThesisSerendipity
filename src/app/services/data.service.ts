@@ -165,6 +165,29 @@ export class DataService {
       );
   }
 
+  public getCategoricalSimilaritiesObject$(): Observable<any> {
+    return this.getCSVData$()
+      .pipe(
+        catchError((error) => {
+          return throwError(error);
+        }),
+        map(
+          (d: any): any => {
+            const lijst: any[] = d.split('\n');
+            let arr: any[][] = new Array(lijst.length);
+            for (let i = 0; i < arr.length; i++) {
+              arr[i] = new Array(lijst.length);
+              const waarden: any[] = lijst[i].split(';');
+              for (let j = 0; j < arr.length; j++) {
+                arr[i][j] = waarden.at(j);
+              }
+            }
+            return this.doubleArrayToObject(arr);
+          }
+        )
+      );
+  }
+
   private categoriesToTurtle(obj: any): string {
     let teller: number = 1;
     let categoricalTurtle = "";

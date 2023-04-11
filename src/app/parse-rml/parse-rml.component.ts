@@ -8,16 +8,16 @@ import { DataService } from '../services/data.service';
 })
 export class ParseRmlComponent {
 
-  constructor(private http: HttpClient, private DataService: DataService) { }
+  constructor(private http: HttpClient, private dataService: DataService) { }
   public toonDezeData: String;
   public poiJson: any[];
   public poiTurtle: String;
   public categoricalSimilaritiesTurtle: String;
 
   ngOnInit() {
-    this.DataService.getPoiJsonData$().subscribe(t => this.poiJson = t);
-    this.DataService.getPoiTurtle$().subscribe(t => this.poiTurtle = t);
-    this.DataService.getCategoricalSimilaritiesTurtle$().subscribe(t => this.categoricalSimilaritiesTurtle = t);
+    this.dataService.getPoiJsonData$().subscribe(t => this.poiJson = t);
+    this.dataService.getPoiTurtle$().subscribe(t => this.poiTurtle = t);
+    this.dataService.getCategoricalSimilaritiesTurtle$().subscribe(t => this.categoricalSimilaritiesTurtle = t);
   }
 
 
