@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import Graph from 'graphology';
+import { dijkstra } from 'graphology-shortest-path';
 import { forkJoin } from 'rxjs';
 import { DataService } from '../services/data.service';
 
@@ -13,9 +14,9 @@ export class GraphComponent {
   public graaf: Graph;
   public poiData: any;
   public categoricalSimilaritiesObject: any;
-  public distanceFactor = 0.1;
+  public distanceFactor = 0;
   public randomFactor = 1;
-  public categoryFactor = 1;
+  public categoryFactor = 0;
   public showToPrint = "";
 
   constructor(private http: HttpClient, private dataService: DataService) { }
@@ -32,9 +33,11 @@ export class GraphComponent {
   }
 
   buildGraph(destination: string) {
+    //bistro lam gods, aan  st baafs
+    destination = "ex/1212135543";
     this.graaf = new Graph();
     let data: any[] = this.poiData[`@graph`]
-    data = data.slice(0, 100);
+    data = data.slice(0, 200);
     data.forEach((el) => {
       let nieuweNode = this.graaf.addNode(el['@id'], el);
       let nieuweNodeAtr = this.graaf.getNodeAttributes(nieuweNode);
@@ -70,12 +73,31 @@ export class GraphComponent {
       });
     })
 
-    // Displaying useful information about your this.graaf
-    console.log('Number of nodes', this.graaf.order);
-    console.log('Number of edges', this.graaf.size);
-
-    // Iterating over nodes
+    //add huidige positie
+    //Gravensteen
+    let huigigePositie = this.graaf.addNode("huidigePositie", { 'schema:name': "huidigePositie", 'schema:geo': { 'geo:lat': 3.7197324, 'geo:long': 51.0569223 } });
+    //let huigigePositieAtr = this.graaf.getNodeAttributes(huigigePositie);
+    this.graaf.forEachNode(node => {
+      let nodeAtr = this.graaf.getNodeAttributes(node);
+      if (node != huigigePositie && node != destination) {
+        this.graaf.addEdge(huigigePositie, node, {
+          weight: 0
+        });
+      }
+    });
+    this.calculateShortestPath(destination);
   }
+
+  public calculateShortestPath(destination: string) {
+    // Returning the shortest path between source & target
+    let weg = dijkstra.bidirectional(this.graaf, 'huidigePositie', destination, 'weight');
+    weg.forEach(t => {
+      let atrData = this.graaf.getNodeAttributes(t);
+      console.log(atrData["schema:name"])
+    })
+
+  }
+
 
   public calculateBirdFlightDistanceBetween(lat1: number, lon1: number, lat2: number, lon2: number): number {
     let R = 6371;

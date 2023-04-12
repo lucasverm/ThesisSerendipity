@@ -12,7 +12,7 @@ declare var require: any;
 export class DataService {
 
   constructor(private router: Router, private http: HttpClient) { }
-  public allKeywords:any[];
+  public allKeywords: any[];
   public getOSMData$(lat: Number = 51.05349346, lon: Number = 3.71974349, around: Number = 2200): Observable<any> {
     let data = `[out: json];
     (
@@ -793,6 +793,7 @@ export class DataService {
               }
               if (relevant) {
                 if (linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
+                if (linkData[0]['properties']['name:nl'] && linkData[0]['properties']['name:nl'] != linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name:nl']}" ; \n`;
                 if (linkData[0]['properties']['website']) turtleOutput += `\tschema:url "${linkData[0]['properties']['website']}" ; \n`;
                 if (linkData[0]['properties']['phone']) turtleOutput += `\tschema:telephone "${linkData[0]['properties']['phone']}" ; \n`;
                 if (linkData[0]['properties']['alt_name']) turtleOutput += `\tschema:alternateName "${linkData[0]['properties']['alt_name']}" ; \n`;
@@ -819,10 +820,10 @@ export class DataService {
                 }
                 if (linkData[0]['geometry']) {
                   turtleOutput += `\tschema:geo [ 
-          \ta geo:Point ;
-          \tgeo:lat "${linkData[0]['geometry']['coordinates'][0]}" ;
-          \tgeo:long "${linkData[0]['geometry']['coordinates'][1]}" ;
-        ] . \n`;
+                    \ta geo:Point ;
+                    \tgeo:lat "${linkData[0]['geometry']['coordinates'][0]}" ;
+                    \tgeo:long "${linkData[0]['geometry']['coordinates'][1]}" ;
+                  ] . \n`;
                 }
               }
               keywords.forEach(t => keywordsSet.add(t));
