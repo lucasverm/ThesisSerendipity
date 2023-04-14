@@ -13,13 +13,15 @@ export class ParseRmlComponent {
   public poiJson: any[];
   public poiTurtle: String;
   public categoricalSimilaritiesTurtle: String;
-
+  public dataAllKeywords: any[];
   ngOnInit() {
     this.dataService.getPoiJsonData$().subscribe(t => this.poiJson = t);
-    this.dataService.getPoiTurtle$().subscribe(t => this.poiTurtle = t);
+    this.dataService.getPoiTurtle$().subscribe(t => {
+      this.poiTurtle = t;
+      this.dataAllKeywords = this.dataService.allKeywords;
+    });
     this.dataService.getCategoricalSimilaritiesTurtle$().subscribe(t => this.categoricalSimilaritiesTurtle = t);
   }
-
 
   changeShowedData(what: string) {
     if (what == "POI") {
@@ -28,6 +30,8 @@ export class ParseRmlComponent {
       this.toonDezeData = this.categoricalSimilaritiesTurtle;
     } else if (what == "osm") {
       this.toonDezeData = JSON.stringify(this.poiJson, null, 2)
+    } else if (what == "dataCategories") {
+      this.toonDezeData = JSON.stringify(this.dataAllKeywords, null, 2)
     }
   }
 
