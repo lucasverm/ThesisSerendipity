@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import Sigma from 'sigma';
 import { environment } from 'src/environments/environment';
 
 declare var require: any;
@@ -12,6 +13,7 @@ declare var require: any;
 export class DataService {
 
   constructor(private router: Router, private http: HttpClient) { }
+  public sigma: Sigma;
   public allKeywords: any[];
   public getOSMData$(lat: Number = 51.05349346, lon: Number = 3.71974349, around: Number = 2200): Observable<any> {
     let data = `[out: json];

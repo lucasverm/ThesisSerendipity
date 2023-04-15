@@ -6,6 +6,7 @@ import { icon, Marker } from 'leaflet';
 import 'leaflet-routing-machine';
 import 'mapbox-gl-leaflet';
 import { DataService } from '../services/data.service';
+import sigma from 'sigma/sigma';
 
 
 @Component({
@@ -75,6 +76,7 @@ export class MapComponent {
       routeWhileDragging: false,
       waypoints: []
     }).addTo(L.map('map'));
+
 
     this.leafletRoutingControl.on('routesfound', e => {
       this.distanceRouteShowedOnMap = e.routes[0].summary.totalDistance;

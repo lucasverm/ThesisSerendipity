@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import Graph from 'graphology';
-import { dijkstra } from 'graphology-shortest-path';
 import { forkJoin } from 'rxjs';
 import { Sigma } from "sigma";
 import { EdgeDisplayData, NodeDisplayData } from 'sigma/types';
@@ -31,8 +30,8 @@ export class GraphComponent {
   public graaf: Graph;
   public poiData: any;
   public categoricalSimilaritiesObject: any;
-  public distanceFactor = 0.001;
-  public randomFactor = 0.2;
+  public distanceFactor = 0.00005;
+  public randomFactor = 0;
   public categoryFactor = 1;
   public showToPrint = "";
   public linkTheseNodesInVisualisation: Set<string> = new Set();
@@ -52,17 +51,15 @@ export class GraphComponent {
   }
 
   buildGraph(destination: string) {
-    //komkommertijd aan de reep
-    //destination = "ex/203704458";
-    //de centrale
-    destination = "ex/497396025"
-
-    //maak graaf
+    destination = "ex/203704458"
     this.graaf = new Graph();
     let data: any[] = this.poiData[`@graph`]
-    //data = data.slice(0, 100);
+    data = data.slice(0, 20);
+    let desinationDatadata = data.find(t => t['@id'] == destination);
     data.forEach((el) => {
-      let nieuweNode = this.graaf.addNode(el['@id'], { label: el['schema:name'], color: 'grey', size: 6, x: Number(el['schema:geo']['geo:lat']), y: Number(el['schema:geo']['geo:long']), ...el });
+      //voor elke node doe:
+      let distanceNodeToDestination = this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), Number(desinationDatadata['schema:geo']['geo:lat']), Number(desinationDatadata['schema:geo']['geo:long']))
+      let nieuweNode = this.graaf.addNode(el['@id'], { distanceToDestination: distanceNodeToDestination *this.distanceFactor, label: el['schema:name'], color: 'grey', size: 6, x: Number(el['schema:geo']['geo:lat']), y: Number(el['schema:geo']['geo:long']), ...el });
       let nieuweNodeAtr = this.graaf.getNodeAttributes(nieuweNode);
       let keywordsNieuweNode: string[] = [];
       if (nieuweNodeAtr["schema:keyword"]) {
@@ -77,7 +74,6 @@ export class GraphComponent {
       this.graaf.forEachNode(node => {
         if (node != nieuweNode) {
           let nodeAtr = this.graaf.getNodeAttributes(node);
-          let distance = this.calculateBirdFlightDistanceBetween(Number(nodeAtr['schema:geo']['geo:lat']), Number(nodeAtr['schema:geo']['geo:long']), Number(nieuweNodeAtr['schema:geo']['geo:lat']), Number(nieuweNodeAtr['schema:geo']['geo:long']))
           let maxCorrelation = 0;
           if (nodeAtr["schema:keyword"]) {
             let keywordsNode: string[] = [];
@@ -90,22 +86,17 @@ export class GraphComponent {
             if (keywordsNode && keywordsNieuweNode) {
               keywordsNieuweNode.forEach(keywordVanNieuweNode => {
                 keywordsNode.forEach(keywordVanNode => {
-                  let correlation = 0;
-                  try {
-                    correlation = this.categoricalSimilaritiesObject[keywordVanNieuweNode][keywordVanNode]
-                  } catch (error) {
-                    console.log(this.categoricalSimilaritiesObject);
-                    console.log(keywordVanNieuweNode);
-                    console.log(keywordVanNode)
-                  }
+                  let correlation = this.categoricalSimilaritiesObject[keywordVanNieuweNode][keywordVanNode]
                   if (correlation > maxCorrelation) maxCorrelation = correlation;
                 });
               });
             }
           }
-          let gewicht = (this.categoryFactor * maxCorrelation) + (this.distanceFactor * distance) + (this.randomFactor * Math.random());
-          this.graaf.addEdge(nieuweNode, node, {
-            weight: gewicht * gewicht,
+          this.graaf.setNodeAttribute(node, 'maxCorrelation', maxCorrelation);
+          let gewicht = (this.categoryFactor * (1 - maxCorrelation));
+          this.graaf.addUndirectedEdge(nieuweNode, node, {
+            weight: gewicht,
+            //label: `tot: ${Math.round(gewicht * 1000) / 1000} cat: ${Math.round(this.categoryFactor * (1 - maxCorrelation) * 1000) / 1000} - dist: ${Math.round(this.distanceFactor * distance * 1000) / 1000}`
             label: gewicht
           });
         }
@@ -123,35 +114,54 @@ export class GraphComponent {
     this.graaf.forEachNode(node => {
       let nodeAtr = this.graaf.getNodeAttributes(node);
       let distance = this.calculateBirdFlightDistanceBetween(Number(nodeAtr['schema:geo']['geo:lat']), Number(nodeAtr['schema:geo']['geo:long']), Number(huigigePositieAtr['schema:geo']['geo:lat']), Number(huigigePositieAtr['schema:geo']['geo:long']))
+      let gewicht = (this.categoryFactor * (1 - nodeAtr['maxCorrelation']) + (this.distanceFactor * distance));
+      console.log(gewicht)
       if (node != huigigePositie && node != destination) {
-        this.graaf.addEdge(huigigePositie, node, {
-          weight: distance * distance,
-          label: distance
+        this.graaf.addUndirectedEdge(huigigePositie, node, {
+          weight: gewicht,
+          label: gewicht
         });
       }
     });
-    this.calculateShortestPath(destination);
+    this.calculatePath(destination);
     this.visualizeGraph();
   }
 
-  public calculateShortestPath(destination: string) {
-    // Returning the shortest path between source & target
-    let weg = dijkstra.bidirectional(this.graaf, 'huidigePositie', destination, 'weight');
+  public calculatePath(destination: string) {
+    let weg: string[] = ["huidigePositie"];
+    let currentNode = "huidigePositie";
+    while (currentNode != destination) {
+      let minWeight = Infinity;
+      let edgeTeNemen;
+      for (let verbinding of this.graaf.edges(currentNode)) {
+        let gewichtEdge = this.graaf.getEdgeAttributes(verbinding)['weight'];
+        let gewichtKnoop = this.graaf.getNodeAttributes(this.graaf.opposite(currentNode, verbinding))['distanceToDestination'];
+        let totaalGewicht = gewichtEdge + gewichtKnoop;
+        //console.log(`tot: ${totaalGewicht} = knoop: ${gewichtKnoop}+edge: ${gewichtEdge}`)
+        if (totaalGewicht < minWeight && !weg.includes(this.graaf.opposite(currentNode, verbinding))) {
+          edgeTeNemen = verbinding;
+          minWeight = totaalGewicht
+        }
+      }
+      currentNode = this.graaf.opposite(currentNode, edgeTeNemen);
+      weg.push(currentNode);
+    }
     weg.forEach(t => {
       let atrData = this.graaf.getNodeAttributes(t);
       console.log(atrData["schema:name"])
       this.linkTheseNodesInVisualisation.add(t);
-    })
+    });
   }
-
-  sigma: Sigma;
 
   visualizeGraph() {
     if (this.container) {
       let graafWithoutEdges = this.graaf;
-      graafWithoutEdges.clearEdges();
-      this.sigma = new Sigma(graafWithoutEdges, this.container.nativeElement, {
-        /*renderEdgeLabels: true,
+      //graafWithoutEdges.clearEdges();
+      this.dataService.sigma = new Sigma(graafWithoutEdges, this.container.nativeElement, {
+        zIndex: true,
+        renderEdgeLabels: true,
+        defaultEdgeType: "arrow"
+        /*
         //nodeProgramClasses: { image: getNodeProgramImage() },
         //labelRenderer: drawLabel,
         //defaultNodeType: "image", 
@@ -160,23 +170,23 @@ export class GraphComponent {
         labelGridCellSize: 60,
         labelRenderedSizeThreshold: 15,
         labelFont: "Lato, sans-serif",
-        zIndex: true,
         defaultEdgeColor: "target"*/
       });
-      this.sigma.on("enterNode", ({ node }) => {
+      this.dataService.sigma.on("enterNode", ({ node }) => {
         this.setHoveredNode(node);
       });
-      this.sigma.on("leaveNode", () => {
+      this.dataService.sigma.on("leaveNode", () => {
         this.setHoveredNode(undefined);
       });
-      this.sigma.setSetting("nodeReducer", (node, data) => {
+      this.dataService.sigma.setSetting("nodeReducer", (node, data) => {
         const res: Partial<NodeDisplayData> = { ...data };
         if (this.linkTheseNodesInVisualisation.has(node)) {
           res.color = "red";
+          res.zIndex = 2;
         }
         return res;
       });
-      this.sigma.setSetting("edgeReducer", (edge, data) => {
+      this.dataService.sigma.setSetting("edgeReducer", (edge, data) => {
         const res: Partial<EdgeDisplayData> = { ...data };
 
         if (this.state.hoveredNode && !this.graaf.hasExtremity(edge, this.state.hoveredNode)) {
@@ -199,13 +209,13 @@ export class GraphComponent {
       this.state.hoveredNode = undefined;
       this.state.hoveredNeighbors = undefined;
     }
-    this.sigma.refresh();
+    this.dataService.sigma.refresh();
   }
 
 
   ngOnDestroy(): void {
-    if (this.sigma) {
-      this.sigma.kill();
+    if (this.dataService.sigma) {
+      this.dataService.sigma.kill();
     }
   }
 
