@@ -191,10 +191,10 @@ export class GraphComponent {
           }
         }
       }
-      console.log(print0);
-      console.log(print1);
+      //console.log(print0);
+      //console.log(print1);
       console.log(print2);
-      console.log(print3);
+      //console.log(print3);
       currentNode = this.graaf.opposite(currentNode, verbindingTeNemen);
       weg.push(currentNode);
     }

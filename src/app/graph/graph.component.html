@@ -8,7 +8,7 @@
     <p>Factor categorie: {{this.categoryFactor}}</p>
     <p-slider [(ngModel)]="this.categoryFactor" [step]="1" [min]="0" [max]="5"
         (onSlideEnd)="this.calculatePath(destination, 3.7197324, 51.0569223);"></p-slider>
-    <p>More si: {{this.gemiddelde/1000}}</p>
+    <p>Similarity: {{this.gemiddelde/10}}%</p>
     <p-slider [(ngModel)]="this.gemiddelde" [min]="0" [max]="1000"
         (onSlideEnd)="this.calculatePath(destination, 3.7197324, 51.0569223);"></p-slider>
 </div>
