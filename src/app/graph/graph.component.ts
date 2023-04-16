@@ -71,16 +71,46 @@ export class GraphComponent {
         ...el
       });
       let nieuweNodeAtr = this.graaf.getNodeAttributes(nieuweNode);
-      let keywordsNieuweNode = this.getKeywordsArray(nieuweNodeAtr["schema:keyword"]);
-
-
+      let keywordsNieuweNode: string[] = [];
+      if (nieuweNodeAtr["schema:keyword"]) {
+        if (typeof (nieuweNodeAtr["schema:keyword"]) == "string") {
+          keywordsNieuweNode.push(nieuweNodeAtr["schema:keyword"])
+        } else {
+          let keywords: any[] = nieuweNodeAtr["schema:keyword"];
+          keywords.forEach(t => keywordsNieuweNode.push(t));
+        }
+      }
+      let print1: any, print2: any;
       //voor elke node die al in de graaf zit:
       this.graaf.forEachNode(node => {
         if (node != nieuweNode) {
+
           let nodeAtr = this.graaf.getNodeAttributes(node);
           let distanceInBetweenNodes = this.calculateBirdFlightDistanceBetween(Number(nodeAtr['schema:geo']['geo:lat']), Number(nodeAtr['schema:geo']['geo:long']), Number(nieuweNodeAtr['schema:geo']['geo:lat']), Number(nieuweNodeAtr['schema:geo']['geo:long']))
-          let keywordsNode = this.getKeywordsArray(nodeAtr["schema:keyword"]);
-          let maxCorrelation = this.getMaxCorrelationBetweenKeywordArrays(keywordsNieuweNode, keywordsNode);
+          let maxCorrelation = 0;
+          if (nodeAtr["schema:keyword"]) {
+            let keywordsNode: string[] = [];
+            if (typeof (nodeAtr["schema:keyword"]) == "string") {
+              keywordsNode.push(nodeAtr["schema:keyword"])
+            } else {
+              let keywords: any[] = nodeAtr["schema:keyword"];
+              keywords.forEach(t => keywordsNode.push(t));
+            }
+            if (keywordsNode && keywordsNieuweNode) {
+              keywordsNieuweNode.forEach(keywordVanNieuweNode => {
+                keywordsNode.forEach(keywordVanNode => {
+                  let correlation = this.categoricalSimilaritiesObject[keywordVanNieuweNode][keywordVanNode]
+                  if (correlation > maxCorrelation) {
+                    maxCorrelation = correlation
+                    print1 = keywordVanNieuweNode;
+                    print2 = keywordVanNode;
+                  };
+                });
+              });
+            }
+            //console.log(`1:${print1} 2: ${print2} max:${maxCorrelation}`)
+          }
+
           this.graaf.addEdge(nieuweNode, node, {
             maxCorrelation: maxCorrelation,
             distanceInBetweenNodes: distanceInBetweenNodes,
@@ -127,7 +157,7 @@ export class GraphComponent {
     let weg: string[] = [currentNode];
     let afstandTussenDestinationEnHuidigePositie = this.calculateBirdFlightDistanceBetween(Number(destinationNode['schema:geo']['geo:lat']), Number(destinationNode['schema:geo']['geo:long']), huidigePositieLat, huidigePositieLong)
     let idealeAfstandPerStap = afstandTussenDestinationEnHuidigePositie / this.steps;
-    let print1, print2, print3, print4, print5;
+    let print1, print2;
     for (let i = 0; i < this.steps; ++i) {
       let maxWeight = 0;
       let verbindingTeNemen;
@@ -140,30 +170,28 @@ export class GraphComponent {
           //afstandToDestination currentNode - afstandToDestination Neighbour + 200 = 0
           //zorgt dat stap richting currentNodeGaat
           let gewichtStapRichting = Math.abs(distanceToHuidigePositieCurrentNode - distanceToHuidigePositieNeighbourNode - idealeAfstandPerStap);
-
           //distanceInbetweeNodes - 200 = 0
           //zorgt voor knoop dicht bij vorige knoop
           gewichtStapRichting += Math.abs(distanceInBetweenNodes - idealeAfstandPerStap);
           //hoe hoger gewichtStapRichting hoe dichter bij elkaar
-          gewichtStapRichting = (1 / gewichtStapRichting);
-          let gewichtCorrelatie = 0;
-          //gewichtStapRichting = Math.pow(gewichtStapRichting, this.distanceFactor);
-          //gewichtCorrelatie = Math.pow(gewichtCorrelatie, this.categoryFactor);
+          gewichtStapRichting = (1 / gewichtStapRichting) * 100;
+          let gewichtCorrelatie = correlation * 100;
+          gewichtStapRichting = Math.pow(gewichtStapRichting, this.distanceFactor);
+          gewichtCorrelatie = Math.pow(gewichtCorrelatie, this.categoryFactor);
           let totaalGewicht = gewichtStapRichting + gewichtCorrelatie;
           //resulraat = absolute waarde minimal totaalGewicht
           if (totaalGewicht > maxWeight) {
             verbindingTeNemen = verbinding;
-            print1 = Math.abs(distanceToHuidigePositieCurrentNode - distanceToHuidigePositieNeighbourNode - idealeAfstandPerStap);
-            print2 = Math.abs(distanceInBetweenNodes - idealeAfstandPerStap);
-            print3 = gewichtStapRichting
-            print4 = gewichtCorrelatie
-            print5 = totaalGewicht
+            maxWeight = totaalGewicht
+            print1 = gewichtStapRichting
+            print2 = gewichtCorrelatie
           }
         }
       }
-      console.log(print1, print2, print3, print4, print5);
       currentNode = this.graaf.opposite(currentNode, verbindingTeNemen);
       weg.push(currentNode);
+      console.log(print1);
+      console.log(print2);
     }
     //toon weg
     weg.forEach(t => {
@@ -251,31 +279,5 @@ export class GraphComponent {
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     let distance = R * c * 1000;
     return Math.round(distance * 100) / 100
-  }
-
-  public getKeywordsArray(keywordsInput: any): string[] {
-    let keywordsOutput: string[] = [];
-    if (keywordsInput) {
-      if (typeof (keywordsInput) == "string") {
-        keywordsOutput.push(keywordsInput)
-      } else {
-        let keywords: any[] = keywordsInput;
-        keywords.forEach(t => keywordsOutput.push(t));
-      }
-    }
-    return keywordsOutput;
-  }
-
-  public getMaxCorrelationBetweenKeywordArrays(keywordsNode: string[], keywordsNieuweNode: string[]): number {
-    let maxCorrelation: number = 0;
-    keywordsNieuweNode.forEach(keywordVanNieuweNode => {
-      keywordsNode.forEach(keywordVanNode => {
-        let correlation = this.categoricalSimilaritiesObject[keywordVanNieuweNode][keywordVanNode]
-        if (correlation > maxCorrelation) {
-          maxCorrelation = correlation
-        };
-      });
-    });
-    return maxCorrelation;
   }
 }
