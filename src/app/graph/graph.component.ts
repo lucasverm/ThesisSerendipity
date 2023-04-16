@@ -56,73 +56,21 @@ export class GraphComponent {
   buildGraph(destination: string, huidigePositieLat: number, huidigePositieLong: number) {
     this.graaf = new Graph();
     let data: any[] = this.poiData[`@graph`]
-    //data = data.slice(0, 5);
-    //let desinationDatadata = data.find(t => t['@id'] == destination);
-    data.forEach((el) => {
-      //voor elke node doe:
-      let distanceNodeToHuidigePositie = this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), Number(huidigePositieLat), Number(huidigePositieLong))
-      let nieuweNode = this.graaf.addNode(el['@id'], {
-        distanceToHuidigePositie: distanceNodeToHuidigePositie,
-        label: el['schema:name'],
-        color: 'grey',
-        size: 6,
-        x: Number(el['schema:geo']['geo:lat']),
-        y: Number(el['schema:geo']['geo:long']),
-        ...el
-      });
-      let nieuweNodeAtr = this.graaf.getNodeAttributes(nieuweNode);
-      let keywordsNieuweNode: string[] = [];
-      if (nieuweNodeAtr["schema:keyword"]) {
-        if (typeof (nieuweNodeAtr["schema:keyword"]) == "string") {
-          keywordsNieuweNode.push(nieuweNodeAtr["schema:keyword"])
-        } else {
-          let keywords: any[] = nieuweNodeAtr["schema:keyword"];
-          keywords.forEach(t => keywordsNieuweNode.push(t));
-        }
+    data = data.slice(0, 5);
+    let desinationDatadata = data.find(t => t['@id'] == destination);
+    let keywordsDestionation: string[] = [];
+    if (desinationDatadata["schema:keyword"]) {
+      if (typeof (desinationDatadata["schema:keyword"]) == "string") {
+        keywordsDestionation.push(desinationDatadata["schema:keyword"])
+      } else {
+        let keywords: any[] = desinationDatadata["schema:keyword"];
+        keywords.forEach(t => keywordsDestionation.push(t));
       }
-      let print1: any, print2: any;
-      //voor elke node die al in de graaf zit:
-      this.graaf.forEachNode(node => {
-        if (node != nieuweNode) {
-
-          let nodeAtr = this.graaf.getNodeAttributes(node);
-          let distanceInBetweenNodes = this.calculateBirdFlightDistanceBetween(Number(nodeAtr['schema:geo']['geo:lat']), Number(nodeAtr['schema:geo']['geo:long']), Number(nieuweNodeAtr['schema:geo']['geo:lat']), Number(nieuweNodeAtr['schema:geo']['geo:long']))
-          let maxCorrelation = 0;
-          if (nodeAtr["schema:keyword"]) {
-            let keywordsNode: string[] = [];
-            if (typeof (nodeAtr["schema:keyword"]) == "string") {
-              keywordsNode.push(nodeAtr["schema:keyword"])
-            } else {
-              let keywords: any[] = nodeAtr["schema:keyword"];
-              keywords.forEach(t => keywordsNode.push(t));
-            }
-            if (keywordsNode && keywordsNieuweNode) {
-              keywordsNieuweNode.forEach(keywordVanNieuweNode => {
-                keywordsNode.forEach(keywordVanNode => {
-                  let correlation = this.categoricalSimilaritiesObject[keywordVanNieuweNode][keywordVanNode]
-                  if (correlation > maxCorrelation) {
-                    maxCorrelation = correlation
-                    print1 = keywordVanNieuweNode;
-                    print2 = keywordVanNode;
-                  };
-                });
-              });
-            }
-            //console.log(`1:${print1} 2: ${print2} max:${maxCorrelation}`)
-          }
-
-          this.graaf.addEdge(nieuweNode, node, {
-            maxCorrelation: maxCorrelation,
-            distanceInBetweenNodes: distanceInBetweenNodes,
-            label: `cor: ${maxCorrelation} dist: ${distanceInBetweenNodes}`
-          });
-        }
-      });
-    })
+    }
 
     //add huidige positie
-    //Gravensteen
     let huigigePositie = this.graaf.addNode("huidigePositie", {
+      correlation: 1,
       distanceToHuidigePositie: 0,
       label: 'Huidige positie',
       color: 'red',
@@ -135,17 +83,62 @@ export class GraphComponent {
       y: huidigePositieLong,
       size: 6
     });
-    let huigigePositieAtr = this.graaf.getNodeAttributes(huigigePositie);
-    this.graaf.forEachNode(node => {
-      let nodeAtr = this.graaf.getNodeAttributes(node);
-      let distanceInBetweenNodes = this.calculateBirdFlightDistanceBetween(Number(nodeAtr['schema:geo']['geo:lat']), Number(nodeAtr['schema:geo']['geo:long']), Number(huigigePositieAtr['schema:geo']['geo:lat']), Number(huigigePositieAtr['schema:geo']['geo:long']))
-      if (node != huigigePositie && node != destination) {
-        this.graaf.addUndirectedEdge(huigigePositie, node, {
-          distanceInBetweenNodes: distanceInBetweenNodes,
-          maxCorrelation: 0,
-          label: `dist: ${distanceInBetweenNodes}`
+
+    //let huigigePositieAtr = this.graaf.getNodeAttributes(huigigePositie);
+
+    data.forEach((el) => {
+      //voor elke node doe:
+      let distanceNodeToHuidigePositie = this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), Number(huidigePositieLat), Number(huidigePositieLong))
+      //let nieuweNodeAtr = this.graaf.getNodeAttributes(nieuweNode);
+      // correlation
+      let maxCorrelation = 0;
+      let keywordsNieuweNode: string[] = [];
+      if (el["schema:keyword"]) {
+        if (typeof (el["schema:keyword"]) == "string") {
+          keywordsNieuweNode.push(el["schema:keyword"])
+        } else {
+          let keywords: any[] = el["schema:keyword"];
+          keywords.forEach(t => keywordsNieuweNode.push(t));
+        }
+      }
+      if (keywordsDestionation && keywordsNieuweNode) {
+        keywordsNieuweNode.forEach(keywordVanNieuweNode => {
+          keywordsDestionation.forEach(keywordVanNode => {
+            let correlation = this.categoricalSimilaritiesObject[keywordVanNieuweNode][keywordVanNode]
+            if (correlation > maxCorrelation) {
+              maxCorrelation = correlation
+            };
+          });
         });
       }
+      let nieuweNode = this.graaf.addNode(el['@id'], {
+        correlation: maxCorrelation,
+        distanceToHuidigePositie: distanceNodeToHuidigePositie,
+        label: el['schema:name'],
+        color: 'grey',
+        size: 6,
+        x: Number(el['schema:geo']['geo:lat']),
+        y: Number(el['schema:geo']['geo:long']),
+        ...el
+      });
+      let distanceInBetweenNodeAndHuigiePositie = this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), Number(huidigePositieLat), Number(huidigePositieLong))
+      if (el['@id'] != huigigePositie && el['@id'] != destination) {
+        this.graaf.addEdge(huigigePositie, el['@id'], {
+          distanceInBetweenNodes: distanceInBetweenNodeAndHuigiePositie,
+          label: `dist: ${distanceInBetweenNodeAndHuigiePositie}`
+        });
+      }
+      //voor elke node die al in de graaf zit:
+      this.graaf.forEachNode(node => {
+        if (node != nieuweNode && node != huigigePositie) {
+          let nodeAtr = this.graaf.getNodeAttributes(node);
+          let distanceInBetweenNodes = this.calculateBirdFlightDistanceBetween(Number(nodeAtr['schema:geo']['geo:lat']), Number(nodeAtr['schema:geo']['geo:long']), Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']))
+          this.graaf.addEdge(nieuweNode, node, {
+            distanceInBetweenNodes: distanceInBetweenNodes,
+            label: `${distanceInBetweenNodes}`
+          });
+        }
+      });
     });
     this.visualizeGraph();
     this.calculatePath(destination, 3.7197324, 51.0569223);
@@ -157,13 +150,12 @@ export class GraphComponent {
     let weg: string[] = [currentNode];
     let afstandTussenDestinationEnHuidigePositie = this.calculateBirdFlightDistanceBetween(Number(destinationNode['schema:geo']['geo:lat']), Number(destinationNode['schema:geo']['geo:long']), huidigePositieLat, huidigePositieLong)
     let idealeAfstandPerStap = afstandTussenDestinationEnHuidigePositie / this.steps;
-    let print1, print2;
     for (let i = 0; i < this.steps; ++i) {
       let maxWeight = 0;
       let verbindingTeNemen;
       for (let verbinding of this.graaf.edges(currentNode)) {
         if (!weg.includes(this.graaf.opposite(currentNode, verbinding))) {
-          let correlation = this.graaf.getEdgeAttributes(verbinding)['maxCorrelation'];
+          let correlation = this.graaf.getNodeAttributes(this.graaf.opposite(currentNode, verbinding))['correlation'];
           let distanceInBetweenNodes = this.graaf.getEdgeAttributes(verbinding)['distanceInBetweenNodes'];
           let distanceToHuidigePositieCurrentNode = this.graaf.getNodeAttributes(currentNode)['distanceToHuidigePositie'];
           let distanceToHuidigePositieNeighbourNode = this.graaf.getNodeAttributes(this.graaf.opposite(currentNode, verbinding))['distanceToHuidigePositie'];
@@ -183,15 +175,11 @@ export class GraphComponent {
           if (totaalGewicht > maxWeight) {
             verbindingTeNemen = verbinding;
             maxWeight = totaalGewicht
-            print1 = gewichtStapRichting
-            print2 = gewichtCorrelatie
           }
         }
       }
       currentNode = this.graaf.opposite(currentNode, verbindingTeNemen);
       weg.push(currentNode);
-      console.log(print1);
-      console.log(print2);
     }
     //toon weg
     weg.forEach(t => {
@@ -205,7 +193,7 @@ export class GraphComponent {
   visualizeGraph() {
     if (this.container) {
       let graafWithoutEdges = this.graaf.copy();
-      graafWithoutEdges.clearEdges();
+      //graafWithoutEdges.clearEdges();
       this.dataService.sigma = new Sigma(graafWithoutEdges, this.container.nativeElement, {
         zIndex: true,
         renderEdgeLabels: true,
