@@ -33,6 +33,7 @@ export class GraphComponent {
   public distanceFactor = 1;
   public randomFactor = 0;
   public categoryFactor = 1;
+  public gemiddelde = 1000;
   public showToPrint = "";
   public linkTheseNodesInVisualisation: String[] = [];
   public steps: number = 6;
@@ -82,7 +83,7 @@ export class GraphComponent {
       let distanceNodeToHuidigePositie = this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), Number(huidigePositieLat), Number(huidigePositieLong))
       //let nieuweNodeAtr = this.graaf.getNodeAttributes(nieuweNode);
       // correlation
-      let keywordsNieuweNode: string[] = this.keywordsToArray(el["schema:keyword"]);  
+      let keywordsNieuweNode: string[] = this.keywordsToArray(el["schema:keyword"]);
       let maxCorrelation = this.getMaxCorrelation(keywordsDestionation, keywordsNieuweNode);
 
       //add node
@@ -137,8 +138,8 @@ export class GraphComponent {
     return maxCorrelation;
   }
 
-  public keywordsToArray(input: any): string[]{
-    let uitvoer:string[] = []
+  public keywordsToArray(input: any): string[] {
+    let uitvoer: string[] = []
     if (input) {
       if (typeof (input) == "string") {
         uitvoer.push(input)
@@ -156,6 +157,7 @@ export class GraphComponent {
     let weg: string[] = [currentNode];
     let afstandTussenDestinationEnHuidigePositie = this.calculateBirdFlightDistanceBetween(Number(destinationNode['schema:geo']['geo:lat']), Number(destinationNode['schema:geo']['geo:long']), huidigePositieLat, huidigePositieLong)
     let idealeAfstandPerStap = afstandTussenDestinationEnHuidigePositie / this.steps;
+    let print0, print1, print2, print3;
     for (let i = 0; i < this.steps; ++i) {
       let maxWeight = 0;
       let verbindingTeNemen;
@@ -173,28 +175,42 @@ export class GraphComponent {
           gewichtStapRichting += Math.abs(distanceInBetweenNodes - idealeAfstandPerStap);
           //hoe hoger gewichtStapRichting hoe dichter bij elkaar
           gewichtStapRichting = (1 / gewichtStapRichting) * 100;
-          let gewichtCorrelatie = correlation * 100;
-          gewichtStapRichting = Math.pow(gewichtStapRichting, this.distanceFactor);
-          gewichtCorrelatie = Math.pow(gewichtCorrelatie, this.categoryFactor);
+          let gewichtCorrelatie = this.standaardAfwijking(correlation) * 100;
+          //gewichtStapRichting = Math.pow(gewichtStapRichting, this.distanceFactor);
+          //gewichtCorrelatie = Math.pow(gewichtCorrelatie, this.categoryFactor);
           let totaalGewicht = gewichtStapRichting + gewichtCorrelatie;
           //resulraat = absolute waarde minimal totaalGewicht
           if (totaalGewicht > maxWeight) {
             verbindingTeNemen = verbinding;
-            maxWeight = totaalGewicht
+            maxWeight = totaalGewicht;
+            print0 = this.graaf.getNodeAttributes(this.graaf.opposite(currentNode, verbindingTeNemen))['schema:name'];
+            print1 = gewichtStapRichting;
+            print2 = correlation;
+            print3 = gewichtCorrelatie;
+
           }
         }
       }
+      console.log(print0);
+      console.log(print1);
+      console.log(print2);
+      console.log(print3);
       currentNode = this.graaf.opposite(currentNode, verbindingTeNemen);
       weg.push(currentNode);
     }
     //toon weg
     weg.forEach(t => {
       let atrData = this.graaf.getNodeAttributes(t);
-      console.log(atrData["schema:name"])
-      console.log(atrData["correlation"])
+
+      //console.log(this.standaardAfwijking(Number(["correlation"])));
     });
     this.linkTheseNodesInVisualisation = weg;
     this.visualizeWeg();
+  }
+
+  public standaardAfwijking(x: number): number {
+    let standaardAfwijking = 0.2;
+    return (1 / (standaardAfwijking * Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, (- (Math.pow((x - this.gemiddelde/1000), 2) / Math.pow((2 * standaardAfwijking),2))))
   }
 
   visualizeGraph() {
