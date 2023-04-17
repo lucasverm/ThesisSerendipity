@@ -3,9 +3,14 @@
     <p-autoComplete [(ngModel)]="this.destination" (ngModelChange)="this.calculatePath(3.7197324, 51.0569223);"
         [suggestions]="this.filteredDataSearchBox" (completeMethod)="filterData($event)" field="schema:name"
         [dropdown]="true" [forceSelection]="true">
-        <ng-template let-country pTemplate="item">
-            <div class="country-item">
-                <div>{{country['schema:name']}}</div>
+        <ng-template let-item pTemplate="item">
+            <div class="item">
+                <div>{{item['schema:name']}}</div>
+                <div style="color:'grey';font-size: 14px;">
+                    <i>
+                        {{keywordsToArray(item['schema:keyword']).toString().replaceAll(",", ", ")}}
+                    </i>
+                </div>
             </div>
         </ng-template>
     </p-autoComplete>
@@ -20,4 +25,5 @@
         (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
 </div>
 <div #container class="graafContainer">
+    <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
 </div>
