@@ -34,7 +34,6 @@ export class GraphComponent {
   public randomFactor = 0;
   public categoryFactor = 1;
   public gemiddelde = 1000;
-  public showToPrint = "";
   public linkTheseNodesInVisualisation: String[] = [];
   public steps: number = 6;
   public destination: any;
@@ -64,7 +63,7 @@ export class GraphComponent {
     for (let i = 0; i < this.data.length; i++) {
       let item = this.data[i];
       let itemName: String = String(item['schema:name']);
-      if (itemName != undefined && itemName.toLowerCase().includes(query.toLowerCase())) {
+      if (itemName !== undefined && itemName.toLowerCase().includes(query.toLowerCase())) {
         filtered.push(item);
       }
     }

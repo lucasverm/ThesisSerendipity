@@ -1,4 +1,3 @@
-<p style="white-space: pre-wrap">{{this.showToPrint}}</p>
 <div class="sliders">
 
     <p-autoComplete [(ngModel)]="this.destination" (ngModelChange)="this.calculatePath(3.7197324, 51.0569223);"
@@ -20,5 +19,5 @@
     <p-slider [(ngModel)]="this.gemiddelde" [min]="0" [max]="1000"
         (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
 </div>
-<div #container style="height:700px;border:1px solid black">
+<div #container class="graafContainer">
 </div>
