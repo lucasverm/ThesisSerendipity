@@ -303,16 +303,18 @@ export class DataService {
                   keywords.push("worship");
                   turtleOutput += `${tripleIdentifier} a schema:PlaceOfWorship ;\n`;
                 } else if (linkData[0]['properties']['amenity'] == "arts_centre") {
-                  keywords.push("artscentre");
+                  keywords.push("arts");
+                  keywords.push("center");
                   turtleOutput += `${tripleIdentifier} a lgdo:ArtsCentre ;\n`;
                 } else if (linkData[0]['properties']['amenity'] == "parking") {
                   keywords.push("parking");
                   turtleOutput += `${tripleIdentifier} a lgdo:Parking ;\n`;
                 } else if (linkData[0]['properties']['amenity'] == "parking_entrance") {
-                  keywords.push("parkingentrance");
+                  keywords.push("parking");
                   turtleOutput += `${tripleIdentifier} a lgdo:ParkingEntrance ;\n`;
                 } else if (linkData[0]['properties']['amenity'] == "bicycle_parking") {
-                  keywords.push("bicycleparking");
+                  keywords.push("bicycle");
+                  keywords.push("parking");
                   turtleOutput += `${tripleIdentifier} a lgdo:BicycleParking ;\n`;
                 } else if (linkData[0]['properties']['amenity'] == "university") {
                   keywords.push("university");
@@ -775,10 +777,11 @@ export class DataService {
                   keywords.push("track");
                   turtleOutput += `${tripleIdentifier} a lgdo:Track ;\n`;
                 } else if (linkData[0]['properties']['leisure'] == "dog_park") {
-                  keywords.push("dogpark");
+                  keywords.push("dog");
                   turtleOutput += `${tripleIdentifier} a lgdo:DogPark ;\n`;
                 } else if (linkData[0]['properties']['leisure'] == "outdoor_seating") {
-                  keywords.push("outdoorseating");
+                  keywords.push("outdoor");
+                  keywords.push("seating");
                   turtleOutput += `${tripleIdentifier} a ex:OutdoorSeating ;\n`;
                 } else if (linkData[0]['properties']['leisure'] == "slipway") {
                   keywords.push("slipway");
@@ -790,7 +793,8 @@ export class DataService {
                   keywords.push("bleachers");
                   turtleOutput += `${tripleIdentifier} a ex:Bleachers ;\n`;
                 } else if (linkData[0]['properties']['leisure'] == "nature_reserve") {
-                  keywords.push("naturereserve");
+                  keywords.push("nature");
+                  keywords.push("reserve");
                   turtleOutput += `${tripleIdentifier} a lgdo:NatureReserve ;\n`;
                 } else {
                   turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
@@ -816,7 +820,8 @@ export class DataService {
                   keywords.push("shrine");
                   turtleOutput += `${tripleIdentifier} a dbp:Shrine ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "heritage_building") {
-                  keywords.push("heritagebuilding");
+                  keywords.push("heritage");
+                  keywords.push("building");
                   turtleOutput += `${tripleIdentifier} a ex:HeritageBuilding ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "fort") {
                   keywords.push("fort");
@@ -856,7 +861,8 @@ export class DataService {
                   keywords.push("tower");
                   turtleOutput += `${tripleIdentifier} a lgdo:Tower ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "castle_wall") {
-                  keywords.push("castlewall");
+                  keywords.push("castle");
+                  keywords.push("wall");
                   turtleOutput += `${tripleIdentifier} a ex:CastleWall ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "castle") {
                   keywords.push("castle");
@@ -865,7 +871,8 @@ export class DataService {
                   keywords.push("prison");
                   turtleOutput += `${tripleIdentifier} a lgdo:Prison ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "city_gate") {
-                  keywords.push("citygate");
+                  keywords.push("gate");
+                  keywords.push("city");
                   turtleOutput += `${tripleIdentifier} a lgdo:Prison ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "bank") {
                   keywords.push("bank");
@@ -874,7 +881,8 @@ export class DataService {
                   keywords.push("cinema");
                   turtleOutput += `${tripleIdentifier} a lgdo:Cinema ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "water_gate") {
-                  keywords.push("water_gate");
+                  keywords.push("water");
+                  keywords.push("gate");
                   turtleOutput += `${tripleIdentifier} a ex:WaterGate ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "warehouse") {
                   keywords.push("warehouse");

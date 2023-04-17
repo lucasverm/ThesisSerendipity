@@ -30,6 +30,7 @@ export class GraphComponent {
   public graaf: Graph;
   public poiNodeData: any;
   public poiWayData: any;
+  public poiRelationData: any;
   public categoricalSimilaritiesObject: any;
   public distanceFactor = 1;
   public randomFactor = 0;
@@ -47,10 +48,12 @@ export class GraphComponent {
     forkJoin({
       getTurtleOfNodeData$: this.dataService.getTurtleOfData$(this.dataService.getNodeJsonData$()),
       getTurtleOfWayData$: this.dataService.getTurtleOfData$(this.dataService.getWayJsonData$()),
+      getTurtleOfRelationData$: this.dataService.getTurtleOfData$(this.dataService.getRelationJsonData$()),
       getCategoricalSimilaritiesObject$: this.dataService.getCategoricalSimilaritiesObject$()
     }).subscribe(results => {
       this.poiNodeData = this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$);
       this.poiWayData = this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$);
+      this.poiRelationData = this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$);
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
       //komkommertijd
       this.buildGraph(this.destination, 3.7197324, 51.0569223);
@@ -59,7 +62,7 @@ export class GraphComponent {
 
   buildGraph(destination: string, huidigePositieLat: number, huidigePositieLong: number) {
     this.graaf = new Graph();
-    let data: any[] = this.poiNodeData[`@graph`]
+    let data: any[] = [...this.poiNodeData[`@graph`], ... this.poiWayData[`@graph`], this.poiRelationData[`@graph`] ]
     //data = data.slice(0, 10);
     let desinationDatadata = data.find(t => t['@id'] == destination);
     let keywordsDestionation: string[] = this.keywordsToArray(desinationDatadata["schema:keyword"]);
@@ -122,6 +125,7 @@ export class GraphComponent {
         }
       });
     });
+    console.log(this.graaf.order)
     this.visualizeGraph();
     this.calculatePath(destination, 3.7197324, 51.0569223);
   }
