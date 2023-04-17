@@ -75,8 +75,16 @@ export class DataService {
     return ttl2jsonld(turtle);
   }
 
-  public getPoiJsonData$(): Observable<any> {
-    return this.http.get<any>('./assets/data/data.json');
+  public getNodeJsonData$(): Observable<any> {
+    return this.http.get<any>('./assets/data/node_data.json');
+  }
+
+  public getWayJsonData$(): Observable<any> {
+    return this.http.get<any>('./assets/data/way_data.json');
+  }
+
+  public getRelationJsonData$(): Observable<any> {
+    return this.http.get<any>('./assets/data/relation_data.json');
   }
 
   private getCSVData$(): Observable<string> {
@@ -208,8 +216,8 @@ export class DataService {
     return categoricalTurtle;
   }
 
-  public getPoiTurtle$(): Observable<String> {
-    return this.getPoiJsonData$()
+  public getTurtleOfData$(data: Observable<any>): Observable<String> {
+    return data
       .pipe(
         catchError((error) => {
           return throwError(error);
@@ -284,6 +292,7 @@ export class DataService {
                   turtleOutput += `${tripleIdentifier} a lgdo:SocialCentre ;\n`;
                 } else {
                   turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  console.log(linkData[0]['properties']);
                 }
                 //SHOP
               } else if (linkData[0]['properties']['shop']) {
@@ -732,9 +741,33 @@ export class DataService {
                   keywords.push("fitness");
                   keywords.push("gym");
                   turtleOutput += `${tripleIdentifier} a ex:FitnessStation ;\n`;
+                } else if (linkData[0]['properties']['leisure'] == "park") {
+                  keywords.push("park");
+                  turtleOutput += `${tripleIdentifier} a schema:Park ;\n`;
+                } else if (linkData[0]['properties']['leisure'] == "track") {
+                  keywords.push("track");
+                  turtleOutput += `${tripleIdentifier} a lgdo:Track ;\n`;
+                } else if (linkData[0]['properties']['leisure'] == "dog_park") {
+                  keywords.push("dogpark");
+                  turtleOutput += `${tripleIdentifier} a lgdo:DogPark ;\n`;
+                } else if (linkData[0]['properties']['leisure'] == "outdoor_seating") {
+                  keywords.push("outdoorseating");
+                  turtleOutput += `${tripleIdentifier} a ex:OutdoorSeating ;\n`;
+                } else if (linkData[0]['properties']['leisure'] == "slipway") {
+                  keywords.push("slipway");
+                  turtleOutput += `${tripleIdentifier} a lgdo:Slipway ;\n`;
+                } else if (linkData[0]['properties']['leisure'] == "bandstand") {
+                  keywords.push("bandstand");
+                  turtleOutput += `${tripleIdentifier} a lgdo:Bandstand ;\n`;
+                } else if (linkData[0]['properties']['leisure'] == "bleachers") {
+                  keywords.push("bleachers");
+                  turtleOutput += `${tripleIdentifier} a ex:Bleachers ;\n`;
+                } else if (linkData[0]['properties']['leisure'] == "nature_reserve") {
+                  keywords.push("naturereserve");
+                  turtleOutput += `${tripleIdentifier} a lgdo:NatureReserve ;\n`;
                 } else {
                   turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
-
+                  console.log(linkData[0]['properties']);
                 }
                 //HISTORIC
               } else if (linkData[0]['properties']['historic']) {
@@ -772,10 +805,10 @@ export class DataService {
                   keywords.push("monastery");
                   turtleOutput += `${tripleIdentifier} a lgdo:Monastery ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "yes") {
-                  turtleOutput += `${tripleIdentifier} a lgdo:Place ;\n`;
+                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
                 } else {
-                  turtleOutput += `${tripleIdentifier} a lgdo:Place ;\n`;
-
+                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  console.log(linkData[0]['properties']);
                 }
                 //MEMORIAL
               } else if (linkData[0]['properties']['memorial']) {
@@ -786,12 +819,14 @@ export class DataService {
                   keywords.push("playground");
                   turtleOutput += `${tripleIdentifier} a schema:Playground ;\n`;
                 } else {
-                  turtleOutput += `${tripleIdentifier} a lgdo:Place ;\n`;
+                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  console.log(linkData[0]['properties']);
                 }
               }
               //ANDEREN!
               else {
                 turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                console.log(linkData[0]['properties']);
               }
               if (relevant) {
                 if (linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
@@ -820,11 +855,24 @@ export class DataService {
                 for (let keyword of keywords) {
                   turtleOutput += `\tschema:keyword "${keyword}" ; \n`;
                 }
-                if (linkData[0]['geometry']) {
+                if (linkData[0]['geometry']['type'] == "Point") {
                   turtleOutput += `\tschema:geo [ 
                     \ta geo:Point ;
                     \tgeo:lat "${linkData[0]['geometry']['coordinates'][0]}" ;
                     \tgeo:long "${linkData[0]['geometry']['coordinates'][1]}" ;
+                  ] . \n`;
+                } else if (linkData[0]['geometry']['type'] == "Polygon") {
+                  turtleOutput += `\tschema:geo [ 
+                    \ta geo:Point ;
+                    \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0][0]}" ;
+                    \tgeo:long "${linkData[0]['geometry']['coordinates'][0][0][1]}" ;
+                  ] . \n`;
+
+                } else if (linkData[0]['geometry']['type'] == "LineString") {
+                  turtleOutput += `\tschema:geo [ 
+                    \ta geo:Point ;
+                    \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0]}" ;
+                    \tgeo:long "${linkData[0]['geometry']['coordinates'][0][1]}" ;
                   ] . \n`;
                 }
               }

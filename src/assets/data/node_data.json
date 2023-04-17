@@ -2,7 +2,7 @@
     "type": "FeatureCollection",
     "generator": "overpass-ide",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
-    "timestamp": "2023-03-06T13:40:54Z",
+    "timestamp": "2023-04-17T12:15:07Z",
     "features": [
         {
             "type": "Feature",
@@ -36,6 +36,7 @@
                 "addr:postcode": "9000",
                 "addr:street": "Jozef Guislainstraat",
                 "email": "info@museumdrguislain.be",
+                "fee": "yes",
                 "name": "Museum Dr. Guislain",
                 "opening_hours": "Tu-Fr 09:00-17:00; Sa-Su 13:00-17:00",
                 "phone": "+32 9 398 69 50",
@@ -103,7 +104,6 @@
                 "@id": "node/346358318",
                 "brand": "Ibis",
                 "brand:wikidata": "Q920166",
-                "brand:wikipedia": "en:Ibis (hotel)",
                 "name": "Ibis Gent Centrum Opera",
                 "operator": "Ibis",
                 "tourism": "hotel"
@@ -380,7 +380,6 @@
                 "addr:street": "Vrijdagmarkt",
                 "brand": "Carrefour Express",
                 "brand:wikidata": "Q2940190",
-                "brand:wikipedia": "fr:Carrefour Express",
                 "name": "Carrefour Express",
                 "opening_hours": "Tu-Sa 08:00-19:30; Mo 13:00-19:30; Su 08:00-13:00",
                 "operator": "Carrefour",
@@ -519,7 +518,6 @@
                 "addr:street": "Korenlei",
                 "brand": "Marriott",
                 "brand:wikidata": "Q1141173",
-                "brand:wikipedia": "en:Marriott International",
                 "name": "Marriott Ghent",
                 "operator": "Marriott",
                 "operator:website": "http://www.marriott.com/",
@@ -556,6 +554,8 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/717698375",
+                "email": "schoolvantoen@outlook.be",
+                "fee": "no",
                 "name": "De school van toen",
                 "opening_hours": "Mo-Fr 09:00-12:00,14:00-16:00; We 09:00-12:00",
                 "tourism": "museum",
@@ -813,7 +813,6 @@
                 "addr:street": "Zwijnaardsesteenweg",
                 "brand": "Carrefour Express",
                 "brand:wikidata": "Q2940190",
-                "brand:wikipedia": "fr:Carrefour Express",
                 "name": "Carrefour Express",
                 "opening_hours": "Mo-Th 07:30-20:00; Fr off; Sa 07:30-20:00; Su 09:00-19:00",
                 "shop": "convenience",
@@ -1086,7 +1085,6 @@
                 "addr:street": "Korenmarkt",
                 "brand": "HEMA",
                 "brand:wikidata": "Q903805",
-                "brand:wikipedia": "en:HEMA (store)",
                 "name": "HEMA",
                 "opening_hours": "Mo-Th 09:00-18:00; Fr-Sa 09:00-18:30",
                 "phone": "+32 9 269 94 10",
@@ -1508,7 +1506,6 @@
                 "@id": "node/1187211179",
                 "brand": "Brico",
                 "brand:wikidata": "Q2510786",
-                "brand:wikipedia": "en:Brico",
                 "name": "Brico",
                 "shop": "doityourself",
                 "website": "https://www.brico.be/"
@@ -1698,7 +1695,6 @@
                 "air_conditioning": "yes",
                 "amenity": "fast_food",
                 "cuisine": "donut;pasta;cornetpizza;softijs;milkshakes",
-                "description": "The best donuts in town and many things more like pasta and Cornetpizza´s A lot of Candy and Slush, PandaSlush",
                 "email": "openstreetmap@theshowboat.be",
                 "internet_access": "yes",
                 "name": "The Showboat / Do´Nuts",
@@ -1750,7 +1746,6 @@
                 "@id": "node/1209383675",
                 "brand": "Gerry Weber",
                 "brand:wikidata": "Q873447",
-                "brand:wikipedia": "en:Gerry Weber",
                 "name": "Gerry Weber",
                 "shop": "clothes"
             },
@@ -2212,7 +2207,6 @@
                 "addr:street": "Broederlijke-Weversplein",
                 "brand": "Carrefour Market",
                 "brand:wikidata": "Q2689639",
-                "brand:wikipedia": "fr:Carrefour Market",
                 "check_date": "2022-05-12",
                 "name": "Carrefour Market",
                 "opening_hours": "Mo-Sa 08:00-20:00; Su 08:00-19:00; Su[1] 12:30-20:00;PH 08:00-19:00",
@@ -2286,7 +2280,6 @@
                 "@id": "node/1239962113",
                 "brand": "Lidl",
                 "brand:wikidata": "Q151954",
-                "brand:wikipedia": "en:Lidl",
                 "name": "Lidl",
                 "opening_hours": "Mo-Fr 08:30-20:30; Sa 08:30-19:00;PH off",
                 "payment:cash": "yes",
@@ -2694,7 +2687,6 @@
                 "@id": "node/1279179116",
                 "brand": "Stradivarius",
                 "brand:wikidata": "Q3322945",
-                "brand:wikipedia": "en:Stradivarius (clothing brand)",
                 "name": "Stradivarius",
                 "shop": "clothes"
             },
@@ -2768,7 +2760,6 @@
                 "@id": "node/1279180354",
                 "brand": "H&M",
                 "brand:wikidata": "Q188326",
-                "brand:wikipedia": "en:H&M",
                 "name": "H&M",
                 "shop": "clothes",
                 "wheelchair": "yes"
@@ -2858,7 +2849,6 @@
                 "@id": "node/1279182691",
                 "brand": "Massimo Dutti",
                 "brand:wikidata": "Q788231",
-                "brand:wikipedia": "en:Massimo Dutti",
                 "name": "Massimo Dutti",
                 "shop": "clothes"
             },
@@ -3025,7 +3015,6 @@
                 "addr:street": "Dendermondsesteenweg",
                 "brand": "Hubo",
                 "brand:wikidata": "Q3142153",
-                "brand:wikipedia": "en:Hubo Belgium",
                 "name": "Hubo",
                 "opening_hours": "Mo-Fr 09:00-18:30; Sa 09:00-18:00",
                 "opening_hours:url": "https://www.hubo.be/nl/winkels/gent-dampoort.html",
@@ -3046,7 +3035,6 @@
                 "@id": "node/1301267592",
                 "brand": "Carrefour Market",
                 "brand:wikidata": "Q2689639",
-                "brand:wikipedia": "fr:Carrefour Market",
                 "name": "Carrefour Market",
                 "shop": "supermarket"
             },
@@ -3291,7 +3279,6 @@
                 "@id": "node/1336623801",
                 "brand": "Aldi",
                 "brand:wikidata": "Q125054",
-                "brand:wikipedia": "en:Aldi",
                 "name": "Aldi",
                 "shop": "supermarket"
             },
@@ -4078,7 +4065,6 @@
                 "branch": "Giant Bar",
                 "brand": "Quick",
                 "brand:wikidata": "Q286494",
-                "brand:wikipedia": "en:Quick (restaurant)",
                 "cuisine": "burger",
                 "name": "Quick",
                 "takeaway": "yes"
@@ -4311,8 +4297,16 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/1532798352",
+                "addr:city": "Gent",
+                "addr:housenumber": "8",
+                "addr:postcode": "9000",
+                "addr:street": "Kortemunt",
                 "amenity": "restaurant",
-                "name": "Krokantino"
+                "cuisine": "middle_eastern",
+                "name": "Barouche",
+                "opening_hours": "Mo-Su 11:30-22:00",
+                "phone": "+32 483 83 99 25",
+                "website": "https://www.barouche.eu"
             },
             "geometry": {
                 "type": "Point",
@@ -4538,7 +4532,6 @@
                 "@id": "node/1536602310",
                 "brand": "Novotel",
                 "brand:wikidata": "Q420545",
-                "brand:wikipedia": "en:Novotel",
                 "name": "Novotel",
                 "tourism": "hotel"
             },
@@ -4833,7 +4826,6 @@
                 "addr:street": "Hendrikaplein",
                 "brand": "Carrefour Express",
                 "brand:wikidata": "Q2940190",
-                "brand:wikipedia": "fr:Carrefour Express",
                 "check_date:opening_hours": "2021-08-08",
                 "name": "Carrefour Express",
                 "opening_hours": "Tu-Fr 07:00-19:00; Mo 12:00-19:00; Sa 08:00-19:00; Su 08:00-12:00",
@@ -4939,7 +4931,6 @@
                 "branch": "Overpoort",
                 "brand": "Carrefour Express",
                 "brand:wikidata": "Q2940190",
-                "brand:wikipedia": "fr:Carrefour Express",
                 "name": "Carrefour Express",
                 "shop": "convenience"
             },
@@ -5107,7 +5098,6 @@
                 "@id": "node/1616687621",
                 "brand": "Proxy Delhaize",
                 "brand:wikidata": "Q14903417",
-                "brand:wikipedia": "en:Delhaize Group",
                 "name": "Proxy Delhaize",
                 "opening_hours": "Mo-Su 08:00-20:00; Fr 08:00-12:30; Sa 12:30-20:00",
                 "shop": "supermarket"
@@ -5515,7 +5505,6 @@
                 "addr:street": "Limburgstraat",
                 "brand": "Ibis",
                 "brand:wikidata": "Q920166",
-                "brand:wikipedia": "en:Ibis (hotel)",
                 "internet_access": "wlan",
                 "name": "Ibis Gent Centrum St Baafs Kathedraal",
                 "phone": "+32 9 233 00 00",
@@ -5595,7 +5584,6 @@
                 "amenity": "fast_food",
                 "brand": "McDonald's",
                 "brand:wikidata": "Q38076",
-                "brand:wikipedia": "en:McDonald's",
                 "cuisine": "burger",
                 "name": "McDonald's",
                 "opening_hours": "Mo-Su 10:00-24:00",
@@ -5690,7 +5678,6 @@
                 "amenity": "restaurant",
                 "brand": "Pizza Hut",
                 "brand:wikidata": "Q191615",
-                "brand:wikipedia": "en:Pizza Hut",
                 "cuisine": "pizza",
                 "name": "Pizza Hut",
                 "website": "https://www.pizzahut.be/"
@@ -6142,7 +6129,6 @@
                 "@id": "node/1690621107",
                 "brand": "Levi's",
                 "brand:wikidata": "Q127962",
-                "brand:wikipedia": "en:Levi Strauss & Co.",
                 "clothes": "denim;men;women",
                 "name": "Levi's",
                 "shop": "clothes"
@@ -6162,7 +6148,6 @@
                 "@id": "node/1690631359",
                 "brand": "Jack & Jones",
                 "brand:wikidata": "Q6077665",
-                "brand:wikipedia": "en:Jack & Jones",
                 "name": "Jack & Jones",
                 "phone": "+32 9 223 10 87",
                 "shop": "clothes"
@@ -6182,7 +6167,6 @@
                 "@id": "node/1690636286",
                 "brand": "Foot Locker",
                 "brand:wikidata": "Q63335",
-                "brand:wikipedia": "en:Foot Locker",
                 "name": "Foot Locker",
                 "opening_hours": "Mo-Th 10:00-18:00; Fr,Sa 10:00-18:30; Su 12:30-18:00",
                 "phone": "+32 9 234 09 14",
@@ -6208,7 +6192,6 @@
                 "addr:street": "Veldstraat",
                 "brand": "Kruidvat",
                 "brand:wikidata": "Q2226366",
-                "brand:wikipedia": "en:Kruidvat",
                 "name": "Kruidvat",
                 "opening_hours": "Mo-Sa 09:00-18:30; PH off",
                 "operator": "Kruidvat",
@@ -6281,7 +6264,6 @@
                 "@id": "node/1690770977",
                 "brand": "G-Star Raw",
                 "brand:wikidata": "Q1484081",
-                "brand:wikipedia": "en:G-Star Raw",
                 "name": "G-Star Raw",
                 "shop": "clothes"
             },
@@ -6427,7 +6409,6 @@
                 "branch": "Kortrijksepoort",
                 "brand": "Spar",
                 "brand:wikidata": "Q610492",
-                "brand:wikipedia": "en:SPAR (retailer)",
                 "name": "Spar",
                 "shop": "convenience"
             },
@@ -6449,7 +6430,6 @@
                 "addr:street": "Kouter",
                 "brand": "Delhaize",
                 "brand:wikidata": "Q1184173",
-                "brand:wikipedia": "fr:Delhaize",
                 "name": "Delhaize",
                 "name:en": "Delhaize",
                 "opening_hours": "Sa-We 08:00-20:00; Th 08:00-12:30; Fr 12:30-20:00",
@@ -6695,7 +6675,6 @@
                 "@id": "node/1804194006",
                 "brand": "Ecco",
                 "brand:wikidata": "Q1280255",
-                "brand:wikipedia": "en:ECCO",
                 "name": "Ecco",
                 "shop": "shoes"
             },
@@ -6940,7 +6919,6 @@
                 "addr:street": "Kortedagsteeg",
                 "brand": "COS",
                 "brand:wikidata": "Q60772401",
-                "brand:wikipedia": "en:COS (clothing)",
                 "name": "COS",
                 "opening_hours": "Mo-Sa 10:00-18:30",
                 "shop": "clothes"
@@ -7274,7 +7252,6 @@
                 "amenity": "fast_food",
                 "brand": "McDonald's",
                 "brand:wikidata": "Q38076",
-                "brand:wikipedia": "en:McDonald's",
                 "cuisine": "burger",
                 "name": "McDonald's",
                 "takeaway": "yes"
@@ -8098,7 +8075,6 @@
                 "addr:street": "Ottergemsesteenweg",
                 "brand": "AD Delhaize",
                 "brand:wikidata": "Q1184173",
-                "brand:wikipedia": "fr:Delhaize",
                 "name": "Proxy Delhaize Heuvelpoort",
                 "opening_hours": "Mo-Th,Sa 08:00-20:00; Su 09:00-20:00",
                 "operator": "Delhaize",
@@ -8325,6 +8301,7 @@
             "properties": {
                 "@id": "node/2365610954",
                 "historic": "memorial",
+                "memorial": "stone",
                 "name": "'t Moorken"
             },
             "geometry": {
@@ -8413,6 +8390,23 @@
                 ]
             },
             "id": "node/2399172933"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/2400521710",
+                "artwork_subject": "Onze-Lieve-Vrouw met Kind",
+                "artwork_type": "bust",
+                "tourism": "artwork"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7166835,
+                    51.0531263
+                ]
+            },
+            "id": "node/2400521710"
         },
         {
             "type": "Feature",
@@ -9827,7 +9821,6 @@
                 "amenity": "restaurant",
                 "brand": "Pizza Hut",
                 "brand:wikidata": "Q191615",
-                "brand:wikipedia": "en:Pizza Hut",
                 "cuisine": "pizza",
                 "name": "Pizza Hut"
             },
@@ -9911,7 +9904,6 @@
                 "addr:street": "Hoogpoort",
                 "brand": "Best Western",
                 "brand:wikidata": "Q830334",
-                "brand:wikipedia": "en:Best Western",
                 "name": "Best Western",
                 "tourism": "hotel"
             },
@@ -10213,7 +10205,6 @@
                 "@id": "node/3231712969",
                 "brand": "Relay",
                 "brand:wikidata": "Q3424298",
-                "brand:wikipedia": "en:Relay (shop)",
                 "name": "Relay",
                 "shop": "newsagent"
             },
@@ -10552,7 +10543,6 @@
                 "amenity": "fast_food",
                 "brand": "Domino's",
                 "brand:wikidata": "Q839466",
-                "brand:wikipedia": "en:Domino's Pizza",
                 "contact:phone": "+32 9 220 37 37",
                 "contact:website": "http://pizza.dominos.be/nl",
                 "cuisine": "pizza",
@@ -10899,7 +10889,6 @@
                 "amenity": "cafe",
                 "brand": "Barista",
                 "brand:wikidata": "Q644735",
-                "brand:wikipedia": "en:Barista (company)",
                 "cuisine": "coffee_shop",
                 "name": "Barista",
                 "phone": "+32 488 46 98 30",
@@ -10980,7 +10969,7 @@
             "properties": {
                 "@id": "node/3394542496",
                 "amenity": "restaurant",
-                "check_date:opening_hours": "2021-09-24",
+                "check_date:opening_hours": "2023-03-09",
                 "name": "Fitchen",
                 "opening_hours": "Mo-Su,PH 11:00-22:00",
                 "website": "https://www.fitchen.be/"
@@ -11132,7 +11121,6 @@
                 "addr:street": "Overpoortstraat",
                 "brand": "Kruidvat",
                 "brand:wikidata": "Q2226366",
-                "brand:wikipedia": "en:Kruidvat",
                 "check_date": "2022-11-29",
                 "name": "Kruidvat",
                 "opening_hours": "Mo-Sa 09:30-19:00; PH off",
@@ -11159,7 +11147,6 @@
                 "@id": "node/3429808803",
                 "brand": "H&M",
                 "brand:wikidata": "Q188326",
-                "brand:wikipedia": "en:H&M",
                 "clothes": "women;men;children",
                 "level": "1",
                 "name": "H&M",
@@ -11181,7 +11168,6 @@
                 "@id": "node/3429808804",
                 "brand": "HEMA",
                 "brand:wikidata": "Q903805",
-                "brand:wikipedia": "en:HEMA (store)",
                 "level": "1",
                 "name": "HEMA",
                 "opening_hours": "Mo-Sa 10:00-19:00; PH off",
@@ -11247,7 +11233,6 @@
                 "@id": "node/3430049290",
                 "brand": "Match",
                 "brand:wikidata": "Q513977",
-                "brand:wikipedia": "en:Match (supermarket)",
                 "level": "-1",
                 "name": "Match",
                 "opening_hours": "Mo-Sa 08:00-20:00",
@@ -11284,6 +11269,7 @@
             "properties": {
                 "@id": "node/3483670405",
                 "amenity": "restaurant",
+                "cuisine": "indian",
                 "description": "Tandoori restaurant",
                 "level": "0",
                 "name": "Laila",
@@ -11573,7 +11559,6 @@
                 "@id": "node/3692977674",
                 "brand": "Primark",
                 "brand:wikidata": "Q137023",
-                "brand:wikipedia": "en:Primark",
                 "name": "Primark",
                 "shop": "clothes"
             },
@@ -11626,9 +11611,11 @@
                 "addr:street": "Filips van Arteveldestraat",
                 "contact:email": "info@kabahostel.be",
                 "contact:phone": "+32 9 233 53 33",
+                "internet_access": "wlan",
                 "name": "Kaba Hostel",
                 "tourism": "hostel",
-                "website": "http://kabahostel.be"
+                "website": "http://kabahostel.be",
+                "wheelchair": "no"
             },
             "geometry": {
                 "type": "Point",
@@ -12260,8 +12247,11 @@
             "properties": {
                 "@id": "node/3895514511",
                 "name": "Tavontuur",
+                "opening_hours": "Mo-Sa 09:30-18:00",
                 "organic": "only",
-                "shop": "convenience"
+                "shop": "convenience",
+                "website": "https://www.blauwkasteel.be/gent/",
+                "wheelchair": "yes"
             },
             "geometry": {
                 "type": "Point",
@@ -12620,7 +12610,6 @@
                 "amenity": "fast_food",
                 "brand": "Panda Express",
                 "brand:wikidata": "Q1358690",
-                "brand:wikipedia": "en:Panda Express",
                 "cuisine": "chinese",
                 "diet:vegetarian": "yes",
                 "name": "Panda Express",
@@ -12843,10 +12832,16 @@
                 "@id": "node/4172717898",
                 "addr:housenumber": "210",
                 "addr:street": "Koningin Astridlaan",
+                "amenity": "fast_food",
+                "contact:email": "hello@thefreshprincess.be",
                 "craft": "caterer",
-                "name": "Richelieu",
+                "cuisine": "salad;sandwich;barbecue;tapas",
+                "drive_through": "no",
+                "name": "The Fresh Princess",
+                "opening_hours": "Mo-Th 10:00-18:00; Fr 10:00-17:00",
+                "phone": "+3293440054",
                 "shop": "yes",
-                "website": "http://www.richelieugent.be/"
+                "website": "https://thefreshprincess.be/"
             },
             "geometry": {
                 "type": "Point",
@@ -13338,7 +13333,6 @@
                 "@id": "node/4229964635",
                 "brand": "Lush",
                 "brand:wikidata": "Q1585448",
-                "brand:wikipedia": "en:Lush (company)",
                 "name": "Lush",
                 "shop": "cosmetics"
             },
@@ -13639,7 +13633,6 @@
                 "@id": "node/4269664953",
                 "brand": "The Body Shop",
                 "brand:wikidata": "Q837851",
-                "brand:wikipedia": "en:The Body Shop",
                 "name": "The Body Shop",
                 "shop": "cosmetics",
                 "website": "http://www.thebodyshop.be"
@@ -13660,7 +13653,6 @@
                 "beauty": "cosmetics",
                 "brand": "Yves Rocher",
                 "brand:wikidata": "Q28496595",
-                "brand:wikipedia": "en:Yves Rocher (company)",
                 "name": "Yves Rocher",
                 "shop": "beauty"
             },
@@ -14247,7 +14239,6 @@
                 "@id": "node/4364556334",
                 "brand": "Zeeman",
                 "brand:wikidata": "Q184399",
-                "brand:wikipedia": "en:Zeeman (store)",
                 "name": "Zeeman",
                 "shop": "clothes"
             },
@@ -14282,7 +14273,6 @@
                 "@id": "node/4373377597",
                 "brand": "Calzedonia",
                 "brand:wikidata": "Q1027874",
-                "brand:wikipedia": "en:Calzedonia",
                 "clothes": "underwear",
                 "name": "Calzedonia",
                 "name:nl": "Calzedonia",
@@ -14305,7 +14295,6 @@
                 "addr:street": "Veldstraat",
                 "brand": "Esprit",
                 "brand:wikidata": "Q532746",
-                "brand:wikipedia": "en:Esprit Holdings",
                 "name": "Esprit",
                 "name:nl": "Esprit",
                 "opening_hours": "Mo-Th 10:00-18:00; Fr-Sa 10:00-18:30",
@@ -14328,7 +14317,6 @@
                 "@id": "node/4373605889",
                 "brand": "WE",
                 "brand:wikidata": "Q1987861",
-                "brand:wikipedia": "en:WE (clothing)",
                 "name": "WE",
                 "name:nl": "WE",
                 "shop": "clothes"
@@ -14348,7 +14336,6 @@
                 "@id": "node/4373609890",
                 "brand": "Bershka",
                 "brand:wikidata": "Q827258",
-                "brand:wikipedia": "en:Bershka",
                 "name": "Bershka",
                 "name:nl": "Bershka",
                 "shop": "clothes"
@@ -14510,7 +14497,6 @@
                 "@id": "node/4387008515",
                 "brand": "Etam",
                 "brand:wikidata": "Q3059202",
-                "brand:wikipedia": "en:Etam Développement",
                 "clothes": "lingerie",
                 "name": "Etam",
                 "shop": "clothes"
@@ -14705,7 +14691,6 @@
                 "@id": "node/4399754498",
                 "brand": "Pull & Bear",
                 "brand:wikidata": "Q691029",
-                "brand:wikipedia": "en:Pull&Bear",
                 "name": "Pull & Bear",
                 "shop": "clothes"
             },
@@ -14858,7 +14843,6 @@
                 "addr:street": "Dok-Noord",
                 "brand": "Delhaize",
                 "brand:wikidata": "Q1184173",
-                "brand:wikipedia": "fr:Delhaize",
                 "name": "Delhaize",
                 "opening_hours": "Tu-Sa 08:00-20:00; Su 08:00-12:00; Mo 12:00-20:00",
                 "phone": "+32 9 224 11 19",
@@ -15059,9 +15043,12 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/4428963760",
+                "check_date:opening_hours": "2023-02-15",
                 "clothes": "women",
                 "name": "Twin-Set",
-                "shop": "clothes"
+                "opening_hours:signed": "no",
+                "shop": "clothes",
+                "wheelchair": "yes"
             },
             "geometry": {
                 "type": "Point",
@@ -15206,7 +15193,6 @@
                 "@id": "node/4478915291",
                 "brand": "Mango",
                 "brand:wikidata": "Q136503",
-                "brand:wikipedia": "en:Mango (retailer)",
                 "name": "Mango",
                 "shop": "clothes"
             },
@@ -15297,7 +15283,6 @@
                 "@id": "node/4479008491",
                 "brand": "Hunkemöller",
                 "brand:wikidata": "Q2604175",
-                "brand:wikipedia": "en:Hunkemöller",
                 "name": "Hunkemöller",
                 "name:nl": "Hunkemöller",
                 "shop": "clothes"
@@ -15357,7 +15342,6 @@
                 "@id": "node/4481636442",
                 "brand": "Vero Moda",
                 "brand:wikidata": "Q594721",
-                "brand:wikipedia": "en:Bestseller (company)",
                 "name": "Vero Moda",
                 "shop": "clothes"
             },
@@ -15616,7 +15600,6 @@
                 "@id": "node/4580331192",
                 "brand": "Casa",
                 "brand:wikidata": "Q1991755",
-                "brand:wikipedia": "fr:Casa (enseigne)",
                 "name": "Casa",
                 "shop": "furniture"
             },
@@ -15635,7 +15618,6 @@
                 "@id": "node/4580361190",
                 "brand": "Zeeman",
                 "brand:wikidata": "Q184399",
-                "brand:wikipedia": "en:Zeeman (store)",
                 "name": "Zeeman",
                 "shop": "clothes"
             },
@@ -15654,7 +15636,6 @@
                 "@id": "node/4580382590",
                 "brand": "H&M",
                 "brand:wikidata": "Q188326",
-                "brand:wikipedia": "en:H&M",
                 "name": "H&M",
                 "name:en": "H&M",
                 "name:nl": "H&M",
@@ -15722,7 +15703,6 @@
                 "amenity": "fast_food",
                 "brand": "Domino's",
                 "brand:wikidata": "Q839466",
-                "brand:wikipedia": "en:Domino's Pizza",
                 "cuisine": "pizza",
                 "diet:vegan": "yes",
                 "diet:vegetarian": "yes",
@@ -15850,7 +15830,6 @@
                 "addr:street": "Veldstraat",
                 "brand": "ICI PARIS XL",
                 "brand:wikidata": "Q769749",
-                "brand:wikipedia": "en:ICI Paris XL",
                 "name": "ICI PARIS XL",
                 "opening_hours": "Mo-Sa 09:30-18:00; PH off",
                 "operator": "ICI PARIS XL",
@@ -15868,36 +15847,6 @@
                 ]
             },
             "id": "node/4637582541"
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "@id": "node/4637699772",
-                "addr:city": "Gent",
-                "addr:housenumber": "4",
-                "addr:postcode": "9000",
-                "addr:street": "Woodrow Wilsonplein",
-                "addr:unit": "212",
-                "brand": "ICI PARIS XL",
-                "brand:wikidata": "Q769749",
-                "brand:wikipedia": "en:ICI Paris XL",
-                "name": "ICI PARIS XL",
-                "opening_hours": "Mo-Sa 10:00-19:00; PH off",
-                "operator": "ICI PARIS XL",
-                "ref": "5076",
-                "shop": "perfumery",
-                "source": "AS Watson BNL",
-                "website": "https://www.iciparisxl.be/",
-                "wheelchair": "yes"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    3.7303835,
-                    51.048741
-                ]
-            },
-            "id": "node/4637699772"
         },
         {
             "type": "Feature",
@@ -16911,7 +16860,6 @@
                 "addr:street": "Frans van Ryhovelaan",
                 "brand": "Mix Markt",
                 "brand:wikidata": "Q327854",
-                "brand:wikipedia": "de:Mix Markt",
                 "cuisine": "russian",
                 "email": "max.markt.belgie@mail.ru",
                 "fax": "+32 9 226 95 31",
@@ -16974,7 +16922,6 @@
                 "addr:street": "Langemunt",
                 "brand": "Kruidvat",
                 "brand:wikidata": "Q2226366",
-                "brand:wikipedia": "en:Kruidvat",
                 "name": "Kruidvat",
                 "opening_hours": "Mo-Sa 09:00-18:30",
                 "operator": "Kruidvat",
@@ -17020,7 +16967,6 @@
                 "addr:street": "Wondelgemstraat",
                 "brand": "Kruidvat",
                 "brand:wikidata": "Q2226366",
-                "brand:wikipedia": "en:Kruidvat",
                 "check_date:opening_hours": "2021-02-19",
                 "name": "Kruidvat",
                 "opening_hours": "Mo-Sa 09:00-18:00; PH off",
@@ -17079,7 +17025,6 @@
                 "addr:unit": "136",
                 "brand": "Kruidvat",
                 "brand:wikidata": "Q2226366",
-                "brand:wikipedia": "en:Kruidvat",
                 "name": "Kruidvat",
                 "opening_hours": "Mo-Sa 09:30-19:00; PH off",
                 "operator": "Kruidvat",
@@ -17104,7 +17049,6 @@
                 "@id": "node/4850595892",
                 "brand": "Relay",
                 "brand:wikidata": "Q3424298",
-                "brand:wikipedia": "en:Relay (shop)",
                 "name": "Relay",
                 "opening_hours": "Mo-Fr 06:00-18:30; Sa 08:00-12:00; Su 08:00-12:00 || Sa 12:00-13:00,14:00-18:00 unknown \"Twee zaterdagen op drie sluit de winkel om 12 uur\"",
                 "shop": "newsagent"
@@ -17319,7 +17263,6 @@
                 "addr:street": "Vrijdagmarkt",
                 "brand": "Paul",
                 "brand:wikidata": "Q3370417",
-                "brand:wikipedia": "en:Paul (bakery)",
                 "check_date": "2023-01-06",
                 "name": "Paul",
                 "name:fr": "Paul",
@@ -17436,7 +17379,6 @@
                 "@id": "node/4932891605",
                 "brand": "Carrefour Express",
                 "brand:wikidata": "Q2940190",
-                "brand:wikipedia": "fr:Carrefour Express",
                 "name": "Carrefour Express",
                 "opening_hours": "Tu-Sa 08:00-19:30; Mo 13:00-19:30; Su 09:00-13:00",
                 "shop": "convenience"
@@ -17460,7 +17402,6 @@
                 "addr:street": "Korenmarkt",
                 "brand": "ICI PARIS XL",
                 "brand:wikidata": "Q769749",
-                "brand:wikipedia": "en:ICI Paris XL",
                 "name": "ICI PARIS XL",
                 "opening_hours": "Mo-Sa 09:30-18:00; PH off",
                 "operator": "ICI PARIS XL",
@@ -17524,7 +17465,6 @@
                 "@id": "node/4985608706",
                 "brand": "C&A",
                 "brand:wikidata": "Q701338",
-                "brand:wikipedia": "en:C&A",
                 "name": "C&A",
                 "shop": "clothes",
                 "wheelchair": "yes"
@@ -17925,7 +17865,6 @@
                 "amenity": "cafe",
                 "brand": "Le Pain Quotidien",
                 "brand:wikidata": "Q2046903",
-                "brand:wikipedia": "en:Le Pain Quotidien",
                 "cuisine": "coffee_shop",
                 "name": "Le Pain Quotidien",
                 "takeaway": "yes",
@@ -17995,7 +17934,6 @@
                 "@id": "node/5191574854",
                 "brand": "Max Mara",
                 "brand:wikidata": "Q1151774",
-                "brand:wikipedia": "en:Max Mara",
                 "name": "Max Mara",
                 "shop": "clothes"
             },
@@ -18524,7 +18462,7 @@
             "properties": {
                 "@id": "node/5249251071",
                 "amenity": "fast_food",
-                "cuisine": "salads",
+                "cuisine": "salad",
                 "name": "Hierbas",
                 "website": "http://hierbas-salads.be/"
             },
@@ -19354,7 +19292,6 @@
                 "addr:street": "Langemunt",
                 "brand": "eyes and more",
                 "brand:wikidata": "Q1385775",
-                "brand:wikipedia": "de:Eyes and more",
                 "name": "eyes and more",
                 "opening_hours": "Mo-Th,Sa 10:00-18:00; Fr 10:00-18:30",
                 "shop": "optician",
@@ -19902,7 +19839,6 @@
                 "@id": "node/5528998069",
                 "brand": "Carrefour Express",
                 "brand:wikidata": "Q2940190",
-                "brand:wikipedia": "fr:Carrefour Express",
                 "name": "Carrefour Express",
                 "opening_hours": "Mo-Fr 07:00-20:00; Su,PH 07:00-20:00",
                 "shop": "convenience"
@@ -20375,7 +20311,6 @@
                 "amenity": "cafe",
                 "brand": "Barista",
                 "brand:wikidata": "Q644735",
-                "brand:wikipedia": "en:Barista (company)",
                 "cuisine": "coffee_shop",
                 "name": "Barista",
                 "takeaway": "yes"
@@ -20802,14 +20737,16 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/5743387253",
-                "historic": "monument",
-                "name": "Mariabeeld Begijnhof"
+                "denomination": "roman_catholic",
+                "historic": "wayside_shrine",
+                "name": "Mariabeeld Begijnhof",
+                "religion": "christian"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    3.7372031,
-                    51.0466349
+                    3.7371767,
+                    51.0465769
                 ]
             },
             "id": "node/5743387253"
@@ -21143,7 +21080,6 @@
                 "addr:street": "Frans van Ryhovelaan",
                 "brand": "Lidl",
                 "brand:wikidata": "Q151954",
-                "brand:wikipedia": "en:Lidl",
                 "name": "Lidl",
                 "operator": "Lidl",
                 "shop": "supermarket"
@@ -21920,7 +21856,6 @@
                 "@id": "node/6138202007",
                 "brand": "Amplifon",
                 "brand:wikidata": "Q477222",
-                "brand:wikipedia": "en:Amplifon",
                 "name": "Amplifon",
                 "opening_hours": "Mo-Sa 09:30-12:30, Tu-Th 13:30-17:30, Mo 13:30-19:00, Fr 13:30-16:30",
                 "shop": "hearing_aids"
@@ -22118,7 +22053,6 @@
                 "@id": "node/6138202035",
                 "brand": "Zadig & Voltaire",
                 "brand:wikidata": "Q3574548",
-                "brand:wikipedia": "fr:Zadig & Voltaire",
                 "name": "Zadig & Voltaire",
                 "shop": "clothes"
             },
@@ -22183,7 +22117,6 @@
                 "addr:street": "Voldersstraat",
                 "brand": "Marc O'Polo",
                 "brand:wikidata": "Q1892752",
-                "brand:wikipedia": "en:Marc O'Polo",
                 "name": "Marc O'Polo",
                 "shop": "clothes"
             },
@@ -22873,8 +22806,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    3.735491,
-                    51.0567307
+                    3.7352255,
+                    51.0567028
                 ]
             },
             "id": "node/6255559987"
@@ -22889,8 +22822,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    3.7351798,
-                    51.0567001
+                    3.7351182,
+                    51.0567078
                 ]
             },
             "id": "node/6255559988"
@@ -22901,15 +22834,18 @@
                 "@id": "node/6255559989",
                 "brand": "Spar",
                 "brand:wikidata": "Q610492",
-                "brand:wikipedia": "en:Spar (retailer)",
+                "internet_access": "no",
                 "name": "Spar",
+                "opening_hours": "Mo-Fr 09:00-19:30;PH off;Su 09:00-19:00",
+                "payment:cards": "yes",
+                "payment:cash": "yes",
                 "shop": "supermarket"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    3.7336933,
-                    51.05681
+                    3.7336376,
+                    51.0568376
                 ]
             },
             "id": "node/6255559989"
@@ -22996,8 +22932,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    3.7355566,
-                    51.0567162
+                    3.7353006,
+                    51.0566749
                 ]
             },
             "id": "node/6255570287"
@@ -23060,8 +22996,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    3.7355261,
-                    51.056856
+                    3.7355637,
+                    51.0569049
                 ]
             },
             "id": "node/6255570385"
@@ -24655,7 +24591,6 @@
                 "@id": "node/6539016741",
                 "brand": "Springfield",
                 "brand:wikidata": "Q958209",
-                "brand:wikipedia": "es:Springfield (cadena de tiendas)",
                 "name": "Springfield",
                 "shop": "clothes"
             },
@@ -25731,7 +25666,6 @@
                 "@id": "node/6704161071",
                 "brand": "Flying Tiger Copenhagen",
                 "brand:wikidata": "Q2786319",
-                "brand:wikipedia": "en:Flying Tiger Copenhagen",
                 "level": "0",
                 "name": "Flying Tiger Copenhagen",
                 "opening_hours": "Mo-Sa 09:30-19:00; PH off",
@@ -25776,7 +25710,6 @@
                 "@id": "node/6726342078",
                 "brand": "Orange",
                 "brand:wikidata": "Q1431486",
-                "brand:wikipedia": "fr:Orange (entreprise)",
                 "name": "Orange",
                 "shop": "mobile_phone"
             },
@@ -26491,7 +26424,6 @@
                 "@id": "node/6828901279",
                 "brand": "Carrefour Express",
                 "brand:wikidata": "Q2940190",
-                "brand:wikipedia": "fr:Carrefour Express",
                 "name": "Carrefour Express",
                 "shop": "convenience"
             },
@@ -27243,8 +27175,11 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/6886776177",
-                "artwork_type": "statue",
-                "tourism": "artwork"
+                "historic": "memorial",
+                "inscription": "Keizer Karel / 1500 - 1558 / Schenking van de Spaanse Keizersstad Toledo aan de Geboortestad van Karel V / September 1966",
+                "memorial": "statue",
+                "name": "Keizer Karel",
+                "start_date": "1966-09"
             },
             "geometry": {
                 "type": "Point",
@@ -27601,7 +27536,6 @@
                 "@id": "node/6900569892",
                 "brand": "Ladbrokes",
                 "brand:wikidata": "Q1799875",
-                "brand:wikipedia": "en:Ladbrokes Coral",
                 "name": "Ladbrokes",
                 "shop": "bookmaker"
             },
@@ -27946,7 +27880,6 @@
                 "amenity": "fast_food",
                 "brand": "O'Tacos",
                 "brand:wikidata": "Q28494040",
-                "brand:wikipedia": "en:O'Tacos",
                 "cuisine": "mexican",
                 "name": "O'Tacos",
                 "takeaway": "yes"
@@ -28674,7 +28607,12 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/6942691485",
+                "image": "https://i.imgur.com/AS8Yfqh.jpg",
+                "internet_access": "no",
                 "name": "Hawin",
+                "opening_hours": "Mo 07:00-21:00;We-Su 07:00-21:00",
+                "payment:cards": "yes",
+                "payment:cash": "yes",
                 "shop": "bakery"
             },
             "geometry": {
@@ -29138,7 +29076,6 @@
                 "@id": "node/6983077036",
                 "brand": "Zeeman",
                 "brand:wikidata": "Q184399",
-                "brand:wikipedia": "en:Zeeman (store)",
                 "name": "Zeeman",
                 "opening_hours": "Mo-Sa 09:00-19:00",
                 "shop": "clothes"
@@ -29807,11 +29744,17 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/7006569579",
+                "addr:city": "Gent",
+                "addr:housenumber": "3B",
+                "addr:postcode": "9000",
+                "addr:street": "Dok-Noord",
+                "addr:unit": "101",
+                "email": "gent.doknoord@jimsfitness.com",
                 "leisure": "fitness_centre",
-                "name": "Oxygen",
+                "name": "Jims Gent Dok-Noord",
                 "opening_hours": "Mo-Th 09:00-22:00; Fr 09:00-21:00; Sa,Su 10:00-18:00",
                 "phone": "+32 9 311 77 11",
-                "website": "https://www.oxygenfitness.be/club/gent-dok-noord"
+                "website": "https://www.jimsfitness.be/nl/jims-gent-dok-noord-ex-oxygen"
             },
             "geometry": {
                 "type": "Point",
@@ -30189,7 +30132,6 @@
                 "@id": "node/7026722362",
                 "brand": "Proxy Delhaize",
                 "brand:wikidata": "Q14903417",
-                "brand:wikipedia": "en:Delhaize Group",
                 "check_date": "2022-12-30",
                 "name": "Proxy Delhaize",
                 "opening_hours": "Th 08:00-13:00; Fr 13:00-20:00; Mo-We,Su,PH 08:00-20:00",
@@ -30253,7 +30195,6 @@
                 "addr:street": "Koningin Fabiolalaan",
                 "brand": "Delhaize",
                 "brand:wikidata": "Q1184173",
-                "brand:wikipedia": "en:Delhaize Group",
                 "name": "Delhaize",
                 "opening_hours": "PH,Su-Th 07:30-20:00; Fr 07:30-12:30; Sa 12:30-20:00",
                 "operator": "Delhaize",
@@ -31190,7 +31131,6 @@
                 "@id": "node/7142820245",
                 "brand": "Leonidas",
                 "brand:wikidata": "Q80335",
-                "brand:wikipedia": "en:Leonidas (chocolate maker)",
                 "name": "Leonidas",
                 "shop": "chocolate"
             },
@@ -31228,7 +31168,6 @@
                 "@id": "node/7142820247",
                 "brand": "Swarovski",
                 "brand:wikidata": "Q611115",
-                "brand:wikipedia": "en:Swarovski",
                 "contact:phone": "+32 9 233 99 94",
                 "name": "Swarovski Gent",
                 "shop": "jewelry"
@@ -31250,7 +31189,6 @@
                 "amenity": "fast_food",
                 "brand": "Dunkin'",
                 "brand:wikidata": "Q847743",
-                "brand:wikipedia": "en:Dunkin' Donuts",
                 "cuisine": "donut;coffee_shop",
                 "name": "Dunkin'",
                 "opening_hours": "Mo-Su 08:00-22:00",
@@ -32560,8 +32498,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    3.7080535,
-                    51.0486941
+                    3.7080481,
+                    51.0487455
                 ]
             },
             "id": "node/7401902338"
@@ -32913,6 +32851,7 @@
                 "addr:housenumber": "35",
                 "addr:street": "Karel Lodewijk Ledeganckstraat",
                 "email": "info.gum@ugent.be",
+                "fee": "yes",
                 "name": "Gents Universiteitsmuseum",
                 "name:en": "Ghent University Museum",
                 "name:fr": "Musée de l’Université de Gand",
@@ -33369,7 +33308,6 @@
                 "amenity": "restaurant",
                 "brand": "Pizza Hut",
                 "brand:wikidata": "Q191615",
-                "brand:wikipedia": "en:Pizza Hut",
                 "cuisine": "pizza",
                 "name": "Pizza Hut",
                 "website": "https://www.pizzahut.be/nl/store/delivery-gent-palinghuizen"
@@ -33613,6 +33551,7 @@
                 "@id": "node/7825335032",
                 "amenity": "fast_food",
                 "name": "Belchicken",
+                "opening_hours": "Fr 11:30-22:30;Mo-Th 11:30-22:00;Sa 11:30-22:00;Su 16:00-22:00",
                 "website": "https://belchicken.com"
             },
             "geometry": {
@@ -37175,7 +37114,6 @@
                 "amenity": "fast_food",
                 "brand": "Burger King",
                 "brand:wikidata": "Q177054",
-                "brand:wikipedia": "en:Burger King",
                 "cuisine": "burger",
                 "name": "Burger King",
                 "opening_hours": "Su-We 10:30-23:00, Th-Sa 10:30-01:00",
@@ -37836,7 +37774,6 @@
                 "amenity": "fast_food",
                 "brand": "Domino's",
                 "brand:wikidata": "Q839466",
-                "brand:wikipedia": "en:Domino's Pizza",
                 "cuisine": "pizza",
                 "name": "Domino's",
                 "takeaway": "yes"
@@ -39557,7 +39494,11 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/9763444398",
-                "artwork_type": "installation",
+                "artist:wikidata": "Q14517521",
+                "artist_name": "Walter De Buck",
+                "artwork_type": "sculpture",
+                "material": "metal",
+                "name": "Taptoe Feest",
                 "tourism": "artwork"
             },
             "geometry": {
@@ -40433,6 +40374,7 @@
             "type": "Feature",
             "properties": {
                 "@id": "node/10178407254",
+                "artwork_type": "graffiti",
                 "image": "https://i.imgur.com/rlYysNf.jpg",
                 "tourism": "artwork"
             },
@@ -41571,6 +41513,684 @@
                 ]
             },
             "id": "node/10681240620"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10721617890",
+                "leisure": "playground"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7082261,
+                    51.0457828
+                ]
+            },
+            "id": "node/10721617890"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10723739084",
+                "access": "yes",
+                "leisure": "playground"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7324333,
+                    51.0664326
+                ]
+            },
+            "id": "node/10723739084"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10736831586",
+                "image": "https://i.imgur.com/CFNrmro.jpg",
+                "information": "board",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7064052,
+                    51.0643494
+                ]
+            },
+            "id": "node/10736831586"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10736929827",
+                "image": "https://i.imgur.com/SQ24vSc.jpg",
+                "leisure": "picnic_table",
+                "material": "wood"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7066117,
+                    51.0642061
+                ]
+            },
+            "id": "node/10736929827"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10742303738",
+                "amenity": "fast_food",
+                "cuisine": "mexican",
+                "name": "Donki",
+                "website": "https://donkicantina.be/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7221978,
+                    51.0460448
+                ]
+            },
+            "id": "node/10742303738"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10743751308",
+                "addr:city": "Gent",
+                "addr:housenumber": "38A",
+                "addr:postcode": "9000",
+                "addr:street": "Ottogracht",
+                "amenity": "bar",
+                "changing_table": "no",
+                "contact:facebook": "volpensiongent",
+                "contact:instagram": "volpensiongent",
+                "diet:vegan": "yes",
+                "email": "volpension@gmail.com",
+                "internet_access": "no",
+                "name": "Vol Pension",
+                "opening_hours": "Mo-Sa 16:00-01:00",
+                "outdoor_seating": "yes",
+                "smoking": "outside",
+                "toilets": "yes"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7272538,
+                    51.0588281
+                ]
+            },
+            "id": "node/10743751308"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10746499350",
+                "addr:housenumber": "125",
+                "addr:street": "Vlaamsekaai",
+                "contact:facebook": "https://www.facebook.com/umberandsmoke",
+                "contact:instagram": "https://www.instagram.com/umberandsmoke/",
+                "contact:pinterest": "https://www.pinterest.com/umberandsmoke/",
+                "email": "info@umberandsmoke.com",
+                "name": "Umber & smoke",
+                "opening_hours": "Tu-Fr 11:00-18:30; We 13:00-18:30; Sa 10:00-18:00",
+                "phone": "+32 9 329 34 33",
+                "shop": "interior_decoration",
+                "website": "https://www.umberandsmoke.com/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7449579,
+                    51.0464277
+                ]
+            },
+            "id": "node/10746499350"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10760759905",
+                "name": "twiggy",
+                "opening_hours": "Mo-Tu, Th-Sa 10:00-18:00",
+                "shop": "clothes",
+                "website": "http://www.twiggy.be/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7290948,
+                    51.0514998
+                ]
+            },
+            "id": "node/10760759905"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10768469729",
+                "addr:city": "Gent",
+                "addr:housenumber": "10",
+                "addr:postcode": "9000",
+                "addr:street": "Doornzelestraat",
+                "name": "'t Lezerke",
+                "shop": "newsagent"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7299555,
+                    51.0639965
+                ]
+            },
+            "id": "node/10768469729"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10776005810",
+                "artwork_type": "painting",
+                "image": "https://i.imgur.com/0tx2sSJ.jpg",
+                "tourism": "artwork"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7336175,
+                    51.0596479
+                ]
+            },
+            "id": "node/10776005810"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10781356275",
+                "artist:wikidata": "Q27903958",
+                "artist_name": "Kasper Bosmans",
+                "artwork_type": "tilework",
+                "name": "In Frascati",
+                "start_date": "2018-07-06",
+                "tourism": "artwork"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7141752,
+                    51.0505705
+                ]
+            },
+            "id": "node/10781356275"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10795117607",
+                "amenity": "cafe",
+                "cuisine": "cake;coffee_shop;indian",
+                "diet:vegan": "yes",
+                "diet:vegetarian": "yes",
+                "name": "Peper"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7141442,
+                    51.0560472
+                ]
+            },
+            "id": "node/10795117607"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10812747480",
+                "artwork_type": "sculpture",
+                "material": "stone",
+                "name": "Prijs van het Vrijzinnig Humanisme",
+                "subject:wikidata": "Q14164587",
+                "subject:wikipedia": "nl:Prijs Vrijzinnig Humanisme",
+                "tourism": "artwork"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7278901,
+                    51.041316
+                ]
+            },
+            "id": "node/10812747480"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10812763233",
+                "board_type": "history",
+                "colour": "magenta",
+                "information": "board",
+                "language:en": "yes",
+                "language:fr": "yes",
+                "language:nl": "yes",
+                "name": "Sint-Pietersabdij - L'Abbaye Saint-Pierre - St Peter's Abbey",
+                "name:en": "St Peter's Abbey",
+                "name:fr": "L'Abbaye Saint-Pierre",
+                "name:nl": "Sint-Pietersabdij",
+                "subject:wikidata": "Q19406817",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.72669,
+                    51.0423214
+                ]
+            },
+            "id": "node/10812763233"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10812763234",
+                "artist:wikidata": "Q19587492",
+                "artist_name": "Anouk De Clercq",
+                "tourism": "artwork"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7264201,
+                    51.0424294
+                ]
+            },
+            "id": "node/10812763234"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10812763235",
+                "information": "map",
+                "map_size": "site",
+                "map_type": "yes",
+                "name": "Tuin Sint-Pietersabdij",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.727681,
+                    51.0417203
+                ]
+            },
+            "id": "node/10812763235"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10814925505",
+                "amenity": "restaurant",
+                "name": "Brasserie Babbelut"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7256432,
+                    51.0574948
+                ]
+            },
+            "id": "node/10814925505"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10814951934",
+                "information": "map",
+                "map_size": "site",
+                "map_type": "scheme",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7346305,
+                    51.0462701
+                ]
+            },
+            "id": "node/10814951934"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10814951935",
+                "artist_name": "Andrea De Rycke",
+                "artwork_type": "statue",
+                "start_date": "2021",
+                "tourism": "artwork"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7360466,
+                    51.045595
+                ]
+            },
+            "id": "node/10814951935"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10814951966",
+                "board_type": "history",
+                "colour": "magenta",
+                "information": "board",
+                "language:en": "yes",
+                "language:fr": "yes",
+                "language:nl": "yes",
+                "name": "Begijnhof Onze-Lieve-Vrouw ter Hoyen - Le béguinage de Notre-Dame ter Hoyen",
+                "name:en": "Beguinage of Our Lady ter Hoyen",
+                "name:fr": "Le béguinage de Notre-Dame ter Hoyen",
+                "name:nl": "Begijnhof Onze-Lieve-Vrouw ter Hoyen",
+                "subject:wikidata": "Q2350368",
+                "subject:wikipedia": "en:Our-Lady Ter Hooyen",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7350636,
+                    51.0463108
+                ]
+            },
+            "id": "node/10814951966"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815265423",
+                "board_type": "history",
+                "colour": "magenta",
+                "information": "board",
+                "name": "Gerechtshof - Le palais de justice - Courthouse",
+                "name:en": "Courthouse",
+                "name:fr": "Le palais de justice",
+                "name:nl": "Gerechtshof",
+                "subject:wikidata": "Q2571743",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7210046,
+                    51.0502871
+                ]
+            },
+            "id": "node/10815265423"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815282267",
+                "board_type": "history",
+                "colour": "magenta",
+                "information": "board",
+                "language:en": "yes",
+                "language:fr": "yes",
+                "language:nl": "yes",
+                "name": "Belfort - Le beffroi - Belfry",
+                "name:en": "Belfry",
+                "name:fr": "Le beffroi",
+                "name:nl": "Belfort",
+                "subject:wikidata": "Q815443",
+                "subject:wikipedia": "nl:Belfort van Gent",
+                "support": "wall",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7246668,
+                    51.0536334
+                ]
+            },
+            "id": "node/10815282267"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815282268",
+                "board_type": "history",
+                "colour": "white",
+                "information": "board",
+                "language:de": "yes",
+                "language:en": "yes",
+                "language:fr": "yes",
+                "language:nl": "yes",
+                "name": "Het belfort van Gent - Le beffroi de Gand - The Ghent belfry - Der Belfried von Gent",
+                "name:de": "Der Belfried von Gent",
+                "name:en": "The Ghent belfry",
+                "name:fr": "Le beffroi de Gand",
+                "name:nl": "Het belfort van Gent",
+                "subject:wikidata": "Q815443",
+                "subject:wikipedia": "nl:Belfort van Gent",
+                "support": "wall",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7246751,
+                    51.0536294
+                ]
+            },
+            "id": "node/10815282268"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815347355",
+                "board_type": "history",
+                "colour": "blue",
+                "information": "board",
+                "language:en": "yes",
+                "language:nl": "yes",
+                "name": "Aula",
+                "operator": "Universiteit Gent",
+                "subject:wikidata": "Q16977339",
+                "support": "wall",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.723558,
+                    51.0521317
+                ]
+            },
+            "id": "node/10815347355"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815347356",
+                "board_type": "history",
+                "colour": "blue",
+                "information": "board",
+                "language:en": "yes",
+                "language:nl": "yes",
+                "name": "Burgerhuizen Korte Meer en Voldersstraat - Mansions  Korte Meer and Voldersstraat",
+                "name:en": "Mansions  Korte Meer and Voldersstraat",
+                "name:nl": "Burgerhuizen Korte Meer en Voldersstraat",
+                "operator": "Universiteit Gent",
+                "support": "wall",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7229777,
+                    51.0518818
+                ]
+            },
+            "id": "node/10815347356"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815347358",
+                "board_type": "history",
+                "colour": "blue",
+                "information": "board",
+                "language:en": "yes",
+                "language:nl": "yes",
+                "name": "Emile Braunschool - Emile Braun school",
+                "name:en": "Emile Braun school",
+                "name:nl": "Emile Braunschool",
+                "operator": "Universiteit Gent",
+                "subject:wikidata": "Q27349605",
+                "support": "wall",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7243474,
+                    51.0521547
+                ]
+            },
+            "id": "node/10815347358"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815348842",
+                "amenity": "cinema",
+                "contact:facebook": "https://www.facebook.com/profile.php?id=100063540072597",
+                "name": "Filmplateau",
+                "website": "http://film-plateau.be/"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7249154,
+                    51.0516092
+                ]
+            },
+            "id": "node/10815348842"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815352038",
+                "artist_name": "Jean-Pierre Clemençon",
+                "artwork_type": "statue",
+                "material": "metal",
+                "name": "Het Breisterke",
+                "tourism": "artwork"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7170268,
+                    51.0589303
+                ]
+            },
+            "id": "node/10815352038"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815352040",
+                "board_type": "art",
+                "information": "board",
+                "material": "metal",
+                "name": "Taptoe Feest",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7170895,
+                    51.0592044
+                ]
+            },
+            "id": "node/10815352040"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10815365116",
+                "historic": "memorial",
+                "material": "stone",
+                "name": "Bruges-la-Morte",
+                "subject:wikidata": "Q1171637",
+                "subject:wikipedia": "en:Bruges-la-Morte"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7134686,
+                    51.0570075
+                ]
+            },
+            "id": "node/10815365116"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10816649445",
+                "board_type": "history",
+                "colour": "magenta",
+                "information": "board",
+                "language:en": "yes",
+                "language:fr": "yes",
+                "language:nl": "yes",
+                "name": "Groot Kanon - Grand Canon - Big Cannon",
+                "name:en": "Big Cannon",
+                "name:fr": "Grand Canon",
+                "name:nl": "Groot Kanon",
+                "subject:wikidata": "Q686236",
+                "subject:wikipedia": "nl:Dulle Griet (kanon)",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7241105,
+                    51.0572268
+                ]
+            },
+            "id": "node/10816649445"
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "@id": "node/10816659832",
+                "board_type": "history",
+                "colour": "magenta",
+                "information": "board",
+                "language:en": "yes",
+                "language:fr": "yes",
+                "language:nl": "yes",
+                "name": "Gravensteen - Château des Comtes - Castle of the Counts",
+                "name:en": "Castle of the Counts",
+                "name:fr": "Château des Comtes",
+                "name:nl": "Gravensteen",
+                "subject:wikidata": "Q1543972",
+                "subject:wikipedia": "nl:Gravensteen (Gent)",
+                "tourism": "information"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    3.7212236,
+                    51.0568663
+                ]
+            },
+            "id": "node/10816659832"
         }
     ]
 }

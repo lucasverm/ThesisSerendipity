@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'query', component: QueryComponent },
   { path: 'parse', component: ParseRmlComponent },
   { path: 'graph', component: GraphComponent },
-  { path: '', component: GraphComponent }
+  { path: '', component: ParseRmlComponent }
 ];
 
 @NgModule({

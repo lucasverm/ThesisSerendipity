@@ -28,7 +28,8 @@ export class GraphComponent {
 
   public state: State = { searchQuery: "" };
   public graaf: Graph;
-  public poiData: any;
+  public poiNodeData: any;
+  public poiWayData: any;
   public categoricalSimilaritiesObject: any;
   public distanceFactor = 1;
   public randomFactor = 0;
@@ -37,17 +38,19 @@ export class GraphComponent {
   public showToPrint = "";
   public linkTheseNodesInVisualisation: String[] = [];
   public steps: number = 6;
-  public destination = "ex/203704458";
+  public destination = "ex/6138790502";
   @ViewChild("container") container: ElementRef;
 
   constructor(private http: HttpClient, private dataService: DataService) { }
 
   ngOnInit() {
     forkJoin({
-      getPoiTurtle$: this.dataService.getPoiTurtle$(),
+      getTurtleOfNodeData$: this.dataService.getTurtleOfData$(this.dataService.getNodeJsonData$()),
+      getTurtleOfWayData$: this.dataService.getTurtleOfData$(this.dataService.getWayJsonData$()),
       getCategoricalSimilaritiesObject$: this.dataService.getCategoricalSimilaritiesObject$()
     }).subscribe(results => {
-      this.poiData = this.dataService.parsteTtlToJsonLd(results.getPoiTurtle$);
+      this.poiNodeData = this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$);
+      this.poiWayData = this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$);
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
       //komkommertijd
       this.buildGraph(this.destination, 3.7197324, 51.0569223);
@@ -56,7 +59,7 @@ export class GraphComponent {
 
   buildGraph(destination: string, huidigePositieLat: number, huidigePositieLong: number) {
     this.graaf = new Graph();
-    let data: any[] = this.poiData[`@graph`]
+    let data: any[] = this.poiNodeData[`@graph`]
     //data = data.slice(0, 10);
     let desinationDatadata = data.find(t => t['@id'] == destination);
     let keywordsDestionation: string[] = this.keywordsToArray(desinationDatadata["schema:keyword"]);
@@ -174,7 +177,7 @@ export class GraphComponent {
           //zorgt voor knoop dicht bij vorige knoop
           gewichtStapRichting += Math.abs(distanceInBetweenNodes - idealeAfstandPerStap);
           //hoe hoger gewichtStapRichting hoe dichter bij elkaar
-          gewichtStapRichting = (1 / gewichtStapRichting) * 100;
+          gewichtStapRichting = (1 / gewichtStapRichting) * 100 * this.categoryFactor;
           let gewichtCorrelatie = this.standaardAfwijking(correlation) * 100;
           //gewichtStapRichting = Math.pow(gewichtStapRichting, this.distanceFactor);
           //gewichtCorrelatie = Math.pow(gewichtCorrelatie, this.categoryFactor);
@@ -183,7 +186,6 @@ export class GraphComponent {
           if (totaalGewicht > maxWeight) {
             verbindingTeNemen = verbinding;
             maxWeight = totaalGewicht;
-            print0 = this.graaf.getNodeAttributes(this.graaf.opposite(currentNode, verbindingTeNemen))['schema:name'];
             print1 = gewichtStapRichting;
             print2 = correlation;
             print3 = gewichtCorrelatie;
@@ -192,9 +194,9 @@ export class GraphComponent {
         }
       }
       //console.log(print0);
-      //console.log(print1);
+      console.log("gewichtStapRichting:" + print1);
       console.log(print2);
-      //console.log(print3);
+      console.log("gewichtCorrelatie:" + print3);
       currentNode = this.graaf.opposite(currentNode, verbindingTeNemen);
       weg.push(currentNode);
     }
@@ -210,7 +212,7 @@ export class GraphComponent {
 
   public standaardAfwijking(x: number): number {
     let standaardAfwijking = 0.2;
-    return (1 / (standaardAfwijking * Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, (- (Math.pow((x - this.gemiddelde/1000), 2) / Math.pow((2 * standaardAfwijking),2))))
+    return (1 / (standaardAfwijking * Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, (- (Math.pow((x - this.gemiddelde / 1000), 2) / Math.pow((2 * standaardAfwijking), 2))))
   }
 
   visualizeGraph() {

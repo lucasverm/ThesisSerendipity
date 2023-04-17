@@ -11,21 +11,28 @@ export class ParseRmlComponent {
   constructor(private http: HttpClient, private dataService: DataService) { }
   public toonDezeData: String;
   public poiJson: any[];
-  public poiTurtle: String;
+  public poiNodeTurtle: String;
+  public poiWayTurtle: String;
   public categoricalSimilaritiesTurtle: String;
   public dataAllKeywords: any[];
   ngOnInit() {
-    this.dataService.getPoiJsonData$().subscribe(t => this.poiJson = t);
-    this.dataService.getPoiTurtle$().subscribe(t => {
-      this.poiTurtle = t;
+    this.dataService.getNodeJsonData$().subscribe(t => this.poiJson = t);
+    this.dataService.getTurtleOfData$(this.dataService.getNodeJsonData$()).subscribe(t => {
+      this.poiNodeTurtle = t;
       this.dataAllKeywords = this.dataService.allKeywords;
+    });
+    this.dataService.getTurtleOfData$(this.dataService.getWayJsonData$()).subscribe(t => {
+      this.poiWayTurtle = t;
+      //this.dataAllKeywords = this.dataService.allKeywords;
     });
     this.dataService.getCategoricalSimilaritiesTurtle$().subscribe(t => this.categoricalSimilaritiesTurtle = t);
   }
 
   changeShowedData(what: string) {
-    if (what == "POI") {
-      this.toonDezeData = this.poiTurtle;
+    if (what == "NODE") {
+      this.toonDezeData = this.poiNodeTurtle;
+    } else if (what == "WAY") {
+      this.toonDezeData = this.poiWayTurtle;
     } else if (what == "categorical_similarities") {
       this.toonDezeData = this.categoricalSimilaritiesTurtle;
     } else if (what == "osm") {

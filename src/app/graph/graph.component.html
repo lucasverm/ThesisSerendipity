@@ -2,11 +2,8 @@
 <div class="sliders">
     <p>Steps: {{this.steps}}</p>
     <p-slider [(ngModel)]="this.steps" [step]="1" [min]="1" (onSlideEnd)="this.calculatePath(destination, 3.7197324, 51.0569223);"></p-slider>
-    <p>Factor afstand: {{this.distanceFactor}}</p>
-    <p-slider [(ngModel)]="this.distanceFactor" [step]="1" [min]="0" [max]="5"
-        (onSlideEnd)="this.calculatePath(destination, 3.7197324, 51.0569223);"></p-slider>
-    <p>Factor categorie: {{this.categoryFactor}}</p>
-    <p-slider [(ngModel)]="this.categoryFactor" [step]="1" [min]="0" [max]="5"
+    <p> More walking <-> Less walking: {{this.categoryFactor}}</p>
+    <p-slider [(ngModel)]="this.categoryFactor" [step]="-1" [min]="1" [max]="200"
         (onSlideEnd)="this.calculatePath(destination, 3.7197324, 51.0569223);"></p-slider>
     <p>Similarity: {{this.gemiddelde/10}}%</p>
     <p-slider [(ngModel)]="this.gemiddelde" [min]="0" [max]="1000"
