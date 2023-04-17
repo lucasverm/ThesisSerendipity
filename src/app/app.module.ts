@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { SliderModule } from 'primeng/slider';
@@ -11,6 +12,7 @@ import { GraphComponent } from './graph/graph.component';
 import { MapComponent } from './map/map.component';
 import { ParseRmlComponent } from './parse-rml/parse-rml.component';
 import { QueryComponent } from './query/query.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,10 +27,10 @@ import { QueryComponent } from './query/query.component';
     HttpClientModule,
     LeafletModule,
     AutoCompleteModule,
-    AutoCompleteModule,
     FormsModule,
     HttpClientModule,
-    SliderModule
+    SliderModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

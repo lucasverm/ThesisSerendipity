@@ -1,13 +1,24 @@
 <p style="white-space: pre-wrap">{{this.showToPrint}}</p>
 <div class="sliders">
+
+    <p-autoComplete [(ngModel)]="this.destination" (ngModelChange)="this.calculatePath(3.7197324, 51.0569223);"
+        [suggestions]="this.filteredDataSearchBox" (completeMethod)="filterData($event)" field="schema:name"
+        [dropdown]="true" [forceSelection]="true">
+        <ng-template let-country pTemplate="item">
+            <div class="country-item">
+                <div>{{country['schema:name']}}</div>
+            </div>
+        </ng-template>
+    </p-autoComplete>
     <p>Steps: {{this.steps}}</p>
-    <p-slider [(ngModel)]="this.steps" [step]="1" [min]="1" (onSlideEnd)="this.calculatePath(destination, 3.7197324, 51.0569223);"></p-slider>
+    <p-slider [(ngModel)]="this.steps" [step]="1" [min]="1" [max]="30"
+        (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
     <p> More walking <-> Less walking: {{this.categoryFactor}}</p>
     <p-slider [(ngModel)]="this.categoryFactor" [step]="-1" [min]="1" [max]="200"
-        (onSlideEnd)="this.calculatePath(destination, 3.7197324, 51.0569223);"></p-slider>
+        (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
     <p>Similarity: {{this.gemiddelde/10}}%</p>
     <p-slider [(ngModel)]="this.gemiddelde" [min]="0" [max]="1000"
-        (onSlideEnd)="this.calculatePath(destination, 3.7197324, 51.0569223);"></p-slider>
+        (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
 </div>
 <div #container style="height:700px;border:1px solid black">
 </div>
