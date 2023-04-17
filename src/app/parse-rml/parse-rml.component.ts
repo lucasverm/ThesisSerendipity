@@ -13,17 +13,19 @@ export class ParseRmlComponent {
   public poiJson: any[];
   public poiNodeTurtle: String;
   public poiWayTurtle: String;
+  public poiRelationTurtle: String;
   public categoricalSimilaritiesTurtle: String;
-  public dataAllKeywords: any[];
+  public dataAllKeywords: any[] = [];
   ngOnInit() {
     this.dataService.getNodeJsonData$().subscribe(t => this.poiJson = t);
     this.dataService.getTurtleOfData$(this.dataService.getNodeJsonData$()).subscribe(t => {
       this.poiNodeTurtle = t;
-      this.dataAllKeywords = this.dataService.allKeywords;
     });
     this.dataService.getTurtleOfData$(this.dataService.getWayJsonData$()).subscribe(t => {
       this.poiWayTurtle = t;
-      //this.dataAllKeywords = this.dataService.allKeywords;
+    });
+    this.dataService.getTurtleOfData$(this.dataService.getRelationJsonData$()).subscribe(t => {
+      this.poiRelationTurtle = t;
     });
     this.dataService.getCategoricalSimilaritiesTurtle$().subscribe(t => this.categoricalSimilaritiesTurtle = t);
   }
@@ -33,12 +35,14 @@ export class ParseRmlComponent {
       this.toonDezeData = this.poiNodeTurtle;
     } else if (what == "WAY") {
       this.toonDezeData = this.poiWayTurtle;
+    } else if (what == "RELATION") {
+      this.toonDezeData = this.poiRelationTurtle;
     } else if (what == "categorical_similarities") {
       this.toonDezeData = this.categoricalSimilaritiesTurtle;
     } else if (what == "osm") {
       this.toonDezeData = JSON.stringify(this.poiJson, null, 2)
     } else if (what == "dataCategories") {
-      this.toonDezeData = JSON.stringify(this.dataAllKeywords, null, 2)
+      this.toonDezeData = JSON.stringify(Array.from(this.dataService.allKeywords).sort(), null, 2)
     }
   }
 

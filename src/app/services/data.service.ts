@@ -14,7 +14,7 @@ export class DataService {
 
   constructor(private router: Router, private http: HttpClient) { }
   public sigma: Sigma;
-  public allKeywords: any[];
+  public allKeywords: Set<string> = new Set();
   public getOSMData$(lat: Number = 51.05349346, lon: Number = 3.71974349, around: Number = 2200): Observable<any> {
     let data = `[out: json];
     (
@@ -234,8 +234,8 @@ export class DataService {
             turtleOutput += "@prefix ex: <http://example.org/> . \n\n";
 
             let linkData: any[] = [...data['features']]
-            let keywordsSet: Set<string> = new Set();
             while (linkData.length != 0) {
+              let printPlace = true;
               Object.keys(linkData[0]['properties']).forEach(t => sleutels.add(t));
               let idZonderNode: String = String(linkData[0]['id']).replace("node/", "");
               let tripleIdentifier = `<ex/${idZonderNode}>`;
@@ -261,6 +261,12 @@ export class DataService {
                 } else if (linkData[0]['properties']['amenity'] == "ice_cream") {
                   keywords.push("icecream");
                   turtleOutput += `${tripleIdentifier} a schema:IceCreamShop ;\n`;
+                } else if (linkData[0]['properties']['amenity'] == "school") {
+                  keywords.push("school");
+                  turtleOutput += `${tripleIdentifier} a schema:School ;\n`;
+                } else if (linkData[0]['properties']['amenity'] == "townhall") {
+                  keywords.push("townhall");
+                  turtleOutput += `${tripleIdentifier} a lgdo:TownHall ;\n`;
                 } else if (linkData[0]['properties']['amenity'] == "nightclub") {
                   keywords.push("nightclub");
                   turtleOutput += `${tripleIdentifier} a schema:NightClub ;\n`;
@@ -815,6 +821,9 @@ export class DataService {
                 } else if (linkData[0]['properties']['historic'] == "fort") {
                   keywords.push("fort");
                   turtleOutput += `${tripleIdentifier} a lgdo:Fort ;\n`;
+                } else if (linkData[0]['properties']['historic'] == "school") {
+                  keywords.push("school");
+                  turtleOutput += `${tripleIdentifier} a schema:School ;\n`;
                 } else if (linkData[0]['properties']['historic'] == "archaeological_site") {
                   keywords.push("archaeological");
                   keywords.push("archeology");
@@ -888,7 +897,7 @@ export class DataService {
                   turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
                   console.log(linkData[0]['properties']);
                 }
-              //sport
+                //sport
               } else if (linkData[0]['properties']['sport']) {
                 if (linkData[0]['properties']['sport'] == "jogging") {
                   keywords.push("jogging");
@@ -903,10 +912,11 @@ export class DataService {
               }
               //ANDEREN!
               else {
-                turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
-                console.log(linkData[0]['properties']);
+                printPlace = false;
+                //turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                //console.log(linkData[0]['properties']);
               }
-              if (relevant) {
+              if (relevant && printPlace) {
                 if (linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
                 if (linkData[0]['properties']['name:nl'] && linkData[0]['properties']['name:nl'] != linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name:nl']}" ; \n`;
                 if (linkData[0]['properties']['website']) turtleOutput += `\tschema:url "${linkData[0]['properties']['website']}" ; \n`;
@@ -915,8 +925,8 @@ export class DataService {
                 if (linkData[0]['properties']['amenity']) turtleOutput += `\tschema:amenityFeature "${linkData[0]['properties']['amenity']}" ; \n`;
                 if (linkData[0]['properties']["addr:street"]) {
                   turtleOutput += `\tschema:PostalAddress [ 
-          \ta schema:PostalAddress ;
-          \tschema:streetAddress "${linkData[0]['properties']["addr:street"]}" ;\n`;
+                                    \ta schema:PostalAddress ;
+                                    \tschema:streetAddress "${linkData[0]['properties']["addr:street"]}" ;\n`;
                   if (linkData[0]['properties']["addr:housenumber"]) turtleOutput += `\t\tschema:postOfficeBoxNumber "${linkData[0]['properties']["addr:housenumber"]}" ; \n`;
                   if (linkData[0]['properties']["addr:postcode"]) turtleOutput += `\t\tschema:postalCode "${linkData[0]['properties']["addr:postcode"]}" ; \n`;
                   if (linkData[0]['properties']["addr:city"]) turtleOutput += `\t\tschema:addressLocality "${linkData[0]['properties']["addr:city"]}" ; \n`;
@@ -952,12 +962,17 @@ export class DataService {
                     \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0]}" ;
                     \tgeo:long "${linkData[0]['geometry']['coordinates'][0][1]}" ;
                   ] . \n`;
+                } else if (linkData[0]['geometry']['type'] == "MultiPolygon") {
+                  turtleOutput += `\tschema:geo [ 
+                    \ta geo:Point ;
+                    \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0][0][0]}" ;
+                    \tgeo:long "${linkData[0]['geometry']['coordinates'][0][0][0][1]}" ;
+                  ] . \n`;
                 }
               }
-              keywords.forEach(t => keywordsSet.add(t));
+              keywords.forEach(t => this.allKeywords.add(t));
               linkData.splice(0, 1);
             }
-            this.allKeywords = Array.from(keywordsSet).sort();
             return turtleOutput;
           }
         )
