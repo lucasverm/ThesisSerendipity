@@ -183,7 +183,7 @@ export class GraphComponent {
         distance: node === source ? 0 : Infinity,
         previous: null,
         avgCorrelation: 0,
-        avgDistanceInBetweenNodes: 0,
+        totalDistanceInBetweenNodes: 0,
         numberOfNodesBefore: 1
       };
     });
@@ -215,14 +215,14 @@ export class GraphComponent {
       neighbors.forEach((neighbor) => {
         const edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
         const avgCorrelation = (shortestPath[currentNode].avgCorrelation + edgeAtr['correlation']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
-        const avgDistanceInBetweenNodes = (shortestPath[currentNode].avgDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
+        const avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const weight = 100 * ((this.factor / 1000) * avgCorrelation) + ((1 - (this.factor / 1000)) * avgDistanceInBetweenNodes);
         const distance = currentDistance + weight;
         if (distance < shortestPath[neighbor].distance) {
           shortestPath[neighbor].distance = distance;
           shortestPath[neighbor].previous = currentNode;
           shortestPath[neighbor].avgCorrelation = avgCorrelation;
-          shortestPath[neighbor].avgDistanceInBetweenNodes = avgDistanceInBetweenNodes;
+          shortestPath[neighbor].avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']);
           shortestPath[neighbor].numberOfNodesBefore = shortestPath[currentNode].numberOfNodesBefore + 1;
         }
       });
