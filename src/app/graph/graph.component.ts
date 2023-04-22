@@ -3,7 +3,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import Graph from 'graphology';
 import { forkJoin } from 'rxjs';
 import { Sigma } from "sigma";
-import { EdgeDisplayData, NodeDisplayData } from 'sigma/types';
+import { NodeDisplayData } from 'sigma/types';
 import { DataService } from '../services/data.service';
 
 declare var require: any;
@@ -30,9 +30,9 @@ export class GraphComponent {
   public graaf: Graph;
   public data: any[];
   public categoricalSimilaritiesObject: any;
+  public categoryFactor = 0;
   public distanceInBetweenNodesFactor = 1000;
-  public distanceNodeToHuidigePositieFactor = 1000;
-  public categoryFactor = 1000;
+  public distanceNodeToHuidigePositieFactor = 0;
   public linkTheseNodesInVisualisation: String[] = [];
   public destination: any;
   public filteredDataSearchBox: any[] = [];
@@ -56,7 +56,7 @@ export class GraphComponent {
       getCategoricalSimilaritiesObject$: this.dataService.getCategoricalSimilaritiesObject$()
     }).subscribe(results => {
       this.data = [... this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$)[`@graph`], ... this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$)[`@graph`], ...this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$)[`@graph`]]
-      this.data = this.data.slice(0, 50);
+      this.data = this.data.slice(0, 500);
       this.destination = this.data[0];
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
       this.buildGraph(3.7197324, 51.0569223);
@@ -83,6 +83,7 @@ export class GraphComponent {
     });
     this.addNodesToGraph(huidigePositieLat, huidigePositieLong);
     this.addEdgesToGraph(huidigePositieLat, huidigePositieLong);
+    this.loaded = true;
   }
 
   public addNodesToGraph(huidigePositieLat: number, huidigePositieLong: number) {
@@ -118,9 +119,9 @@ export class GraphComponent {
       this.graaf.forEachNode(vanNode => {
         this.graaf.forEachNode(naarNode => {
           if (vanNode != naarNode && !(vanNode == this.destination['@id'] && naarNode == "huidigePositie")) {
-            let maxCorrelation = 0;
+            let maxCorrelation = 1;
             if (vanNode == "huidigePositie") {
-              maxCorrelation = 0;
+              maxCorrelation = 1;
             }
             else {
               let nodeData = this.graaf.getNodeAttributes(vanNode);
@@ -130,26 +131,17 @@ export class GraphComponent {
             let vanNodeAtr = this.graaf.getNodeAttributes(vanNode);
             let naarNodeAtr = this.graaf.getNodeAttributes(naarNode);
             let distanceNodeToHuidigePositieNormalized = this.normalizeDistance(this.minDistanceToHuidigePositie, this.maxDistanceToHuidigePositie, this.calculateBirdFlightDistanceBetween(Number(vanNodeAtr['schema:geo']['geo:lat']), Number(vanNodeAtr['schema:geo']['geo:long']), huidigePositieLat, huidigePositieLong))
-            let distanceInBetweenNodesNormalized = this.normalizeDistance(this.minDistanceBetweenNodes, this.maxDistanceBetweenNodes, this.calculateBirdFlightDistanceBetween(Number(vanNodeAtr['schema:geo']['geo:lat']), Number(vanNodeAtr['schema:geo']['geo:long']), Number(naarNodeAtr['schema:geo']['geo:lat']), Number(naarNodeAtr['schema:geo']['geo:long'])));
+            let distanceInBetweenNodes = this.calculateBirdFlightDistanceBetween(Number(vanNodeAtr['schema:geo']['geo:lat']), Number(vanNodeAtr['schema:geo']['geo:long']), Number(naarNodeAtr['schema:geo']['geo:lat']), Number(naarNodeAtr['schema:geo']['geo:long']));
+            let distanceInBetweenNodesNormalized = this.normalizeDistance(this.minDistanceBetweenNodes, this.maxDistanceBetweenNodes, distanceInBetweenNodes)
             let randomValue = Math.random();
-            let printobj = {
-              distanceInBetweenNodes: distanceInBetweenNodesNormalized,
-              correlation: maxCorrelation,
-              vanNode: vanNodeAtr["schema:name"],
-              naarNode: naarNodeAtr["schema:name"],
-              randomValue: randomValue,
-              distanceNodeToHuidigePositieNormalized: distanceNodeToHuidigePositieNormalized,
-              label: `betw: ${distanceInBetweenNodesNormalized} - toDest: ${distanceNodeToHuidigePositieNormalized} - corr: ${maxCorrelation}`
-            }
-            //console.log(printobj);
             this.graaf.addDirectedEdge(vanNode, naarNode, {
-              distanceInBetweenNodes: distanceInBetweenNodesNormalized,
+              distanceInBetweenNodes: distanceInBetweenNodes,
               correlation: maxCorrelation,
               vanNode: vanNodeAtr["schema:name"],
               naarNode: naarNodeAtr["schema:name"],
               randomValue: randomValue,
               distanceNodeToHuidigePositieNormalized: distanceNodeToHuidigePositieNormalized,
-              label: `betw: ${distanceInBetweenNodesNormalized} - toDest: ${distanceNodeToHuidigePositieNormalized} - corr: ${maxCorrelation}`
+              label: `${distanceInBetweenNodesNormalized}`
             });
           }
         });
@@ -169,7 +161,7 @@ export class GraphComponent {
         });
       });
     }
-    return maxCorrelation;
+    return 1 - maxCorrelation;
   }
 
   public keywordsToArray(input: any): string[] {
@@ -192,6 +184,10 @@ export class GraphComponent {
       shortestPath[node] = {
         distance: node === source ? 0 : Infinity,
         previous: null,
+        avgCorrelation: 0,
+        avgDistanceInBetweenNodes: 0,
+        avgDistanceNodeToHuidigePositieNormalized: 0,
+        numberOfNodesBefore: 1
       };
     });
 
@@ -221,14 +217,22 @@ export class GraphComponent {
 
       neighbors.forEach((neighbor) => {
         const edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
-        const weight = ((this.categoryFactor / 1000) * (1 - edgeAtr['correlation'])) + ((this.distanceInBetweenNodesFactor / 1000) * edgeAtr['distanceInBetweenNodes']) + ((this.distanceNodeToHuidigePositieFactor / 1000) * edgeAtr['distanceNodeToHuidigePositieNormalized']);
+        const avgCorrelation = (shortestPath[currentNode].avgCorrelation + edgeAtr['correlation']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
+        const avgDistanceInBetweenNodes = (shortestPath[currentNode].avgDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
+        const avgDistanceNodeToHuidigePositieNormalized = (shortestPath[currentNode].avgDistanceNodeToHuidigePositieNormalized + edgeAtr['distanceNodeToHuidigePositieNormalized']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
+        const weight = ((this.categoryFactor / 1000) * avgCorrelation) + ((this.distanceInBetweenNodesFactor / 1000) * avgDistanceInBetweenNodes) + ((this.distanceNodeToHuidigePositieFactor / 1000) * edgeAtr['distanceNodeToHuidigePositieNormalized']);
         const distance = currentDistance + weight;
         if (distance < shortestPath[neighbor].distance) {
           shortestPath[neighbor].distance = distance;
           shortestPath[neighbor].previous = currentNode;
+          shortestPath[neighbor].avgCorrelation = avgCorrelation;
+          shortestPath[neighbor].avgDistanceInBetweenNodes = avgDistanceInBetweenNodes;
+          shortestPath[neighbor].avgDistanceNodeToHuidigePositieNormalized = avgDistanceNodeToHuidigePositieNormalized;
+          shortestPath[neighbor].numberOfNodesBefore = shortestPath[currentNode].numberOfNodesBefore + 1;
         }
       });
     }
+
     console.log(shortestPath)
     let weg = [destination];
     currentNode = destination;
@@ -286,7 +290,7 @@ export class GraphComponent {
       this.dataService.sigma = new Sigma(graafWithoutEdges, this.container.nativeElement, {
         zIndex: true,
         renderEdgeLabels: true,
-        defaultEdgeType: "arrow"
+        defaultEdgeType: "line"
         /*
         //nodeProgramClasses: { image: getNodeProgramImage() },
         //labelRenderer: drawLabel,
@@ -316,7 +320,7 @@ export class GraphComponent {
       }
       return res;
     });
-    this.dataService.sigma.setSetting("edgeReducer", (edge, data) => {
+    /*this.dataService.sigma.setSetting("edgeReducer", (edge, data) => {
       const res: Partial<EdgeDisplayData> = { ...data };
 
       if (this.state.hoveredNode && !this.graaf.hasExtremity(edge, this.state.hoveredNode)) {
@@ -328,7 +332,7 @@ export class GraphComponent {
       }
       return res;
     });
-    this.loaded = true;
+    this.loaded = true;*/
   }
 
   setHoveredNode(node?: string) {
@@ -356,6 +360,6 @@ export class GraphComponent {
     let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
     let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     let distance = R * c * 1000;
-    return Math.round(distance * 100) / 100
+    return Math.round(distance * 10000) / 10000
   }
 }
