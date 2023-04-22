@@ -14,7 +14,10 @@
         </ng-template>
     </p-autoComplete>
     <p>rechte lijn <-> meer categorie: {{this.factor/1000}}</p>
-    <p-slider [(ngModel)]="this.factor" [min]="0" [max]="1000"
+    <p-slider [(ngModel)]="this.factor" [min]="0" [max]="999"
+        (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
+    <p>randomness: {{this.randomFactor/1000}}</p>
+    <p-slider [(ngModel)]="this.randomFactor" [min]="0" [max]="999"
         (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
 </div>
 <div #container class="graafContainer">

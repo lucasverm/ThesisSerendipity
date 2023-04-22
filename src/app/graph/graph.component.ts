@@ -31,6 +31,7 @@ export class GraphComponent {
   public data: any[];
   public categoricalSimilaritiesObject: any;
   public factor: number = 500;
+  public randomFactor: number = 0;
   public linkTheseNodesInVisualisation: String[] = [];
   public destination: any;
   public filteredDataSearchBox: any[] = [];
@@ -216,7 +217,7 @@ export class GraphComponent {
         const edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
         const avgCorrelation = (shortestPath[currentNode].avgCorrelation + edgeAtr['correlation']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
-        const weight = 100 * ((this.factor / 1000) * avgCorrelation) + ((1 - (this.factor / 1000)) * avgDistanceInBetweenNodes);
+        const weight = 100 * ((this.factor / 1000) * avgCorrelation) + ((1 - (this.factor / 1000)) * avgDistanceInBetweenNodes) + 0.03 * (this.randomFactor * edgeAtr['randomValue']);
         const distance = currentDistance + weight;
         if (distance < shortestPath[neighbor].distance) {
           shortestPath[neighbor].distance = distance;
