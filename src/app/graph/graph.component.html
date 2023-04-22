@@ -1,5 +1,4 @@
 <div class="sliders">
-
     <p-autoComplete [(ngModel)]="this.destination" (ngModelChange)="this.calculatePath(3.7197324, 51.0569223);"
         [suggestions]="this.filteredDataSearchBox" (completeMethod)="filterData($event)" field="schema:name"
         [dropdown]="true" [forceSelection]="true">
@@ -14,14 +13,14 @@
             </div>
         </ng-template>
     </p-autoComplete>
-    <p>Steps: {{this.steps}}</p>
-    <p-slider [(ngModel)]="this.steps" [step]="1" [min]="1" [max]="30"
+    <p>categoryFactor: {{this.categoryFactor/1000}}</p>
+    <p-slider [(ngModel)]="this.categoryFactor" [min]="0" [max]="1000"
         (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
-    <p> More walking <-> Less walking: {{this.categoryFactor}}</p>
-    <p-slider [(ngModel)]="this.categoryFactor" [step]="-1" [min]="1" [max]="200"
+    <p>distanceInBetweenNodesFactor: {{this.distanceInBetweenNodesFactor/1000}}</p>
+    <p-slider [(ngModel)]="this.distanceInBetweenNodesFactor" [min]="0" [max]="1000"
         (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
-    <p>Similarity: {{this.gemiddelde/10}}%</p>
-    <p-slider [(ngModel)]="this.gemiddelde" [min]="0" [max]="1000"
+    <p>distanceNodeToHuidigePositieFactor: {{this.distanceNodeToHuidigePositieFactor/1000}}</p>
+    <p-slider [(ngModel)]="this.distanceNodeToHuidigePositieFactor" [min]="0" [max]="1000"
         (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
 </div>
 <div #container class="graafContainer">
