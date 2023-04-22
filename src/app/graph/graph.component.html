@@ -13,14 +13,8 @@
             </div>
         </ng-template>
     </p-autoComplete>
-    <p>categoryFactor: {{this.categoryFactor/1000}}</p>
-    <p-slider [(ngModel)]="this.categoryFactor" [min]="0" [max]="1000"
-        (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
-    <p>distanceInBetweenNodesFactor: {{this.distanceInBetweenNodesFactor/1000}}</p>
-    <p-slider [(ngModel)]="this.distanceInBetweenNodesFactor" [min]="0" [max]="1000"
-        (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
-    <p>distanceNodeToHuidigePositieFactor: {{this.distanceNodeToHuidigePositieFactor/1000}}</p>
-    <p-slider [(ngModel)]="this.distanceNodeToHuidigePositieFactor" [min]="0" [max]="1000"
+    <p>rechte lijn <-> meer categorie: {{this.factor/1000}}</p>
+    <p-slider [(ngModel)]="this.factor" [min]="0" [max]="1000"
         (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
 </div>
 <div #container class="graafContainer">

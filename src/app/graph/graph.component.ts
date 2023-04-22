@@ -30,9 +30,7 @@ export class GraphComponent {
   public graaf: Graph;
   public data: any[];
   public categoricalSimilaritiesObject: any;
-  public categoryFactor = 0;
-  public distanceInBetweenNodesFactor = 1000;
-  public distanceNodeToHuidigePositieFactor = 0;
+  public factor: number = 500;
   public linkTheseNodesInVisualisation: String[] = [];
   public destination: any;
   public filteredDataSearchBox: any[] = [];
@@ -186,7 +184,6 @@ export class GraphComponent {
         previous: null,
         avgCorrelation: 0,
         avgDistanceInBetweenNodes: 0,
-        avgDistanceNodeToHuidigePositieNormalized: 0,
         numberOfNodesBefore: 1
       };
     });
@@ -219,15 +216,13 @@ export class GraphComponent {
         const edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
         const avgCorrelation = (shortestPath[currentNode].avgCorrelation + edgeAtr['correlation']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const avgDistanceInBetweenNodes = (shortestPath[currentNode].avgDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
-        const avgDistanceNodeToHuidigePositieNormalized = (shortestPath[currentNode].avgDistanceNodeToHuidigePositieNormalized + edgeAtr['distanceNodeToHuidigePositieNormalized']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
-        const weight = ((this.categoryFactor / 1000) * avgCorrelation) + ((this.distanceInBetweenNodesFactor / 1000) * avgDistanceInBetweenNodes) + ((this.distanceNodeToHuidigePositieFactor / 1000) * edgeAtr['distanceNodeToHuidigePositieNormalized']);
+        const weight = 100 * ((this.factor / 1000) * avgCorrelation) + ((1 - (this.factor / 1000)) * avgDistanceInBetweenNodes);
         const distance = currentDistance + weight;
         if (distance < shortestPath[neighbor].distance) {
           shortestPath[neighbor].distance = distance;
           shortestPath[neighbor].previous = currentNode;
           shortestPath[neighbor].avgCorrelation = avgCorrelation;
           shortestPath[neighbor].avgDistanceInBetweenNodes = avgDistanceInBetweenNodes;
-          shortestPath[neighbor].avgDistanceNodeToHuidigePositieNormalized = avgDistanceNodeToHuidigePositieNormalized;
           shortestPath[neighbor].numberOfNodesBefore = shortestPath[currentNode].numberOfNodesBefore + 1;
         }
       });
