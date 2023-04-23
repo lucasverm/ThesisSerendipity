@@ -20,6 +20,7 @@
     <p-slider [(ngModel)]="this.randomFactor" [min]="0" [max]="999"
         (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
 </div>
+<app-triangle></app-triangle>
 <div #container class="graafContainer">
     <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
 </div>

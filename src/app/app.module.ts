@@ -12,6 +12,7 @@ import { GraphComponent } from './graph/graph.component';
 import { MapComponent } from './map/map.component';
 import { ParseRmlComponent } from './parse-rml/parse-rml.component';
 import { QueryComponent } from './query/query.component';
+import { TriangleComponent } from './triangle/triangle.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { QueryComponent } from './query/query.component';
     MapComponent,
     QueryComponent,
     ParseRmlComponent,
-    GraphComponent
+    GraphComponent,
+    TriangleComponent
   ],
   imports: [
     BrowserModule,
