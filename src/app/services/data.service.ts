@@ -243,185 +243,242 @@ export class DataService {
               //AMENITY
               let keywords = [];
               let relevant = true;
+              let prefix = "";
+              let category = "";
               if (linkData[0]['properties']['amenity']) {
                 if (linkData[0]['properties']['amenity'] == "restaurant") {
                   keywords.push("restaurant");
-                  turtleOutput += `${tripleIdentifier} a schema:Restaurant ;\n`;
+                  prefix = "schema";
+                  category = "Restaurant";
                 } else if (linkData[0]['properties']['amenity'] == "fast_food") {
                   keywords.push("fastfood");
-                  turtleOutput += `${tripleIdentifier} a schema:FastFoodRestaurant ;\n`;
+                  prefix = "schema";
+                  category = "FastFoodRestaurant";
                 } else if (linkData[0]['properties']['amenity'] == "cafe") {
                   keywords.push("cafe");
-                  turtleOutput += `${tripleIdentifier} a schema:CafeOrCoffeeShop ;\n`;
+                  prefix = "schema";
+                  category = "CafeOrCoffeeShop";
                 } else if (linkData[0]['properties']['amenity'] == "bar") {
                   keywords.push("bar");
-                  turtleOutput += `${tripleIdentifier} a schema:BarOrPub ;\n`;
+                  prefix = "schema";
+                  category = "BarOrPub";
                 } else if (linkData[0]['properties']['amenity'] == "pub") {
                   keywords.push("pub");
-                  turtleOutput += `${tripleIdentifier} a schema:BarOrPub ;\n`;
+                  prefix = "schema";
+                  category = "BarOrPub";
                 } else if (linkData[0]['properties']['amenity'] == "ice_cream") {
                   keywords.push("icecream");
-                  turtleOutput += `${tripleIdentifier} a schema:IceCreamShop ;\n`;
+                  prefix = "schema";
+                  category = "IceCreamShop";
                 } else if (linkData[0]['properties']['amenity'] == "school") {
                   keywords.push("school");
-                  turtleOutput += `${tripleIdentifier} a schema:School ;\n`;
+                  prefix = "schema";
+                  category = "School";
                 } else if (linkData[0]['properties']['amenity'] == "townhall") {
                   keywords.push("townhall");
-                  turtleOutput += `${tripleIdentifier} a lgdo:TownHall ;\n`;
+                  prefix = "lgdo";
+                  category = "TownHall";
                 } else if (linkData[0]['properties']['amenity'] == "nightclub") {
                   keywords.push("nightclub");
-                  turtleOutput += `${tripleIdentifier} a schema:NightClub ;\n`;
+                  prefix = "schema";
+                  category = "NightClub";
                 } else if (linkData[0]['properties']['amenity'] == "theatre") {
                   keywords.push("theater");
-                  turtleOutput += `${tripleIdentifier} a dbp:Theatre ;\n`;
+                  prefix = "dbp";
+                  category = "Theatre";
                 } else if (linkData[0]['properties']['amenity'] == "events_venue") {
                   keywords.push("event");
                   keywords.push("venue");
-                  turtleOutput += `${tripleIdentifier} a schema:EventVenue ;\n`;
+                  prefix = "schema";
+                  category = "EventVenue";
                 } else if (linkData[0]['properties']['amenity'] == "community_centre") {
                   keywords.push("community");
-                  turtleOutput += `${tripleIdentifier} a km4c:Community_centre ;\n`;
+                  prefix = "km4c";
+                  category = "Community_centre";
                 } else if (linkData[0]['properties']['amenity'] == "food_court") {
                   keywords.push("foodcourt");
-                  turtleOutput += `${tripleIdentifier} a ex:FootCourt ;\n`;
+                  prefix = "ex";
+                  category = "FootCourt";
                 } else if (linkData[0]['properties']['amenity'] == "studio") {
                   keywords.push("studio");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Studio ;\n`;
+                  prefix = "lgdo";
+                  category = "Studio";
                 } else if (linkData[0]['properties']['amenity'] == "cinema") {
                   keywords.push("cinema");
-                  turtleOutput += `${tripleIdentifier} a schema:MovieTheater ;\n`;
+                  prefix = "schema";
+                  category = "MovieTheater";
                 } else if (linkData[0]['properties']['amenity'] == "fountain") {
                   keywords.push("fountain");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Fountain ;\n`;
+                  prefix = "lgdo";
+                  category = "Fountain";
                 } else if (linkData[0]['properties']['amenity'] == "public_bookcase") {
                   keywords.push("public");
                   keywords.push("bookcase");
-                  turtleOutput += `${tripleIdentifier} a ex:public_bookcase ;\n`;
+                  prefix = "ex";
+                  category = "public_bookcase";
                 } else if (linkData[0]['properties']['amenity'] == "social_centre") {
                   keywords.push("social");
-                  turtleOutput += `${tripleIdentifier} a lgdo:SocialCentre ;\n`;
+                  prefix = "lgdo";
+                  category = "SocialCentre";
                 } else if (linkData[0]['properties']['amenity'] == "place_of_worship") {
                   keywords.push("worship");
-                  turtleOutput += `${tripleIdentifier} a schema:PlaceOfWorship ;\n`;
+                  prefix = "schema";
+                  category = "PlaceOfWorship";
                 } else if (linkData[0]['properties']['amenity'] == "arts_centre") {
                   keywords.push("arts");
                   keywords.push("center");
-                  turtleOutput += `${tripleIdentifier} a lgdo:ArtsCentre ;\n`;
+                  prefix = "lgdo";
+                  category = "ArtsCentre";
                 } else if (linkData[0]['properties']['amenity'] == "parking") {
                   keywords.push("parking");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Parking ;\n`;
+                  prefix = "lgdo";
+                  category = "Parking";
                 } else if (linkData[0]['properties']['amenity'] == "parking_entrance") {
                   keywords.push("parking");
-                  turtleOutput += `${tripleIdentifier} a lgdo:ParkingEntrance ;\n`;
+                  prefix = "lgdo";
+                  category = "ParkingEntrance";
                 } else if (linkData[0]['properties']['amenity'] == "bicycle_parking") {
                   keywords.push("bicycle");
                   keywords.push("parking");
-                  turtleOutput += `${tripleIdentifier} a lgdo:BicycleParking ;\n`;
+                  prefix = "lgdo";
+                  category = "BicycleParking";
                 } else if (linkData[0]['properties']['amenity'] == "university") {
                   keywords.push("university");
-                  turtleOutput += `${tripleIdentifier} a lgdo:University ;\n`;
+                  prefix = "lgdo";
+                  category = "University";
                 } else {
-                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  prefix = "schema";
+                  category = "Place";
                   console.log(linkData[0]['properties']);
                 }
                 //SHOP
               } else if (linkData[0]['properties']['shop']) {
                 if (linkData[0]['properties']['shop'] == "bicycle") {
                   keywords.push("bicycle");
-                  turtleOutput += `${tripleIdentifier} a schema:BikeStore ;\n`;
+                  prefix = "schema";
+                  category = "BikeStore";
                 } else if (linkData[0]['properties']['shop'] == "bakery") {
                   keywords.push("bakery");
-                  turtleOutput += `${tripleIdentifier} a schema:Bakery ;\n`;
+                  prefix = "schema";
+                  category = "Bakery";
                 } else if (linkData[0]['properties']['shop'] == "convenience") {
                   keywords.push("convenience");
-                  turtleOutput += `${tripleIdentifier} a schema:ConvenienceStore ;\n`;
+                  prefix = "schema";
+                  category = "ConvenienceStore";
                 } else if (linkData[0]['properties']['shop'] == "deli") {
                   keywords.push("deli");
-                  turtleOutput += `${tripleIdentifier} a schema:HomeGoodsStore ;\n`;
+                  prefix = "schema";
+                  category = "HomeGoodsStore";
                 } else if (linkData[0]['properties']['shop'] == "tattoo") {
                   keywords.push("tattoo");
-                  turtleOutput += `${tripleIdentifier} a lgdo:TattooShop ;\n`;
+                  prefix = "lgdo";
+                  category = "TattooShop";
                 } else if (linkData[0]['properties']['shop'] == "hairdresser") {
                   keywords.push("hairdresser");
-                  turtleOutput += `${tripleIdentifier} a schema:HairSalon ;\n`;
+                  prefix = "schema";
+                  category = "HairSalon";
                 } else if (linkData[0]['properties']['shop'] == "medical_supply") {
                   keywords.push("medical");
                   keywords.push("supply");
-                  turtleOutput += `${tripleIdentifier} a schema:medical_supply ;\n`;
+                  prefix = "schema";
+                  category = "medical_supply";
                 } else if (linkData[0]['properties']['shop'] == "antiques") {
                   keywords.push("antiques");
-                  turtleOutput += `${tripleIdentifier} a km4c:Antiques ;\n`;
+                  prefix = "km4c";
+                  category = "Antiques";
                 } else if (linkData[0]['properties']['shop'] == "window_blind") {
                   // Niet relevant
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "second_hand") {
                   keywords.push("secondhand");
-                  turtleOutput += `${tripleIdentifier} a km4c:Second_hand_goods ;\n`;
+                  prefix = "km4c";
+                  category = "Second_hand_goods";
                 } else if (linkData[0]['properties']['shop'] == "telecommunication") {
                   keywords.push("telecommunication");
-                  turtleOutput += `${tripleIdentifier} a km4c:Telecommunication ;\n`;
+                  prefix = "km4c";
+                  category = "Telecommunication";
                 } else if (linkData[0]['properties']['shop'] == "motorcycle") {
                   keywords.push("motorcycle");
-                  turtleOutput += `${tripleIdentifier} a lgdo:motorcycle ;\n`;
+                  prefix = "lgdo";
+                  category = "motorcycle";
                 } else if (linkData[0]['properties']['shop'] == "pet") {
                   keywords.push("pet");
-                  turtleOutput += `${tripleIdentifier} a schema:PetStore ;\n`;
+                  prefix = "schema";
+                  category = "PetStore";
                 } else if (linkData[0]['properties']['shop'] == "car_repair") {
                   keywords.push("car");
                   keywords.push("repair");
-                  turtleOutput += `${tripleIdentifier} a schema:AutoRepair ;\n`;
+                  prefix = "schema";
+                  category = "AutoRepair";
                 } else if (linkData[0]['properties']['shop'] == "hifi") {
                   keywords.push("hifi");
-                  turtleOutput += `${tripleIdentifier} a schema:ElectronicsStore ;\n`;
+                  prefix = "schema";
+                  category = "ElectronicsStore";
                 } else if (linkData[0]['properties']['shop'] == "massage") {
                   keywords.push("massage");
-                  turtleOutput += `${tripleIdentifier} a schema:DaySpa ;\n`;
+                  prefix = "schema";
+                  category = "DaySpa";
                 } else if (linkData[0]['properties']['shop'] == "beverages") {
                   keywords.push("beverages");
-                  turtleOutput += `${tripleIdentifier} a schema:LiquorStore ;\n`;
+                  prefix = "schema";
+                  category = "LiquorStore";
                 } else if (linkData[0]['properties']['shop'] == "appliance") {
                   keywords.push("appliance");
-                  turtleOutput += `${tripleIdentifier} a schema:ElectronicsStore ;\n`;
+                  prefix = "schema";
+                  category = "ElectronicsStore";
                 } else if (linkData[0]['properties']['shop'] == "photo") {
                   keywords.push("photo");
-                  turtleOutput += `${tripleIdentifier} a schema:Photograph ;\n`;
+                  prefix = "schema";
+                  category = "Photograph";
                 } else if (linkData[0]['properties']['shop'] == "bag") {
                   keywords.push("bag");
-                  turtleOutput += `${tripleIdentifier} a lgdo:bagsShop ;\n`;
+                  prefix = "lgdo";
+                  category = "bagsShop";
                 } else if (linkData[0]['properties']['shop'] == "party") {
                   keywords.push("party");
-                  turtleOutput += `${tripleIdentifier} a ex:partyStore ;\n`;
+                  prefix = "ex";
+                  category = "partyStore";
                 } else if (linkData[0]['properties']['shop'] == "seafood") {
                   keywords.push("seafood");
                   keywords.push("fish");
-                  turtleOutput += `${tripleIdentifier} a km4c:Fish_and_seafood ;\n`;
+                  prefix = "km4c";
+                  category = "Fish_and_seafood";
                 } else if (linkData[0]['properties']['shop'] == "craft") {
                   keywords.push("craft");
-                  turtleOutput += `${tripleIdentifier} a lgdo:craft ;\n`;
+                  prefix = "lgdo";
+                  category = "craft";
                 } else if (linkData[0]['properties']['shop'] == "kiosk") {
                   keywords.push("kiosk");
-                  turtleOutput += `${tripleIdentifier} a lgdo:kiosk ;\n`;
+                  prefix = "lgdo";
+                  category = "kiosk";
                 } else if (linkData[0]['properties']['shop'] == "video_games") {
                   keywords.push("videogames");
-                  turtleOutput += `${tripleIdentifier} a lgdo:videoGames ;\n`;
+                  prefix = "lgdo";
+                  category = "videoGames";
                 } else if (linkData[0]['properties']['shop'] == "toys") {
                   keywords.push("toys");
-                  turtleOutput += `${tripleIdentifier} a schema:ToyStore ;\n`;
+                  prefix = "schema";
+                  category = "ToyStore";
                 } else if (linkData[0]['properties']['shop'] == "mall") {
                   keywords.push("mall");
-                  turtleOutput += `${tripleIdentifier} a schema:ShoppingCenter ;\n`;
+                  prefix = "schema";
+                  category = "ShoppingCenter";
                 } else if (linkData[0]['properties']['shop'] == "ticket") {
                   keywords.push("ticket");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Ticket ;\n`;
+                  prefix = "lgdo";
+                  category = "Ticket";
                 } else if (linkData[0]['properties']['shop'] == "juice") {
                   keywords.push("juice");
-                  turtleOutput += `${tripleIdentifier} a ex:JuiceStore ;\n`;
+                  prefix = "ex";
+                  category = "JuiceStore";
                 } else if (linkData[0]['properties']['shop'] == "perfumery") {
                   keywords.push("perfumery");
-                  turtleOutput += `${tripleIdentifier} a km4c:Perfumery_and_cosmetic_articles ;\n`;
+                  prefix = "km4c";
+                  category = "Perfumery_and_cosmetic_articles";
                 } else if (linkData[0]['properties']['shop'] == "computer") {
                   keywords.push("computer");
-                  turtleOutput += `${tripleIdentifier} a schema:ComputerStore ;\n`;
+                  prefix = "schema";
+                  category = "ComputerStore";
                 } else if (linkData[0]['properties']['shop'] == "hearing_aids") {
                   // Niet relevant
                   relevant = false;
@@ -430,181 +487,234 @@ export class DataService {
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "bookmaker") {
                   keywords.push("bookmaker");
-                  turtleOutput += `${tripleIdentifier} a lgdo:BookmakerShop ;\n`;
+                  prefix = "lgdo";
+                  category = "BookmakerShop";
                 } else if (linkData[0]['properties']['shop'] == "hardware") {
                   keywords.push("hardware");
-                  turtleOutput += `${tripleIdentifier} a schema:HardwareStore ;\n`;
+                  prefix = "schema";
+                  category = "HardwareStore";
                 } else if (linkData[0]['properties']['shop'] == "florist") {
                   keywords.push("florist");
                   keywords.push("flower");
-                  turtleOutput += `${tripleIdentifier} a schema:Florist ;\n`;
+                  prefix = "schema";
+                  category = "Florist";
                 } else if (linkData[0]['properties']['shop'] == "art") {
                   keywords.push("art");
-                  turtleOutput += `${tripleIdentifier} a schema:VisualArtwork ;\n`;
+                  prefix = "schema";
+                  category = "VisualArtwork";
                 } else if (linkData[0]['properties']['shop'] == "baby_goods") {
                   keywords.push("baby");
-                  turtleOutput += `${tripleIdentifier} a schema:ChildCare ;\n`;
+                  prefix = "schema";
+                  category = "ChildCare";
                 } else if (linkData[0]['properties']['shop'] == "games") {
                   keywords.push("games");
-                  turtleOutput += `${tripleIdentifier} a schema:games ;\n`;
+                  prefix = "schema";
+                  category = "games";
                 } else if (linkData[0]['properties']['shop'] == "car") {
                   keywords.push("car");
-                  turtleOutput += `${tripleIdentifier} a lgdo:CarShop ;\n`;
+                  prefix = "lgdo";
+                  category = "CarShop";
                 } else if (linkData[0]['properties']['shop'] == "variety_store") {
                   keywords.push("variety");
-                  turtleOutput += `${tripleIdentifier} a lgdo:variety ;\n`;
+                  prefix = "lgdo";
+                  category = "variety";
                 } else if (linkData[0]['properties']['shop'] == "department_store") {
                   keywords.push("department");
-                  turtleOutput += `${tripleIdentifier} a lgdo:DepartmentStore ;\n`;
+                  prefix = "lgdo";
+                  category = "DepartmentStore";
                 } else if (linkData[0]['properties']['shop'] == "confectionery") {
                   keywords.push("confectionery");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Confectionery ;\n`;
+                  prefix = "lgdo";
+                  category = "Confectionery";
                 } else if (linkData[0]['properties']['shop'] == "pastry") {
                   keywords.push("pastry");
-                  turtleOutput += `${tripleIdentifier} a km4c:Pastry_shop ;\n`;
+                  prefix = "km4c";
+                  category = "Pastry_shop";
                 } else if (linkData[0]['properties']['shop'] == "stationery") {
                   keywords.push("stationery");
-                  turtleOutput += `${tripleIdentifier} a km4c:Newspapers_and_stationery ;\n`;
+                  prefix = "km4c";
+                  category = "Newspapers_and_stationery";
                 } else if (linkData[0]['properties']['shop'] == "clothes") {
                   keywords.push("clothes");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Clothes ;\n`;
+                  prefix = "lgdo";
+                  category = "Clothes";
                 } else if (linkData[0]['properties']['shop'] == "shoes") {
                   keywords.push("shoes");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Shoes ;\n`;
+                  prefix = "lgdo";
+                  category = "Shoes";
                 } else if (linkData[0]['properties']['shop'] == "health_food") {
                   keywords.push("food");
                   keywords.push("healthy");
                   keywords.push("health");
-                  turtleOutput += `${tripleIdentifier} a lgdo:HealthFood ;\n`;
+                  prefix = "lgdo";
+                  category = "HealthFood";
                 } else if (linkData[0]['properties']['shop'] == "supermarket") {
                   keywords.push("supermarket");
-                  turtleOutput += `${tripleIdentifier} a km4c:Supermarket ;\n`;
+                  prefix = "km4c";
+                  category = "Supermarket";
                 } else if (linkData[0]['properties']['shop'] == "chocolate") {
                   keywords.push("chocolate");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Chocolate ;\n`;
+                  prefix = "lgdo";
+                  category = "Chocolate";
                 } else if (linkData[0]['properties']['shop'] == "fashion_accessories") {
                   keywords.push("fashion");
                   keywords.push("accessories");
-                  turtleOutput += `${tripleIdentifier} a ex:fashionAccessories ;\n`;
+                  prefix = "ex";
+                  category = "fashionAccessories";
                 } else if (linkData[0]['properties']['shop'] == "herbalist") {
                   keywords.push("herbalist");
-                  turtleOutput += `${tripleIdentifier} a km4c:Herbalist_shop ;\n`;
+                  prefix = "km4c";
+                  category = "Herbalist_shop";
                 } else if (linkData[0]['properties']['shop'] == "jewelry") {
                   keywords.push("jewelry");
-                  turtleOutput += `${tripleIdentifier} a schema:JewelryStore ;\n`;
+                  prefix = "schema";
+                  category = "JewelryStore";
                 } else if (linkData[0]['properties']['shop'] == "outdoor") {
                   keywords.push("outdoor");
-                  turtleOutput += `${tripleIdentifier} a lgdo:outdoor ;\n`;
+                  prefix = "lgdo";
+                  category = "outdoor";
                 } else if (linkData[0]['properties']['shop'] == "furniture") {
                   keywords.push("furniture");
-                  turtleOutput += `${tripleIdentifier} a schema:FurnitureStore ;\n`;
+                  prefix = "schema";
+                  category = "FurnitureStore";
                 } else if (linkData[0]['properties']['shop'] == "electronics") {
                   keywords.push("electronics");
-                  turtleOutput += `${tripleIdentifier} a schema:ElectronicsStore ;\n`;
+                  prefix = "schema";
+                  category = "ElectronicsStore";
                 } else if (linkData[0]['properties']['shop'] == "gift") {
                   keywords.push("gift");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Gift ;\n`;
+                  prefix = "lgdo";
+                  category = "Gift";
                 } else if (linkData[0]['properties']['shop'] == "alcohol") {
                   keywords.push("alcohol");
-                  turtleOutput += `${tripleIdentifier} a schema:LiquorStore ;\n`;
+                  prefix = "schema";
+                  category = "LiquorStore";
                 } else if (linkData[0]['properties']['shop'] == "paint") {
                   keywords.push("paint");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Paint ;\n`;
+                  prefix = "lgdo";
+                  category = "Paint";
                 } else if (linkData[0]['properties']['shop'] == "butcher") {
                   keywords.push("butcher");
                   keywords.push("meat");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Butcher ;\n`;
+                  prefix = "lgdo";
+                  category = "Butcher";
                 } else if (linkData[0]['properties']['shop'] == "bed") {
                   keywords.push("bed");
-                  turtleOutput += `${tripleIdentifier} a schema:BedStore ;\n`;
+                  prefix = "schema";
+                  category = "BedStore";
                 } else if (linkData[0]['properties']['shop'] == "beauty") {
                   keywords.push("beauty");
-                  turtleOutput += `${tripleIdentifier} a lgdo:BeautyShop ;\n`;
+                  prefix = "lgdo";
+                  category = "BeautyShop";
                 } else if (linkData[0]['properties']['shop'] == "cosmetics") {
                   keywords.push("cosmetics");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Cosmetics ;\n`;
+                  prefix = "lgdo";
+                  category = "Cosmetics";
                 } else if (linkData[0]['properties']['shop'] == "tailor") {
                   keywords.push("tailor");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Tailor ;\n`;
+                  prefix = "lgdo";
+                  category = "Tailor";
                 } else if (linkData[0]['properties']['shop'] == "fabric") {
                   keywords.push("fabric");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Fabric ;\n`;
+                  prefix = "lgdo";
+                  category = "Fabric";
                 } else if (linkData[0]['properties']['shop'] == "wholesale") {
                   keywords.push("wholesale");
-                  turtleOutput += `${tripleIdentifier} a km4c:wholesale ;\n`;
+                  prefix = "km4c";
+                  category = "wholesale";
                 } else if (linkData[0]['properties']['shop'] == "newsagent") {
                   keywords.push("newsagent");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Newsagent ;\n`;
+                  prefix = "lgdo";
+                  category = "Newsagent";
                 } else if (linkData[0]['properties']['shop'] == "leather") {
                   keywords.push("leather");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Leather ;\n`;
+                  prefix = "lgdo";
+                  category = "Leather";
                 } else if (linkData[0]['properties']['shop'] == "car_parts") {
                   keywords.push("parts");
                   keywords.push("car");
-                  turtleOutput += `${tripleIdentifier} a schema:AutoPartsStore ;\n`;
+                  prefix = "schema";
+                  category = "AutoPartsStore";
                 } else if (linkData[0]['properties']['shop'] == "copyshop") {
                   keywords.push("copy");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Copyshop ;\n`;
+                  prefix = "lgdo";
+                  category = "Copyshop";
                 } else if (linkData[0]['properties']['shop'] == "books") {
                   keywords.push("book");
-                  turtleOutput += `${tripleIdentifier} a schema:BookStore ;\n`;
+                  prefix = "schema";
+                  category = "BookStore";
                 } else if (linkData[0]['properties']['shop'] == "charity") {
                   keywords.push("charity");
                   keywords.push("NGO");
-                  turtleOutput += `${tripleIdentifier} a schema:NGO ;\n`;
+                  prefix = "schema";
+                  category = "NGO";
                 } else if (linkData[0]['properties']['shop'] == "radiotechnics") {
                   keywords.push("radio");
                   keywords.push("technics");
-                  turtleOutput += `${tripleIdentifier} a ex:RadioTechnics ;\n`;
+                  prefix = "ex";
+                  category = "RadioTechnics";
                 } else if (linkData[0]['properties']['shop'] == "coffee") {
                   keywords.push("coffee");
-                  turtleOutput += `${tripleIdentifier} a schema:CafeOrCoffeeShop ;\n`;
+                  prefix = "schema";
+                  category = "CafeOrCoffeeShop";
                 } else if (linkData[0]['properties']['shop'] == "textile_printing") {
                   keywords.push("textile");
                   keywords.push("printing");
-                  turtleOutput += `${tripleIdentifier} a ex:TextilePrinting ;\n`;
+                  prefix = "ex";
+                  category = "TextilePrinting";
                 } else if (linkData[0]['properties']['shop'] == "chemist") {
                   keywords.push("chemist");
                   keywords.push("chemistry");
-                  turtleOutput += `${tripleIdentifier} a lgdo:chemist ;\n`;
+                  prefix = "lgdo";
+                  category = "chemist";
                 } else if (linkData[0]['properties']['shop'] == "spices") {
                   keywords.push("spices");
-                  turtleOutput += `${tripleIdentifier} a ex:Spices ;\n`;
+                  prefix = "ex";
+                  category = "Spices";
                 } else if (linkData[0]['properties']['shop'] == "musical_instrument") {
                   keywords.push("instrument");
                   keywords.push("musical");
                   keywords.push("music");
-                  turtleOutput += `${tripleIdentifier} a km4c:Musical_instruments_and_scores ;\n`;
+                  prefix = "km4c";
+                  category = "Musical_instruments_and_scores";
                 } else if (linkData[0]['properties']['shop'] == "erotic") {
                   // Niet relevant
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "wine") {
                   keywords.push("wine");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Wine ;\n`;
+                  prefix = "lgdo";
+                  category = "Wine";
                 } else if (linkData[0]['properties']['shop'] == "video") {
                   keywords.push("video");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Video ;\n`;
+                  prefix = "lgdo";
+                  category = "Video";
                 } else if (linkData[0]['properties']['shop'] == "mobile_phone") {
                   keywords.push("mobilephone");
                   keywords.push("phone");
                   keywords.push("mobile");
-                  turtleOutput += `${tripleIdentifier} a lgdo:mobilePhone ;\n`;
+                  prefix = "lgdo";
+                  category = "mobilePhone";
                 } else if (linkData[0]['properties']['shop'] == "travel_agency") {
                   keywords.push("travel");
-                  turtleOutput += `${tripleIdentifier} a schema:TravelAgency ;\n`;
+                  prefix = "schema";
+                  category = "TravelAgency";
                 } else if (linkData[0]['properties']['shop'] == "garden_centre") {
                   keywords.push("garden");
-                  turtleOutput += `${tripleIdentifier} a lgdo:GardenCentre ;\n`;
+                  prefix = "lgdo";
+                  category = "GardenCentre";
                 } else if (linkData[0]['properties']['shop'] == "greengrocer") {
                   keywords.push("greengrocer");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Greengrocer ;\n`;
+                  prefix = "lgdo";
+                  category = "Greengrocer";
                 } else if (linkData[0]['properties']['shop'] == "skate") {
                   keywords.push("skate");
-                  turtleOutput += `${tripleIdentifier} a ex:SkateShop ;\n`;
+                  prefix = "ex";
+                  category = "SkateShop";
                 } else if (linkData[0]['properties']['shop'] == "sports") {
                   keywords.push("sport");
                   keywords.push("sports");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Sports ;\n`;
+                  prefix = "lgdo";
+                  category = "Sports";
                 } else if (linkData[0]['properties']['shop'] == "carpet") {
                   // Niet relevant
                   relevant = false;
@@ -614,24 +724,30 @@ export class DataService {
                 } else if (linkData[0]['properties']['shop'] == "nuts") {
                   keywords.push("nut");
                   keywords.push("nuts");
-                  turtleOutput += `${tripleIdentifier} a ex:NutsStore ;\n`;
+                  prefix = "ex";
+                  category = "NutsStore";
                 } else if (linkData[0]['properties']['shop'] == "laundry") {
                   keywords.push("laundry");
-                  turtleOutput += `${tripleIdentifier} a schema:DryCleaningOrLaundry ;\n`;
+                  prefix = "schema";
+                  category = "DryCleaningOrLaundry";
                 } else if (linkData[0]['properties']['shop'] == "doityourself") {
                   keywords.push("DIY");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Doityourself ;\n`;
+                  prefix = "lgdo";
+                  category = "Doityourself";
                 } else if (linkData[0]['properties']['shop'] == "brass_instruments") {
                   keywords.push("brass");
                   keywords.push("instruments");
-                  turtleOutput += `${tripleIdentifier} a schema:brass_instruments ;\n`;
+                  prefix = "schema";
+                  category = "brass_instruments";
                 } else if (linkData[0]['properties']['shop'] == "music") {
                   keywords.push("music");
-                  turtleOutput += `${tripleIdentifier} a schema:MusicStore ;\n`;
+                  prefix = "schema";
+                  category = "MusicStore";
                 } else if (linkData[0]['properties']['shop'] == "lottery") {
                   keywords.push("lottery");
                   keywords.push("luck");
-                  turtleOutput += `${tripleIdentifier} a ex:Lottery ;\n`;
+                  prefix = "ex";
+                  category = "Lottery";
                 } else if (linkData[0]['properties']['shop'] == "bathroom_furnishing") {
                   // Niet relevant
                   relevant = false;
@@ -640,7 +756,8 @@ export class DataService {
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "general") {
                   keywords.push("general");
-                  turtleOutput += `${tripleIdentifier} a lgdo:General ;\n`;
+                  prefix = "lgdo";
+                  category = "General";
                 } else if (linkData[0]['properties']['shop'] == "funeral_directors") {
                   // Niet relevant
                   relevant = false;
@@ -648,67 +765,85 @@ export class DataService {
                   keywords.push("houseware");
                   keywords.push("housewares");
                   keywords.push("house");
-                  turtleOutput += `${tripleIdentifier} a lgdo:housewares ;\n`;
+                  prefix = "lgdo";
+                  category = "housewares";
                 } else if (linkData[0]['properties']['shop'] == "kitchen") {
                   keywords.push("kitchen");
-                  turtleOutput += `${tripleIdentifier} a lgdo:KitchenShop ;\n`;
+                  prefix = "lgdo";
+                  category = "KitchenShop";
                 } else if (linkData[0]['properties']['shop'] == "wine; books") {
                   keywords.push("wine");
                   keywords.push("book");
-                  turtleOutput += `${tripleIdentifier} a lgdo:BookShop ;\n`;
+                  prefix = "lgdo";
+                  category = "BookShop";
                 } else if (linkData[0]['properties']['shop'] == "fashion") {
                   keywords.push("fashion");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Fashion ;\n`;
+                  prefix = "lgdo";
+                  category = "Fashion";
                 } else if (linkData[0]['properties']['shop'] == "e-cigarette") {
                   keywords.push("cigarette");
-                  turtleOutput += `${tripleIdentifier} a ex:E-Cigarette ;\n`;
+                  prefix = "ex";
+                  category = "E-cigarette;";
                 } else if (linkData[0]['properties']['shop'] == "yes") {
-                  turtleOutput += `${tripleIdentifier} a schema:Store ;\n`;
+                  prefix = "schema";
+                  category = "Store";
                 } else {
-                  turtleOutput += `${tripleIdentifier} a schema:Store ;\n`;
+                  prefix = "schema";
+                  category = "Store";
                 }
                 //TOURISM
               } else if (linkData[0]['properties']['tourism']) {
                 if (linkData[0]['properties']['tourism'] == "hotel") {
                   keywords.push("hotel");
-                  turtleOutput += `${tripleIdentifier} a schema:Hotel ;\n`;
+                  prefix = "schema";
+                  category = "Hotel";
                 } else if (linkData[0]['properties']['tourism'] == "museum") {
                   keywords.push("museum");
-                  turtleOutput += `${tripleIdentifier} a schema:Museum ;\n`;
+                  prefix = "schema";
+                  category = "Museum";
                 } else if (linkData[0]['properties']['tourism'] == "hostel") {
                   keywords.push("hostel");
-                  turtleOutput += `${tripleIdentifier} a schema:hostel ;\n`;
+                  prefix = "schema";
+                  category = "hostel";
                 } else if (linkData[0]['properties']['tourism'] == "gallery") {
                   keywords.push("gallery");
-                  turtleOutput += `${tripleIdentifier} a schema:gallery ;\n`;
+                  prefix = "schema";
+                  category = "gallery";
                 } else if (linkData[0]['properties']['tourism'] == "attraction") {
                   keywords.push("attraction");
-                  turtleOutput += `${tripleIdentifier} a schema:TouristAttraction ;\n`;
+                  prefix = "schema";
+                  category = "TouristAttraction";
                 } else if (linkData[0]['properties']['tourism'] == "artwork") {
                   keywords.push("artwork");
                   keywords.push("art");
                   //OPZOEKEN OP SITE
-                  turtleOutput += `${tripleIdentifier} a schema:VisualArtwork ;\n`;
+                  prefix = "schema";
+                  category = "VisualArtwork";
                 } else if (linkData[0]['properties']['tourism'] == "guest_house") {
                   keywords.push("guesthouse");
                   keywords.push("guest");
                   keywords.push("house");
                   //OPZOEKEN OP SITE
-                  turtleOutput += `${tripleIdentifier} a schema:Accommodation ;\n`;
+                  prefix = "schema";
+                  category = "Accommodation";
                 } else if (linkData[0]['properties']['tourism'] == "apartment") {
                   keywords.push("apartment");
                   //OPZOEKEN OP SITE
-                  turtleOutput += `${tripleIdentifier} a schema:Apartment ;\n`;
+                  prefix = "schema";
+                  category = "Apartment";
                 } else if (linkData[0]['properties']['tourism'] == "information") {
                   keywords.push("information");
                   //OPZOEKEN OP SITE
-                  turtleOutput += `${tripleIdentifier} a schema:TouristInformationCenter ;\n`;
+                  prefix = "schema";
+                  category = "TouristInformationCenter";
                 } else if (linkData[0]['properties']['tourism'] == "viewpoint") {
                   keywords.push("viewpoint");
                   //OPZOEKEN OP SITE
-                  turtleOutput += `${tripleIdentifier} a schema:viewpoint ;\n`;
+                  prefix = "schema";
+                  category = "viewpoint";
                 } else {
-                  turtleOutput += `${tripleIdentifier} a schema:TouristDestination ;\n`;
+                  prefix = "schema";
+                  category = "TouristDestination";
 
                 }
 
@@ -717,272 +852,338 @@ export class DataService {
                 if (linkData[0]['properties']['leisure'] == "picnic_table") {
                   keywords.push("picnic");
                   keywords.push("table");
-                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  prefix = "schema";
+                  category = "Place";
                 } else if (linkData[0]['properties']['leisure'] == "playground") {
                   keywords.push("playground");
-                  turtleOutput += `${tripleIdentifier} a schema:Playground ;\n`;
+                  prefix = "schema";
+                  category = "Playground";
                 } else if (linkData[0]['properties']['leisure'] == "fitness_centre") {
                   keywords.push("fitness");
                   keywords.push("gym");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Gym ;\n`;
+                  prefix = "lgdo";
+                  category = "Gym";
                 } else if (linkData[0]['properties']['leisure'] == "sports_centre") {
                   keywords.push("sport");
                   keywords.push("sports");
-                  turtleOutput += `${tripleIdentifier} a lgdo:SportsCentre ;\n`;
+                  prefix = "lgdo";
+                  category = "SportsCentre";
                 } else if (linkData[0]['properties']['leisure'] == "hackerspace") {
                   keywords.push("hackerspace");
                   keywords.push("hacker");
                   keywords.push("hack");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Hackerspace ;\n`;
+                  prefix = "lgdo";
+                  category = "Hackerspace";
                 } else if (linkData[0]['properties']['leisure'] == "dance") {
                   keywords.push("dance");
                   keywords.push("dancing");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Dance ;\n`;
+                  prefix = "lgdo";
+                  category = "Dance";
                 } else if (linkData[0]['properties']['leisure'] == "garden") {
                   keywords.push("garden");
-                  turtleOutput += `${tripleIdentifier} a lgdo:GardenCentre ;\n`;
+                  prefix = "lgdo";
+                  category = "GardenCentre";
                 } else if (linkData[0]['properties']['leisure'] == "amusement_arcade") {
                   keywords.push("arcade");
-                  turtleOutput += `${tripleIdentifier} a schema:AmusementPark ;\n`;
+                  prefix = "schema";
+                  category = "AmusementPark";
                 } else if (linkData[0]['properties']['leisure'] == "escape_game") {
                   keywords.push("escape");
                   keywords.push("game");
-                  turtleOutput += `${tripleIdentifier} a ex:EscapeGame ;\n`;
+                  prefix = "ex";
+                  category = "EscapeGame";
                 } else if (linkData[0]['properties']['leisure'] == "pitch") {
                   keywords.push("pitch");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Pitch ;\n`;
+                  prefix = "lgdo";
+                  category = "Pitch";
                 } else if (linkData[0]['properties']['leisure'] == "sports_hall") {
                   keywords.push("sportshall");
-                  turtleOutput += `${tripleIdentifier} a ex:SportsHall ;\n`;
+                  prefix = "ex";
+                  category = "SportsHall";
                 } else if (linkData[0]['properties']['leisure'] == "sauna") {
                   keywords.push("sauna");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Sauna ;\n`;
+                  prefix = "lgdo";
+                  category = "Sauna";
                 } else if (linkData[0]['properties']['leisure'] == "marina") {
                   keywords.push("marina");
                   keywords.push("boatyard");
                   keywords.push("port");
                   keywords.push("harbor");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Marina ;\n`;
+                  prefix = "lgdo";
+                  category = "Marina";
                 } else if (linkData[0]['properties']['leisure'] == "swimming_pool") {
                   keywords.push("swimming");
                   keywords.push("pool");
-                  turtleOutput += `${tripleIdentifier} a lgdo:SwimmingPool ;\n`;
+                  prefix = "lgdo";
+                  category = "SwimmingPool";
                 } else if (linkData[0]['properties']['leisure'] == "fitness_station") {
                   keywords.push("fitness");
                   keywords.push("gym");
-                  turtleOutput += `${tripleIdentifier} a ex:FitnessStation ;\n`;
+                  prefix = "ex";
+                  category = "FitnessStation";
                 } else if (linkData[0]['properties']['leisure'] == "park") {
                   keywords.push("park");
-                  turtleOutput += `${tripleIdentifier} a schema:Park ;\n`;
+                  prefix = "schema";
+                  category = "Park";
                 } else if (linkData[0]['properties']['leisure'] == "track") {
                   keywords.push("track");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Track ;\n`;
+                  prefix = "lgdo";
+                  category = "Track";
                 } else if (linkData[0]['properties']['leisure'] == "dog_park") {
                   keywords.push("dog");
-                  turtleOutput += `${tripleIdentifier} a lgdo:DogPark ;\n`;
+                  prefix = "lgdo";
+                  category = "DogPark";
                 } else if (linkData[0]['properties']['leisure'] == "outdoor_seating") {
                   keywords.push("outdoor");
                   keywords.push("seating");
-                  turtleOutput += `${tripleIdentifier} a ex:OutdoorSeating ;\n`;
+                  prefix = "ex";
+                  category = "OutdoorSeating";
                 } else if (linkData[0]['properties']['leisure'] == "slipway") {
                   keywords.push("slipway");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Slipway ;\n`;
+                  prefix = "lgdo";
+                  category = "Slipway";
                 } else if (linkData[0]['properties']['leisure'] == "bandstand") {
                   keywords.push("bandstand");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Bandstand ;\n`;
+                  prefix = "lgdo";
+                  category = "Bandstand";
                 } else if (linkData[0]['properties']['leisure'] == "bleachers") {
                   keywords.push("bleachers");
-                  turtleOutput += `${tripleIdentifier} a ex:Bleachers ;\n`;
+                  prefix = "ex";
+                  category = "Bleachers";
                 } else if (linkData[0]['properties']['leisure'] == "nature_reserve") {
                   keywords.push("nature");
                   keywords.push("reserve");
-                  turtleOutput += `${tripleIdentifier} a lgdo:NatureReserve ;\n`;
+                  prefix = "lgdo";
+                  category = "NatureReserve";
                 } else {
-                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  prefix = "schema";
+                  category = "Place";
                   console.log(linkData[0]['properties']);
                 }
                 //HISTORIC
               } else if (linkData[0]['properties']['historic']) {
                 if (linkData[0]['properties']['historic'] == "building") {
                   keywords.push("building");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Building ;\n`;
+                  prefix = "lgdo";
+                  category = "Building";
                 } else if (linkData[0]['properties']['historic'] == "memorial") {
                   keywords.push("memorial");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Memorial ;\n`;
+                  prefix = "lgdo";
+                  category = "Memorial";
                 } else if (linkData[0]['properties']['historic'] == "ruins") {
                   keywords.push("ruins");
                   keywords.push("ruin");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Ruins ;\n`;
+                  prefix = "lgdo";
+                  category = "Ruins";
                 } else if (linkData[0]['properties']['historic'] == "wayside_cross") {
                   keywords.push("cross");
                   keywords.push("wayside");
-                  turtleOutput += `${tripleIdentifier} a ex:WaysideCross ;\n`;
+                  prefix = "ex";
+                  category = "WaysideCross";
                 } else if (linkData[0]['properties']['historic'] == "wayside_shrine") {
                   keywords.push("shrine");
-                  turtleOutput += `${tripleIdentifier} a dbp:Shrine ;\n`;
+                  prefix = "dbp";
+                  category = "Shrine";
                 } else if (linkData[0]['properties']['historic'] == "heritage_building") {
                   keywords.push("heritage");
                   keywords.push("building");
-                  turtleOutput += `${tripleIdentifier} a ex:HeritageBuilding ;\n`;
+                  prefix = "ex";
+                  category = "HeritageBuilding";
                 } else if (linkData[0]['properties']['historic'] == "fort") {
                   keywords.push("fort");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Fort ;\n`;
+                  prefix = "lgdo";
+                  category = "Fort";
                 } else if (linkData[0]['properties']['historic'] == "school") {
                   keywords.push("school");
-                  turtleOutput += `${tripleIdentifier} a schema:School ;\n`;
+                  prefix = "schema";
+                  category = "School";
                 } else if (linkData[0]['properties']['historic'] == "archaeological_site") {
                   keywords.push("archaeological");
                   keywords.push("archeology");
-                  turtleOutput += `${tripleIdentifier} a lgdo:ArchaeologicalSite ;\n`;
+                  prefix = "lgdo";
+                  category = "ArchaeologicalSite";
                 } else if (linkData[0]['properties']['historic'] == "monument") {
                   keywords.push("monument");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Monument ;\n`;
+                  prefix = "lgdo";
+                  category = "Monument";
                 } else if (linkData[0]['properties']['historic'] == "industrial") {
                   keywords.push("industrial");
-                  turtleOutput += `${tripleIdentifier} a lgdo:IndustrialProductionBuilding ;\n`;
+                  prefix = "lgdo";
+                  category = "IndustrialProductionBuilding";
                 } else if (linkData[0]['properties']['historic'] == "monastery") {
                   keywords.push("monastery");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Monastery ;\n`;
+                  prefix = "lgdo";
+                  category = "Monastery";
                 } else if (linkData[0]['properties']['historic'] == "house") {
                   keywords.push("house");
-                  turtleOutput += `${tripleIdentifier} a schema:House ;\n`;
+                  prefix = "schema";
+                  category = "House";
                 } else if (linkData[0]['properties']['historic'] == "bridge") {
                   keywords.push("bridge");
-                  turtleOutput += `${tripleIdentifier} a schema:Bridge ;\n`;
+                  prefix = "schema";
+                  category = "Bridge";
                 } else if (linkData[0]['properties']['historic'] == "chapel") {
                   keywords.push("chapel");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Chapel ;\n`;
+                  prefix = "lgdo";
+                  category = "Chapel";
                 } else if (linkData[0]['properties']['historic'] == "hospital") {
                   keywords.push("hospital");
-                  turtleOutput += `${tripleIdentifier} a schema:Hospital ;\n`;
+                  prefix = "schema";
+                  category = "Hospital";
                 } else if (linkData[0]['properties']['historic'] == "church") {
                   keywords.push("church");
-                  turtleOutput += `${tripleIdentifier} a schema:Church ;\n`;
+                  prefix = "schema";
+                  category = "Church";
                 } else if (linkData[0]['properties']['historic'] == "tower") {
                   keywords.push("tower");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Tower ;\n`;
+                  prefix = "lgdo";
+                  category = "Tower";
                 } else if (linkData[0]['properties']['historic'] == "castle_wall") {
                   keywords.push("castle");
                   keywords.push("wall");
-                  turtleOutput += `${tripleIdentifier} a ex:CastleWall ;\n`;
+                  prefix = "ex";
+                  category = "CastleWall";
                 } else if (linkData[0]['properties']['historic'] == "castle") {
                   keywords.push("castle");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Castle ;\n`;
+                  prefix = "lgdo";
+                  category = "Castle";
                 } else if (linkData[0]['properties']['historic'] == "prison") {
                   keywords.push("prison");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Prison ;\n`;
+                  prefix = "lgdo";
+                  category = "Prison";
                 } else if (linkData[0]['properties']['historic'] == "city_gate") {
                   keywords.push("gate");
                   keywords.push("city");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Prison ;\n`;
+                  prefix = "lgdo";
+                  category = "Prison";
                 } else if (linkData[0]['properties']['historic'] == "bank") {
                   keywords.push("bank");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Bank ;\n`;
+                  prefix = "lgdo";
+                  category = "Bank";
                 } else if (linkData[0]['properties']['historic'] == "cinema") {
                   keywords.push("cinema");
-                  turtleOutput += `${tripleIdentifier} a lgdo:Cinema ;\n`;
+                  prefix = "lgdo";
+                  category = "Cinema";
                 } else if (linkData[0]['properties']['historic'] == "water_gate") {
                   keywords.push("water");
                   keywords.push("gate");
-                  turtleOutput += `${tripleIdentifier} a ex:WaterGate ;\n`;
+                  prefix = "ex";
+                  category = "WaterGate";
                 } else if (linkData[0]['properties']['historic'] == "warehouse") {
                   keywords.push("warehouse");
-                  turtleOutput += `${tripleIdentifier} a ex:Warehouse ;\n`;
+                  prefix = "ex";
+                  category = "Warehouse";
                 } else if (linkData[0]['properties']['historic'] == "yes") {
-                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  prefix = "schema";
+                  category = "Place";
                 } else {
-                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  prefix = "schema";
+                  category = "Place";
                   console.log(linkData[0]['properties']);
                 }
                 //MEMORIAL
               } else if (linkData[0]['properties']['memorial']) {
                 if (linkData[0]['properties']['memorial'] == "plaque") {
                   keywords.push("plaque");
-                  turtleOutput += `${tripleIdentifier} a ex:Plaque ;\n`;
+                  prefix = "ex";
+                  category = "Plaque";
                 } else if (linkData[0]['properties']['memorial'] == "playground") {
                   keywords.push("playground");
-                  turtleOutput += `${tripleIdentifier} a schema:Playground ;\n`;
+                  prefix = "schema";
+                  category = "Playground";
                 } else {
-                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  prefix = "schema";
+                  category = "Place";
                   console.log(linkData[0]['properties']);
                 }
                 //sport
               } else if (linkData[0]['properties']['sport']) {
                 if (linkData[0]['properties']['sport'] == "jogging") {
                   keywords.push("jogging");
-                  turtleOutput += `${tripleIdentifier} a ex:Jogging ;\n`;
+                  prefix = "ex";
+                  category = "Jogging";
                 } else if (linkData[0]['properties']['sport'] == "climbing") {
                   keywords.push("climbing");
-                  turtleOutput += `${tripleIdentifier} a km4c:Climbing ;\n`;
+                  prefix = "km4c";
+                  category = "Climbing";
                 } else {
-                  turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                  prefix = "schema";
+                  category = "Place";
                   console.log(linkData[0]['properties']);
                 }
               }
               //ANDEREN!
               else {
                 printPlace = false;
-                //turtleOutput += `${tripleIdentifier} a schema:Place ;\n`;
+                //prefix = "schema";
+                category = "Place";
                 //console.log(linkData[0]['properties']);
               }
               if (relevant && printPlace) {
+                turtleOutput += `${tripleIdentifier} a ${prefix}:${category} ;\n`;
                 if (linkData[0]['properties']['name']) {
-                  turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
+                  turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}"; \n`;
                 }
                 else {
+                  if (linkData[0]['properties']["addr:street"]) {
+                    turtleOutput += `\tschema:name "${category} in ${linkData[0]['properties']["addr:street"]}"; \n`;
+                  } else {
+                    turtleOutput += `\tschema:name "${category}"; \n`;
 
+                  }
                 }
 
-                if (linkData[0]['properties']['name:nl'] && linkData[0]['properties']['name:nl'] != linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name:nl']}" ; \n`;
-                if (linkData[0]['properties']['website']) turtleOutput += `\tschema:url "${linkData[0]['properties']['website']}" ; \n`;
-                if (linkData[0]['properties']['phone']) turtleOutput += `\tschema:telephone "${linkData[0]['properties']['phone']}" ; \n`;
-                if (linkData[0]['properties']['alt_name']) turtleOutput += `\tschema:alternateName "${linkData[0]['properties']['alt_name']}" ; \n`;
-                if (linkData[0]['properties']['amenity']) turtleOutput += `\tschema:amenityFeature "${linkData[0]['properties']['amenity']}" ; \n`;
+                if (linkData[0]['properties']['name:nl'] && linkData[0]['properties']['name:nl'] != linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name:nl']}"; \n`;
+                if (linkData[0]['properties']['website']) turtleOutput += `\tschema:url "${linkData[0]['properties']['website']}"; \n`;
+                if (linkData[0]['properties']['phone']) turtleOutput += `\tschema:telephone "${linkData[0]['properties']['phone']}"; \n`;
+                if (linkData[0]['properties']['alt_name']) turtleOutput += `\tschema:alternateName "${linkData[0]['properties']['alt_name']}"; \n`;
+                if (linkData[0]['properties']['amenity']) turtleOutput += `\tschema:amenityFeature "${linkData[0]['properties']['amenity']}"; \n`;
+                if (linkData[0]['properties']['wikidata']) turtleOutput += `\tschema:sameAs https://www.wikidata.org/entity/${linkData[0]['properties']['wikidata']}; \n`;
                 if (linkData[0]['properties']["addr:street"]) {
-                  turtleOutput += `\tschema:PostalAddress [ 
-                                    \ta schema:PostalAddress ;
-                                    \tschema:streetAddress "${linkData[0]['properties']["addr:street"]}" ;\n`;
-                  if (linkData[0]['properties']["addr:housenumber"]) turtleOutput += `\t\tschema:postOfficeBoxNumber "${linkData[0]['properties']["addr:housenumber"]}" ; \n`;
-                  if (linkData[0]['properties']["addr:postcode"]) turtleOutput += `\t\tschema:postalCode "${linkData[0]['properties']["addr:postcode"]}" ; \n`;
-                  if (linkData[0]['properties']["addr:city"]) turtleOutput += `\t\tschema:addressLocality "${linkData[0]['properties']["addr:city"]}" ; \n`;
-                  if (linkData[0]['properties']["addr:country"]) turtleOutput += `\t\tschema:addressCountry "${linkData[0]['properties']["addr:country"]}" ; \n`;
-                  turtleOutput += `\t] ; \n`;
+                  turtleOutput += `\tschema: PostalAddress[
+                  \ta schema: PostalAddress;
+                  \tschema:streetAddress "${linkData[0]['properties']["addr:street"]}"; \n`;
+                  if (linkData[0]['properties']["addr:housenumber"]) turtleOutput += `\t\tschema:postOfficeBoxNumber "${linkData[0]['properties']["addr:housenumber"]}"; \n`;
+                  if (linkData[0]['properties']["addr:postcode"]) turtleOutput += `\t\tschema:postalCode "${linkData[0]['properties']["addr:postcode"]}"; \n`;
+                  if (linkData[0]['properties']["addr:city"]) turtleOutput += `\t\tschema:addressLocality "${linkData[0]['properties']["addr:city"]}"; \n`;
+                  if (linkData[0]['properties']["addr:country"]) turtleOutput += `\t\tschema:addressCountry "${linkData[0]['properties']["addr:country"]}"; \n`;
+                  turtleOutput += `\t]; \n`;
                 }
                 if (linkData[0]['properties']['cuisine']) {
                   for (let item of linkData[0]['properties']['cuisine'].split(';')) {
-                    turtleOutput += `\tschema:servesCuisine "${item}" ; \n`;
-                    turtleOutput += `\tschema:keyword "${item}" ; \n`;
+                    turtleOutput += `\tschema:servesCuisine "${item}"; \n`;
+                    turtleOutput += `\tschema:keyword "${item}"; \n`;
                     keywords.push(item);
                   }
                 }
                 for (let keyword of keywords) {
-                  turtleOutput += `\tschema:keyword "${keyword}" ; \n`;
+                  turtleOutput += `\tschema:keyword "${keyword}"; \n`;
                 }
                 if (linkData[0]['geometry']['type'] == "Point") {
-                  turtleOutput += `\tschema:geo [ 
-                    \ta geo:Point ;
-                    \tgeo:lat "${linkData[0]['geometry']['coordinates'][0]}" ;
-                    \tgeo:long "${linkData[0]['geometry']['coordinates'][1]}" ;
-                  ] . \n`;
+                  turtleOutput += `\tschema: geo[
+                  \ta geo: Point;
+                  \tgeo:lat "${linkData[0]['geometry']['coordinates'][0]}";
+                  \tgeo:long "${linkData[0]['geometry']['coordinates'][1]}";
+                  ] .\n`;
                 } else if (linkData[0]['geometry']['type'] == "Polygon") {
-                  turtleOutput += `\tschema:geo [ 
-                    \ta geo:Point ;
-                    \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0][0]}" ;
-                    \tgeo:long "${linkData[0]['geometry']['coordinates'][0][0][1]}" ;
-                  ] . \n`;
+                  turtleOutput += `\tschema: geo[
+                  \ta geo: Point;
+                  \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0][0]}";
+                  \tgeo:long "${linkData[0]['geometry']['coordinates'][0][0][1]}";
+                  ] .\n`;
 
                 } else if (linkData[0]['geometry']['type'] == "LineString") {
-                  turtleOutput += `\tschema:geo [ 
-                    \ta geo:Point ;
-                    \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0]}" ;
-                    \tgeo:long "${linkData[0]['geometry']['coordinates'][0][1]}" ;
-                  ] . \n`;
+                  turtleOutput += `\tschema: geo[
+                  \ta geo: Point;
+                  \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0]}";
+                  \tgeo:long "${linkData[0]['geometry']['coordinates'][0][1]}";
+                  ] .\n`;
                 } else if (linkData[0]['geometry']['type'] == "MultiPolygon") {
-                  turtleOutput += `\tschema:geo [ 
-                    \ta geo:Point ;
-                    \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0][0][0]}" ;
-                    \tgeo:long "${linkData[0]['geometry']['coordinates'][0][0][0][1]}" ;
-                  ] . \n`;
+                  turtleOutput += `\tschema: geo[
+                  \ta geo: Point;
+                  \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0][0][0]}";
+                  \tgeo:long "${linkData[0]['geometry']['coordinates'][0][0][0][1]}";
+                  ] .\n`;
                 }
               }
               keywords.forEach(t => this.allKeywords.add(t));
