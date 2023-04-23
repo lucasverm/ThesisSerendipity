@@ -222,7 +222,7 @@ export class GraphComponent {
         if (distance < shortestPath[neighbor].distance) {
           shortestPath[neighbor].distance = distance;
           shortestPath[neighbor].previous = currentNode;
-          shortestPath[neighbor].avgCorrelation = avgCorrelation;
+          shortestPath[neighbor].avgCorrelation = (shortestPath[currentNode].avgCorrelation + edgeAtr['correlation']);
           shortestPath[neighbor].avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']);
           shortestPath[neighbor].numberOfNodesBefore = shortestPath[currentNode].numberOfNodesBefore + 1;
         }

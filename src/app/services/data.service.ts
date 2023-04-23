@@ -237,7 +237,7 @@ export class DataService {
             while (linkData.length != 0) {
               let printPlace = true;
               Object.keys(linkData[0]['properties']).forEach(t => sleutels.add(t));
-             // let idZonderNode: String = String(linkData[0]['id']).replace("node/", "");
+              // let idZonderNode: String = String(linkData[0]['id']).replace("node/", "");
               let idZonderNode: String = String(linkData[0]['id']);
               let tripleIdentifier = `<ex/${idZonderNode}>`;
               //AMENITY
@@ -926,7 +926,13 @@ export class DataService {
                 //console.log(linkData[0]['properties']);
               }
               if (relevant && printPlace) {
-                if (linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
+                if (linkData[0]['properties']['name']) {
+                  turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
+                }
+                else {
+
+                }
+
                 if (linkData[0]['properties']['name:nl'] && linkData[0]['properties']['name:nl'] != linkData[0]['properties']['name']) turtleOutput += `\tschema:name "${linkData[0]['properties']['name:nl']}" ; \n`;
                 if (linkData[0]['properties']['website']) turtleOutput += `\tschema:url "${linkData[0]['properties']['website']}" ; \n`;
                 if (linkData[0]['properties']['phone']) turtleOutput += `\tschema:telephone "${linkData[0]['properties']['phone']}" ; \n`;
