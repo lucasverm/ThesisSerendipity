@@ -4,12 +4,18 @@
     float: left;
 }
 
+.container {
+    float: right;
+}
+
 .graafContainer {
     width: 55vw;
-    float: right;
+
     height: 700px;
     border: 1px solid black;
     margin: 10px;
 }
 
-p{margin-top: 15px;}
+p {
+    margin-top: 15px;
+}

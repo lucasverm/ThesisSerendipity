@@ -14,11 +14,18 @@
         </ng-template>
     </p-autoComplete>
 
+
+    <app-triangle (distanceMouseUpEventEmitter)="handleTriangleChange($event)"
+        (distanceChangingEventEmitter)="handleTriangleChangingValuesChange($event)"></app-triangle>
+    <app-triangle-slider-visualisation [title]="'Correlation'" [color]="'orange'"
+        [value]="this.changingFactorValues['value1']"></app-triangle-slider-visualisation>
+    <app-triangle-slider-visualisation [title]="'Walking distance'" [color]="'green'"
+        [value]="this.changingFactorValues['value2']"></app-triangle-slider-visualisation>
+    <app-triangle-slider-visualisation [title]="'Randomness'" [color]="'blue'"
+        [value]="this.changingFactorValues['value3']"></app-triangle-slider-visualisation>
 </div>
-<app-triangle (distanceEventEmitter)="handleTriangleChange($event)"></app-triangle>
-<p>correlationFactor: {{this.correlationFactor}}</p>
-<p>distanceBetweenNodesFactor: {{this.distanceBetweenNodesFactor}}</p>
-<p>randomFactor: {{this.randomFactor}}</p>
-<div #container class="graafContainer">
-    <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
+<div class="container">
+    <div #container class="graafContainer">
+        <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
+    </div>
 </div>

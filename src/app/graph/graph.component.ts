@@ -41,6 +41,7 @@ export class GraphComponent {
   public maxDistanceToHuidigePositie = 0;
   public minDistanceBetweenNodes = Infinity;
   public maxDistanceBetweenNodes = 0;
+  public changingFactorValues: any = { value1: 0.333, value2: 0.333, value3: 0.333, };
 
   @ViewChild("container") container: ElementRef;
 
@@ -52,6 +53,10 @@ export class GraphComponent {
     this.distanceBetweenNodesFactor = Math.round(event['value2'] * 100) / 100;
     this.randomFactor = Math.round(event['value3'] * 100) / 100;
     this.calculatePath(3.7197324, 51.0569223);
+  }
+
+  handleTriangleChangingValuesChange(event: any) {
+    this.changingFactorValues = event;
   }
 
   ngAfterViewInit() {
@@ -193,6 +198,7 @@ export class GraphComponent {
         previous: null,
         avgCorrelation: 0,
         totalDistanceInBetweenNodes: 0,
+        totalRandomnes: 0,
         numberOfNodesBefore: 1
       };
     });
@@ -225,13 +231,15 @@ export class GraphComponent {
         const edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
         const avgCorrelation = (shortestPath[currentNode].avgCorrelation + edgeAtr['correlation']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
-        const weight = 100 * ((this.correlationFactor) * avgCorrelation) + ((this.distanceBetweenNodesFactor) * avgDistanceInBetweenNodes) + 0.03 * (this.randomFactor * edgeAtr['randomValue']);
+        const avgRandomness = (shortestPath[currentNode].totalRandomnes + edgeAtr['randomValue']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
+        const weight = 100 * ((this.correlationFactor) * avgCorrelation) + ((this.distanceBetweenNodesFactor) * avgDistanceInBetweenNodes) + 0.03 * (this.randomFactor * avgRandomness);
         const distance = currentDistance + weight;
         if (distance < shortestPath[neighbor].distance) {
           shortestPath[neighbor].distance = distance;
           shortestPath[neighbor].previous = currentNode;
           shortestPath[neighbor].avgCorrelation = (shortestPath[currentNode].avgCorrelation + edgeAtr['correlation']);
           shortestPath[neighbor].avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']);
+          shortestPath[neighbor].totalRandomnes = (shortestPath[currentNode].totalRandomnes + edgeAtr['randomValue']);
           shortestPath[neighbor].numberOfNodesBefore = shortestPath[currentNode].numberOfNodesBefore + 1;
         }
       });

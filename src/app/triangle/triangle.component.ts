@@ -28,7 +28,10 @@ export class TriangleComponent {
   private movingPoint: Point = { x: 250, y: 250 };
   private middlePoint: Point;
 
-  @Output() distanceEventEmitter = new EventEmitter<any>();
+  @Output() distanceMouseUpEventEmitter = new EventEmitter<any>();
+
+  @Output() distanceChangingEventEmitter = new EventEmitter<any>();
+
 
 
   fixCanvas() {
@@ -115,12 +118,13 @@ export class TriangleComponent {
       }
       this.refreshDrawing();
       this.calculateDistances();
+      this.distanceChangingEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
     }
   }
 
   onMouseUp(event: MouseEvent): void {
     this.isDragging = false;
-    this.distanceEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
+    this.distanceMouseUpEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
   }
 
   public projectPointOnLineSegment(point: Point, endpoint1: Point, endpoint2: Point) {
@@ -256,7 +260,7 @@ export class TriangleComponent {
 
 
   private drawPoint(point: Point, color?: string) {
-    if (!color) color = "red";
+    if (!color) color = "black";
     this.context?.beginPath();
     this.context?.arc(point.x, point.y, this.pointRadius, 0, 2 * Math.PI, true);
     if (this.context) this.context.fillStyle = color;

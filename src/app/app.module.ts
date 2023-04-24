@@ -13,6 +13,7 @@ import { MapComponent } from './map/map.component';
 import { ParseRmlComponent } from './parse-rml/parse-rml.component';
 import { QueryComponent } from './query/query.component';
 import { TriangleComponent } from './triangle/triangle.component';
+import { TriangleSliderVisualisationComponent } from './triangle-slider-visualisation/triangle-slider-visualisation.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TriangleComponent } from './triangle/triangle.component';
     QueryComponent,
     ParseRmlComponent,
     GraphComponent,
-    TriangleComponent
+    TriangleComponent,
+    TriangleSliderVisualisationComponent
   ],
   imports: [
     BrowserModule,
