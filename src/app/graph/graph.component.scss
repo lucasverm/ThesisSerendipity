@@ -9,16 +9,27 @@
 }
 
 .graafContainer {
-    width: 55vw;
+    width: 100%;
     height: 400px;
+}
+
+.triangle-visualisation {
+    width: 100%;
 }
 
 .userGraafEnKompas {
     border: 1px solid black;
     margin: 20px;
+    width: 64vw;
+    overflow-wrap: break-word;
 
     img {
         margin: 5px;
+    }
+
+    .wayList {
+        overflow-wrap: break-word;
+        width: 100px !important;
     }
 }
 

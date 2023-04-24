@@ -19,7 +19,7 @@ export class TriangleComponent {
   private trianglePoint1: Point;
   private trianglePoint2: Point;
   private trianglePoint3: Point;
-  private pointRadius: number = 7;
+  private pointRadius: number = 10;
   public distance1: number;
   public distance2: number;
   public distance3: number;
@@ -63,7 +63,6 @@ export class TriangleComponent {
     this.drawHelpingLines();
     this.drawPoint(this.movingPoint);
     this.calculateDistances();
-
   }
 
   public getObjectFitSize(
@@ -166,7 +165,7 @@ export class TriangleComponent {
   }
 
   private drawHelpingLines() {
-    /*this.context?.moveTo(this.trianglePoint1.x, this.trianglePoint1.y);
+    this.context?.moveTo(this.trianglePoint1.x, this.trianglePoint1.y);
     let overliggendPunt = this.middleOf2Points(this.trianglePoint2, this.trianglePoint3)
     this.context?.lineTo(overliggendPunt.x, overliggendPunt.y);
 
@@ -179,8 +178,7 @@ export class TriangleComponent {
     this.context?.lineTo(overliggendPunt.x, overliggendPunt.y);
 
     this.context?.stroke();
-    this.context?.closePath();*/
-
+    this.context?.closePath();
     //this.drawTriangle(this.trianglePoint1, this.trianglePoint2, this.middlePoint);
 
   }
@@ -230,12 +228,38 @@ export class TriangleComponent {
   }
 
   public drawTriangle(point1: Point, point2: Point, point3: Point) {
+    var radius = 360;
+    var grd1 = this.context?.createRadialGradient(point1.x, point1.y, 0, point1.x, point1.y, radius);
+    grd1?.addColorStop(0, "orange");
+    grd1?.addColorStop(1, "#FF000000");
+
+    var grd2 = this.context?.createRadialGradient(point2.x, point2.y, 0, point2.x, point2.y, radius);
+    grd2?.addColorStop(0, "green");
+    grd2?.addColorStop(1, "#00FF0000");
+
+    var grd3 = this.context?.createRadialGradient(point3.x, point3.y, 0, point3.x, point3.y, radius);
+    grd3?.addColorStop(0, "blue");
+    grd3?.addColorStop(1, "#0000FF00");
     this.context?.beginPath();
-    this.context?.moveTo(this.trianglePoint1.x, this.trianglePoint1.y);
-    this.context?.lineTo(this.trianglePoint2.x, this.trianglePoint2.y);
-    this.context?.lineTo(this.trianglePoint3.x, this.trianglePoint3.y);
-    this.context?.lineTo(this.trianglePoint1.x, this.trianglePoint1.y);
+    this.context?.moveTo(point1.x, point1.y);
+    this.context?.lineTo(point2.x, point2.y);
+    this.context?.lineTo(point3.x, point3.y);
+    this.context?.lineTo(point1.x, point1.y);
     this.context?.stroke();
+    // fill with black
+    this.context?.fill();
+
+    // set blend mode
+    if (this.context) this.context.globalCompositeOperation = "lighter";
+
+    if (this.context && grd1) this.context.fillStyle = grd1;
+    this.context?.fill();
+
+    if (this.context && grd2) this.context.fillStyle = grd2;
+    this.context?.fill();
+
+    if (this.context && grd3) this.context.fillStyle = grd3;
+    this.context?.fill();
     this.context?.closePath();
   }
 
@@ -261,6 +285,7 @@ export class TriangleComponent {
 
   private drawPoint(point: Point, color?: string) {
     if (!color) color = "black";
+    if (this.context) this.context.globalCompositeOperation = "source-over";
     this.context?.beginPath();
     this.context?.arc(point.x, point.y, this.pointRadius, 0, 2 * Math.PI, true);
     if (this.context) this.context.fillStyle = color;
@@ -288,7 +313,7 @@ export class TriangleComponent {
     this.context?.clearRect(0, 0, this.triangleGrootte + 2 * this.canvasOffset, this.triangleGrootte + 2 * this.canvasOffset);
     this.drawTriangle(this.trianglePoint1, this.trianglePoint2, this.trianglePoint3);
     this.drawPoint(this.movingPoint);
-    this.drawHelpingLines();
+    //this.drawHelpingLines();
     //this.drawProjectedPoints();
   }
 

@@ -267,8 +267,7 @@ export class GraphComponent {
       this.calculatedWegToShow = [];
       weg.forEach(t => {
         let atrData = this.graaf.getNodeAttributes(t);
-        this.calculatedWegToShow.push(atrData);
-        console.log(atrData)
+        this.calculatedWegToShow.push(atrData); 
       });
       this.linkTheseNodesInVisualisation = weg;
     } else {

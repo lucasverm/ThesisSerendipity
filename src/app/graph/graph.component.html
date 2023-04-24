@@ -16,14 +16,20 @@
 
 
     <app-triangle (distanceMouseUpEventEmitter)="handleTriangleChange($event)"
-        (distanceChangingEventEmitter)="handleTriangleChangingValuesChange($event)"
-        style="margin-bottom:15px"></app-triangle>
-    <app-triangle-slider-visualisation [title]="'Similarity level'" [color]="'orange'"
-        [value]="this.changingFactorValues['value1']"></app-triangle-slider-visualisation>
-    <app-triangle-slider-visualisation [title]="'Less walking'" [color]="'green'"
-        [value]="this.changingFactorValues['value2']"></app-triangle-slider-visualisation>
-    <app-triangle-slider-visualisation [title]="'Level of randomness'" [color]="'blue'"
-        [value]="this.changingFactorValues['value3']"></app-triangle-slider-visualisation>
+        (distanceChangingEventEmitter)="handleTriangleChangingValuesChange($event)"></app-triangle>
+
+    <div class="triangle-visualisation">
+        <app-triangle-slider-visualisation [title]="'Similarity level'" [color]="'orange'"
+            [value]="this.changingFactorValues['value1']"></app-triangle-slider-visualisation>
+    </div>
+    <div class="triangle-visualisation">
+        <app-triangle-slider-visualisation [title]="'Less walking'" [color]="'green'"
+            [value]="this.changingFactorValues['value2']"></app-triangle-slider-visualisation>
+    </div>
+    <div class="triangle-visualisation">
+        <app-triangle-slider-visualisation [title]="'Level of randomness'" [color]="'blue'"
+            [value]="this.changingFactorValues['value3']"></app-triangle-slider-visualisation>
+    </div>
 </div>
 <div class="container">
     <!--<div #container class="graafContainer">
@@ -34,6 +40,9 @@
         <div #containerForUser class="graafContainer">
             <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
         </div>
+    </div>
+    <div class="wayList">
+
     </div>
     <ol>
         <ng-container *ngFor="let item of this.calculatedWegToShow; let i=index">
