@@ -19,7 +19,7 @@ export class TriangleComponent {
   private trianglePoint1: Point;
   private trianglePoint2: Point;
   private trianglePoint3: Point;
-  private pointRadius: number = 10;
+  private pointRadius: number = 7;
   public distance1: number;
   public distance2: number;
   public distance3: number;
@@ -241,6 +241,7 @@ export class TriangleComponent {
     grd3?.addColorStop(0, "blue");
     grd3?.addColorStop(1, "#0000FF00");
     this.context?.beginPath();
+    if (this.context) this.context.fillStyle = "black";
     this.context?.moveTo(point1.x, point1.y);
     this.context?.lineTo(point2.x, point2.y);
     this.context?.lineTo(point3.x, point3.y);
@@ -284,7 +285,7 @@ export class TriangleComponent {
 
 
   private drawPoint(point: Point, color?: string) {
-    if (!color) color = "black";
+    if (!color) color = "red";
     if (this.context) this.context.globalCompositeOperation = "source-over";
     this.context?.beginPath();
     this.context?.arc(point.x, point.y, this.pointRadius, 0, 2 * Math.PI, true);
