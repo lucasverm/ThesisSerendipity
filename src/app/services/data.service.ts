@@ -92,6 +92,13 @@ export class DataService {
     return this.http.get('./assets/data/categorical_similarities.csv', { responseType: 'text' });
   }
 
+  public getWikidataImage$(url: string): Observable<any> {
+    let wikidataId = url.split("/")[url.split("/").length - 1]
+    let query = `SELECT ?image { wd:${wikidataId} wdt:P18 ?image } LIMIT 1`;
+    return this.http.get(`https://query.wikidata.org/bigdata/namespace/wdq/sparql?query=${query}`);
+  }
+
+
   private doubleArrayToObject(arr: any[][]): any {
     this.getCSVData$
     const obj: any = {};

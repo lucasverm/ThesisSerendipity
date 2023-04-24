@@ -62,7 +62,6 @@ export class GraphComponent {
   }
 
   ngAfterViewInit() {
-
     forkJoin({
       getTurtleOfNodeData$: this.dataService.getTurtleOfData$(this.dataService.getNodeJsonData$()),
       getTurtleOfWayData$: this.dataService.getTurtleOfData$(this.dataService.getWayJsonData$()),
@@ -71,7 +70,6 @@ export class GraphComponent {
     }).subscribe(results => {
       this.data = [... this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$)[`@graph`], ... this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$)[`@graph`], ...this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$)[`@graph`]]
       this.data = this.data.slice(0, 500);
-      console.log(this.data.length)
       this.destination = this.data[0];
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
       this.buildGraph(3.7197324, 51.0569223);
@@ -258,7 +256,6 @@ export class GraphComponent {
     return way;
   }
 
-
   public calculatePath(currentPositionLat: number, currentPositionLong: number) {
     this.addEdgesToGraph(currentPositionLat, currentPositionLong);
     if (this.destination != null && this.destination != "") {
@@ -268,6 +265,13 @@ export class GraphComponent {
       this.calculatedWayToShow = [];
       way.forEach(t => {
         let atrData = this.graph.getNodeAttributes(t);
+        if (atrData['schema:sameAs']) {
+          this.dataService.getWikidataImage$(atrData['schema:sameAs']).subscribe(t => {
+            if (t['results']['bindings'][0]) {
+              atrData['imagelink'] = t['results']['bindings'][0]['image']['value'];
+            }
+          })
+        }
         this.calculatedWayToShow.push(atrData);
       });
       this.linkTheseNodesInVisualisation = way;
