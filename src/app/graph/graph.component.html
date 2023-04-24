@@ -13,14 +13,12 @@
             </div>
         </ng-template>
     </p-autoComplete>
-    <p>rechte lijn <-> meer categorie: {{this.factor/1000}}</p>
-    <p-slider [(ngModel)]="this.factor" [min]="0" [max]="999"
-        (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
-    <p>randomness: {{this.randomFactor/1000}}</p>
-    <p-slider [(ngModel)]="this.randomFactor" [min]="0" [max]="999"
-        (onSlideEnd)="this.calculatePath(3.7197324, 51.0569223);"></p-slider>
+
 </div>
-<app-triangle></app-triangle>
+<app-triangle (distanceEventEmitter)="handleTriangleChange($event)"></app-triangle>
+<p>correlationFactor: {{this.correlationFactor}}</p>
+<p>distanceBetweenNodesFactor: {{this.distanceBetweenNodesFactor}}</p>
+<p>randomFactor: {{this.randomFactor}}</p>
 <div #container class="graafContainer">
     <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
 </div>

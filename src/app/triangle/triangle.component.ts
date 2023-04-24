@@ -1,4 +1,4 @@
-import { Component, ElementRef, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 
 interface Point {
   x: number;
@@ -19,14 +19,16 @@ export class TriangleComponent {
   private trianglePoint1: Point;
   private trianglePoint2: Point;
   private trianglePoint3: Point;
-  private pointRadius: number = 5;
-  @Output() public distance1: number;
-  @Output() public distance2: number;
-  @Output() public distance3: number;
-  private triangleGrootte = 400;
+  private pointRadius: number = 7;
+  public distance1: number;
+  public distance2: number;
+  public distance3: number;
+  private triangleGrootte = 300;
   private canvasOffset = 5;
   private movingPoint: Point = { x: 250, y: 250 };
   private middlePoint: Point;
+
+  @Output() distanceEventEmitter = new EventEmitter<any>();
 
 
   fixCanvas() {
@@ -118,7 +120,7 @@ export class TriangleComponent {
 
   onMouseUp(event: MouseEvent): void {
     this.isDragging = false;
-
+    this.distanceEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
   }
 
   public projectPointOnLineSegment(point: Point, endpoint1: Point, endpoint2: Point) {

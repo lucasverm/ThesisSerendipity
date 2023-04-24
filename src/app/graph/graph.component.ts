@@ -30,8 +30,9 @@ export class GraphComponent {
   public graaf: Graph;
   public data: any[];
   public categoricalSimilaritiesObject: any;
-  public factor: number = 500;
-  public randomFactor: number = 0;
+  public correlationFactor: number = 0.333;
+  public distanceBetweenNodesFactor: number = 0.333;
+  public randomFactor: number = 0.333;
   public linkTheseNodesInVisualisation: String[] = [];
   public destination: any;
   public filteredDataSearchBox: any[] = [];
@@ -44,6 +45,13 @@ export class GraphComponent {
   @ViewChild("container") container: ElementRef;
 
   constructor(private http: HttpClient, private dataService: DataService) {
+  }
+
+  handleTriangleChange(event: any) {
+    this.correlationFactor = Math.round(event['value1'] * 100) / 100;
+    this.distanceBetweenNodesFactor = Math.round(event['value2'] * 100) / 100;
+    this.randomFactor = Math.round(event['value3'] * 100) / 100;
+    this.calculatePath(3.7197324, 51.0569223);
   }
 
   ngAfterViewInit() {
@@ -217,7 +225,7 @@ export class GraphComponent {
         const edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
         const avgCorrelation = (shortestPath[currentNode].avgCorrelation + edgeAtr['correlation']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
-        const weight = 100 * ((this.factor / 1000) * avgCorrelation) + ((1 - (this.factor / 1000)) * avgDistanceInBetweenNodes) + 0.03 * (this.randomFactor * edgeAtr['randomValue']);
+        const weight = 100 * ((this.correlationFactor) * avgCorrelation) + ((this.distanceBetweenNodesFactor) * avgDistanceInBetweenNodes) + 0.03 * (this.randomFactor * edgeAtr['randomValue']);
         const distance = currentDistance + weight;
         if (distance < shortestPath[neighbor].distance) {
           shortestPath[neighbor].distance = distance;
