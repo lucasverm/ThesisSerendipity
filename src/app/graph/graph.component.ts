@@ -71,6 +71,7 @@ export class GraphComponent {
     }).subscribe(results => {
       this.data = [... this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$)[`@graph`], ... this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$)[`@graph`], ...this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$)[`@graph`]]
       this.data = this.data.slice(0, 500);
+      console.log(this.data.length)
       this.destination = this.data[0];
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
       this.buildGraph(3.7197324, 51.0569223);
@@ -267,7 +268,7 @@ export class GraphComponent {
       this.calculatedWegToShow = [];
       weg.forEach(t => {
         let atrData = this.graaf.getNodeAttributes(t);
-        this.calculatedWegToShow.push(atrData); 
+        this.calculatedWegToShow.push(atrData);
       });
       this.linkTheseNodesInVisualisation = weg;
     } else {
