@@ -46,7 +46,7 @@
 
     </div>
     <ol>
-        <ng-container *ngFor="let item of this.calculatedWegToShow; let i=index">
+        <ng-container *ngFor="let item of this.calculatedWayToShow; let i=index">
             <li>{{item['schema:name']}} <span
                     *ngIf="keywordsToArray(item['schema:keyword']).length !=0">({{keywordsToArray(item['schema:keyword']).toString().replaceAll(",",
                     ", ")}})</span>

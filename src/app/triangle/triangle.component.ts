@@ -23,16 +23,13 @@ export class TriangleComponent {
   public distance1: number;
   public distance2: number;
   public distance3: number;
-  private triangleGrootte = 300;
+  private triangleSize = 300;
   private canvasOffset = 5;
   private movingPoint: Point = { x: 250, y: 250 };
-  private middlePoint: Point;
+  private centerPoint: Point;
 
   @Output() distanceMouseUpEventEmitter = new EventEmitter<any>();
-
   @Output() distanceChangingEventEmitter = new EventEmitter<any>();
-
-
 
   fixCanvas() {
     const originalHeight = this.canvasRef.nativeElement.height;
@@ -102,7 +99,6 @@ export class TriangleComponent {
       this.offset.x = event.offsetX - this.movingPoint.x;
       this.offset.y = event.offsetY - this.movingPoint.y;
     }
-
   }
 
   onMouseMove(event: MouseEvent) {
@@ -147,53 +143,53 @@ export class TriangleComponent {
   }
 
   private calculateDistances() {
-    let factor = Math.sqrt(Math.pow(this.triangleGrootte, 2) - Math.pow(this.triangleGrootte / 2, 2));
+    let factor = Math.sqrt(Math.pow(this.triangleSize, 2) - Math.pow(this.triangleSize / 2, 2));
     //distance1
-    let overliggendPunt = this.middleOf2Points(this.trianglePoint2, this.trianglePoint3)
-    let projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint1, overliggendPunt);
+    let oppositePoint = this.middleOf2Points(this.trianglePoint2, this.trianglePoint3)
+    let projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint1, oppositePoint);
     this.distance1 = 1 - this.distanceBetweenPoints(this.trianglePoint1, projectedPoint) / factor;
 
     //distance2
-    overliggendPunt = this.middleOf2Points(this.trianglePoint1, this.trianglePoint3)
-    projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint2, overliggendPunt);
+    oppositePoint = this.middleOf2Points(this.trianglePoint1, this.trianglePoint3)
+    projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint2, oppositePoint);
     this.distance2 = 1 - this.distanceBetweenPoints(this.trianglePoint2, projectedPoint) / factor;
 
     //distance3
-    overliggendPunt = this.middleOf2Points(this.trianglePoint1, this.trianglePoint2)
-    projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint3, overliggendPunt);
+    oppositePoint = this.middleOf2Points(this.trianglePoint1, this.trianglePoint2)
+    projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint3, oppositePoint);
     this.distance3 = 1 - this.distanceBetweenPoints(this.trianglePoint3, projectedPoint) / factor;
   }
 
   private drawHelpingLines() {
     this.context?.moveTo(this.trianglePoint1.x, this.trianglePoint1.y);
-    let overliggendPunt = this.middleOf2Points(this.trianglePoint2, this.trianglePoint3)
-    this.context?.lineTo(overliggendPunt.x, overliggendPunt.y);
+    let oppositePoint = this.middleOf2Points(this.trianglePoint2, this.trianglePoint3)
+    this.context?.lineTo(oppositePoint.x, oppositePoint.y);
 
     this.context?.moveTo(this.trianglePoint2.x, this.trianglePoint2.y);
-    overliggendPunt = this.middleOf2Points(this.trianglePoint1, this.trianglePoint3)
-    this.context?.lineTo(overliggendPunt.x, overliggendPunt.y);
+    oppositePoint = this.middleOf2Points(this.trianglePoint1, this.trianglePoint3)
+    this.context?.lineTo(oppositePoint.x, oppositePoint.y);
 
     this.context?.moveTo(this.trianglePoint3.x, this.trianglePoint3.y);
-    overliggendPunt = this.middleOf2Points(this.trianglePoint1, this.trianglePoint2)
-    this.context?.lineTo(overliggendPunt.x, overliggendPunt.y);
+    oppositePoint = this.middleOf2Points(this.trianglePoint1, this.trianglePoint2)
+    this.context?.lineTo(oppositePoint.x, oppositePoint.y);
 
     this.context?.stroke();
     this.context?.closePath();
-    //this.drawTriangle(this.trianglePoint1, this.trianglePoint2, this.middlePoint);
+    //this.drawTriangle(this.trianglePoint1, this.trianglePoint2, this.centerPoint);
 
   }
 
   private drawProjectedPoints() {
-    let overliggendPunt = this.middleOf2Points(this.trianglePoint2, this.trianglePoint3)
-    let projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint1, overliggendPunt);
+    let oppositePoint = this.middleOf2Points(this.trianglePoint2, this.trianglePoint3)
+    let projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint1, oppositePoint);
     this.drawPoint(projectedPoint, "blue");
 
-    overliggendPunt = this.middleOf2Points(this.trianglePoint1, this.trianglePoint3)
-    projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint2, overliggendPunt);
+    oppositePoint = this.middleOf2Points(this.trianglePoint1, this.trianglePoint3)
+    projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint2, oppositePoint);
     this.drawPoint(projectedPoint, "blue");
 
-    overliggendPunt = this.middleOf2Points(this.trianglePoint1, this.trianglePoint2)
-    projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint3, overliggendPunt);
+    oppositePoint = this.middleOf2Points(this.trianglePoint1, this.trianglePoint2)
+    projectedPoint = this.projectPointOnLineSegment(this.movingPoint, this.trianglePoint3, oppositePoint);
     this.drawPoint(projectedPoint, "blue");
 
   }
@@ -204,9 +200,9 @@ export class TriangleComponent {
   }
 
   private drawMainTriangle(): void {
-    let topX = (this.triangleGrootte / 2) + this.canvasOffset;
+    let topX = (this.triangleSize / 2) + this.canvasOffset;
     let topY = 0 + this.canvasOffset;
-    var height = this.triangleGrootte * (Math.sqrt(3) / 2);
+    var height = this.triangleSize * (Math.sqrt(3) / 2);
     if (this.context) this.context.lineWidth = 1;
     if (this.context) this.context.fillStyle = "black";
     this.trianglePoint1 = {
@@ -214,16 +210,16 @@ export class TriangleComponent {
       y: topY
     };
     this.trianglePoint2 = {
-      x: topX + (this.triangleGrootte / 2),
+      x: topX + (this.triangleSize / 2),
       y: topY + height
     };
     this.trianglePoint3 = {
-      x: topX - (this.triangleGrootte / 2),
+      x: topX - (this.triangleSize / 2),
       y: topY + height,
     };
-    this.middlePoint = this.snijpuntRechten(this.trianglePoint3, this.middleOf2Points(this.trianglePoint1, this.trianglePoint2), this.trianglePoint2, this.middleOf2Points(this.trianglePoint1, this.trianglePoint3))
-    this.movingPoint.x = this.middlePoint.x;
-    this.movingPoint.y = this.middlePoint.y;
+    this.centerPoint = this.intersection2Lines(this.trianglePoint3, this.middleOf2Points(this.trianglePoint1, this.trianglePoint2), this.trianglePoint2, this.middleOf2Points(this.trianglePoint1, this.trianglePoint3))
+    this.movingPoint.x = this.centerPoint.x;
+    this.movingPoint.y = this.centerPoint.y;
     this.drawTriangle(this.trianglePoint1, this.trianglePoint2, this.trianglePoint3);
   }
 
@@ -264,7 +260,7 @@ export class TriangleComponent {
     this.context?.closePath();
   }
 
-  snijpuntRechten(point1: Point, point2: Point, point3: Point, point4: Point) {
+  intersection2Lines(point1: Point, point2: Point, point3: Point, point4: Point) {
     // Bereken de richtingscoëfficiënten van elke lijn
     const a1 = (point2.y - point1.y) / (point2.x - point1.x);
     const a2 = (point4.y - point3.y) / (point4.x - point3.x);
@@ -311,7 +307,7 @@ export class TriangleComponent {
   }
 
   refreshDrawing() {
-    this.context?.clearRect(0, 0, this.triangleGrootte + 2 * this.canvasOffset, this.triangleGrootte + 2 * this.canvasOffset);
+    this.context?.clearRect(0, 0, this.triangleSize + 2 * this.canvasOffset, this.triangleSize + 2 * this.canvasOffset);
     this.drawTriangle(this.trianglePoint1, this.trianglePoint2, this.trianglePoint3);
     this.drawPoint(this.movingPoint);
     //this.drawHelpingLines();

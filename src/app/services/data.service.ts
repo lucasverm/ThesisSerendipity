@@ -92,52 +92,6 @@ export class DataService {
     return this.http.get('./assets/data/categorical_similarities.csv', { responseType: 'text' });
   }
 
-  getSimilarityBetweenMainCategories() {
-    const data = new Map<string, Map<string, number>>();
-
-    const amenity = new Map<string, number>();
-    amenity.set('amenity', 1);
-    amenity.set('historic', 0.12574850299401196);
-    amenity.set('leisure', 0.17482517482517482);
-    amenity.set('shop', 0.4396039603960396);
-    amenity.set('tourism', 0.14432989690721648);
-
-    const historic = new Map<string, number>();
-    amenity.set('amenity', 0.12574850299401196);
-    amenity.set('historic', 1.0);
-    amenity.set('leisure', 0.132);
-    amenity.set('shop', 0.1839080459770115);
-    amenity.set('tourism', 0.16853932584269662);
-
-    const leisure = new Map<string, number>();
-    amenity.set('amenity', 0.17482517482517482);
-    amenity.set('historic', 0.132);
-    amenity.set('leisure', 1.0);
-    amenity.set('shop', 0.3728813559322034);
-    amenity.set('tourism', 0.1991150442477876);
-
-    const shop = new Map<string, number>();
-    amenity.set('amenity', 0.4396039603960396);
-    amenity.set('historic', 0.1839080459770115);
-    amenity.set('leisure', 0.3728813559322034);
-    amenity.set('shop', 1.0);
-    amenity.set('tourism', 0.21710526315789474);
-
-    const tourism = new Map<string, number>();
-    amenity.set('amenity', 0.14432989690721648);
-    amenity.set('historic', 0.16853932584269662);
-    amenity.set('leisure', 0.1991150442477876);
-    amenity.set('shop', 0.21710526315789474);
-    amenity.set('tourism', 1.0);
-
-    data.set('amenity', amenity);
-    data.set('historic', historic);
-    data.set('leisure', leisure);
-    data.set('shop', shop);
-    data.set('tourism', tourism);
-    return data;
-  }
-
   private doubleArrayToObject(arr: any[][]): any {
     this.getCSVData$
     const obj: any = {};
@@ -238,9 +192,9 @@ export class DataService {
             while (linkData.length != 0) {
               let printPlace = true;
               Object.keys(linkData[0]['properties']).forEach(t => sleutels.add(t));
-              // let idZonderNode: String = String(linkData[0]['id']).replace("node/", "");
-              let idZonderNode: String = String(linkData[0]['id']);
-              let tripleIdentifier = `<${idZonderNode}>`;
+              // let idWithoutNode: String = String(linkData[0]['id']).replace("node/", "");
+              let id: String = String(linkData[0]['id']);
+              let tripleIdentifier = `<${id}>`;
               //AMENITY
               let keywords = [];
               let relevant = true;
