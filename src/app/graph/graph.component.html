@@ -16,16 +16,31 @@
 
 
     <app-triangle (distanceMouseUpEventEmitter)="handleTriangleChange($event)"
-        (distanceChangingEventEmitter)="handleTriangleChangingValuesChange($event)"></app-triangle>
-    <app-triangle-slider-visualisation [title]="'Correlation'" [color]="'orange'"
+        (distanceChangingEventEmitter)="handleTriangleChangingValuesChange($event)"
+        style="margin-bottom:15px"></app-triangle>
+    <app-triangle-slider-visualisation [title]="'Similarity level'" [color]="'orange'"
         [value]="this.changingFactorValues['value1']"></app-triangle-slider-visualisation>
-    <app-triangle-slider-visualisation [title]="'Walking distance'" [color]="'green'"
+    <app-triangle-slider-visualisation [title]="'Less walking'" [color]="'green'"
         [value]="this.changingFactorValues['value2']"></app-triangle-slider-visualisation>
-    <app-triangle-slider-visualisation [title]="'Randomness'" [color]="'blue'"
+    <app-triangle-slider-visualisation [title]="'Level of randomness'" [color]="'blue'"
         [value]="this.changingFactorValues['value3']"></app-triangle-slider-visualisation>
 </div>
 <div class="container">
-    <div #container class="graafContainer">
+    <!--<div #container class="graafContainer">
         <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
+    </div>!-->
+    <div class="userGraafEnKompas">
+        <img src="../../assets/images/kompas.jpg" width="75px" />
+        <div #containerForUser class="graafContainer">
+            <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
+        </div>
     </div>
+    <ol>
+        <ng-container *ngFor="let item of this.calculatedWegToShow; let i=index">
+            <li>{{item['schema:name']}} <span
+                    *ngIf="keywordsToArray(item['schema:keyword']).length !=0">({{keywordsToArray(item['schema:keyword']).toString().replaceAll(",",
+                    ", ")}})</span>
+            </li>
+        </ng-container>
+    </ol>
 </div>

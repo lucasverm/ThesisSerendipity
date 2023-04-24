@@ -14,6 +14,7 @@ export class DataService {
 
   constructor(private router: Router, private http: HttpClient) { }
   public sigma: Sigma;
+  public sigmaUser: Sigma;
   public allKeywords: Set<string> = new Set();
   public getOSMData$(lat: Number = 51.05349346, lon: Number = 3.71974349, around: Number = 2200): Observable<any> {
     let data = `[out: json];

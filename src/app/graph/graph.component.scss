@@ -1,6 +1,6 @@
 .sliders {
     width: 30vw;
-    margin: 50px;
+    margin: 20px;
     float: left;
 }
 
@@ -10,12 +10,22 @@
 
 .graafContainer {
     width: 55vw;
+    height: 400px;
+}
 
-    height: 700px;
+.userGraafEnKompas {
     border: 1px solid black;
-    margin: 10px;
+    margin: 20px;
+
+    img {
+        margin: 5px;
+    }
 }
 
 p {
-    margin-top: 15px;
+    //margin-top: 15px;
+}
+
+* {
+    //border: 1px solid red
 }

@@ -42,8 +42,10 @@ export class GraphComponent {
   public minDistanceBetweenNodes = Infinity;
   public maxDistanceBetweenNodes = 0;
   public changingFactorValues: any = { value1: 0.333, value2: 0.333, value3: 0.333, };
+  public calculatedWegToShow: any[];
 
   @ViewChild("container") container: ElementRef;
+  @ViewChild("containerForUser") containerForUser: ElementRef;
 
   constructor(private http: HttpClient, private dataService: DataService) {
   }
@@ -72,7 +74,7 @@ export class GraphComponent {
       this.destination = this.data[0];
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
       this.buildGraph(3.7197324, 51.0569223);
-      this.visualizeGraph();
+      this.visualizeGraphFull();
       this.calculatePath(3.7197324, 51.0569223);
     })
   }
@@ -83,7 +85,7 @@ export class GraphComponent {
     this.data.push({
       label: 'Huidige positie',
       color: 'grey',
-      'schema:name': "huidigePositie",
+      'schema:name': "Current position",
       'schema:geo': {
         'geo:lat': 3.7197324,
         'geo:long': 51.0569223
@@ -151,6 +153,8 @@ export class GraphComponent {
               correlation: maxCorrelation,
               vanNode: vanNodeAtr["schema:name"],
               naarNode: naarNodeAtr["schema:name"],
+              vanNodeId: vanNodeAtr["@id"],
+              naarNodeId: naarNodeAtr["@id"],
               randomValue: randomValue,
               distanceNodeToHuidigePositieNormalized: distanceNodeToHuidigePositieNormalized,
               label: `${distanceInBetweenNodesNormalized}`
@@ -244,8 +248,6 @@ export class GraphComponent {
         }
       });
     }
-
-    console.log(shortestPath)
     let weg = [destination];
     currentNode = destination;
     while (currentNode != source) {
@@ -262,15 +264,18 @@ export class GraphComponent {
       //dijkstra
       let weg: any[] = this.dijkstra(this.graaf, this.destination['@id'], "huidigePositie");
       //toon weg
+      this.calculatedWegToShow = [];
       weg.forEach(t => {
         let atrData = this.graaf.getNodeAttributes(t);
-        console.log(atrData["schema:name"]);
+        this.calculatedWegToShow.push(atrData);
+        console.log(atrData)
       });
       this.linkTheseNodesInVisualisation = weg;
     } else {
       this.linkTheseNodesInVisualisation = [];
     }
     this.visualizeWeg();
+    this.visualizeGraphForUser();
   }
 
   /*public standaardAfwijking(x: number): number {
@@ -295,7 +300,7 @@ export class GraphComponent {
     this.filteredDataSearchBox = filtered;
   }
 
-  visualizeGraph() {
+  visualizeGraphFull() {
     if (this.container) {
       let graafWithoutEdges = this.graaf.copy();
       graafWithoutEdges.clearEdges();
@@ -315,39 +320,76 @@ export class GraphComponent {
         defaultEdgeColor: "target"*/
       });
       this.dataService.sigma.on("enterNode", ({ node }) => {
-        this.setHoveredNode(node);
+        this.setHoveredNode(this.dataService.sigma, node);
       });
       this.dataService.sigma.on("leaveNode", () => {
-        this.setHoveredNode(undefined);
+        this.setHoveredNode(this.dataService.sigma, undefined);
+      });
+    }
+  }
+
+  visualizeGraphForUser() {
+    if (this.dataService.sigmaUser) this.dataService.sigmaUser.kill();
+    if (this.containerForUser) {
+      let userGraaf = new Graph();
+      this.calculatedWegToShow.forEach(node => {
+        if (!userGraaf.hasNode(node['@id'])) {
+          userGraaf.addNode(node['@id'], node);
+        }
+        let sortedArray = this.graaf.outNeighbors(node['@id']).map(buur => {
+          return this.graaf.getDirectedEdgeAttributes(node['@id'], buur);
+        }).sort((a: any, b: any) => a['distanceInBetweenNodes'] - b['distanceInBetweenNodes']);
+        sortedArray.slice(0, 3).forEach(buur => {
+          if (!userGraaf.hasNode(buur['naarNodeId'])) {
+            userGraaf.addNode(buur['naarNodeId'], this.graaf.getNodeAttributes(buur['naarNodeId']));
+          }
+          userGraaf.addDirectedEdge(buur['vanNodeId'], buur['naarNodeId']);
+        });
+      })
+
+      for (let i = 1; i < this.calculatedWegToShow.length; ++i) {
+        if (!userGraaf.hasEdge(this.calculatedWegToShow[i - 1]['@id'], this.calculatedWegToShow[i]['@id'])) {
+          userGraaf.addDirectedEdge(this.calculatedWegToShow[i - 1]['@id'], this.calculatedWegToShow[i]['@id']);
+        }
+      }
+
+
+      this.dataService.sigmaUser = new Sigma(userGraaf, this.containerForUser.nativeElement, {
+        zIndex: true,
+        renderEdgeLabels: true,
+        defaultEdgeType: "line"
+      });
+      this.dataService.sigmaUser.on("enterNode", ({ node }) => {
+        this.setHoveredNode(this.dataService.sigmaUser, node);
+      });
+      this.dataService.sigmaUser.on("leaveNode", () => {
+        this.setHoveredNode(this.dataService.sigmaUser, undefined);
+      });
+      this.dataService.sigmaUser.setSetting("nodeReducer", (node, data) => {
+        const res: Partial<NodeDisplayData> = { ...data };
+        if (this.linkTheseNodesInVisualisation.includes(node)) {
+          res.color = "red";
+          res.zIndex = 2;
+        }
+        return res;
       });
     }
   }
 
   public visualizeWeg() {
-    this.dataService.sigma.setSetting("nodeReducer", (node, data) => {
-      const res: Partial<NodeDisplayData> = { ...data };
-      if (this.linkTheseNodesInVisualisation.includes(node)) {
-        res.color = "red";
-        res.zIndex = 2;
-      }
-      return res;
-    });
-    /*this.dataService.sigma.setSetting("edgeReducer", (edge, data) => {
-      const res: Partial<EdgeDisplayData> = { ...data };
-
-      if (this.state.hoveredNode && !this.graaf.hasExtremity(edge, this.state.hoveredNode)) {
-        res.hidden = true;
-      }
-
-      if (this.state.suggestions && (!this.state.suggestions.has(this.graaf.source(edge)) || !this.state.suggestions.has(this.graaf.target(edge)))) {
-        res.hidden = true;
-      }
-      return res;
-    });
-    this.loaded = true;*/
+    if (this.dataService.sigma) {
+      this.dataService.sigma.setSetting("nodeReducer", (node, data) => {
+        const res: Partial<NodeDisplayData> = { ...data };
+        if (this.linkTheseNodesInVisualisation.includes(node)) {
+          res.color = "red";
+          res.zIndex = 2;
+        }
+        return res;
+      });
+    }
   }
 
-  setHoveredNode(node?: string) {
+  setHoveredNode(sigma: Sigma, node?: string) {
     if (node) {
       this.state.hoveredNode = node;
       this.state.hoveredNeighbors = new Set(this.graaf.neighbors(node));
@@ -355,7 +397,7 @@ export class GraphComponent {
       this.state.hoveredNode = undefined;
       this.state.hoveredNeighbors = undefined;
     }
-    this.dataService.sigma.refresh();
+    sigma.refresh();
   }
 
 
