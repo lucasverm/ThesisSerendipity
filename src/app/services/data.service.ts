@@ -227,10 +227,10 @@ export class DataService {
             let sleutels = new Set();
             let turtleOutput = "";
             turtleOutput += "@prefix schema: <http://schema.org/> . \n";
-            turtleOutput += "@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.\n";
-            turtleOutput += "@prefix dbp: <https://dbpedia.org/ontology/>.\n";
-            turtleOutput += "@prefix km4c: <http://www.disit.org/km4city/schema#>.\n";
-            turtleOutput += "@prefix lgdo: <http://linkedgeodata.org/ontology/>.\n";
+            turtleOutput += "@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .\n";
+            turtleOutput += "@prefix dbp: <https://dbpedia.org/ontology/> .\n";
+            turtleOutput += "@prefix km4c: <http://www.disit.org/km4city/schema#> .\n";
+            turtleOutput += "@prefix lgdo: <http://linkedgeodata.org/ontology/> .\n";
             turtleOutput += "@prefix ex: <http://example.org/> . \n\n";
 
             let linkData: any[] = [...data['features']]
@@ -239,7 +239,7 @@ export class DataService {
               Object.keys(linkData[0]['properties']).forEach(t => sleutels.add(t));
               // let idZonderNode: String = String(linkData[0]['id']).replace("node/", "");
               let idZonderNode: String = String(linkData[0]['id']);
-              let tripleIdentifier = `<ex/${idZonderNode}>`;
+              let tripleIdentifier = `<${idZonderNode}>`;
               //AMENITY
               let keywords = [];
               let relevant = true;
@@ -342,6 +342,11 @@ export class DataService {
                   keywords.push("parking");
                   prefix = "lgdo";
                   category = "BicycleParking";
+                } else if (linkData[0]['properties']['amenity'] == "bicycle_rental") {
+                  keywords.push("bicycle");
+                  keywords.push("rental");
+                  prefix = "lgdo";
+                  category = "BicycleRental";
                 } else if (linkData[0]['properties']['amenity'] == "university") {
                   keywords.push("university");
                   prefix = "lgdo";
@@ -1122,14 +1127,13 @@ export class DataService {
               if (relevant && printPlace) {
                 turtleOutput += `${tripleIdentifier} a ${prefix}:${category} ;\n`;
                 if (linkData[0]['properties']['name']) {
-                  turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}"; \n`;
+                  turtleOutput += `\tschema:name "${linkData[0]['properties']['name']}" ; \n`;
                 }
                 else {
                   if (linkData[0]['properties']["addr:street"]) {
-                    turtleOutput += `\tschema:name "${category} in ${linkData[0]['properties']["addr:street"]}"; \n`;
+                    turtleOutput += `\tschema:name "${category} in ${linkData[0]['properties']["addr:street"]}" ; \n`;
                   } else {
-                    turtleOutput += `\tschema:name "${category}"; \n`;
-
+                    turtleOutput += `\tschema:name "${category}" ; \n`;
                   }
                 }
 
@@ -1138,16 +1142,14 @@ export class DataService {
                 if (linkData[0]['properties']['phone']) turtleOutput += `\tschema:telephone "${linkData[0]['properties']['phone']}"; \n`;
                 if (linkData[0]['properties']['alt_name']) turtleOutput += `\tschema:alternateName "${linkData[0]['properties']['alt_name']}"; \n`;
                 if (linkData[0]['properties']['amenity']) turtleOutput += `\tschema:amenityFeature "${linkData[0]['properties']['amenity']}"; \n`;
-                if (linkData[0]['properties']['wikidata']) turtleOutput += `\tschema:sameAs https://www.wikidata.org/entity/${linkData[0]['properties']['wikidata']}; \n`;
+                if (linkData[0]['properties']['wikidata']) turtleOutput += `\tschema:sameAs "https://www.wikidata.org/entity/${linkData[0]['properties']['wikidata']}" ; \n`;
                 if (linkData[0]['properties']["addr:street"]) {
-                  turtleOutput += `\tschema: PostalAddress[
-                  \ta schema: PostalAddress;
-                  \tschema:streetAddress "${linkData[0]['properties']["addr:street"]}"; \n`;
+                  turtleOutput += `\tschema:PostalAddress [\n\t\ta schema:PostalAddress ;\n\t\tschema:streetAddress "${linkData[0]['properties']["addr:street"]}"; \n`;
                   if (linkData[0]['properties']["addr:housenumber"]) turtleOutput += `\t\tschema:postOfficeBoxNumber "${linkData[0]['properties']["addr:housenumber"]}"; \n`;
                   if (linkData[0]['properties']["addr:postcode"]) turtleOutput += `\t\tschema:postalCode "${linkData[0]['properties']["addr:postcode"]}"; \n`;
                   if (linkData[0]['properties']["addr:city"]) turtleOutput += `\t\tschema:addressLocality "${linkData[0]['properties']["addr:city"]}"; \n`;
                   if (linkData[0]['properties']["addr:country"]) turtleOutput += `\t\tschema:addressCountry "${linkData[0]['properties']["addr:country"]}"; \n`;
-                  turtleOutput += `\t]; \n`;
+                  turtleOutput += `\t] ; \n`;
                 }
                 if (linkData[0]['properties']['cuisine']) {
                   for (let item of linkData[0]['properties']['cuisine'].split(';')) {
@@ -1160,27 +1162,27 @@ export class DataService {
                   turtleOutput += `\tschema:keyword "${keyword}"; \n`;
                 }
                 if (linkData[0]['geometry']['type'] == "Point") {
-                  turtleOutput += `\tschema: geo[
-                  \ta geo: Point;
+                  turtleOutput += `\tschema:geo [
+                  \ta geo:Point ;
                   \tgeo:lat "${linkData[0]['geometry']['coordinates'][0]}";
                   \tgeo:long "${linkData[0]['geometry']['coordinates'][1]}";
                   ] .\n`;
                 } else if (linkData[0]['geometry']['type'] == "Polygon") {
-                  turtleOutput += `\tschema: geo[
-                  \ta geo: Point;
+                  turtleOutput += `\tschema:geo [
+                  \ta geo:Point;
                   \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0][0]}";
                   \tgeo:long "${linkData[0]['geometry']['coordinates'][0][0][1]}";
                   ] .\n`;
 
                 } else if (linkData[0]['geometry']['type'] == "LineString") {
-                  turtleOutput += `\tschema: geo[
-                  \ta geo: Point;
+                  turtleOutput += `\tschema:geo [
+                  \ta geo:Point;
                   \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0]}";
                   \tgeo:long "${linkData[0]['geometry']['coordinates'][0][1]}";
                   ] .\n`;
                 } else if (linkData[0]['geometry']['type'] == "MultiPolygon") {
-                  turtleOutput += `\tschema: geo[
-                  \ta geo: Point;
+                  turtleOutput += `\tschema:geo [
+                  \ta geo:Point;
                   \tgeo:lat "${linkData[0]['geometry']['coordinates'][0][0][0][0]}";
                   \tgeo:long "${linkData[0]['geometry']['coordinates'][0][0][0][1]}";
                   ] .\n`;
