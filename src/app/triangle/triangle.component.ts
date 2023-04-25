@@ -102,18 +102,24 @@ export class TriangleComponent {
   }
 
   onMouseMove(event: MouseEvent) {
-    if (this.isDragging && this.isPointInsideTriangle()) {
-      let oldPointX = this.movingPoint.x;
-      let oldPointY = this.movingPoint.y;
-      this.movingPoint.x = event.offsetX - this.offset.x;
-      this.movingPoint.y = event.offsetY - this.offset.y;
-      if (!this.isPointInsideTriangle()) {
-        this.movingPoint.x = oldPointX;
-        this.movingPoint.y = oldPointY;
+    //DOING!!!
+    console.log(this.isDragging)
+    if (this.isDragging) {
+      if (this.isPointInsideTriangle(this.movingPoint)) {
+        let oldPointX = this.movingPoint.x;
+        let oldPointY = this.movingPoint.y;
+        this.movingPoint.x = event.offsetX - this.offset.x;
+        this.movingPoint.y = event.offsetY - this.offset.y;
+        if (!this.isPointInsideTriangle(this.movingPoint)) {
+          this.movingPoint.x = oldPointX;
+          this.movingPoint.y = oldPointY;
+        }
+        this.refreshDrawing();
+        this.calculateDistances();
+        this.distanceChangingEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
+      } else {
+        
       }
-      this.refreshDrawing();
-      this.calculateDistances();
-      this.distanceChangingEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
     }
   }
 
@@ -289,15 +295,15 @@ export class TriangleComponent {
     this.context?.fill();
   }
 
-  private isPointInsideTriangle() {
+  private isPointInsideTriangle(point: Point) {
     // Calculate the vectors representing the edges of the triangle
     const e1 = [this.trianglePoint2.x - this.trianglePoint1.x, this.trianglePoint2.y - this.trianglePoint1.y];
     const e2 = [this.trianglePoint3.x - this.trianglePoint1.x, this.trianglePoint3.y - this.trianglePoint1.y];
 
     // Calculate the barycentric coordinates of the point with respect to the triangle
     const det = e1[0] * e2[1] - e1[1] * e2[0];
-    const det1 = (this.movingPoint.x - this.trianglePoint1.x) * e2[1] - (this.movingPoint.y - this.trianglePoint1.y) * e2[0];
-    const det2 = e1[0] * (this.movingPoint.y - this.trianglePoint1.y) - e1[1] * (this.movingPoint.x - this.trianglePoint1.x);
+    const det1 = (point.x - this.trianglePoint1.x) * e2[1] - (point.y - this.trianglePoint1.y) * e2[0];
+    const det2 = e1[0] * (point.y - this.trianglePoint1.y) - e1[1] * (point.x - this.trianglePoint1.x);
     const u = det1 / det;
     const v = det2 / det;
     const w = 1 - u - v;
@@ -307,7 +313,7 @@ export class TriangleComponent {
   }
 
   refreshDrawing() {
-    this.context?.clearRect(0, 0, this.triangleSize + 2 * this.canvasOffset, this.triangleSize + 2 * this.canvasOffset);
+    this.context?.clearRect(0, 0, this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
     this.drawTriangle(this.trianglePoint1, this.trianglePoint2, this.trianglePoint3);
     this.drawPoint(this.movingPoint);
     //this.drawHelpingLines();
