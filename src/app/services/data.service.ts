@@ -202,114 +202,114 @@ export class DataService {
               let id: String = String(linkData[0]['id']);
               let tripleIdentifier = `<${id}>`;
               //AMENITY
-              let keywords = [];
+              let keywords: Set<string> = new Set();
               let relevant = true;
               let prefix = "";
               let category = "";
               if (linkData[0]['properties']['amenity']) {
                 if (linkData[0]['properties']['amenity'] == "restaurant") {
-                  keywords.push("restaurant");
+                  keywords.add("restaurant");
                   prefix = "schema";
                   category = "Restaurant";
                 } else if (linkData[0]['properties']['amenity'] == "fast_food") {
-                  keywords.push("fastfood");
+                  keywords.add("fastfood");
                   prefix = "schema";
                   category = "FastFoodRestaurant";
                 } else if (linkData[0]['properties']['amenity'] == "cafe") {
-                  keywords.push("cafe");
+                  keywords.add("cafe");
                   prefix = "schema";
                   category = "CafeOrCoffeeShop";
                 } else if (linkData[0]['properties']['amenity'] == "bar") {
-                  keywords.push("bar");
+                  keywords.add("bar");
                   prefix = "schema";
                   category = "BarOrPub";
                 } else if (linkData[0]['properties']['amenity'] == "pub") {
-                  keywords.push("pub");
+                  keywords.add("pub");
                   prefix = "schema";
                   category = "BarOrPub";
                 } else if (linkData[0]['properties']['amenity'] == "ice_cream") {
-                  keywords.push("icecream");
+                  keywords.add("icecream");
                   prefix = "schema";
                   category = "IceCreamShop";
                 } else if (linkData[0]['properties']['amenity'] == "school") {
-                  keywords.push("school");
+                  keywords.add("school");
                   prefix = "schema";
                   category = "School";
                 } else if (linkData[0]['properties']['amenity'] == "townhall") {
-                  keywords.push("townhall");
+                  keywords.add("townhall");
                   prefix = "lgdo";
                   category = "TownHall";
                 } else if (linkData[0]['properties']['amenity'] == "nightclub") {
-                  keywords.push("nightclub");
+                  keywords.add("nightclub");
                   prefix = "schema";
                   category = "NightClub";
                 } else if (linkData[0]['properties']['amenity'] == "theatre") {
-                  keywords.push("theater");
+                  keywords.add("theater");
                   prefix = "dbp";
                   category = "Theatre";
                 } else if (linkData[0]['properties']['amenity'] == "events_venue") {
-                  keywords.push("event");
-                  keywords.push("venue");
+                  keywords.add("event");
+                  keywords.add("venue");
                   prefix = "schema";
                   category = "EventVenue";
                 } else if (linkData[0]['properties']['amenity'] == "community_centre") {
-                  keywords.push("community");
+                  keywords.add("community");
                   prefix = "km4c";
                   category = "Community_centre";
                 } else if (linkData[0]['properties']['amenity'] == "food_court") {
-                  keywords.push("foodcourt");
+                  keywords.add("foodcourt");
                   prefix = "ex";
                   category = "FootCourt";
                 } else if (linkData[0]['properties']['amenity'] == "studio") {
-                  keywords.push("studio");
+                  keywords.add("studio");
                   prefix = "lgdo";
                   category = "Studio";
                 } else if (linkData[0]['properties']['amenity'] == "cinema") {
-                  keywords.push("cinema");
+                  keywords.add("cinema");
                   prefix = "schema";
                   category = "MovieTheater";
                 } else if (linkData[0]['properties']['amenity'] == "fountain") {
-                  keywords.push("fountain");
+                  keywords.add("fountain");
                   prefix = "lgdo";
                   category = "Fountain";
                 } else if (linkData[0]['properties']['amenity'] == "public_bookcase") {
-                  keywords.push("public");
-                  keywords.push("bookcase");
+                  keywords.add("public");
+                  keywords.add("bookcase");
                   prefix = "ex";
                   category = "public_bookcase";
                 } else if (linkData[0]['properties']['amenity'] == "social_centre") {
-                  keywords.push("social");
+                  keywords.add("social");
                   prefix = "lgdo";
                   category = "SocialCentre";
                 } else if (linkData[0]['properties']['amenity'] == "place_of_worship") {
-                  keywords.push("worship");
+                  keywords.add("worship");
                   prefix = "schema";
                   category = "PlaceOfWorship";
                 } else if (linkData[0]['properties']['amenity'] == "arts_centre") {
-                  keywords.push("arts");
-                  keywords.push("center");
+                  keywords.add("arts");
+                  keywords.add("center");
                   prefix = "lgdo";
                   category = "ArtsCentre";
                 } else if (linkData[0]['properties']['amenity'] == "parking") {
-                  keywords.push("parking");
+                  keywords.add("parking");
                   prefix = "lgdo";
                   category = "Parking";
                 } else if (linkData[0]['properties']['amenity'] == "parking_entrance") {
-                  keywords.push("parking");
+                  keywords.add("parking");
                   prefix = "lgdo";
                   category = "ParkingEntrance";
                 } else if (linkData[0]['properties']['amenity'] == "bicycle_parking") {
-                  keywords.push("bicycle");
-                  keywords.push("parking");
+                  keywords.add("bicycle");
+                  keywords.add("parking");
                   prefix = "lgdo";
                   category = "BicycleParking";
                 } else if (linkData[0]['properties']['amenity'] == "bicycle_rental") {
-                  keywords.push("bicycle");
-                  keywords.push("rental");
+                  keywords.add("bicycle");
+                  keywords.add("rental");
                   prefix = "lgdo";
                   category = "BicycleRental";
                 } else if (linkData[0]['properties']['amenity'] == "university") {
-                  keywords.push("university");
+                  keywords.add("university");
                   prefix = "lgdo";
                   category = "University";
                 } else {
@@ -320,129 +320,129 @@ export class DataService {
                 //SHOP
               } else if (linkData[0]['properties']['shop']) {
                 if (linkData[0]['properties']['shop'] == "bicycle") {
-                  keywords.push("bicycle");
+                  keywords.add("bicycle");
                   prefix = "schema";
                   category = "BikeStore";
                 } else if (linkData[0]['properties']['shop'] == "bakery") {
-                  keywords.push("bakery");
+                  keywords.add("bakery");
                   prefix = "schema";
                   category = "Bakery";
                 } else if (linkData[0]['properties']['shop'] == "convenience") {
-                  keywords.push("convenience");
+                  keywords.add("convenience");
                   prefix = "schema";
                   category = "ConvenienceStore";
                 } else if (linkData[0]['properties']['shop'] == "deli") {
-                  keywords.push("deli");
+                  keywords.add("deli");
                   prefix = "schema";
                   category = "HomeGoodsStore";
                 } else if (linkData[0]['properties']['shop'] == "tattoo") {
-                  keywords.push("tattoo");
+                  keywords.add("tattoo");
                   prefix = "lgdo";
                   category = "TattooShop";
                 } else if (linkData[0]['properties']['shop'] == "hairdresser") {
-                  keywords.push("hairdresser");
+                  keywords.add("hairdresser");
                   prefix = "schema";
                   category = "HairSalon";
                 } else if (linkData[0]['properties']['shop'] == "medical_supply") {
-                  keywords.push("medical");
-                  keywords.push("supply");
+                  keywords.add("medical");
+                  keywords.add("supply");
                   prefix = "schema";
                   category = "medical_supply";
                 } else if (linkData[0]['properties']['shop'] == "antiques") {
-                  keywords.push("antiques");
+                  keywords.add("antiques");
                   prefix = "km4c";
                   category = "Antiques";
                 } else if (linkData[0]['properties']['shop'] == "window_blind") {
                   // Niet relevant
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "second_hand") {
-                  keywords.push("secondhand");
+                  keywords.add("secondhand");
                   prefix = "km4c";
                   category = "Second_hand_goods";
                 } else if (linkData[0]['properties']['shop'] == "telecommunication") {
-                  keywords.push("telecommunication");
+                  keywords.add("telecommunication");
                   prefix = "km4c";
                   category = "Telecommunication";
                 } else if (linkData[0]['properties']['shop'] == "motorcycle") {
-                  keywords.push("motorcycle");
+                  keywords.add("motorcycle");
                   prefix = "lgdo";
                   category = "motorcycle";
                 } else if (linkData[0]['properties']['shop'] == "pet") {
-                  keywords.push("pet");
+                  keywords.add("pet");
                   prefix = "schema";
                   category = "PetStore";
                 } else if (linkData[0]['properties']['shop'] == "car_repair") {
-                  keywords.push("car");
-                  keywords.push("repair");
+                  keywords.add("car");
+                  keywords.add("repair");
                   prefix = "schema";
                   category = "AutoRepair";
                 } else if (linkData[0]['properties']['shop'] == "hifi") {
-                  keywords.push("hifi");
+                  keywords.add("hifi");
                   prefix = "schema";
                   category = "ElectronicsStore";
                 } else if (linkData[0]['properties']['shop'] == "massage") {
-                  keywords.push("massage");
+                  keywords.add("massage");
                   prefix = "schema";
                   category = "DaySpa";
                 } else if (linkData[0]['properties']['shop'] == "beverages") {
-                  keywords.push("beverages");
+                  keywords.add("beverages");
                   prefix = "schema";
                   category = "LiquorStore";
                 } else if (linkData[0]['properties']['shop'] == "appliance") {
-                  keywords.push("appliance");
+                  keywords.add("appliance");
                   prefix = "schema";
                   category = "ElectronicsStore";
                 } else if (linkData[0]['properties']['shop'] == "photo") {
-                  keywords.push("photo");
+                  keywords.add("photo");
                   prefix = "schema";
                   category = "Photograph";
                 } else if (linkData[0]['properties']['shop'] == "bag") {
-                  keywords.push("bag");
+                  keywords.add("bag");
                   prefix = "lgdo";
                   category = "bagsShop";
                 } else if (linkData[0]['properties']['shop'] == "party") {
-                  keywords.push("party");
+                  keywords.add("party");
                   prefix = "ex";
                   category = "partyStore";
                 } else if (linkData[0]['properties']['shop'] == "seafood") {
-                  keywords.push("seafood");
-                  keywords.push("fish");
+                  keywords.add("seafood");
+                  keywords.add("fish");
                   prefix = "km4c";
                   category = "Fish_and_seafood";
                 } else if (linkData[0]['properties']['shop'] == "craft") {
-                  keywords.push("craft");
+                  keywords.add("craft");
                   prefix = "lgdo";
                   category = "craft";
                 } else if (linkData[0]['properties']['shop'] == "kiosk") {
-                  keywords.push("kiosk");
+                  keywords.add("kiosk");
                   prefix = "lgdo";
                   category = "kiosk";
                 } else if (linkData[0]['properties']['shop'] == "video_games") {
-                  keywords.push("videogames");
+                  keywords.add("videogames");
                   prefix = "lgdo";
                   category = "videoGames";
                 } else if (linkData[0]['properties']['shop'] == "toys") {
-                  keywords.push("toys");
+                  keywords.add("toys");
                   prefix = "schema";
                   category = "ToyStore";
                 } else if (linkData[0]['properties']['shop'] == "mall") {
-                  keywords.push("mall");
+                  keywords.add("mall");
                   prefix = "schema";
                   category = "ShoppingCenter";
                 } else if (linkData[0]['properties']['shop'] == "ticket") {
-                  keywords.push("ticket");
+                  keywords.add("ticket");
                   prefix = "lgdo";
                   category = "Ticket";
                 } else if (linkData[0]['properties']['shop'] == "juice") {
-                  keywords.push("juice");
+                  keywords.add("juice");
                   prefix = "ex";
                   category = "JuiceStore";
                 } else if (linkData[0]['properties']['shop'] == "perfumery") {
-                  keywords.push("perfumery");
+                  keywords.add("perfumery");
                   prefix = "km4c";
                   category = "Perfumery_and_cosmetic_articles";
                 } else if (linkData[0]['properties']['shop'] == "computer") {
-                  keywords.push("computer");
+                  keywords.add("computer");
                   prefix = "schema";
                   category = "ComputerStore";
                 } else if (linkData[0]['properties']['shop'] == "hearing_aids") {
@@ -452,233 +452,233 @@ export class DataService {
                   // Niet relevant
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "bookmaker") {
-                  keywords.push("bookmaker");
+                  keywords.add("bookmaker");
                   prefix = "lgdo";
                   category = "BookmakerShop";
                 } else if (linkData[0]['properties']['shop'] == "hardware") {
-                  keywords.push("hardware");
+                  keywords.add("hardware");
                   prefix = "schema";
                   category = "HardwareStore";
                 } else if (linkData[0]['properties']['shop'] == "florist") {
-                  keywords.push("florist");
-                  keywords.push("flower");
+                  keywords.add("florist");
+                  keywords.add("flower");
                   prefix = "schema";
                   category = "Florist";
                 } else if (linkData[0]['properties']['shop'] == "art") {
-                  keywords.push("art");
+                  keywords.add("art");
                   prefix = "schema";
                   category = "VisualArtwork";
                 } else if (linkData[0]['properties']['shop'] == "baby_goods") {
-                  keywords.push("baby");
+                  keywords.add("baby");
                   prefix = "schema";
                   category = "ChildCare";
                 } else if (linkData[0]['properties']['shop'] == "games") {
-                  keywords.push("games");
+                  keywords.add("games");
                   prefix = "schema";
                   category = "games";
                 } else if (linkData[0]['properties']['shop'] == "car") {
-                  keywords.push("car");
+                  keywords.add("car");
                   prefix = "lgdo";
                   category = "CarShop";
                 } else if (linkData[0]['properties']['shop'] == "variety_store") {
-                  keywords.push("variety");
+                  keywords.add("variety");
                   prefix = "lgdo";
                   category = "variety";
                 } else if (linkData[0]['properties']['shop'] == "department_store") {
-                  keywords.push("department");
+                  keywords.add("department");
                   prefix = "lgdo";
                   category = "DepartmentStore";
                 } else if (linkData[0]['properties']['shop'] == "confectionery") {
-                  keywords.push("confectionery");
+                  keywords.add("confectionery");
                   prefix = "lgdo";
                   category = "Confectionery";
                 } else if (linkData[0]['properties']['shop'] == "pastry") {
-                  keywords.push("pastry");
+                  keywords.add("pastry");
                   prefix = "km4c";
                   category = "Pastry_shop";
                 } else if (linkData[0]['properties']['shop'] == "stationery") {
-                  keywords.push("stationery");
+                  keywords.add("stationery");
                   prefix = "km4c";
                   category = "Newspapers_and_stationery";
                 } else if (linkData[0]['properties']['shop'] == "clothes") {
-                  keywords.push("clothes");
+                  keywords.add("clothes");
                   prefix = "lgdo";
                   category = "Clothes";
                 } else if (linkData[0]['properties']['shop'] == "shoes") {
-                  keywords.push("shoes");
+                  keywords.add("shoes");
                   prefix = "lgdo";
                   category = "Shoes";
                 } else if (linkData[0]['properties']['shop'] == "health_food") {
-                  keywords.push("food");
-                  keywords.push("healthy");
-                  keywords.push("health");
+                  keywords.add("food");
+                  keywords.add("healthy");
+                  keywords.add("health");
                   prefix = "lgdo";
                   category = "HealthFood";
                 } else if (linkData[0]['properties']['shop'] == "supermarket") {
-                  keywords.push("supermarket");
+                  keywords.add("supermarket");
                   prefix = "km4c";
                   category = "Supermarket";
                 } else if (linkData[0]['properties']['shop'] == "chocolate") {
-                  keywords.push("chocolate");
+                  keywords.add("chocolate");
                   prefix = "lgdo";
                   category = "Chocolate";
                 } else if (linkData[0]['properties']['shop'] == "fashion_accessories") {
-                  keywords.push("fashion");
-                  keywords.push("accessories");
+                  keywords.add("fashion");
+                  keywords.add("accessories");
                   prefix = "ex";
                   category = "fashionAccessories";
                 } else if (linkData[0]['properties']['shop'] == "herbalist") {
-                  keywords.push("herbalist");
+                  keywords.add("herbalist");
                   prefix = "km4c";
                   category = "Herbalist_shop";
                 } else if (linkData[0]['properties']['shop'] == "jewelry") {
-                  keywords.push("jewelry");
+                  keywords.add("jewelry");
                   prefix = "schema";
                   category = "JewelryStore";
                 } else if (linkData[0]['properties']['shop'] == "outdoor") {
-                  keywords.push("outdoor");
+                  keywords.add("outdoor");
                   prefix = "lgdo";
                   category = "outdoor";
                 } else if (linkData[0]['properties']['shop'] == "furniture") {
-                  keywords.push("furniture");
+                  keywords.add("furniture");
                   prefix = "schema";
                   category = "FurnitureStore";
                 } else if (linkData[0]['properties']['shop'] == "electronics") {
-                  keywords.push("electronics");
+                  keywords.add("electronics");
                   prefix = "schema";
                   category = "ElectronicsStore";
                 } else if (linkData[0]['properties']['shop'] == "gift") {
-                  keywords.push("gift");
+                  keywords.add("gift");
                   prefix = "lgdo";
                   category = "Gift";
                 } else if (linkData[0]['properties']['shop'] == "alcohol") {
-                  keywords.push("alcohol");
+                  keywords.add("alcohol");
                   prefix = "schema";
                   category = "LiquorStore";
                 } else if (linkData[0]['properties']['shop'] == "paint") {
-                  keywords.push("paint");
+                  keywords.add("paint");
                   prefix = "lgdo";
                   category = "Paint";
                 } else if (linkData[0]['properties']['shop'] == "butcher") {
-                  keywords.push("butcher");
-                  keywords.push("meat");
+                  keywords.add("butcher");
+                  keywords.add("meat");
                   prefix = "lgdo";
                   category = "Butcher";
                 } else if (linkData[0]['properties']['shop'] == "bed") {
-                  keywords.push("bed");
+                  keywords.add("bed");
                   prefix = "schema";
                   category = "BedStore";
                 } else if (linkData[0]['properties']['shop'] == "beauty") {
-                  keywords.push("beauty");
+                  keywords.add("beauty");
                   prefix = "lgdo";
                   category = "BeautyShop";
                 } else if (linkData[0]['properties']['shop'] == "cosmetics") {
-                  keywords.push("cosmetics");
+                  keywords.add("cosmetics");
                   prefix = "lgdo";
                   category = "Cosmetics";
                 } else if (linkData[0]['properties']['shop'] == "tailor") {
-                  keywords.push("tailor");
+                  keywords.add("tailor");
                   prefix = "lgdo";
                   category = "Tailor";
                 } else if (linkData[0]['properties']['shop'] == "fabric") {
-                  keywords.push("fabric");
+                  keywords.add("fabric");
                   prefix = "lgdo";
                   category = "Fabric";
                 } else if (linkData[0]['properties']['shop'] == "wholesale") {
-                  keywords.push("wholesale");
+                  keywords.add("wholesale");
                   prefix = "km4c";
                   category = "wholesale";
                 } else if (linkData[0]['properties']['shop'] == "newsagent") {
-                  keywords.push("newsagent");
+                  keywords.add("newsagent");
                   prefix = "lgdo";
                   category = "Newsagent";
                 } else if (linkData[0]['properties']['shop'] == "leather") {
-                  keywords.push("leather");
+                  keywords.add("leather");
                   prefix = "lgdo";
                   category = "Leather";
                 } else if (linkData[0]['properties']['shop'] == "car_parts") {
-                  keywords.push("parts");
-                  keywords.push("car");
+                  keywords.add("parts");
+                  keywords.add("car");
                   prefix = "schema";
                   category = "AutoPartsStore";
                 } else if (linkData[0]['properties']['shop'] == "copyshop") {
-                  keywords.push("copy");
+                  keywords.add("copy");
                   prefix = "lgdo";
                   category = "Copyshop";
                 } else if (linkData[0]['properties']['shop'] == "books") {
-                  keywords.push("book");
+                  keywords.add("book");
                   prefix = "schema";
                   category = "BookStore";
                 } else if (linkData[0]['properties']['shop'] == "charity") {
-                  keywords.push("charity");
-                  keywords.push("NGO");
+                  keywords.add("charity");
+                  keywords.add("NGO");
                   prefix = "schema";
                   category = "NGO";
                 } else if (linkData[0]['properties']['shop'] == "radiotechnics") {
-                  keywords.push("radio");
-                  keywords.push("technics");
+                  keywords.add("radio");
+                  keywords.add("technics");
                   prefix = "ex";
                   category = "RadioTechnics";
                 } else if (linkData[0]['properties']['shop'] == "coffee") {
-                  keywords.push("coffee");
+                  keywords.add("coffee");
                   prefix = "schema";
                   category = "CafeOrCoffeeShop";
                 } else if (linkData[0]['properties']['shop'] == "textile_printing") {
-                  keywords.push("textile");
-                  keywords.push("printing");
+                  keywords.add("textile");
+                  keywords.add("printing");
                   prefix = "ex";
                   category = "TextilePrinting";
                 } else if (linkData[0]['properties']['shop'] == "chemist") {
-                  keywords.push("chemist");
-                  keywords.push("chemistry");
+                  keywords.add("chemist");
+                  keywords.add("chemistry");
                   prefix = "lgdo";
                   category = "chemist";
                 } else if (linkData[0]['properties']['shop'] == "spices") {
-                  keywords.push("spices");
+                  keywords.add("spices");
                   prefix = "ex";
                   category = "Spices";
                 } else if (linkData[0]['properties']['shop'] == "musical_instrument") {
-                  keywords.push("instrument");
-                  keywords.push("musical");
-                  keywords.push("music");
+                  keywords.add("instrument");
+                  keywords.add("musical");
+                  keywords.add("music");
                   prefix = "km4c";
                   category = "Musical_instruments_and_scores";
                 } else if (linkData[0]['properties']['shop'] == "erotic") {
                   // Niet relevant
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "wine") {
-                  keywords.push("wine");
+                  keywords.add("wine");
                   prefix = "lgdo";
                   category = "Wine";
                 } else if (linkData[0]['properties']['shop'] == "video") {
-                  keywords.push("video");
+                  keywords.add("video");
                   prefix = "lgdo";
                   category = "Video";
                 } else if (linkData[0]['properties']['shop'] == "mobile_phone") {
-                  keywords.push("mobilephone");
-                  keywords.push("phone");
-                  keywords.push("mobile");
+                  keywords.add("mobilephone");
+                  keywords.add("phone");
+                  keywords.add("mobile");
                   prefix = "lgdo";
                   category = "mobilePhone";
                 } else if (linkData[0]['properties']['shop'] == "travel_agency") {
-                  keywords.push("travel");
+                  keywords.add("travel");
                   prefix = "schema";
                   category = "TravelAgency";
                 } else if (linkData[0]['properties']['shop'] == "garden_centre") {
-                  keywords.push("garden");
+                  keywords.add("garden");
                   prefix = "lgdo";
                   category = "GardenCentre";
                 } else if (linkData[0]['properties']['shop'] == "greengrocer") {
-                  keywords.push("greengrocer");
+                  keywords.add("greengrocer");
                   prefix = "lgdo";
                   category = "Greengrocer";
                 } else if (linkData[0]['properties']['shop'] == "skate") {
-                  keywords.push("skate");
+                  keywords.add("skate");
                   prefix = "ex";
                   category = "SkateShop";
                 } else if (linkData[0]['properties']['shop'] == "sports") {
-                  keywords.push("sport");
-                  keywords.push("sports");
+                  keywords.add("sport");
+                  keywords.add("sports");
                   prefix = "lgdo";
                   category = "Sports";
                 } else if (linkData[0]['properties']['shop'] == "carpet") {
@@ -688,30 +688,30 @@ export class DataService {
                   // Niet relevant
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "nuts") {
-                  keywords.push("nut");
-                  keywords.push("nuts");
+                  keywords.add("nut");
+                  keywords.add("nuts");
                   prefix = "ex";
                   category = "NutsStore";
                 } else if (linkData[0]['properties']['shop'] == "laundry") {
-                  keywords.push("laundry");
+                  keywords.add("laundry");
                   prefix = "schema";
                   category = "DryCleaningOrLaundry";
                 } else if (linkData[0]['properties']['shop'] == "doityourself") {
-                  keywords.push("DIY");
+                  keywords.add("DIY");
                   prefix = "lgdo";
                   category = "Doityourself";
                 } else if (linkData[0]['properties']['shop'] == "brass_instruments") {
-                  keywords.push("brass");
-                  keywords.push("instruments");
+                  keywords.add("brass");
+                  keywords.add("instruments");
                   prefix = "schema";
                   category = "brass_instruments";
                 } else if (linkData[0]['properties']['shop'] == "music") {
-                  keywords.push("music");
+                  keywords.add("music");
                   prefix = "schema";
                   category = "MusicStore";
                 } else if (linkData[0]['properties']['shop'] == "lottery") {
-                  keywords.push("lottery");
-                  keywords.push("luck");
+                  keywords.add("lottery");
+                  keywords.add("luck");
                   prefix = "ex";
                   category = "Lottery";
                 } else if (linkData[0]['properties']['shop'] == "bathroom_furnishing") {
@@ -721,33 +721,33 @@ export class DataService {
                   // Niet relevant
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "general") {
-                  keywords.push("general");
+                  keywords.add("general");
                   prefix = "lgdo";
                   category = "General";
                 } else if (linkData[0]['properties']['shop'] == "funeral_directors") {
                   // Niet relevant
                   relevant = false;
                 } else if (linkData[0]['properties']['shop'] == "houseware") {
-                  keywords.push("houseware");
-                  keywords.push("housewares");
-                  keywords.push("house");
+                  keywords.add("houseware");
+                  keywords.add("housewares");
+                  keywords.add("house");
                   prefix = "lgdo";
                   category = "housewares";
                 } else if (linkData[0]['properties']['shop'] == "kitchen") {
-                  keywords.push("kitchen");
+                  keywords.add("kitchen");
                   prefix = "lgdo";
                   category = "KitchenShop";
                 } else if (linkData[0]['properties']['shop'] == "wine; books") {
-                  keywords.push("wine");
-                  keywords.push("book");
+                  keywords.add("wine");
+                  keywords.add("book");
                   prefix = "lgdo";
                   category = "BookShop";
                 } else if (linkData[0]['properties']['shop'] == "fashion") {
-                  keywords.push("fashion");
+                  keywords.add("fashion");
                   prefix = "lgdo";
                   category = "Fashion";
                 } else if (linkData[0]['properties']['shop'] == "e-cigarette") {
-                  keywords.push("cigarette");
+                  keywords.add("cigarette");
                   prefix = "ex";
                   category = "E-cigarette;";
                 } else if (linkData[0]['properties']['shop'] == "yes") {
@@ -760,50 +760,50 @@ export class DataService {
                 //TOURISM
               } else if (linkData[0]['properties']['tourism']) {
                 if (linkData[0]['properties']['tourism'] == "hotel") {
-                  keywords.push("hotel");
+                  keywords.add("hotel");
                   prefix = "schema";
                   category = "Hotel";
                 } else if (linkData[0]['properties']['tourism'] == "museum") {
-                  keywords.push("museum");
+                  keywords.add("museum");
                   prefix = "schema";
                   category = "Museum";
                 } else if (linkData[0]['properties']['tourism'] == "hostel") {
-                  keywords.push("hostel");
+                  keywords.add("hostel");
                   prefix = "schema";
                   category = "hostel";
                 } else if (linkData[0]['properties']['tourism'] == "gallery") {
-                  keywords.push("gallery");
+                  keywords.add("gallery");
                   prefix = "schema";
                   category = "gallery";
                 } else if (linkData[0]['properties']['tourism'] == "attraction") {
-                  keywords.push("attraction");
+                  keywords.add("attraction");
                   prefix = "schema";
                   category = "TouristAttraction";
                 } else if (linkData[0]['properties']['tourism'] == "artwork") {
-                  keywords.push("artwork");
-                  keywords.push("art");
+                  keywords.add("artwork");
+                  keywords.add("art");
                   //OPZOEKEN OP SITE
                   prefix = "schema";
                   category = "VisualArtwork";
                 } else if (linkData[0]['properties']['tourism'] == "guest_house") {
-                  keywords.push("guesthouse");
-                  keywords.push("guest");
-                  keywords.push("house");
+                  keywords.add("guesthouse");
+                  keywords.add("guest");
+                  keywords.add("house");
                   //OPZOEKEN OP SITE
                   prefix = "schema";
                   category = "Accommodation";
                 } else if (linkData[0]['properties']['tourism'] == "apartment") {
-                  keywords.push("apartment");
+                  keywords.add("apartment");
                   //OPZOEKEN OP SITE
                   prefix = "schema";
                   category = "Apartment";
                 } else if (linkData[0]['properties']['tourism'] == "information") {
-                  keywords.push("information");
+                  keywords.add("information");
                   //OPZOEKEN OP SITE
                   prefix = "schema";
                   category = "TouristInformationCenter";
                 } else if (linkData[0]['properties']['tourism'] == "viewpoint") {
-                  keywords.push("viewpoint");
+                  keywords.add("viewpoint");
                   //OPZOEKEN OP SITE
                   prefix = "schema";
                   category = "viewpoint";
@@ -816,109 +816,109 @@ export class DataService {
                 //leisure
               } else if (linkData[0]['properties']['leisure']) {
                 if (linkData[0]['properties']['leisure'] == "picnic_table") {
-                  keywords.push("picnic");
-                  keywords.push("table");
+                  keywords.add("picnic");
+                  keywords.add("table");
                   prefix = "schema";
                   category = "Place";
                 } else if (linkData[0]['properties']['leisure'] == "playground") {
-                  keywords.push("playground");
+                  keywords.add("playground");
                   prefix = "schema";
                   category = "Playground";
                 } else if (linkData[0]['properties']['leisure'] == "fitness_centre") {
-                  keywords.push("fitness");
-                  keywords.push("gym");
+                  keywords.add("fitness");
+                  keywords.add("gym");
                   prefix = "lgdo";
                   category = "Gym";
                 } else if (linkData[0]['properties']['leisure'] == "sports_centre") {
-                  keywords.push("sport");
-                  keywords.push("sports");
+                  keywords.add("sport");
+                  keywords.add("sports");
                   prefix = "lgdo";
                   category = "SportsCentre";
                 } else if (linkData[0]['properties']['leisure'] == "hackerspace") {
-                  keywords.push("hackerspace");
-                  keywords.push("hacker");
-                  keywords.push("hack");
+                  keywords.add("hackerspace");
+                  keywords.add("hacker");
+                  keywords.add("hack");
                   prefix = "lgdo";
                   category = "Hackerspace";
                 } else if (linkData[0]['properties']['leisure'] == "dance") {
-                  keywords.push("dance");
-                  keywords.push("dancing");
+                  keywords.add("dance");
+                  keywords.add("dancing");
                   prefix = "lgdo";
                   category = "Dance";
                 } else if (linkData[0]['properties']['leisure'] == "garden") {
-                  keywords.push("garden");
+                  keywords.add("garden");
                   prefix = "lgdo";
                   category = "GardenCentre";
                 } else if (linkData[0]['properties']['leisure'] == "amusement_arcade") {
-                  keywords.push("arcade");
+                  keywords.add("arcade");
                   prefix = "schema";
                   category = "AmusementPark";
                 } else if (linkData[0]['properties']['leisure'] == "escape_game") {
-                  keywords.push("escape");
-                  keywords.push("game");
+                  keywords.add("escape");
+                  keywords.add("game");
                   prefix = "ex";
                   category = "EscapeGame";
                 } else if (linkData[0]['properties']['leisure'] == "pitch") {
-                  keywords.push("pitch");
+                  keywords.add("pitch");
                   prefix = "lgdo";
                   category = "Pitch";
                 } else if (linkData[0]['properties']['leisure'] == "sports_hall") {
-                  keywords.push("sportshall");
+                  keywords.add("sportshall");
                   prefix = "ex";
                   category = "SportsHall";
                 } else if (linkData[0]['properties']['leisure'] == "sauna") {
-                  keywords.push("sauna");
+                  keywords.add("sauna");
                   prefix = "lgdo";
                   category = "Sauna";
                 } else if (linkData[0]['properties']['leisure'] == "marina") {
-                  keywords.push("marina");
-                  keywords.push("boatyard");
-                  keywords.push("port");
-                  keywords.push("harbor");
+                  keywords.add("marina");
+                  keywords.add("boatyard");
+                  keywords.add("port");
+                  keywords.add("harbor");
                   prefix = "lgdo";
                   category = "Marina";
                 } else if (linkData[0]['properties']['leisure'] == "swimming_pool") {
-                  keywords.push("swimming");
-                  keywords.push("pool");
+                  keywords.add("swimming");
+                  keywords.add("pool");
                   prefix = "lgdo";
                   category = "SwimmingPool";
                 } else if (linkData[0]['properties']['leisure'] == "fitness_station") {
-                  keywords.push("fitness");
-                  keywords.push("gym");
+                  keywords.add("fitness");
+                  keywords.add("gym");
                   prefix = "ex";
                   category = "FitnessStation";
                 } else if (linkData[0]['properties']['leisure'] == "park") {
-                  keywords.push("park");
+                  keywords.add("park");
                   prefix = "schema";
                   category = "Park";
                 } else if (linkData[0]['properties']['leisure'] == "track") {
-                  keywords.push("track");
+                  keywords.add("track");
                   prefix = "lgdo";
                   category = "Track";
                 } else if (linkData[0]['properties']['leisure'] == "dog_park") {
-                  keywords.push("dog");
+                  keywords.add("dog");
                   prefix = "lgdo";
                   category = "DogPark";
                 } else if (linkData[0]['properties']['leisure'] == "outdoor_seating") {
-                  keywords.push("outdoor");
-                  keywords.push("seating");
+                  keywords.add("outdoor");
+                  keywords.add("seating");
                   prefix = "ex";
                   category = "OutdoorSeating";
                 } else if (linkData[0]['properties']['leisure'] == "slipway") {
-                  keywords.push("slipway");
+                  keywords.add("slipway");
                   prefix = "lgdo";
                   category = "Slipway";
                 } else if (linkData[0]['properties']['leisure'] == "bandstand") {
-                  keywords.push("bandstand");
+                  keywords.add("bandstand");
                   prefix = "lgdo";
                   category = "Bandstand";
                 } else if (linkData[0]['properties']['leisure'] == "bleachers") {
-                  keywords.push("bleachers");
+                  keywords.add("bleachers");
                   prefix = "ex";
                   category = "Bleachers";
                 } else if (linkData[0]['properties']['leisure'] == "nature_reserve") {
-                  keywords.push("nature");
-                  keywords.push("reserve");
+                  keywords.add("nature");
+                  keywords.add("reserve");
                   prefix = "lgdo";
                   category = "NatureReserve";
                 } else {
@@ -929,114 +929,114 @@ export class DataService {
                 //HISTORIC
               } else if (linkData[0]['properties']['historic']) {
                 if (linkData[0]['properties']['historic'] == "building") {
-                  keywords.push("building");
+                  keywords.add("building");
                   prefix = "lgdo";
                   category = "Building";
                 } else if (linkData[0]['properties']['historic'] == "memorial") {
-                  keywords.push("memorial");
+                  keywords.add("memorial");
                   prefix = "lgdo";
                   category = "Memorial";
                 } else if (linkData[0]['properties']['historic'] == "ruins") {
-                  keywords.push("ruins");
-                  keywords.push("ruin");
+                  keywords.add("ruins");
+                  keywords.add("ruin");
                   prefix = "lgdo";
                   category = "Ruins";
                 } else if (linkData[0]['properties']['historic'] == "wayside_cross") {
-                  keywords.push("cross");
-                  keywords.push("wayside");
+                  keywords.add("cross");
+                  keywords.add("wayside");
                   prefix = "ex";
                   category = "WaysideCross";
                 } else if (linkData[0]['properties']['historic'] == "wayside_shrine") {
-                  keywords.push("shrine");
+                  keywords.add("shrine");
                   prefix = "dbp";
                   category = "Shrine";
                 } else if (linkData[0]['properties']['historic'] == "heritage_building") {
-                  keywords.push("heritage");
-                  keywords.push("building");
+                  keywords.add("heritage");
+                  keywords.add("building");
                   prefix = "ex";
                   category = "HeritageBuilding";
                 } else if (linkData[0]['properties']['historic'] == "fort") {
-                  keywords.push("fort");
+                  keywords.add("fort");
                   prefix = "lgdo";
                   category = "Fort";
                 } else if (linkData[0]['properties']['historic'] == "school") {
-                  keywords.push("school");
+                  keywords.add("school");
                   prefix = "schema";
                   category = "School";
                 } else if (linkData[0]['properties']['historic'] == "archaeological_site") {
-                  keywords.push("archaeological");
-                  keywords.push("archeology");
+                  keywords.add("archaeological");
+                  keywords.add("archeology");
                   prefix = "lgdo";
                   category = "ArchaeologicalSite";
                 } else if (linkData[0]['properties']['historic'] == "monument") {
-                  keywords.push("monument");
+                  keywords.add("monument");
                   prefix = "lgdo";
                   category = "Monument";
                 } else if (linkData[0]['properties']['historic'] == "industrial") {
-                  keywords.push("industrial");
+                  keywords.add("industrial");
                   prefix = "lgdo";
                   category = "IndustrialProductionBuilding";
                 } else if (linkData[0]['properties']['historic'] == "monastery") {
-                  keywords.push("monastery");
+                  keywords.add("monastery");
                   prefix = "lgdo";
                   category = "Monastery";
                 } else if (linkData[0]['properties']['historic'] == "house") {
-                  keywords.push("house");
+                  keywords.add("house");
                   prefix = "schema";
                   category = "House";
                 } else if (linkData[0]['properties']['historic'] == "bridge") {
-                  keywords.push("bridge");
+                  keywords.add("bridge");
                   prefix = "schema";
                   category = "Bridge";
                 } else if (linkData[0]['properties']['historic'] == "chapel") {
-                  keywords.push("chapel");
+                  keywords.add("chapel");
                   prefix = "lgdo";
                   category = "Chapel";
                 } else if (linkData[0]['properties']['historic'] == "hospital") {
-                  keywords.push("hospital");
+                  keywords.add("hospital");
                   prefix = "schema";
                   category = "Hospital";
                 } else if (linkData[0]['properties']['historic'] == "church") {
-                  keywords.push("church");
+                  keywords.add("church");
                   prefix = "schema";
                   category = "Church";
                 } else if (linkData[0]['properties']['historic'] == "tower") {
-                  keywords.push("tower");
+                  keywords.add("tower");
                   prefix = "lgdo";
                   category = "Tower";
                 } else if (linkData[0]['properties']['historic'] == "castle_wall") {
-                  keywords.push("castle");
-                  keywords.push("wall");
+                  keywords.add("castle");
+                  keywords.add("wall");
                   prefix = "ex";
                   category = "CastleWall";
                 } else if (linkData[0]['properties']['historic'] == "castle") {
-                  keywords.push("castle");
+                  keywords.add("castle");
                   prefix = "lgdo";
                   category = "Castle";
                 } else if (linkData[0]['properties']['historic'] == "prison") {
-                  keywords.push("prison");
+                  keywords.add("prison");
                   prefix = "lgdo";
                   category = "Prison";
                 } else if (linkData[0]['properties']['historic'] == "city_gate") {
-                  keywords.push("gate");
-                  keywords.push("city");
+                  keywords.add("gate");
+                  keywords.add("city");
                   prefix = "lgdo";
                   category = "Prison";
                 } else if (linkData[0]['properties']['historic'] == "bank") {
-                  keywords.push("bank");
+                  keywords.add("bank");
                   prefix = "lgdo";
                   category = "Bank";
                 } else if (linkData[0]['properties']['historic'] == "cinema") {
-                  keywords.push("cinema");
+                  keywords.add("cinema");
                   prefix = "lgdo";
                   category = "Cinema";
                 } else if (linkData[0]['properties']['historic'] == "water_gate") {
-                  keywords.push("water");
-                  keywords.push("gate");
+                  keywords.add("water");
+                  keywords.add("gate");
                   prefix = "ex";
                   category = "WaterGate";
                 } else if (linkData[0]['properties']['historic'] == "warehouse") {
-                  keywords.push("warehouse");
+                  keywords.add("warehouse");
                   prefix = "ex";
                   category = "Warehouse";
                 } else if (linkData[0]['properties']['historic'] == "yes") {
@@ -1050,11 +1050,11 @@ export class DataService {
                 //MEMORIAL
               } else if (linkData[0]['properties']['memorial']) {
                 if (linkData[0]['properties']['memorial'] == "plaque") {
-                  keywords.push("plaque");
+                  keywords.add("plaque");
                   prefix = "ex";
                   category = "Plaque";
                 } else if (linkData[0]['properties']['memorial'] == "playground") {
-                  keywords.push("playground");
+                  keywords.add("playground");
                   prefix = "schema";
                   category = "Playground";
                 } else {
@@ -1065,11 +1065,11 @@ export class DataService {
                 //sport
               } else if (linkData[0]['properties']['sport']) {
                 if (linkData[0]['properties']['sport'] == "jogging") {
-                  keywords.push("jogging");
+                  keywords.add("jogging");
                   prefix = "ex";
                   category = "Jogging";
                 } else if (linkData[0]['properties']['sport'] == "climbing") {
-                  keywords.push("climbing");
+                  keywords.add("climbing");
                   prefix = "km4c";
                   category = "Climbing";
                 } else {
@@ -1113,12 +1113,20 @@ export class DataService {
                   turtleOutput += `\t] ; \n`;
                 }
                 if (linkData[0]['properties']['cuisine']) {
-                  for (let item of linkData[0]['properties']['cuisine'].split(';')) {
-                    turtleOutput += `\tschema:servesCuisine "${item}"; \n`;
-                    keywords.push(item);
+                  if (linkData[0]['properties']['cuisine'].toString().includes(';')) {
+                    for (let item of linkData[0]['properties']['cuisine'].split(';')) {
+                      turtleOutput += `\tschema:servesCuisine "${item}"; \n`;
+                      keywords.add(item);
+                    }
+                  } else if (linkData[0]['properties']['cuisine'].toString().includes(',')) {
+                    for (let item of linkData[0]['properties']['cuisine'].split(',')) {
+                      turtleOutput += `\tschema:servesCuisine "${item}"; \n`;
+                      keywords.add(item);
+                    }
                   }
+
                 }
-                turtleOutput += `\tschema:keyword ('${keywords.toString().replaceAll(",", "' '")}') ; \n`;
+                turtleOutput += `\tschema:keyword ('${Array.from(keywords).toString().replaceAll(",", "' '")}') ; \n`;
                 if (linkData[0]['geometry']['type'] == "Point") {
                   turtleOutput += `\tschema:geo [
                   \ta geo:Point ;

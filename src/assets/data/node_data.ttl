@@ -30,8 +30,7 @@
 		schema:streetAddress "Baudelokaai"; 
 		schema:postOfficeBoxNumber "17"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.729933";
@@ -72,8 +71,7 @@
 	schema:name "REVUE" ; 
 	schema:url "http://www.revue-gent.be/"; 
 	schema:amenityFeature "cafe"; 
-	schema:servesCuisine "regional"; 
-	schema:keyword ('cafe' 'regional') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7213892";
@@ -90,8 +88,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7115416";
@@ -370,8 +367,7 @@
 <node/968042315> a schema:Restaurant ;
 	schema:name "Passion" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "regional"; 
-	schema:keyword ('restaurant' 'regional') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7242466";
@@ -604,8 +600,7 @@
 		schema:addressLocality "Gent"; 
 		schema:addressCountry "BE"; 
 	] ; 
-	schema:servesCuisine "spanish"; 
-	schema:keyword ('restaurant' 'spanish') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7266786";
@@ -881,8 +876,7 @@
 	schema:url "http://www.2bangkok.be"; 
 	schema:telephone "+32 487 26 39 94"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "thai"; 
-	schema:keyword ('restaurant' 'thai') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7245505";
@@ -1289,8 +1283,7 @@
 <node/1275915813> a schema:Restaurant ;
 	schema:name "Restaurant" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7247004";
@@ -1578,8 +1571,7 @@
 <node/1312420654> a schema:Restaurant ;
 	schema:name "Cafe Des Arts" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "regional"; 
-	schema:keyword ('restaurant' 'regional') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217501";
@@ -1751,8 +1743,7 @@
 		schema:addressLocality "Gent"; 
 		schema:addressCountry "BE"; 
 	] ; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('fastfood' 'pizza') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7292933";
@@ -1769,8 +1760,7 @@
 <node/1381892995> a schema:Restaurant ;
 	schema:name "‘t Prison" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "regional"; 
-	schema:keyword ('restaurant' 'regional') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7212165";
@@ -1787,8 +1777,7 @@
 <node/1381893761> a schema:FastFoodRestaurant ;
 	schema:name "'t Puntzakje" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.721631";
@@ -1874,8 +1863,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "thai"; 
-	schema:keyword ('restaurant' 'thai') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7299962";
@@ -1886,8 +1874,7 @@
 	schema:url "https://www.dekastart.com/"; 
 	schema:telephone "+32 9 224 36 27"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "pasta"; 
-	schema:keyword ('restaurant' 'pasta') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7196261";
@@ -1904,8 +1891,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7230507";
@@ -1930,8 +1916,7 @@
 		schema:addressLocality "Gent"; 
 		schema:addressCountry "BE"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7228521";
@@ -2022,8 +2007,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "greek"; 
-	schema:keyword ('restaurant' 'greek') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7300515";
@@ -2063,8 +2047,7 @@
 		schema:addressLocality "Ledeberg"; 
 		schema:addressCountry "BE"; 
 	] ; 
-	schema:servesCuisine "burger"; 
-	schema:keyword ('fastfood' 'burger') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217845";
@@ -2180,8 +2163,7 @@
 <node/1532798349> a schema:FastFoodRestaurant ;
 	schema:name "Frituur Frans Hooiaard" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7215853";
@@ -2215,8 +2197,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "middle_eastern"; 
-	schema:keyword ('restaurant' 'middle_eastern') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7219162";
@@ -2439,8 +2420,7 @@
 		schema:streetAddress "Stalhof"; 
 		schema:postOfficeBoxNumber "11"; 
 	] ; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7263879";
@@ -2457,8 +2437,7 @@
 		schema:addressLocality "Ledeberg"; 
 		schema:addressCountry "BE"; 
 	] ; 
-	schema:servesCuisine "kebab"; 
-	schema:keyword ('fastfood' 'kebab') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7271614";
@@ -2500,8 +2479,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "sushi"; 
-	schema:keyword ('fastfood' 'sushi') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7166654";
@@ -2510,8 +2488,7 @@
 <node/1603599048> a schema:FastFoodRestaurant ;
 	schema:name "Frituur Bij Sint-Jacobs" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7280115";
@@ -2613,8 +2590,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "steak_house"; 
-	schema:keyword ('restaurant' 'steak_house') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7199704";
@@ -2855,8 +2831,7 @@
 		schema:addressLocality "Gent"; 
 		schema:addressCountry "BE"; 
 	] ; 
-	schema:servesCuisine "burger"; 
-	schema:keyword ('fastfood' 'burger') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7219073";
@@ -2909,8 +2884,7 @@
 		schema:addressLocality "Ledeberg"; 
 		schema:addressCountry "BE"; 
 	] ; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('restaurant' 'pizza') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217395";
@@ -2999,8 +2973,7 @@
 <node/1628067385> a schema:FastFoodRestaurant ;
 	schema:name "Xantyp" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7312139";
@@ -3035,8 +3008,7 @@
 <node/1628956682> a schema:FastFoodRestaurant ;
 	schema:name "Frietcultuur" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7276412";
@@ -3061,8 +3033,7 @@
 <node/1690599456> a schema:FastFoodRestaurant ;
 	schema:name "Melangoest" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7214591";
@@ -3374,8 +3345,7 @@
 	schema:url "http://rustica.be"; 
 	schema:telephone "+32 9 233 07 08"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7268344";
@@ -3433,8 +3403,7 @@
 		schema:postOfficeBoxNumber "126A"; 
 		schema:postalCode "9000"; 
 	] ; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7268505";
@@ -3502,6 +3471,7 @@
 		a schema:PostalAddress ;
 		schema:streetAddress "Brusselsepoortstraat"; 
 	] ; 
+	schema:keyword ('') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7364131";
@@ -3521,8 +3491,7 @@
 	schema:url "http://www.brasserieha.be/"; 
 	schema:telephone "+32 9 265 91 81"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "french"; 
-	schema:keyword ('restaurant' 'french') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7230476";
@@ -3625,8 +3594,7 @@
 <node/1949557491> a schema:FastFoodRestaurant ;
 	schema:name "McDonald's" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "burger"; 
-	schema:keyword ('fastfood' 'burger') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7106021";
@@ -3730,8 +3698,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Ledeberg"; 
 	] ; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217947";
@@ -3746,8 +3713,7 @@
 		schema:streetAddress "Sint-Pietersnieuwstraat"; 
 		schema:postOfficeBoxNumber "218"; 
 	] ; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7260824";
@@ -3756,8 +3722,7 @@
 <node/2145771577> a schema:FastFoodRestaurant ;
 	schema:name "Frituur Filip" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217477";
@@ -3864,8 +3829,7 @@
 		schema:postOfficeBoxNumber "61"; 
 		schema:postalCode "9000"; 
 	] ; 
-	schema:servesCuisine "regional"; 
-	schema:keyword ('restaurant' 'regional') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7362854";
@@ -3936,8 +3900,7 @@
 <node/2305188545> a schema:Restaurant ;
 	schema:name "De wereld van Shan" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "chinese"; 
-	schema:keyword ('restaurant' 'chinese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7216739";
@@ -3991,8 +3954,7 @@
 		schema:streetAddress "Geldmunt"; 
 		schema:postOfficeBoxNumber "2"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7216012";
@@ -4346,8 +4308,7 @@
 		schema:streetAddress "Ajuinlei"; 
 		schema:postOfficeBoxNumber "10a"; 
 	] ; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('restaurant' 'pizza') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7203476";
@@ -4359,6 +4320,7 @@
 		a schema:PostalAddress ;
 		schema:streetAddress "Groentenmarkt"; 
 	] ; 
+	schema:keyword ('') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.722135";
@@ -4407,8 +4369,7 @@
 	schema:name "La Malcontenta" ; 
 	schema:url "http://www.lamalcontenta.be/"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "spanish"; 
-	schema:keyword ('restaurant' 'spanish') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217227";
@@ -4479,8 +4440,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "boterhammen"; 
-	schema:keyword ('bar' 'boterhammen') ; 
+	schema:keyword ('bar') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.728471";
@@ -4556,8 +4516,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "international"; 
-	schema:keyword ('restaurant' 'international') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7233681";
@@ -4627,8 +4586,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "chinese"; 
-	schema:keyword ('restaurant' 'chinese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7199527";
@@ -4663,8 +4621,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "nepalese"; 
-	schema:keyword ('restaurant' 'nepalese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7239252";
@@ -4702,8 +4659,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('restaurant' 'pizza') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7243683";
@@ -4721,8 +4677,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "american"; 
-	schema:keyword ('restaurant' 'american') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.722468";
@@ -4794,8 +4749,7 @@
 <node/2705418989> a schema:FastFoodRestaurant ;
 	schema:name "Frituur De Kraanlei" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.721975";
@@ -4820,8 +4774,7 @@
 <node/2747933913> a schema:Restaurant ;
 	schema:name "Pizza Hut" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('restaurant' 'pizza') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7236044";
@@ -4832,8 +4785,7 @@
 	schema:url "http://www.painperdugent.be/"; 
 	schema:telephone "+32 9 224 18 25"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "brunch"; 
-	schema:keyword ('restaurant' 'brunch') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7270714";
@@ -4878,8 +4830,7 @@
 		schema:streetAddress "Limburgstraat"; 
 		schema:postOfficeBoxNumber "28"; 
 	] ; 
-	schema:servesCuisine "asian"; 
-	schema:keyword ('restaurant' 'asian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7274925";
@@ -4911,8 +4862,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "moroccan"; 
-	schema:keyword ('restaurant' 'moroccan') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.701189";
@@ -4937,8 +4887,7 @@
 		schema:streetAddress "Nederkouter"; 
 		schema:postOfficeBoxNumber "71"; 
 	] ; 
-	schema:servesCuisine "wine"; 
-	schema:keyword ('bar' 'wine') ; 
+	schema:keyword ('bar') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7219704";
@@ -4947,8 +4896,7 @@
 <node/3266027860> a schema:FastFoodRestaurant ;
 	schema:name "Frituur Jozef" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.725387";
@@ -4957,8 +4905,7 @@
 <node/3266030161> a schema:FastFoodRestaurant ;
 	schema:name "Sympa" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.727361";
@@ -4967,8 +4914,7 @@
 <node/3266033261> a schema:FastFoodRestaurant ;
 	schema:name "De Papegaai" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7164564";
@@ -4993,8 +4939,7 @@
 <node/3284066961> a schema:FastFoodRestaurant ;
 	schema:name "Guerrilla Street Food" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "tapas"; 
-	schema:keyword ('fastfood' 'tapas') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7287134";
@@ -5008,8 +4953,7 @@
 		schema:streetAddress "IJzerlaan"; 
 		schema:postOfficeBoxNumber "9"; 
 	] ; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7184037";
@@ -5026,8 +4970,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "coffee"; 
-	schema:keyword ('cafe' 'coffee') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7268963";
@@ -5119,8 +5062,7 @@
 		schema:streetAddress "Sint-Pietersnieuwstraat"; 
 		schema:postOfficeBoxNumber "208"; 
 	] ; 
-	schema:servesCuisine "chocolate"; 
-	schema:keyword ('cafe' 'chocolate') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7263792";
@@ -5155,8 +5097,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "asian"; 
-	schema:keyword ('restaurant' 'asian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7201368";
@@ -5172,8 +5113,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "indonesian"; 
-	schema:keyword ('restaurant' 'indonesian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217242";
@@ -5270,8 +5210,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "thai"; 
-	schema:keyword ('restaurant' 'thai') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7231959";
@@ -5280,8 +5219,7 @@
 <node/3394491370> a schema:Restaurant ;
 	schema:name "Casa de las Tapas" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "spanish"; 
-	schema:keyword ('restaurant' 'spanish') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7228966";
@@ -5299,8 +5237,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "thai"; 
-	schema:keyword ('restaurant' 'thai') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7237319";
@@ -5317,8 +5254,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7294881";
@@ -5336,8 +5272,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "coffee_shop"; 
-	schema:keyword ('cafe' 'coffee_shop') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7300441";
@@ -5353,8 +5288,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.731136";
@@ -5658,8 +5592,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.709877";
@@ -5717,8 +5650,7 @@
 	schema:name "Tashun" ; 
 	schema:telephone "+32 9 233 15 79"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "chinese"; 
-	schema:keyword ('restaurant' 'chinese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7270726";
@@ -5840,8 +5772,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7164316";
@@ -5919,8 +5850,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "indian"; 
-	schema:keyword ('restaurant' 'indian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.718244";
@@ -6066,8 +5996,7 @@
 		schema:streetAddress "Drabstraat"; 
 		schema:postOfficeBoxNumber "34"; 
 	] ; 
-	schema:servesCuisine "cantonese"; 
-	schema:keyword ('restaurant' 'cantonese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7185516";
@@ -6082,8 +6011,7 @@
 		schema:streetAddress "Drabstraat"; 
 		schema:postOfficeBoxNumber "30"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7188157";
@@ -6150,8 +6078,7 @@
 <node/4065303862> a schema:FastFoodRestaurant ;
 	schema:name "Panos" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7405112";
@@ -6177,8 +6104,7 @@
 <node/4075563290> a schema:Restaurant ;
 	schema:name "Rabotaria" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('restaurant' 'sandwich') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7088286";
@@ -6204,8 +6130,7 @@
 <node/4154773490> a schema:FastFoodRestaurant ;
 	schema:name "Panda Express" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "chinese"; 
-	schema:keyword ('fastfood' 'chinese') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7242161";
@@ -6214,8 +6139,7 @@
 <node/4155424989> a schema:FastFoodRestaurant ;
 	schema:name "Aida's sandwichbar" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7178629";
@@ -6269,8 +6193,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "asian"; 
-	schema:keyword ('restaurant' 'asian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7246214";
@@ -6292,8 +6215,7 @@
 		a schema:PostalAddress ;
 		schema:streetAddress "Sint-Amandstraat"; 
 	] ; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7243234";
@@ -6327,8 +6249,7 @@
 <node/4229989138> a schema:FastFoodRestaurant ;
 	schema:name "Panos" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7228565";
@@ -6393,8 +6314,7 @@
 	schema:name "Sala Thai 3" ; 
 	schema:url "http://www.salathai3.be/"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "thai"; 
-	schema:keyword ('restaurant' 'thai') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.721332";
@@ -6446,8 +6366,7 @@
 	schema:name "Cafetaria De Brug" ; 
 	schema:url "https://www.ugent.be/student/nl/meer-dan-studeren/resto/cafetarias/cafetariadebrug.htm"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.727219";
@@ -6697,8 +6616,7 @@
 		schema:streetAddress "Langemunt"; 
 		schema:postOfficeBoxNumber "9"; 
 	] ; 
-	schema:servesCuisine "kebab"; 
-	schema:keyword ('fastfood' 'kebab') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7228515";
@@ -6890,8 +6808,7 @@
 	schema:name "Osteria Delicati" ; 
 	schema:url "http://osteriadelicati.be/"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7197081";
@@ -6917,8 +6834,7 @@
 <node/4391556779> a schema:FastFoodRestaurant ;
 	schema:name "Haktan" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7296666";
@@ -6934,8 +6850,7 @@
 		schema:streetAddress "Vlaanderenstraat"; 
 		schema:postOfficeBoxNumber "49"; 
 	] ; 
-	schema:servesCuisine "indian"; 
-	schema:keyword ('restaurant' 'indian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.729691";
@@ -7269,8 +7184,7 @@
 		schema:streetAddress "Sluizekenstraat"; 
 		schema:postOfficeBoxNumber "2"; 
 	] ; 
-	schema:servesCuisine "burger"; 
-	schema:keyword ('restaurant' 'burger') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7250835";
@@ -7443,8 +7357,7 @@
 <node/4631930989> a schema:FastFoodRestaurant ;
 	schema:name "Nederkouter" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7222863";
@@ -7500,8 +7413,7 @@
 	schema:name "Otomat" ; 
 	schema:url "https://otomat.be/"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('restaurant' 'pizza') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217145";
@@ -7560,8 +7472,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "turkish"; 
-	schema:keyword ('restaurant' 'turkish') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7242468";
@@ -7619,8 +7530,7 @@
 		schema:postOfficeBoxNumber "70"; 
 		schema:postalCode "9000"; 
 	] ; 
-	schema:servesCuisine "chicken"; 
-	schema:keyword ('restaurant' 'chicken') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7260604";
@@ -7726,8 +7636,7 @@
 <node/4764908262> a schema:Restaurant ;
 	schema:name "Golden Ring" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "chinese"; 
-	schema:keyword ('restaurant' 'chinese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7173573";
@@ -7752,8 +7661,7 @@
 	schema:name "Aroy Aroy" ; 
 	schema:url "https://aroyaroy.be/"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "thai"; 
-	schema:keyword ('restaurant' 'thai') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7214135";
@@ -7798,8 +7706,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "regional"; 
-	schema:keyword ('restaurant' 'regional') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7191195";
@@ -7833,8 +7740,7 @@
 <node/4807414326> a schema:FastFoodRestaurant ;
 	schema:name "Frituur Bargie" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7078978";
@@ -7965,8 +7871,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "fish_and_chips"; 
-	schema:keyword ('restaurant' 'fish_and_chips') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7229223";
@@ -8176,8 +8081,7 @@
 <node/5029460636> a schema:CafeOrCoffeeShop ;
 	schema:name "Starbucks" ; 
 	schema:amenityFeature "cafe"; 
-	schema:servesCuisine "coffee_shop"; 
-	schema:keyword ('cafe' 'coffee_shop') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7394092";
@@ -8191,8 +8095,7 @@
 		schema:streetAddress "Oktrooiplein"; 
 		schema:postOfficeBoxNumber "1/001"; 
 	] ; 
-	schema:servesCuisine "salad_bar"; 
-	schema:keyword ('fastfood' 'salad_bar') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7394919";
@@ -8201,8 +8104,7 @@
 <node/5056755522> a schema:Restaurant ;
 	schema:name "Pizza Mia" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('restaurant' 'pizza') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7185649";
@@ -8301,8 +8203,7 @@
 <node/5190248821> a schema:CafeOrCoffeeShop ;
 	schema:name "Le Pain Quotidien" ; 
 	schema:amenityFeature "cafe"; 
-	schema:servesCuisine "coffee_shop"; 
-	schema:keyword ('cafe' 'coffee_shop') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7253764";
@@ -8513,8 +8414,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "portuguese"; 
-	schema:keyword ('cafe' 'portuguese') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7222014";
@@ -8759,8 +8659,7 @@
 <node/5303464714> a schema:Restaurant ;
 	schema:name "Hasta Mañana" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "spanish"; 
-	schema:keyword ('restaurant' 'spanish') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7283731";
@@ -8797,8 +8696,7 @@
 <node/5339586539> a schema:FastFoodRestaurant ;
 	schema:name "Frituur Zuid" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7310325";
@@ -8970,8 +8868,7 @@
 	schema:name "Barbiet" ; 
 	schema:url "http://www.barbiet.be/"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "breakfast"; 
-	schema:keyword ('restaurant' 'breakfast') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7261657";
@@ -9112,8 +9009,7 @@
 	schema:url "http://www.amatsu.be/"; 
 	schema:telephone "+32 9 224 47 06"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "japanese"; 
-	schema:keyword ('restaurant' 'japanese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7238343";
@@ -9138,8 +9034,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "greek"; 
-	schema:keyword ('restaurant' 'greek') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7170462";
@@ -9242,8 +9137,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "lunch"; 
-	schema:keyword ('restaurant' 'lunch') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7215716";
@@ -9406,8 +9300,7 @@
 <node/5618349223> a schema:CafeOrCoffeeShop ;
 	schema:name "Barista" ; 
 	schema:amenityFeature "cafe"; 
-	schema:servesCuisine "coffee_shop"; 
-	schema:keyword ('cafe' 'coffee_shop') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7245434";
@@ -9613,8 +9506,7 @@
 		schema:streetAddress "Sluizeken"; 
 		schema:postOfficeBoxNumber "21"; 
 	] ; 
-	schema:servesCuisine "turkish"; 
-	schema:keyword ('restaurant' 'turkish') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.72512";
@@ -9639,8 +9531,7 @@
 		schema:streetAddress "Sluizeken"; 
 		schema:postOfficeBoxNumber "22"; 
 	] ; 
-	schema:servesCuisine "turkish"; 
-	schema:keyword ('restaurant' 'turkish') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.725069";
@@ -9688,8 +9579,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "chinese"; 
-	schema:keyword ('restaurant' 'chinese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7092705";
@@ -9753,8 +9643,7 @@
 <node/5869420982> a schema:Restaurant ;
 	schema:name "Castor & Pollux" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "international"; 
-	schema:keyword ('restaurant' 'international') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7289268";
@@ -9771,8 +9660,7 @@
 <node/5894300885> a schema:Restaurant ;
 	schema:name "Da Pino" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "italian_pizza"; 
-	schema:keyword ('restaurant' 'italian_pizza') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7252708";
@@ -9961,8 +9849,7 @@
 		schema:streetAddress "Sint-Amandstraat"; 
 		schema:postOfficeBoxNumber "48"; 
 	] ; 
-	schema:servesCuisine "burger"; 
-	schema:keyword ('restaurant' 'burger') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7247166";
@@ -10338,6 +10225,7 @@
                   ] .
 <node/6155773243> a schema:Store ;
 	schema:name "Alltech" ; 
+	schema:keyword ('') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7203229";
@@ -10361,8 +10249,7 @@
 		schema:streetAddress "Ajuinlei"; 
 		schema:postOfficeBoxNumber "16"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7200203";
@@ -10473,8 +10360,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('fastfood' 'pizza') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7001051";
@@ -10561,8 +10447,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "snackbar"; 
-	schema:keyword ('fastfood' 'snackbar') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7239146";
@@ -10804,8 +10689,7 @@
 	schema:name "Cafetaria Blandijn" ; 
 	schema:url "https://www.ugent.be/student/nl/meer-dan-studeren/resto/cafetarias/cafetariacampusboekentoren.htm"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7254542";
@@ -10815,8 +10699,7 @@
 	schema:name "Cafetaria Aula" ; 
 	schema:url "https://www.ugent.be/student/nl/meer-dan-studeren/resto/cafetarias/cafetariacampusaula.htm"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7235244";
@@ -10836,8 +10719,7 @@
 	schema:name "Cafetaria Coupure" ; 
 	schema:url "https://www.ugent.be/student/nl/meer-dan-studeren/resto/cafetarias/cafetariacampuscoupure.htm"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7072957";
@@ -10921,8 +10803,7 @@
 <node/6440678296> a schema:Restaurant ;
 	schema:name "Anar" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "persian"; 
-	schema:keyword ('restaurant' 'persian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7245218";
@@ -10996,8 +10877,7 @@
 <node/6440678397> a schema:Restaurant ;
 	schema:name "Restaurant" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "lebanese"; 
-	schema:keyword ('restaurant' 'lebanese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7244597";
@@ -11069,8 +10949,7 @@
 		schema:streetAddress "Groentenmarkt"; 
 		schema:postOfficeBoxNumber "20"; 
 	] ; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('restaurant' 'friture') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7225716";
@@ -11505,8 +11384,7 @@
 <node/6799991942> a schema:FastFoodRestaurant ;
 	schema:name "Snack Deniz" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "kebab"; 
-	schema:keyword ('fastfood' 'kebab') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7256571";
@@ -11641,8 +11519,7 @@
 	schema:url "http://www.basic-italian.be/nl/gent-2-172"; 
 	schema:telephone "+32 475 25 84 89"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "pasta"; 
-	schema:keyword ('restaurant' 'pasta') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7266145";
@@ -11666,6 +11543,7 @@
                   ] .
 <node/6828901280> a schema:Store ;
 	schema:name "De Geest" ; 
+	schema:keyword ('') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217293";
@@ -12353,8 +12231,7 @@
 	schema:name "Umamido Vooruit" ; 
 	schema:url "http://www.umamido.be"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "japanese"; 
-	schema:keyword ('restaurant' 'japanese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7269775";
@@ -12396,8 +12273,7 @@
 <node/6933061185> a schema:FastFoodRestaurant ;
 	schema:name "O'Tacos" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "mexican"; 
-	schema:keyword ('fastfood' 'mexican') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7230453";
@@ -13050,8 +12926,7 @@
 <node/7012018353> a schema:Restaurant ;
 	schema:name "Asian Corner" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "thai"; 
-	schema:keyword ('restaurant' 'thai') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7229894";
@@ -13070,8 +12945,7 @@
 	schema:url "https://breadfastgent.weebly.com"; 
 	schema:telephone "+32 9 233 81 89"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "sandwich"; 
-	schema:keyword ('fastfood' 'sandwich') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7378823";
@@ -13111,8 +12985,7 @@
 		schema:streetAddress "Overpoortstraat"; 
 		schema:postOfficeBoxNumber "12"; 
 	] ; 
-	schema:servesCuisine "fried_food"; 
-	schema:keyword ('fastfood' 'fried_food') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7254031";
@@ -13406,8 +13279,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7040531";
@@ -13425,8 +13297,7 @@
 	schema:name "Go.fre" ; 
 	schema:url "https://www.gofre.be/"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "waffle"; 
-	schema:keyword ('fastfood' 'waffle') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7217196";
@@ -13459,8 +13330,7 @@
 <node/7142820246> a schema:Restaurant ;
 	schema:name "Aroma" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "steak_house"; 
-	schema:keyword ('restaurant' 'steak_house') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7233272";
@@ -13792,8 +13662,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "regional"; 
-	schema:keyword ('restaurant' 'regional') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7209497";
@@ -14256,8 +14125,7 @@
 <node/7771911224> a schema:FastFoodRestaurant ;
 	schema:name "Frituur Vlasmarkt" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7279834";
@@ -14328,8 +14196,7 @@
 	schema:name "Holy Guacamoly" ; 
 	schema:url "https://www.holyguacamoly.be"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "mexican"; 
-	schema:keyword ('fastfood' 'mexican') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7312829";
@@ -14368,8 +14235,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "friture"; 
-	schema:keyword ('fastfood' 'friture') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.6996553";
@@ -14421,8 +14287,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "indian"; 
-	schema:keyword ('restaurant' 'indian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7239455";
@@ -14433,8 +14298,7 @@
 	schema:url "https://www.john-dory.fish/"; 
 	schema:telephone "+32 468 27 56 77"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "fish"; 
-	schema:keyword ('restaurant' 'fish') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7303623";
@@ -14468,8 +14332,7 @@
 	schema:name "Astro Boy" ; 
 	schema:url "https://www.astroboy.be/"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "japanese"; 
-	schema:keyword ('restaurant' 'japanese') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7302631";
@@ -15391,8 +15254,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "coffee_shop"; 
-	schema:keyword ('cafe' 'coffee_shop') ; 
+	schema:keyword ('cafe') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7383906";
@@ -15492,8 +15354,7 @@
 <node/8482446493> a schema:FastFoodRestaurant ;
 	schema:name "Burger King" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "burger"; 
-	schema:keyword ('fastfood' 'burger') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7215461";
@@ -15652,8 +15513,7 @@
 		schema:streetAddress "Heilige-Geeststraat"; 
 		schema:postOfficeBoxNumber "30"; 
 	] ; 
-	schema:servesCuisine "sushi"; 
-	schema:keyword ('fastfood' 'sushi') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7237299";
@@ -15679,8 +15539,7 @@
 <node/8895903919> a schema:FastFoodRestaurant ;
 	schema:name "Primadonna" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('fastfood' 'pizza') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7254413";
@@ -15696,8 +15555,7 @@
 		schema:streetAddress "Sleepstraat"; 
 		schema:postOfficeBoxNumber "82"; 
 	] ; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.726594";
@@ -15821,8 +15679,7 @@
 	schema:name "Sushi Love Gent" ; 
 	schema:url "https://www.sushi-love-gent.be/"; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "sushi"; 
-	schema:keyword ('restaurant' 'sushi') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7244742";
@@ -15839,8 +15696,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "soup"; 
-	schema:keyword ('fastfood' 'soup') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7211187";
@@ -15916,8 +15772,7 @@
 <node/9219743937> a schema:Restaurant ;
 	schema:name "Gigi" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "italian"; 
-	schema:keyword ('restaurant' 'italian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7273534";
@@ -15931,8 +15786,7 @@
 		schema:streetAddress "Belfortstraat"; 
 		schema:postOfficeBoxNumber "28"; 
 	] ; 
-	schema:servesCuisine "syrian"; 
-	schema:keyword ('restaurant' 'syrian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7275651";
@@ -15947,8 +15801,7 @@
 		schema:streetAddress "Belfortstraat"; 
 		schema:postOfficeBoxNumber "32"; 
 	] ; 
-	schema:servesCuisine "syrian"; 
-	schema:keyword ('restaurant' 'syrian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7276704";
@@ -16086,6 +15939,7 @@
 <node/9347176939> a schema:Store ;
 	schema:name "The Wizard Store" ; 
 	schema:url "https://www.thewizardstore.net"; 
+	schema:keyword ('') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7255796";
@@ -16337,8 +16191,7 @@
 <node/9740821856> a schema:Restaurant ;
 	schema:name "Plantapizza" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "pizza"; 
-	schema:keyword ('restaurant' 'pizza') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7208713";
@@ -16356,8 +16209,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:servesCuisine "indian"; 
-	schema:keyword ('restaurant' 'indian') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7295377";
@@ -16454,8 +16306,7 @@
 		schema:streetAddress "Kammerstraat"; 
 		schema:postOfficeBoxNumber "15"; 
 	] ; 
-	schema:servesCuisine "thai"; 
-	schema:keyword ('restaurant' 'thai') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.726734";
@@ -16469,8 +16320,7 @@
 		schema:streetAddress "Dok-Noord"; 
 		schema:postOfficeBoxNumber "4"; 
 	] ; 
-	schema:servesCuisine "barbecue"; 
-	schema:keyword ('restaurant' 'barbecue') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7318347";
@@ -16642,8 +16492,7 @@
 <node/10058494643> a schema:FastFoodRestaurant ;
 	schema:name "Fusilli" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "pasta"; 
-	schema:keyword ('fastfood' 'pasta') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7307666";
@@ -16652,8 +16501,7 @@
 <node/10058514812> a schema:FastFoodRestaurant ;
 	schema:name "Yaki" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "noodle"; 
-	schema:keyword ('fastfood' 'noodle') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7310845";
@@ -16663,8 +16511,7 @@
 	schema:name "Hawaiian poké bowl" ; 
 	schema:url "https://hawaiianpokebowl.be/"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "hawaiian"; 
-	schema:keyword ('fastfood' 'hawaiian') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7308308";
@@ -16673,8 +16520,7 @@
 <node/10060693654> a schema:Restaurant ;
 	schema:name "Babu" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "burger"; 
-	schema:keyword ('restaurant' 'burger') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.727158";
@@ -16683,8 +16529,7 @@
 <node/10081473802> a schema:FastFoodRestaurant ;
 	schema:name "Ichi Bites" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "burger"; 
-	schema:keyword ('fastfood' 'burger') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7265944";
@@ -16827,8 +16672,7 @@
 <node/10218686217> a schema:Restaurant ;
 	schema:name "Restaurant" ; 
 	schema:amenityFeature "restaurant"; 
-	schema:servesCuisine "korean"; 
-	schema:keyword ('restaurant' 'korean') ; 
+	schema:keyword ('restaurant') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7241602";
@@ -16837,8 +16681,7 @@
 <node/10231441259> a schema:FastFoodRestaurant ;
 	schema:name "Snack Tosi" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "kebab"; 
-	schema:keyword ('fastfood' 'kebab') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7254061";
@@ -16942,7 +16785,8 @@
 <node/10293667270> a schema:FastFoodRestaurant ;
 	schema:name "FrietTime" ; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "frituur, fries"; 
+	schema:servesCuisine "frituur"; 
+	schema:servesCuisine " fries"; 
 	schema:keyword ('fastfood' 'frituur' ' fries') ; 
 	schema:geo [
                   	a geo:Point ;
@@ -17138,6 +16982,7 @@
                   ] .
 <node/10309331293> a schema:Store ;
 	schema:name "Jacoba Vintage & Brocante" ; 
+	schema:keyword ('') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.717926";
@@ -17303,8 +17148,7 @@
 	schema:name "Donki" ; 
 	schema:url "https://donkicantina.be/"; 
 	schema:amenityFeature "fast_food"; 
-	schema:servesCuisine "mexican"; 
-	schema:keyword ('fastfood' 'mexican') ; 
+	schema:keyword ('fastfood') ; 
 	schema:geo [
                   	a geo:Point ;
                   	geo:lat "3.7221978";
