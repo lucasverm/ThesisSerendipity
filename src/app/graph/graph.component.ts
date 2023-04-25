@@ -32,7 +32,7 @@ export class GraphComponent {
   public maxDistanceToCurrentPosition = 0;
   public minDistanceBetweenNodes = Infinity;
   public maxDistanceBetweenNodes = 0;
-  public changingFactorValues: any = { value1: 0.333, value2: 0.333, value3: 0.333, };
+  public changingFactorValues: any = { value1: 0.33, value2: 0.33, value3: 0.33, };
   public calculatedWayToShow: any[];
 
   @ViewChild("container") container: ElementRef;
@@ -41,9 +41,9 @@ export class GraphComponent {
   constructor(private http: HttpClient, private dataService: DataService) { }
 
   handleTriangleChange(event: any) {
-    this.correlationFactor = Math.round(event['value1'] * 100) / 100;
-    this.distanceBetweenNodesFactor = Math.round(event['value2'] * 100) / 100;
-    this.randomFactor = Math.round(event['value3'] * 100) / 100;
+    this.correlationFactor = Math.round(event['value1']);
+    this.distanceBetweenNodesFactor = Math.round(event['value2']);
+    this.randomFactor = Math.round(event['value3']);
     this.calculatePath(3.7197324, 51.0569223);
   }
 
@@ -184,9 +184,12 @@ export class GraphComponent {
   public addEdgesToGraph(currentPositionLat: number, currentPositionLong: number) {
     if (this.destination != null && this.destination != "") {
       this.graph.clearEdges();
-      this.graph.nodes().forEach(fromNode => {
+      let graphNodes = this.graph.nodes();
+      for (let i = 0; i < graphNodes.length; i++) {
+        let fromNode = graphNodes[i];
         let fromNodeAtr = this.graph.getNodeAttributes(fromNode);
-        this.graph.nodes().forEach(toNode => {
+        for (let j = i; j < graphNodes.length; j++) {
+          let toNode = graphNodes[j];
           let toNodeAtr = this.graph.getNodeAttributes(toNode);
           if (fromNode != toNode && !(fromNode == this.destination['@id'] && toNode == "currentPosition" || toNode == this.destination['@id'] && fromNode == "currentPosition")) {
             let distanceInBetweenNodesNormalized = this.normalizeDistance(this.minDistanceBetweenNodes, this.maxDistanceBetweenNodes, this.calculateBirdFlightDistanceBetween(Number(fromNodeAtr['schema:geo']['geo:lat']), Number(fromNodeAtr['schema:geo']['geo:long']), Number(toNodeAtr['schema:geo']['geo:lat']), Number(toNodeAtr['schema:geo']['geo:long'])));
@@ -199,8 +202,8 @@ export class GraphComponent {
               label: `${distanceInBetweenNodesNormalized}`
             });
           }
-        });
-      });
+        };
+      }
     }
   }
 
@@ -287,19 +290,21 @@ export class GraphComponent {
       unvisitedNodes.delete(currentNode);
 
       // Visit each neighbor of the current node and update their distances
-      const neighbors = graph.outNeighbors(currentNode);
+      const neighbors = graph.neighbors(currentNode);
 
       neighbors.forEach((neighbor) => {
         const nodeAtr = graph.getNodeAttributes(neighbor);
-        const edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
+        let edgeAtr: any;
+        try {
+          edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
+        } catch {
+          edgeAtr = graph.getEdgeAttributes(neighbor, currentNode);
+        }
         const avgCorrelation = (shortestPath[currentNode].totalCorrelation + nodeAtr['correlation']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const avgRandomness = (shortestPath[currentNode].totalRandomnes + nodeAtr['randomValue']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const weight = 100 * ((this.correlationFactor) * avgCorrelation) + ((this.distanceBetweenNodesFactor) * avgDistanceInBetweenNodes) + 0.03 * (this.randomFactor * avgRandomness);
         const distance = currentDistance + weight;
-        if (isNaN(distance)) {
-          debugger;
-        }
         if (distance < shortestPath[neighbor].distance) {
           shortestPath[neighbor].distance = distance;
           shortestPath[neighbor].previousNode = currentNode;

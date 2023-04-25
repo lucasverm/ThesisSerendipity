@@ -39,7 +39,7 @@ export class TriangleSliderVisualisationComponent {
   }
 
   getValue() {
-    return Math.round(this.value * 10000) / 100;
+    return Math.round(this.value * 100);
   }
 
 
