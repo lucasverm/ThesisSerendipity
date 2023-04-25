@@ -8,7 +8,7 @@
 <relation/3111059> a lgdo:Monastery ;
 	schema:name "Klooster van de ongeschoeide karmelieten" ; 
 	schema:alternateName "Klooster van de ongeschoeide discalsen"; 
-	schema:keyword "monastery"; 
+	schema:keyword ('monastery') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.716574";
@@ -23,7 +23,7 @@
 		schema:streetAddress "Begijnhofdries"; 
 		schema:postOfficeBoxNumber "42"; 
 	] ; 
-	schema:keyword "school"; 
+	schema:keyword ('school') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.713596";
@@ -37,7 +37,7 @@
 		schema:streetAddress "Oude Houtlei"; 
 		schema:postOfficeBoxNumber "122-124"; 
 	] ; 
-	schema:keyword "monastery"; 
+	schema:keyword ('monastery') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7158491";
@@ -47,7 +47,7 @@
 	schema:name "Kunsthal Sint-Pietersabdij" ; 
 	schema:url "http://www.sintpietersabdijgent.be/"; 
 	schema:sameAs "https://www.wikidata.org/entity/Q2259810" ; 
-	schema:keyword "museum"; 
+	schema:keyword ('museum') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7265268";
@@ -62,7 +62,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:keyword "building"; 
+	schema:keyword ('building') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7129102";
@@ -78,7 +78,7 @@
 		schema:streetAddress "Kraanlei"; 
 		schema:postOfficeBoxNumber "65"; 
 	] ; 
-	schema:keyword "museum"; 
+	schema:keyword ('museum') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7228732";
@@ -92,7 +92,7 @@
 		schema:streetAddress "Academiestraat"; 
 		schema:postOfficeBoxNumber "1"; 
 	] ; 
-	schema:keyword "monastery"; 
+	schema:keyword ('monastery') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7190064";
@@ -105,7 +105,7 @@
 		schema:streetAddress "Lindenlei"; 
 		schema:postOfficeBoxNumber "38"; 
 	] ; 
-	schema:keyword "monastery"; 
+	schema:keyword ('monastery') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7187456";
@@ -122,7 +122,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:keyword "townhall"; 
+	schema:keyword ('townhall') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.725326";
@@ -136,7 +136,7 @@
 		schema:streetAddress "Tweebruggenstraat"; 
 		schema:postOfficeBoxNumber "34"; 
 	] ; 
-	schema:keyword "school"; 
+	schema:keyword ('school') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7344841";
@@ -144,7 +144,7 @@
                   ] .
 <relation/8306622> a schema:Park ;
 	schema:name "De groene banaan" ; 
-	schema:keyword "park"; 
+	schema:keyword ('park') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7422404";
@@ -154,8 +154,7 @@
 	schema:name "Puzzle Escape Rooms" ; 
 	schema:url "https://www.puzzleescaperooms.be/nl/locations/gent"; 
 	schema:telephone "+32 485 02 96 81"; 
-	schema:keyword "escape"; 
-	schema:keyword "game"; 
+	schema:keyword ('escape' 'game') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7323578";
@@ -166,7 +165,7 @@
 	schema:url "http://www.zebrastraat.be/"; 
 	schema:amenityFeature "community_centre"; 
 	schema:sameAs "https://www.wikidata.org/entity/Q3452459" ; 
-	schema:keyword "community"; 
+	schema:keyword ('community') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7341268";
@@ -174,7 +173,7 @@
                   ] .
 <relation/11845027> a lgdo:GardenCentre ;
 	schema:name "GardenCentre" ; 
-	schema:keyword "garden"; 
+	schema:keyword ('garden') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7060879";
@@ -189,7 +188,7 @@
 		schema:postalCode "9000"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:keyword "castle"; 
+	schema:keyword ('castle') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7188719";
@@ -197,7 +196,7 @@
                   ] .
 <relation/13634919> a schema:School ;
 	schema:name "School" ; 
-	schema:keyword "school"; 
+	schema:keyword ('school') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7319325";
@@ -210,7 +209,7 @@
 		schema:streetAddress "Sint-Elisabethplein"; 
 		schema:postOfficeBoxNumber "13"; 
 	] ; 
-	schema:keyword "monastery"; 
+	schema:keyword ('monastery') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.714312";
@@ -218,7 +217,7 @@
                   ] .
 <relation/13736407> a lgdo:Castle ;
 	schema:name "Castle" ; 
-	schema:keyword "castle"; 
+	schema:keyword ('castle') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7255006";
@@ -234,8 +233,7 @@
 		schema:postOfficeBoxNumber "7"; 
 		schema:addressLocality "Gent"; 
 	] ; 
-	schema:keyword "arts"; 
-	schema:keyword "center"; 
+	schema:keyword ('arts' 'center') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.719542";
@@ -246,7 +244,7 @@
 	schema:url "https://stamgent.be/"; 
 	schema:telephone "+32 9 267 14 00"; 
 	schema:sameAs "https://www.wikidata.org/entity/Q980285" ; 
-	schema:keyword "museum"; 
+	schema:keyword ('museum') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7174939";
@@ -259,7 +257,7 @@
 		schema:streetAddress "Korte Meer"; 
 		schema:postOfficeBoxNumber "9"; 
 	] ; 
-	schema:keyword "museum"; 
+	schema:keyword ('museum') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7233663";
@@ -267,7 +265,7 @@
                   ] .
 <way/493775655> a lgdo:GardenCentre ;
 	schema:name "GardenCentre" ; 
-	schema:keyword "garden"; 
+	schema:keyword ('garden') ; 
 	schema:geo [
                   	a geo:Point;
                   	geo:lat "3.7195495";

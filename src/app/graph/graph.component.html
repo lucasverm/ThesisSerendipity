@@ -8,7 +8,7 @@
                 <div>{{item['schema:name']}}</div>
                 <div style="color:'grey';font-size: 14px;">
                     <i>
-                        {{keywordsToArray(item['schema:keyword']).toString().replaceAll(",", ", ")}}
+                        {{item['schema:keyword']['@list'].toString().replaceAll(",", ", ")}}
                     </i>
                 </div>
             </div>
@@ -48,8 +48,8 @@
     <ol>
         <ng-container *ngFor="let item of this.calculatedWayToShow; let i=index">
             <li>{{item['schema:name']}} <span
-                    *ngIf="keywordsToArray(item['schema:keyword']).length !=0">({{keywordsToArray(item['schema:keyword']).toString().replaceAll(",",
-                    ", ")}})</span>
+                    *ngIf="item['schema:keyword']['@list'] && item['schema:keyword']['@list'].length !=0">({{item['schema:keyword']['@list'].toString().replaceAll(",",",
+                    ")}})</span>
                 <img *ngIf="item['imagelink']" src="{{item['imagelink']}}" class="wikidataImage" />
             </li>
         </ng-container>

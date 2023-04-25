@@ -98,7 +98,6 @@ export class DataService {
     return this.http.get(`https://query.wikidata.org/bigdata/namespace/wdq/sparql?query=${query}`);
   }
 
-
   private doubleArrayToObject(arr: any[][]): any {
     this.getCSVData$
     const obj: any = {};
@@ -1116,13 +1115,10 @@ export class DataService {
                 if (linkData[0]['properties']['cuisine']) {
                   for (let item of linkData[0]['properties']['cuisine'].split(';')) {
                     turtleOutput += `\tschema:servesCuisine "${item}"; \n`;
-                    turtleOutput += `\tschema:keyword "${item}"; \n`;
                     keywords.push(item);
                   }
                 }
-                for (let keyword of keywords) {
-                  turtleOutput += `\tschema:keyword "${keyword}"; \n`;
-                }
+                turtleOutput += `\tschema:keyword ('${keywords.toString().replaceAll(",", "' '")}') ; \n`;
                 if (linkData[0]['geometry']['type'] == "Point") {
                   turtleOutput += `\tschema:geo [
                   \ta geo:Point ;

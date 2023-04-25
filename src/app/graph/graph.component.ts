@@ -89,6 +89,8 @@ export class GraphComponent {
         'geo:lat': 3.7197324,
         'geo:long': 51.0569223
       },
+      'schema:keyword': {
+      },
       '@id': "currentPosition",
       x: 3.7197324,
       y: 51.0569223,
@@ -128,7 +130,7 @@ export class GraphComponent {
   public addEdgesToGraph(currentPositionLat: number, currentPositionLong: number) {
     if (this.destination != null && this.destination != "") {
       this.graph.clearEdges();
-      let keywordsDestionation: string[] = this.keywordsToArray(this.destination["schema:keyword"]);
+      let keywordsDestionation: string[] = this.destination["schema:keyword"]['@list']
       this.graph.forEachNode(fromNode => {
         this.graph.forEachNode(toNode => {
           if (fromNode != toNode && !(fromNode == this.destination['@id'] && toNode == "currentPosition")) {
@@ -138,7 +140,7 @@ export class GraphComponent {
             }
             else {
               let nodeData = this.graph.getNodeAttributes(fromNode);
-              let keywordsNewNode: string[] = this.keywordsToArray(nodeData["schema:keyword"]);
+              let keywordsNewNode: string[] = nodeData["schema:keyword"]['@list']
               maxCorrelation = this.getMaxCorrelation(keywordsDestionation, keywordsNewNode);
             }
             let fromNodeAtr = this.graph.getNodeAttributes(fromNode);
@@ -177,19 +179,6 @@ export class GraphComponent {
       });
     }
     return 1 - maxCorrelation;
-  }
-
-  public keywordsToArray(input: any): string[] {
-    let uitvoer: string[] = []
-    if (input) {
-      if (typeof (input) == "string") {
-        uitvoer.push(input)
-      } else {
-        let keywords: any[] = input;
-        keywords.forEach(t => uitvoer.push(t));
-      }
-    }
-    return uitvoer;
   }
 
   dijkstra(graph: Graph, source: any, destination: any): any {
