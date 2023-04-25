@@ -20,9 +20,9 @@ export class GraphComponent {
   public graph: Graph;
   public data: any[];
   public categoricalSimilaritiesObject: any;
-  public correlationFactor: number = 0.333;
-  public distanceBetweenNodesFactor: number = 0.333;
-  public randomFactor: number = 0.333;
+  public correlationFactor: number = 0.33;
+  public distanceBetweenNodesFactor: number = 0.33;
+  public randomFactor: number = 0.33;
   public linkTheseNodesInVisualisation: String[] = [];
   public destination: any;
   public oldDestination: any;
@@ -41,9 +41,10 @@ export class GraphComponent {
   constructor(private http: HttpClient, private dataService: DataService) { }
 
   handleTriangleChange(event: any) {
-    this.correlationFactor = Math.round(event['value1']);
-    this.distanceBetweenNodesFactor = Math.round(event['value2']);
-    this.randomFactor = Math.round(event['value3']);
+    this.correlationFactor = Math.round(event['value1'] * 100) / 100;
+    this.distanceBetweenNodesFactor = Math.round(event['value2'] * 100) / 100;
+    this.randomFactor = Math.round(event['value3'] * 100) / 100;
+
     this.calculatePath(3.7197324, 51.0569223);
   }
 
