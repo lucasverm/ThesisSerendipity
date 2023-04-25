@@ -1,6 +1,6 @@
 <div class="sliders">
     Go to:
-    <p-autoComplete [(ngModel)]="this.destination" (ngModelChange)="this.calculatePath(3.7197324, 51.0569223);"
+    <p-autoComplete [(ngModel)]="this.destination" (ngModelChange)="this.calculatePath(3.7197324, 51.0569223,true);"
         [suggestions]="this.filteredDataSearchBox" (completeMethod)="filterData($event)" field="schema:name"
         [dropdown]="true" [forceSelection]="true">
         <ng-template let-item pTemplate="item">

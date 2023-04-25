@@ -8,17 +8,6 @@ import { DataService } from '../services/data.service';
 
 declare var require: any;
 
-interface State {
-  hoveredNode?: string;
-  searchQuery: string;
-
-  // State derived from query:
-  selectedNode?: string;
-  suggestions?: Set<string>;
-
-  // State derived from hovered node:
-  hoveredNeighbors?: Set<string>;
-}
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
@@ -26,7 +15,8 @@ interface State {
 })
 export class GraphComponent {
 
-  public state: State = { searchQuery: "" };
+  public hoveredNode?: string;
+  public hoveredNeighbors?: Set<string>;
   public graph: Graph;
   public data: any[];
   public categoricalSimilaritiesObject: any;
@@ -54,7 +44,7 @@ export class GraphComponent {
     this.correlationFactor = Math.round(event['value1'] * 100) / 100;
     this.distanceBetweenNodesFactor = Math.round(event['value2'] * 100) / 100;
     this.randomFactor = Math.round(event['value3'] * 100) / 100;
-    this.calculatePath(3.7197324, 51.0569223);
+    this.calculatePath(3.7197324, 51.0569223, false);
   }
 
   handleTriangleChangingValuesChange(event: any) {
@@ -69,12 +59,13 @@ export class GraphComponent {
       getCategoricalSimilaritiesObject$: this.dataService.getCategoricalSimilaritiesObject$()
     }).subscribe(results => {
       this.data = [... this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$)[`@graph`], ... this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$)[`@graph`], ...this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$)[`@graph`]]
-      this.data = this.data.slice(0, 500);
+      //this.data = this.data.slice(0, 1500);
+      console.log(this.data.length)
       this.destination = this.data[0];
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
       this.buildGraph(3.7197324, 51.0569223);
-      this.visualizeGraphFull();
-      this.calculatePath(3.7197324, 51.0569223);
+      //this.visualizeGraphFull();
+      this.calculatePath(3.7197324, 51.0569223, true);
     })
   }
 
@@ -105,12 +96,12 @@ export class GraphComponent {
     for (let i = 0; i < this.data.length; i++) {
       if (!this.graph.hasNode(this.data[i]['@id'])) {
         let el = this.data[i];
+        // calculate min and max for distanceNodeBetweenNodes & distanceNodeToCurrentPosition
         for (let j = i; j < this.data.length; j++) {
           let distanceNodeBetweenNodes = this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), Number(this.data[j]['schema:geo']['geo:lat']), Number(this.data[j]['schema:geo']['geo:long']),)
           if (distanceNodeBetweenNodes < this.minDistanceBetweenNodes) this.minDistanceBetweenNodes = distanceNodeBetweenNodes;
           if (distanceNodeBetweenNodes > this.maxDistanceBetweenNodes) this.maxDistanceBetweenNodes = distanceNodeBetweenNodes;
         }
-        //voor elke node doe:
         let distanceNodeToCurrentPosition = this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), currentPositionLat, currentPositionLong)
         if (distanceNodeToCurrentPosition < this.minDistanceToCurrentPosition) this.minDistanceToCurrentPosition = distanceNodeToCurrentPosition;
         if (distanceNodeToCurrentPosition > this.maxDistanceToCurrentPosition) this.maxDistanceToCurrentPosition = distanceNodeToCurrentPosition;
@@ -171,7 +162,14 @@ export class GraphComponent {
     if (keywordsDestionation && keywordsNewNode) {
       keywordsNewNode.forEach(keywordOfNewNode => {
         keywordsDestionation.forEach(keywordOfNode => {
-          let correlation = this.categoricalSimilaritiesObject[keywordOfNewNode][keywordOfNode]
+          let correlation = 0;
+          try {
+            correlation = this.categoricalSimilaritiesObject[keywordOfNewNode][keywordOfNode]
+          } catch {
+            console.log("error:");
+            console.log(keywordOfNewNode);
+            console.log(keywordOfNode)
+          }
           if (correlation > maxCorrelation) {
             maxCorrelation = correlation
           };
@@ -245,9 +243,11 @@ export class GraphComponent {
     return way;
   }
 
-  public calculatePath(currentPositionLat: number, currentPositionLong: number) {
-    this.addEdgesToGraph(currentPositionLat, currentPositionLong);
+  public calculatePath(currentPositionLat: number, currentPositionLong: number, destinationChanged: boolean) {
     if (this.destination != null && this.destination != "") {
+      if (destinationChanged) {
+        this.addEdgesToGraph(currentPositionLat, currentPositionLong);
+      }
       //dijkstra
       let way: any[] = this.dijkstra(this.graph, this.destination['@id'], "currentPosition");
       //toon way
@@ -270,11 +270,6 @@ export class GraphComponent {
     this.visualizeWay();
     this.visualizeGraphForUser();
   }
-
-  /*public standaardAfwijking(x: number): number {
-    let standaardAfwijking = 0.2;
-    return (1 / (standaardAfwijking * Math.sqrt(2 * Math.PI))) * Math.pow(Math.E, (- (Math.pow((x - this.gemiddelde / 1000), 2) / Math.pow((2 * standaardAfwijking), 2))))
-  }*/
 
   normalizeDistance(min: number, max: number, value: number) {
     return ((value - min) / (max - min))
@@ -346,7 +341,6 @@ export class GraphComponent {
         }
       }
 
-
       this.dataService.sigmaUser = new Sigma(userGraaf, this.containerForUser.nativeElement, {
         zIndex: true,
         renderEdgeLabels: true,
@@ -384,15 +378,14 @@ export class GraphComponent {
 
   setHoveredNode(sigma: Sigma, node?: string) {
     if (node) {
-      this.state.hoveredNode = node;
-      this.state.hoveredNeighbors = new Set(this.graph.neighbors(node));
+      this.hoveredNode = node;
+      this.hoveredNeighbors = new Set(this.graph.neighbors(node));
     } else {
-      this.state.hoveredNode = undefined;
-      this.state.hoveredNeighbors = undefined;
+      this.hoveredNode = undefined;
+      this.hoveredNeighbors = undefined;
     }
     sigma.refresh();
   }
-
 
   ngOnDestroy(): void {
     if (this.dataService.sigma) {
