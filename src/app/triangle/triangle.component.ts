@@ -92,12 +92,20 @@ export class TriangleComponent {
   }
 
   onMouseDown(event: MouseEvent): void {
-    let clickOnPoint = this.pointInCircle(event.offsetX, event.offsetY)
-    if (clickOnPoint) {
+    let clickPoint: Point = { x: event.offsetX, y: event.offsetY }
+    let clickPointInMovingPoint = this.pointInCircle(clickPoint)
+    let clickInTriangle = this.isPointInsideTriangle(clickPoint);
+    if (clickPointInMovingPoint) {
       this.isDragging = true;
       this.offset = { x: 0, y: 0 };
       this.offset.x = event.offsetX - this.movingPoint.x;
       this.offset.y = event.offsetY - this.movingPoint.y;
+    } else if (clickInTriangle) {
+      this.movingPoint.x = event.offsetX - this.offset.x;
+      this.movingPoint.y = event.offsetY - this.offset.y;
+      this.refreshDrawing();
+      this.calculateDistances();
+      this.distanceChangingEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
     }
   }
 
@@ -318,8 +326,8 @@ export class TriangleComponent {
     //this.drawProjectedPoints();
   }
 
-  private pointInCircle(offsetX: number, offsetY: number) {
-    var distancesquared = (offsetX - this.movingPoint.x) * (offsetX - this.movingPoint.x) + (offsetY - this.movingPoint.y) * (offsetY - this.movingPoint.y);
+  private pointInCircle(point: Point) {
+    var distancesquared = (point.x - this.movingPoint.x) * (point.x - this.movingPoint.x) + (point.y - this.movingPoint.y) * (point.y - this.movingPoint.y);
     return distancesquared <= this.pointRadius * this.pointRadius;
   }
 
