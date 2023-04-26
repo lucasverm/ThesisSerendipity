@@ -24,7 +24,7 @@ export class TriangleComponent {
   public distance2: number;
   public distance3: number;
   private triangleSize = 300;
-  private canvasOffset = 5;
+  private canvasOffset = 10;
   private movingPoint: Point = { x: 250, y: 250 };
   private centerPoint: Point;
 
@@ -32,6 +32,7 @@ export class TriangleComponent {
   @Output() distanceChangingEventEmitter = new EventEmitter<any>();
 
   fixCanvas() {
+    this.context = this.canvasRef.nativeElement.getContext('2d');
     const originalHeight = this.canvasRef.nativeElement.height;
     const originalWidth = this.canvasRef.nativeElement.width;
     let dimensions = this.getObjectFitSize(
@@ -45,7 +46,6 @@ export class TriangleComponent {
     this.canvasRef.nativeElement.width = dimensions.width * dpr;
     this.canvasRef.nativeElement.height = dimensions.height * dpr;
 
-    this.context = this.canvasRef.nativeElement.getContext('2d');
     let ratio = Math.min(
       this.canvasRef.nativeElement.clientWidth / originalWidth,
       this.canvasRef.nativeElement.clientHeight / originalHeight
@@ -102,8 +102,6 @@ export class TriangleComponent {
   }
 
   onMouseMove(event: MouseEvent) {
-    //DOING!!!
-    console.log(this.isDragging)
     if (this.isDragging) {
       if (this.isPointInsideTriangle(this.movingPoint)) {
         let oldPointX = this.movingPoint.x;
@@ -113,12 +111,12 @@ export class TriangleComponent {
         if (!this.isPointInsideTriangle(this.movingPoint)) {
           this.movingPoint.x = oldPointX;
           this.movingPoint.y = oldPointY;
+          this.isDragging = false;
+          this.distanceMouseUpEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
         }
         this.refreshDrawing();
         this.calculateDistances();
         this.distanceChangingEventEmitter.emit({ value1: this.distance1, value2: this.distance2, value3: this.distance3 });
-      } else {
-        
       }
     }
   }
