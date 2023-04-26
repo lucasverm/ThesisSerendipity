@@ -60,7 +60,7 @@ export class GraphComponent {
       getCategoricalSimilaritiesObject$: this.dataService.getCategoricalSimilaritiesObject$()
     }).subscribe(results => {
       this.data = [... this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$)[`@graph`], ... this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$)[`@graph`], ...this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$)[`@graph`]]
-      this.data = this.data.slice(0, 100);
+      //this.data = this.data.slice(0, 100);
       this.destination = this.data[0];
       this.oldDestination = this.destination;
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
