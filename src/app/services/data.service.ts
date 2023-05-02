@@ -160,7 +160,6 @@ export class DataService {
   }
 
   private categoriesToTurtle(obj: any): string {
-    let teller: number = 1;
     let categoricalTurtle = "";
     categoricalTurtle += "@prefix sim: <http://purl.org/ontology/similarity/> .\n";
     Object.keys(obj).forEach(key => {
@@ -170,7 +169,6 @@ export class DataService {
           categoricalTurtle += `\tsim:subject "${key}" ; \n`;
           categoricalTurtle += `\tsim:object "${subKey}" ; \n`;
           categoricalTurtle += `\tsim:weight ${obj[key][subKey]} . \n`;
-          teller += 1;
         }
       });
     });
