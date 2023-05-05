@@ -15,8 +15,6 @@
             </div>
         </ng-template>
     </p-autoComplete>
-
-
     <app-triangle (distanceMouseUpEventEmitter)="handleTriangleChange($event)"
         (distanceChangingEventEmitter)="handleTriangleChangingValuesChange($event)"></app-triangle>
 
@@ -42,9 +40,6 @@
         <div #containerForUser class="graafContainer">
             <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
         </div>
-    </div>
-    <div class="wayList">
-
     </div>
     <ol>
         <ng-container *ngFor="let item of this.calculatedWayToShow; let i=index">

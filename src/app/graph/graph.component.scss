@@ -1,5 +1,5 @@
 .sliders {
-    width: 30vw;
+    width: 350px;
     margin: 20px;
     float: left;
     min-width: 320px;
@@ -36,7 +36,7 @@
 .userGraafEnKompas {
     border: 1px solid black;
     margin: 20px;
-    width: 64vw;
+    width: calc(85vw - 350px);
     overflow-wrap: break-word;
 
     img {

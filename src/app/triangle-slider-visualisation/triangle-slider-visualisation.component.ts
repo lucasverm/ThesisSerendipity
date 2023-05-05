@@ -13,7 +13,7 @@ export class TriangleSliderVisualisationComponent {
   @Input() title: string;
   @Input() value: number;
   @Input() color: string;
-  public rectWidth = 85;
+  public rectWidth = 80;
   public rectHeight = 5;
 
   fixCanvas() {
