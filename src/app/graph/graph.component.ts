@@ -58,7 +58,7 @@ export class GraphComponent {
       getCategoricalSimilaritiesObject$: this.dataService.getCategoricalSimilaritiesObject$()
     }).subscribe(results => {
       this.data = [... this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$)[`@graph`], ... this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$)[`@graph`], ...this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$)[`@graph`]]
-      this.data = this.data.slice(0, 1000);
+     // this.data = this.data.slice(0, 1000);
       this.destination = this.data[0];
       this.oldDestination = this.destination;
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
@@ -92,8 +92,6 @@ export class GraphComponent {
     });
     this.addNodesToGraph(currentPositionLat, currentPositionLong);
     this.addEdgesToGraph(currentPositionLat, currentPositionLong);
-    console.log(this.graph.size)
-    console.log(this.graph.order);
     this.loaded = true;
     console.log("end building graph")
   }
@@ -119,13 +117,11 @@ export class GraphComponent {
       let keywordsDestionation: string[] = this.destination["schema:keyword"]['@list']
       this.graph.nodes().forEach(node => {
         let nodeAtr = this.graph.getNodeAttributes(node);
-        let distanceNodeToCurrentPositionNormalized = this.normalizeDistance(this.minDistanceToCurrentPosition, this.maxDistanceToCurrentPosition, this.calculateBirdFlightDistanceBetween(Number(nodeAtr['schema:geo']['geo:lat']), Number(nodeAtr['schema:geo']['geo:long']), currentPositionLat, currentPositionLong))
         let maxCorrelation = 0;
         if (node != "currentPosition") {
           maxCorrelation = this.getMaxCorrelation(keywordsDestionation, nodeAtr["schema:keyword"]['@list']);
         }
         this.graph.setNodeAttribute(node, "correlation", maxCorrelation)
-        this.graph.setNodeAttribute(node, "distanceNodeToCurrentPositionNormalized", distanceNodeToCurrentPositionNormalized,)
       });
       //restore edge oldDestination <-> currentPosition
       let fromNode = "currentPosition";
@@ -159,7 +155,6 @@ export class GraphComponent {
       if (!this.graph.hasNode(this.data[i]['@id'])) {
         let el = this.data[i];
         //add node
-        let distanceNodeToCurrentPositionNormalized = this.normalizeDistance(this.minDistanceToCurrentPosition, this.maxDistanceToCurrentPosition, this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), currentPositionLat, currentPositionLong))
         let randomValue = Math.random();
         let maxCorrelation = 0;
         if (el['@id'] != "currentPosition") {
@@ -169,7 +164,6 @@ export class GraphComponent {
           label: el['schema:name'],
           color: 'grey',
           randomValue: randomValue,
-          distanceNodeToCurrentPositionNormalized: distanceNodeToCurrentPositionNormalized,
           correlation: maxCorrelation,
           size: 6,
           x: Number(el['schema:geo']['geo:lat']),
@@ -215,10 +209,6 @@ export class GraphComponent {
           try {
             correlation = this.categoricalSimilaritiesObject[keywordOfNewNode][keywordOfNode]
           } catch {
-            /*console.log(this.categoricalSimilaritiesObject);
-            console.log("error");
-            console.log(keywordOfNewNode)
-            console.log(keywordOfNode)*/
           }
           if (correlation > maxCorrelation) {
             maxCorrelation = correlation
@@ -252,7 +242,6 @@ export class GraphComponent {
     }
     console.log("einde calculate path");
     this.visualizeGraphForUser();
-    this.visualizeWay();
   }
 
   dijkstra(graph: Graph, source: any, destination: any): any {
@@ -344,7 +333,7 @@ export class GraphComponent {
   }
 
   visualizeGraphFull() {
-    if (this.container) {
+    /*if (this.container) {
       let graphWithoutEdges = this.graph.copy();
       graphWithoutEdges.clearEdges();
       this.dataService.sigma = new Sigma(graphWithoutEdges, this.container.nativeElement, {
@@ -360,7 +349,7 @@ export class GraphComponent {
         labelGridCellSize: 60,
         labelRenderedSizeThreshold: 15,
         labelFont: "Lato, sans-serif",
-        defaultEdgeColor: "target"*/
+        defaultEdgeColor: "target"
       });
       this.dataService.sigma.on("enterNode", ({ node }) => {
         this.setHoveredNode(this.dataService.sigma, node);
@@ -368,7 +357,7 @@ export class GraphComponent {
       this.dataService.sigma.on("leaveNode", () => {
         this.setHoveredNode(this.dataService.sigma, undefined);
       });
-    }
+    }*/
   }
 
   visualizeGraphForUser() {
@@ -380,17 +369,32 @@ export class GraphComponent {
           if (!userGraaf.hasNode(node['@id'])) {
             userGraaf.addNode(node['@id'], node);
           }
-          let sortedArray = this.graph.outNeighbors(node['@id']).map(neighbor => {
-            return this.graph.getDirectedEdgeAttributes(node['@id'], neighbor);
-          }).sort((a: any, b: any) => a['distanceInBetweenNodes'] - b['distanceInBetweenNodes']);
+          let array = this.graph.neighbors(node['@id']).map(neighbor => {
+            let vanNaar;
+            let naarVan;
+            if (this.graph.hasEdge(node['@id'], neighbor)) {
+              vanNaar = this.graph.getDirectedEdgeAttributes(node['@id'], neighbor);
+            }
+            if (this.graph.hasEdge(neighbor, node['@id'])) {
+              naarVan = this.graph.getDirectedEdgeAttributes(neighbor, node['@id']);
+            }
+            return { ...vanNaar, ...naarVan };
+          })
+          let sortedArray = array.sort((a: any, b: any) => a['distanceInBetweenNodes'] - b['distanceInBetweenNodes']);
+
           sortedArray.slice(0, 3).forEach(neighbor => {
             if (!userGraaf.hasNode(neighbor['toNodeId'])) {
+
               userGraaf.addNode(neighbor['toNodeId'], this.graph.getNodeAttributes(neighbor['toNodeId']));
             }
-            userGraaf.addDirectedEdge(neighbor['fromNodeId'], neighbor['toNodeId']);
+            if (!userGraaf.hasNode(neighbor['fromNodeId'])) {
+              userGraaf.addNode(neighbor['fromNodeId'], this.graph.getNodeAttributes(neighbor['fromNodeId']));
+            }
+            if (!userGraaf.hasEdge(neighbor['fromNodeId'], neighbor['toNodeId'])) {
+              userGraaf.addDirectedEdge(neighbor['fromNodeId'], neighbor['toNodeId']);
+            }
           });
         })
-
         for (let i = 1; i < this.calculatedWayToShow.length; ++i) {
           if (!userGraaf.hasEdge(this.calculatedWayToShow[i - 1]['@id'], this.calculatedWayToShow[i]['@id'])) {
             userGraaf.addDirectedEdge(this.calculatedWayToShow[i - 1]['@id'], this.calculatedWayToShow[i]['@id']);
@@ -400,7 +404,8 @@ export class GraphComponent {
 
       this.dataService.sigmaUser = new Sigma(userGraaf, this.containerForUser.nativeElement, {
         zIndex: true,
-        renderEdgeLabels: true,
+        renderEdgeLabels: false,
+        renderLabels: true,
         defaultEdgeType: "line"
       });
       this.dataService.sigmaUser.on("enterNode", ({ node }) => {
@@ -413,20 +418,12 @@ export class GraphComponent {
         const res: Partial<NodeDisplayData> = { ...data };
         if (this.linkTheseNodesInVisualisation.includes(node)) {
           res.color = "red";
-          res.zIndex = 2;
-        }
-        return res;
-      });
-    }
-  }
-
-  public visualizeWay() {
-    if (this.dataService.sigma) {
-      this.dataService.sigma.setSetting("nodeReducer", (node, data) => {
-        const res: Partial<NodeDisplayData> = { ...data };
-        if (this.linkTheseNodesInVisualisation.includes(node)) {
-          res.color = "red";
-          res.zIndex = 2;
+          res.zIndex = 5;
+          res.forceLabel = true;
+        } else {
+          res.color = "grey";
+          res.zIndex = 0;
+          res.label = null;
         }
         return res;
       });
@@ -436,10 +433,41 @@ export class GraphComponent {
   setHoveredNode(sigma: Sigma, node?: string) {
     if (node) {
       this.hoveredNode = node;
+      this.dataService.sigmaUser.setSetting("nodeReducer", (nodeForReducer, data) => {
+        //const res: Partial<NodeDisplayData> = { ...data };
+        const res: any = { ...data };
+        if (this.linkTheseNodesInVisualisation.includes(nodeForReducer)) {
+          res.color = "red";
+          res.zIndex = 5;
+          res.forceLabel = true;
+        }
+        else {
+          res.color = "grey";
+          res.zIndex = 0;
+          res.label = null;
+        }
+        if (nodeForReducer == node) {
+          res.label = res['schema:name'];
+        }
+        return res;
+      });
       this.hoveredNeighbors = new Set(this.graph.neighbors(node));
     } else {
       this.hoveredNode = undefined;
       this.hoveredNeighbors = undefined;
+      this.dataService.sigmaUser.setSetting("nodeReducer", (node, data) => {
+        const res: Partial<NodeDisplayData> = { ...data };
+        if (this.linkTheseNodesInVisualisation.includes(node)) {
+          res.color = "red";
+          res.zIndex = 5;
+          res.forceLabel = true;
+        } else {
+          res.color = "grey";
+          res.zIndex = 0;
+          res.label = null;
+        }
+        return res;
+      });
     }
     sigma.refresh();
   }
@@ -449,6 +477,7 @@ export class GraphComponent {
       this.dataService.sigma.kill();
     }
   }
+
 
   public calculateBirdFlightDistanceBetween(lat1: number, lon1: number, lat2: number, lon2: number): number {
     let R = 6371;
