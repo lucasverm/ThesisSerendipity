@@ -14,7 +14,6 @@ declare var require: any;
   styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent {
-
   public hoveredNode?: string;
   public hoveredNeighbors?: Set<string>;
   public graph: Graph;
@@ -44,7 +43,6 @@ export class GraphComponent {
     this.correlationFactor = Math.round(event['value1'] * 100) / 100;
     this.distanceBetweenNodesFactor = Math.round(event['value2'] * 100) / 100;
     this.randomFactor = Math.round(event['value3'] * 100) / 100;
-
     this.calculatePath(3.7197324, 51.0569223);
   }
 
@@ -60,7 +58,7 @@ export class GraphComponent {
       getCategoricalSimilaritiesObject$: this.dataService.getCategoricalSimilaritiesObject$()
     }).subscribe(results => {
       this.data = [... this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$)[`@graph`], ... this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$)[`@graph`], ...this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$)[`@graph`]]
-      this.data = this.data.slice(0, 100);
+      this.data = this.data.slice(0, 1000);
       this.destination = this.data[0];
       this.oldDestination = this.destination;
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
@@ -73,6 +71,7 @@ export class GraphComponent {
   }
 
   buildGraph(currentPositionLat: number, currentPositionLong: number) {
+    console.log("start building graph")
     this.loaded = false;
     this.graph = new Graph();
     //add current position
@@ -96,6 +95,7 @@ export class GraphComponent {
     console.log(this.graph.size)
     console.log(this.graph.order);
     this.loaded = true;
+    console.log("end building graph")
   }
 
   public setMinMax(currentPositionLat: number, currentPositionLong: number) {
@@ -114,6 +114,7 @@ export class GraphComponent {
 
 
   public updateGraphForDestinationChange(currentPositionLat: number, currentPositionLong: number) {
+    this.loaded = false;
     if (this.destination != null && this.destination != "") {
       let keywordsDestionation: string[] = this.destination["schema:keyword"]['@list']
       this.graph.nodes().forEach(node => {
@@ -147,9 +148,6 @@ export class GraphComponent {
       if (this.graph.hasEdge(this.destination['@id'], fromNode)) {
         this.graph.dropEdge(this.destination['@id'], fromNode);
       }
-
-
-
       this.calculatePath(currentPositionLat, currentPositionLong);
       this.oldDestination = this.destination
     }
@@ -232,7 +230,6 @@ export class GraphComponent {
   }
 
   public calculatePath(currentPositionLat: number, currentPositionLong: number) {
-    console.log("start calculate path")
     if (this.destination != null && this.destination != "") {
       //dijkstra
       let way: any[] = this.dijkstra(this.graph, this.destination['@id'], "currentPosition");
@@ -263,7 +260,7 @@ export class GraphComponent {
     const shortestPath: any = {};
     graph.forEachNode((node: any) => {
       shortestPath[node] = {
-        distance: node === source ? 0 : Infinity,
+        weight: node === source ? 0 : Infinity,
         previousNode: null,
         totalCorrelation: 0,
         totalDistanceInBetweenNodes: 0,
@@ -276,13 +273,13 @@ export class GraphComponent {
     const unvisitedNodes = new Set(graph.nodes());
     let currentNode: any = source;
 
-    while (unvisitedNodes.size > 0) {
-      // Find the unvisited node with the smallest distance
-      let currentDistance = Infinity;
+    while (unvisitedNodes.has(destination)) {
+      // Find the unvisited node with the smallest weight
+      let currentWeight = Infinity;
       unvisitedNodes.forEach((node) => {
-        if (shortestPath[node].distance < currentDistance) {
+        if (shortestPath[node].weight < currentWeight) {
           currentNode = node;
-          currentDistance = shortestPath[node].distance;
+          currentWeight = shortestPath[node].weight;
         }
       });
 
@@ -308,9 +305,9 @@ export class GraphComponent {
         const avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const avgRandomness = (shortestPath[currentNode].totalRandomnes + nodeAtr['randomValue']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
         const weight = 100 * ((this.correlationFactor) * avgCorrelation) + ((this.distanceBetweenNodesFactor) * avgDistanceInBetweenNodes) + 0.03 * (this.randomFactor * avgRandomness);
-        const distance = currentDistance + weight;
-        if (distance < shortestPath[neighbor].distance) {
-          shortestPath[neighbor].distance = distance;
+        const newWeight = currentWeight + weight;
+        if (newWeight < shortestPath[neighbor].weight) {
+          shortestPath[neighbor].weight = newWeight;
           shortestPath[neighbor].previousNode = currentNode;
           shortestPath[neighbor].totalCorrelation = (shortestPath[currentNode].totalCorrelation + nodeAtr['correlation']);
           shortestPath[neighbor].avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']);

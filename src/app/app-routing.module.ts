@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'parse', component: ParseRmlComponent },
   { path: 'graph', component: GraphComponent },
   { path: '', component: GraphComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
