@@ -325,7 +325,7 @@ export class GraphComponent {
     for (let i = 0; i < this.data.length; i++) {
       let item = this.data[i];
       let itemName: String = String(item['schema:name']);
-      if (itemName !== undefined && itemName != "" && (itemName.toLowerCase().includes(query)) || (item['schema:keyword'] && item['schema:keyword'].toString().toLowerCase().includes(query))) {
+      if (itemName !== undefined && itemName != "" && (itemName.toLowerCase().includes(query)) || (item['schema:keyword'] && item['schema:keyword']['@list'] && item['schema:keyword']['@list'].toString().toLowerCase().includes(query))) {
         filtered.push(item);
       }
     }

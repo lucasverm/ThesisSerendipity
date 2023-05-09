@@ -198,9 +198,8 @@ export class DataService {
             while (linkData.length != 0) {
               let printPlace = true;
               Object.keys(linkData[0]['properties']).forEach(t => sleutels.add(t));
-              // let idWithoutNode: String = String(linkData[0]['id']).replace("node/", "");
-              let id: String = String(linkData[0]['id']);
-              let tripleIdentifier = `<${id}>`;
+              let id: String = String(linkData[0]['id']).replace("/", "");
+              let tripleIdentifier = `_:${id}`;
               //AMENITY
               let keywords: Set<string> = new Set();
               let relevant = true;
