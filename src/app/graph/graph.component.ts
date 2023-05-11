@@ -38,6 +38,7 @@ export class GraphComponent {
   constructor(private http: HttpClient, private dataService: DataService) { }
 
   handleTriangleChange(event: any) {
+    this.status = "Calculating path...";
     this.correlationFactor = Math.round(event['value1'] * 100) / 100;
     this.distanceBetweenNodesFactor = Math.round(event['value2'] * 100) / 100;
     this.randomFactor = Math.round(event['value3'] * 100) / 100;
@@ -50,9 +51,6 @@ export class GraphComponent {
 
   ngOnInit() {
     this.buildDijkstraWorker();
-  }
-
-  ngAfterViewInit() {
     forkJoin({
       getTurtleOfNodeData$: this.dataService.getTurtleOfData$(this.dataService.getNodeJsonData$()),
       getTurtleOfWayData$: this.dataService.getTurtleOfData$(this.dataService.getWayJsonData$()),
@@ -251,7 +249,6 @@ export class GraphComponent {
   }
 
   public calculatePath(currentPositionLat: number, currentPositionLong: number): void {
-    this.status = "Calculating path...";
     if (this.destination != null && this.destination != "") {
       this.dijkstraWorker.postMessage({
         "graph": this.dataService.graph.toJSON(),
@@ -265,6 +262,7 @@ export class GraphComponent {
       this.linkTheseNodesInVisualisation = [];
       this.visualizeGraphForUser();
     }
+    console.log("euinde calculate path")
   }
 
   normalizeDistance(min: number, max: number, value: number) {

@@ -168,7 +168,7 @@ export class DataService {
     Object.keys(obj).forEach(key => {
       Object.keys(obj[key]).forEach(subKey => {
         if (key && subKey && obj[key][subKey]) {
-          categoricalTurtle += `<ex/${teller}> a sim:Association ;\n`;
+          categoricalTurtle += `_:${teller} a sim:Association ;\n`;
           categoricalTurtle += `\tsim:subject "${key}" ; \n`;
           categoricalTurtle += `\tsim:object "${subKey}" ; \n`;
           categoricalTurtle += `\tsim:weight ${obj[key][subKey]} . \n`;
