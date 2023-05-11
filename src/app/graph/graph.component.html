@@ -36,9 +36,10 @@
         <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
     </div>!-->
     <div class="userGraafEnKompas">
-        <img src="../../assets/images/kompas.jpg" width="75px" />
+        <img src="../../assets/images/kompas.jpg" />
+        <p class="status">{{status}}</p>
         <div #containerForUser class="graafContainer">
-            <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
+
         </div>
     </div>
     <ol>

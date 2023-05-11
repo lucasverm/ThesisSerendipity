@@ -41,6 +41,7 @@
 
     img {
         margin: 5px;
+        width: 75px;
     }
 
     .wayList {
@@ -60,4 +61,10 @@ p {
 .wikidataImage {
     width: 150px;
     display: block;
+}
+
+.status {
+    float: right;
+    text-align: center;
+    width: calc(85vw - 350px - 75px - 10px - 2px);
 }
