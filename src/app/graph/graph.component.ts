@@ -62,7 +62,6 @@ export class GraphComponent {
       this.destination = this.data[0];
       this.oldDestination = this.destination;
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
-
       // calculate min and max for distanceNodeBetweenNodes & distanceNodeToCurrentPosition
       this.setMinMax(3.7197324, 51.0569223);
       this.buildGraph(3.7197324, 51.0569223);
@@ -92,7 +91,7 @@ export class GraphComponent {
     });
     this.addNodesToGraph(currentPositionLat, currentPositionLong);
     this.addEdgesToGraph(currentPositionLat, currentPositionLong);
-    this.status = "ended building graph";
+    this.status = "";
   }
 
   public setMinMax(currentPositionLat: number, currentPositionLong: number) {
@@ -110,7 +109,7 @@ export class GraphComponent {
   }
 
   public updateGraphForDestinationChange(currentPositionLat: number, currentPositionLong: number) {
-    this.status = "Changing graaf";
+    this.status = "Updating graph...";
     if (this.destination != null && this.destination != "") {
       let keywordsDestionation: string[] = this.destination["schema:keyword"]['@list']
       this.dataService.graph.nodes().forEach(node => {
@@ -120,6 +119,8 @@ export class GraphComponent {
           maxCorrelation = this.getMaxCorrelation(keywordsDestionation, nodeAtr["schema:keyword"]['@list']);
         }
         this.dataService.graph.setNodeAttribute(node, "correlation", maxCorrelation)
+        let distanceNodeToCurrentPosition = this.normalizeDistance(this.minDistanceBetweenNodes, this.maxDistanceBetweenNodes, this.calculateBirdFlightDistanceBetween(Number(nodeAtr['schema:geo']['geo:lat']), Number(nodeAtr['schema:geo']['geo:long']), currentPositionLat, currentPositionLong));
+        this.dataService.graph.setNodeAttribute(node, "distanceNodeToCurrentPosition", distanceNodeToCurrentPosition)
       });
       //restore edge oldDestination <-> currentPosition
       let fromNode = "currentPosition";
@@ -154,6 +155,7 @@ export class GraphComponent {
       if (!this.dataService.graph.hasNode(this.data[i]['@id'])) {
         let el = this.data[i];
         //add node
+        let distanceNodeToCurrentPosition = this.normalizeDistance(this.minDistanceBetweenNodes, this.maxDistanceBetweenNodes, this.calculateBirdFlightDistanceBetween(Number(el['schema:geo']['geo:lat']), Number(el['schema:geo']['geo:long']), currentPositionLat, currentPositionLong));
         let randomValue = Math.random();
         let maxCorrelation = 0;
         if (el['@id'] != "currentPosition") {
@@ -163,6 +165,7 @@ export class GraphComponent {
           label: el['schema:name'],
           color: 'grey',
           randomValue: randomValue,
+          distanceNodeToCurrentPosition: distanceNodeToCurrentPosition,
           correlation: maxCorrelation,
           size: 6,
           x: Number(el['schema:geo']['geo:lat']),
@@ -238,6 +241,7 @@ export class GraphComponent {
           }
           this.calculatedWayToShow.push(atrData);
         });
+        this.calculatedWayToShow.reverse();
         this.linkTheseNodesInVisualisation = way;
         this.visualizeGraphForUser();
         this.status = "";
