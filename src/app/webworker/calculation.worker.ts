@@ -1,6 +1,7 @@
 /// <reference lib="webworker" />
 
 import Graph from "graphology";
+import { MinHeap } from "../classes/min-heap";
 
 addEventListener('message', ({ data }) => {
   let graaf = new Graph();
@@ -12,70 +13,59 @@ addEventListener('message', ({ data }) => {
 
 function dijkstraWebworker(graph: Graph, source: any, destination: any, correlationFactor: number, distanceBetweenNodesFactor: number, randomFactor: number): any {
   console.log("start dijkstra in worker")
-  const shortestPath: any = {};
+  let result = [];
+  let queue = new MinHeap<any>();
   graph.forEachNode((node: any) => {
-    shortestPath[node] = {
+    queue.push({
+      id: node,
       weight: node === source ? 0 : Infinity,
       previousNode: null,
       totalCorrelation: 0,
       totalDistanceInBetweenNodes: 0,
       totalRandomnes: 0,
       numberOfNodesBefore: 0
-    };
+    });
   });
 
-  // Set of unvisited nodes
-  const unvisitedNodes = new Set(graph.nodes());
-  let currentNode: any = source;
-
-  while (unvisitedNodes.has(destination)) {
-    // Find the unvisited node with the smallest weight
-    let currentWeight = Infinity;
-    unvisitedNodes.forEach((node) => {
-      if (shortestPath[node].weight < currentWeight) {
-        currentNode = node;
-        currentWeight = shortestPath[node].weight;
-      }
-    });
-
-    if (currentNode === null) {
-      break;
-    }
-
-    // Remove the current node from the unvisited set
-    unvisitedNodes.delete(currentNode);
+  let currentNode: any;
+  //while (queue.size() != 0) {
+  while (queue.contains(destination)) {
+    currentNode = queue.popFront();
+    result.push(currentNode);
 
     // Visit each neighbor of the current node and update their distances
-    const neighbors = graph.neighbors(currentNode);
+    const neighbors = graph.neighbors(currentNode.id);
 
     neighbors.forEach((neighbor) => {
       const nodeAtr = graph.getNodeAttributes(neighbor);
       let edgeAtr: any;
       try {
-        edgeAtr = graph.getEdgeAttributes(currentNode, neighbor);
+        edgeAtr = graph.getEdgeAttributes(currentNode.id, neighbor);
       } catch {
-        edgeAtr = graph.getEdgeAttributes(neighbor, currentNode);
+        edgeAtr = graph.getEdgeAttributes(neighbor, currentNode.id);
       }
-      const avgCorrelation = (shortestPath[currentNode].totalCorrelation + nodeAtr['correlation']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
-      const avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
-      const avgRandomness = (shortestPath[currentNode].totalRandomnes + nodeAtr['randomValue']) / (shortestPath[currentNode].numberOfNodesBefore + 1)
+      const avgCorrelation = (currentNode.totalCorrelation + nodeAtr['correlation']) / (currentNode.numberOfNodesBefore + 1)
+      const avgDistanceInBetweenNodes = (currentNode.totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (currentNode.numberOfNodesBefore + 1)
+      const avgRandomness = (currentNode.totalRandomnes + nodeAtr['randomValue']) / (currentNode.numberOfNodesBefore + 1)
       const weight = 100 * ((correlationFactor) * avgCorrelation) + ((distanceBetweenNodesFactor) * avgDistanceInBetweenNodes) + 0.03 * (randomFactor * avgRandomness);
-      const newWeight = currentWeight + weight;
-      if (newWeight < shortestPath[neighbor].weight) {
-        shortestPath[neighbor].weight = newWeight;
-        shortestPath[neighbor].previousNode = currentNode;
-        shortestPath[neighbor].totalCorrelation = (shortestPath[currentNode].totalCorrelation + nodeAtr['correlation']);
-        shortestPath[neighbor].avgDistanceInBetweenNodes = (shortestPath[currentNode].totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']);
-        shortestPath[neighbor].totalRandomnes = (shortestPath[currentNode].totalRandomnes + nodeAtr['randomValue']);
-        shortestPath[neighbor].numberOfNodesBefore = shortestPath[currentNode].numberOfNodesBefore + 1;
+      const newWeight = currentNode.weight + weight;
+      if (queue.get(neighbor) && newWeight < queue.get(neighbor).weight) {
+        let neighborObj = queue.popItem(neighbor);
+        neighborObj.weight = newWeight;
+        neighborObj.previousNode = currentNode;
+        neighborObj.totalCorrelation = (currentNode.totalCorrelation + nodeAtr['correlation']);
+        neighborObj.avgDistanceInBetweenNodes = (currentNode.totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']);
+        neighborObj.totalRandomnes = (currentNode.totalRandomnes + nodeAtr['randomValue']);
+        neighborObj.numberOfNodesBefore = currentNode.numberOfNodesBefore + 1;
+        queue.push(neighborObj)
       }
     });
   }
   let way = [destination];
-  currentNode = destination;
-  while (currentNode != source) {
-    currentNode = shortestPath[currentNode]['previousNode'];
-    way.push(currentNode)
+  currentNode = result.find(t => t.id === destination);
+  while (currentNode.id != source) {
+    currentNode = currentNode.previousNode;
+    way.push(currentNode.id)
   }
   console.log("einde dijkstra in worker");
   return way;

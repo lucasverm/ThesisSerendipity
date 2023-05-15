@@ -266,7 +266,7 @@ export class GraphComponent {
       this.linkTheseNodesInVisualisation = [];
       this.visualizeGraphForUser();
     }
-    console.log("euinde calculate path")
+    console.log("einde calculate path")
   }
 
   normalizeDistance(min: number, max: number, value: number) {
