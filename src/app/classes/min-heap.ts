@@ -11,7 +11,7 @@ export class MinHeap<T extends { id?: string, weight: number }> {
     }
 
     contains(id: string): boolean {
-        return this.harr.find(t => t.id == id) ? true : false;
+        return this.harr.find(t => t.id == id) !== undefined ? true : false;
     }
 
     size() {
