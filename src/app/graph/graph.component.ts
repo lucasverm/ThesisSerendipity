@@ -296,29 +296,19 @@ export class GraphComponent {
           if (!userGraaf.hasNode(node['@id'])) {
             userGraaf.addNode(node['@id'], node);
           }
-          let array = this.dataService.graph.neighbors(node['@id']).map(neighbor => {
-            let vanNaar;
-            let naarVan;
-            if (this.dataService.graph.hasEdge(node['@id'], neighbor)) {
-              vanNaar = this.dataService.graph.getDirectedEdgeAttributes(node['@id'], neighbor);
-            }
-            if (this.dataService.graph.hasEdge(neighbor, node['@id'])) {
-              naarVan = this.dataService.graph.getDirectedEdgeAttributes(neighbor, node['@id']);
-            }
-            return { ...vanNaar, ...naarVan };
+          let array = this.dataService.graph.nodes().map(neighbor => {
+            let toNodeAtr = this.dataService.graph.getNodeAttributes(neighbor);
+            let distanceInBetweenNodes = this.calculateBirdFlightDistanceBetween(Number(node['schema:geo']['geo:lat']), Number(node['schema:geo']['geo:long']), Number(toNodeAtr['schema:geo']['geo:lat']), Number(toNodeAtr['schema:geo']['geo:long']));
+            return { "@id": neighbor, "distanceInBetweenNodes": distanceInBetweenNodes };
           })
           let sortedArray = array.sort((a: any, b: any) => a['distanceInBetweenNodes'] - b['distanceInBetweenNodes']);
 
           sortedArray.slice(0, 3).forEach(neighbor => {
-            if (!userGraaf.hasNode(neighbor['toNodeId'])) {
-
-              userGraaf.addNode(neighbor['toNodeId'], this.dataService.graph.getNodeAttributes(neighbor['toNodeId']));
+            if (!userGraaf.hasNode(neighbor["@id"])) {
+              userGraaf.addNode(neighbor["@id"], this.dataService.graph.getNodeAttributes(neighbor["@id"]));
             }
-            if (!userGraaf.hasNode(neighbor['fromNodeId'])) {
-              userGraaf.addNode(neighbor['fromNodeId'], this.dataService.graph.getNodeAttributes(neighbor['fromNodeId']));
-            }
-            if (!userGraaf.hasEdge(neighbor['fromNodeId'], neighbor['toNodeId'])) {
-              userGraaf.addDirectedEdge(neighbor['fromNodeId'], neighbor['toNodeId']);
+            if (!userGraaf.hasEdge(node['@id'], neighbor["@id"])) {
+              userGraaf.addDirectedEdge(node['@id'], neighbor["@id"]);
             }
           });
         })
