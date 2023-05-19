@@ -47,7 +47,7 @@ function dijkstraWebworker(graph: Graph, source: any, destination: any, correlat
       const avgCorrelation = (currentNode.totalCorrelation + nodeAtr['correlation']) / (currentNode.numberOfNodesBefore + 1)
       const avgDistanceInBetweenNodes = (currentNode.totalDistanceInBetweenNodes + edgeAtr['distanceInBetweenNodes']) / (currentNode.numberOfNodesBefore + 1)
       const avgRandomness = (currentNode.totalRandomnes + nodeAtr['randomValue']) / (currentNode.numberOfNodesBefore + 1)
-      const weight = 100 * ((correlationFactor) * avgCorrelation) + ((distanceBetweenNodesFactor) * avgDistanceInBetweenNodes) + 0.03 * (randomFactor * avgRandomness);
+      const weight = 500 * ((correlationFactor) * avgCorrelation) + 500 * ((distanceBetweenNodesFactor) * avgDistanceInBetweenNodes) + 500 * (randomFactor * avgRandomness);
       const newWeight = currentNode.weight + weight;
       if (queue.get(neighbor) && newWeight < queue.get(neighbor).weight) {
         let neighborObj = queue.popItem(neighbor);

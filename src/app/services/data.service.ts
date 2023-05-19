@@ -109,7 +109,8 @@ export class DataService {
       const rowKey: string = row[0];
       obj[rowKey] = {};
       for (let j = 1; j < row.length; j++) {
-        obj[rowKey][keys[j - 1]] = Number(row[j]);
+        obj[rowKey][keys[j - 1]] = Math.pow(Number(row[j]), 1 / 60);
+        //obj[rowKey][keys[j - 1]] = Number(row[j]);
       }
     }
     return obj;

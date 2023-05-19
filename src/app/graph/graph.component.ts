@@ -150,7 +150,7 @@ export class GraphComponent {
   }
 
   public addEdgesToGraph(currentPositionLat: number, currentPositionLong: number) {
-    let level = 0.2;
+    let level = 0.011;
     if (this.destination != null && this.destination != "") {
       this.dataService.graph.clearEdges();
       let graphNodes = this.dataService.graph.nodes();

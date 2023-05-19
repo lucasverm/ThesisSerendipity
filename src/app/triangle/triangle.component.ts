@@ -319,7 +319,7 @@ export class TriangleComponent {
   }
 
   refreshDrawing() {
-    this.context?.clearRect(0, 0, this.canvasRef.nativeElement.width, this.canvasRef.nativeElement.height);
+    this.context?.clearRect(0, 0, this.canvasRef.nativeElement.width * 2, this.canvasRef.nativeElement.height * 2);
     this.drawTriangle(this.trianglePoint1, this.trianglePoint2, this.trianglePoint3);
     this.drawPoint(this.movingPoint);
     //this.drawHelpingLines();
