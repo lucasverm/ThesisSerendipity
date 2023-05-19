@@ -30,7 +30,7 @@ export class GraphComponent {
   public maxDistanceBetweenNodes = 0;
   public changingFactorValues: any = { value1: 0.33, value2: 0.33, value3: 0.33, };
   public calculatedWayToShow: any[];
-  public status: string;
+  public status: string = "Building graph...";
   @ViewChild("container") container: ElementRef;
   @ViewChild("containerForUser") containerForUser: ElementRef;
 
@@ -58,7 +58,7 @@ export class GraphComponent {
     }).subscribe(results => {
       this.data = [... this.dataService.parsteTtlToJsonLd(results.getTurtleOfNodeData$)[`@graph`], ... this.dataService.parsteTtlToJsonLd(results.getTurtleOfWayData$)[`@graph`], ...this.dataService.parsteTtlToJsonLd(results.getTurtleOfRelationData$)[`@graph`]]
       //this.data = this.data.slice(0, 1000);
-      this.destination = this.data[0];
+      this.destination = this.data[1];
       this.categoricalSimilaritiesObject = results.getCategoricalSimilaritiesObject$;
       // calculate min and max for distanceNodeBetweenNodes & distanceNodeToCurrentPosition
       this.setMinMax(3.7212597, 51.0569223);
@@ -106,7 +106,6 @@ export class GraphComponent {
       this.addNodesToGraph(currentPositionLat, currentPositionLong);
       this.addEdgesToGraph(currentPositionLat, currentPositionLong);
     }
-    this.status = "";
   }
 
   public setMinMax(currentPositionLat: number, currentPositionLong: number) {
@@ -241,7 +240,6 @@ export class GraphComponent {
       });
     }
     console.log("einde calculate path")
-    this.status = "";
   }
 
   normalizeDistance(min: number, max: number, value: number) {

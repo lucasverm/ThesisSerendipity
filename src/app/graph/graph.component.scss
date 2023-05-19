@@ -52,14 +52,14 @@ p {
         img {
             margin-left: 5px;
             margin-top: 5px;
-            width: 10%;
+            width: 75px;
             float: left;
         }
 
         .status {
             float: left;
             text-align: center;
-            width: calc(90% - 5px);
+            width: calc(100% - 75px - 5px);
         }
 
         .graafContainer {

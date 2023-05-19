@@ -67,5 +67,6 @@ function dijkstraWebworker(graph: Graph, source: any, destination: any, correlat
     currentNode = currentNode.previousNode;
     way.push(currentNode.id)
   }
+  console.log("end dijkstra in worker")
   return way;
 }
