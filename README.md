@@ -1,8 +1,6 @@
 # Serendipitous route planning in Ghent: a proof-of-concept using Linked Data
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![License: ODbL](https://img.shields.io/badge/License-ODbL-brightgreen.svg)](https://opendatacommons.org/licenses/odbl/) [![Npm](https://badgen.net/badge/icon/npm?icon=npm&label)](https://https://npmjs.com/) [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-[![License: ODbL](https://img.shields.io/badge/License-ODbL-brightgreen.svg)](https://opendatacommons.org/licenses/odbl/)
 
 Met de voortdurende technologische evolutie en de groeiende beschikbaarheid van data wordt routeplanning voortdurend verbeterd en geoptimaliseerd. Traditionele routeplanningssystemen richten zich doorgaans op efficiëntie, waarbij de snelste of kortste route wordt berekend op basis van vooraf bepaalde criteria zoals afstand of reistijd. Er is echter een groeiende interesse in het verkennen van nieuwe benaderingen die verder gaan dan de conventionele optimalisatieprincipes. Serendipiteit is een concept dat verwijst naar het ontdekken van waardevolle of interessante zaken zonder specifieke intentie, maar met een open blik van de eindgebruiker. Door serendipiteit te integreren in routeplanning kan er een meerwaarde worden gecreëerd, waarbij het uitstippelen van routes de eindgebruiker in staat stelt om spontaan nieuwe plekken te ontdekken en mogelijk serendipiteit te ervaren. De combinatie van routeplanning en serendipiteit biedt een interessant perspectief om de reiservaring te verbeteren.
 
