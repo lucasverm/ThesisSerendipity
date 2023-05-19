@@ -13,8 +13,9 @@ export class TriangleSliderVisualisationComponent {
   @Input() title: string;
   @Input() value: number;
   @Input() color: string;
-  public rectWidth = 90;
-  public rectHeight = 5;
+  public rectWidth = 350;
+  public rectHeight = 20;
+  private canvasOffset = 10;
 
   fixCanvas() {
     const originalHeight = this.canvasRef.nativeElement.height;
@@ -54,21 +55,21 @@ export class TriangleSliderVisualisationComponent {
 
   public drawOutsideRectangle(color: string) {
     this.context?.beginPath();
-    this.context?.rect(1, 1, this.rectWidth, this.rectHeight);
-    if (this.context) this.context.lineWidth = 0.5;
+    this.context?.rect(this.canvasOffset, 1, this.rectWidth, this.rectHeight);
+    if (this.context) this.context.lineWidth = 2;
     if (this.context) this.context.strokeStyle = color;
     this.context?.stroke();
   }
 
   public drawInsideRectangle(color: string) {
     this.context?.beginPath();
-    this.context?.rect(1, 1, this.rectWidth * this.value, this.rectHeight);
+    this.context?.rect(this.canvasOffset, 1, this.rectWidth * this.value, this.rectHeight);
     if (this.context) this.context.fillStyle = color;
     this.context?.fill();
   }
 
   public refreshDrawing() {
-    this.context?.clearRect(0, 0, this.rectWidth * 2, this.rectHeight * 2);
+    this.context?.clearRect(this.canvasOffset, 1, this.rectWidth * 2, this.rectHeight * 2);
     this.drawOutsideRectangle(this.color);
     this.drawInsideRectangle(this.color);
   }
