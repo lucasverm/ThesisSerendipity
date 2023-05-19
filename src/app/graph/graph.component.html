@@ -18,11 +18,11 @@
         (distanceChangingEventEmitter)="handleTriangleChangingValuesChange($event)"></app-triangle>
 
     <div class="triangle-visualisation">
-        <app-triangle-slider-visualisation [title]="'Similarity level'" [color]="'orange'"
+        <app-triangle-slider-visualisation [title]="'Similarity destination & suggested locations'" [color]="'orange'"
             [value]="this.changingFactorValues['value1']"></app-triangle-slider-visualisation>
     </div>
     <div class="triangle-visualisation">
-        <app-triangle-slider-visualisation [title]="'Less walking'" [color]="'green'"
+        <app-triangle-slider-visualisation [title]="'Importance of distance to walk'" [color]="'green'"
             [value]="this.changingFactorValues['value2']"></app-triangle-slider-visualisation>
     </div>
     <div class="triangle-visualisation">
@@ -34,14 +34,23 @@
     <!--<div #container class="graafContainer">
         <p *ngIf="!loaded" style="text-align:center;">Loading data...</p>
     </div>!-->
+    <p class="introText">Welcome to this <b>serendipous routeplanning application</b>. In the search field, you can
+        enter a
+        destination, and
+        additional parameters can be set using the red ball within the triangle. Subsequently, the route will be
+        displayed, indicating the locations marked by <b>red dots</b>, while the gray dots serve as reference points for
+        the red ones. At the right side of the page, a <b>list of the locations</b> to visit and possibly a
+        corresponding
+        image can also be found.
+        <b>Enjoy your exploration.</b>
+    </p>
     <div class="userGraafEnKompas">
         <img src="../../assets/images/kompas.jpg" />
         <p class="status">{{status}}</p>
         <div #containerForUser class="graafContainer">
-
         </div>
     </div>
-    <ol>
+    <ol class="lijst">
         <ng-container *ngFor="let item of this.calculatedWayToShow; let i=index">
             <li>{{item['schema:name']}} <span
                     *ngIf="item['schema:keyword']['@list'] && item['schema:keyword']['@list'].length !=0">({{item['schema:keyword']['@list'].toString().replaceAll(",",",
@@ -50,4 +59,5 @@
             </li>
         </ng-container>
     </ol>
+    <p class="outro">This application was created as part of Lucas Vermeulen's master's thesis.</p>
 </div>

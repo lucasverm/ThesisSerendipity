@@ -23,7 +23,7 @@ export class TriangleComponent {
   public distance1: number;
   public distance2: number;
   public distance3: number;
-  private triangleSize = 300;
+  private triangleSize = 350;
   private canvasOffset = 10;
   private movingPoint: Point = { x: 250, y: 250 };
   private centerPoint: Point;
