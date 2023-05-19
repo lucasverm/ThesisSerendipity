@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import Graph from 'graphology';
 import { forkJoin } from 'rxjs';
-import { Sigma } from "sigma";
+import { Camera, Sigma } from "sigma";
 import { NodeDisplayData } from 'sigma/types';
 import { DataService } from '../services/data.service';
 
@@ -325,6 +325,9 @@ export class GraphComponent {
         renderLabels: true,
         defaultEdgeType: "line"
       });
+      let camera: Camera = this.dataService.sigmaUser.getCamera();
+      camera.ratio = 1.2;
+      this.dataService.sigmaUser.setCamera(camera)
       this.dataService.sigmaUser.on("enterNode", ({ node }) => {
         this.setHoveredNode(this.dataService.sigmaUser, node);
       });
