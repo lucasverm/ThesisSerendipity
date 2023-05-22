@@ -1096,7 +1096,7 @@ export class DataService {
                   if (linkData[0]['properties']["addr:street"]) {
                     turtleOutput += `\tschema:name "${category} in ${linkData[0]['properties']["addr:street"]}" ; \n`;
                   } else {
-                    turtleOutput += `\tschema:name "${category}" ; \n`;
+                    turtleOutput += `\tschema:name "${category} (${linkData[0]['geometry']['coordinates'][1]},${linkData[0]['geometry']['coordinates'][0]})" ; \n`;
                   }
                 }
 
